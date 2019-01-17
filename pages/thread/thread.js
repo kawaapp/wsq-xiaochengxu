@@ -1,4 +1,6 @@
 // pages/post/posts.js
+import api from '../../utils/util.js'
+
 Page({
 
   /**
@@ -13,72 +15,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    /*wx.request({
-      url: 'http://news-at.zhihu.com/api/4/news/latest',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      success: function(res) {
-        that.setData({
-          banner: res.data.top_stories,
-          list: [{header: '今日热闻'}].concat(res.data.stories)
+    api.getCommentList(1).then(resp => {
+      if (resp.statusCode == 200) {
+        this.setData({
+          comments: resp.data
         })
       }
-    })*/
+    }).catch(err => {
+      console.log('thread:', err)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
   threadComment: function(e) {
+    const data = {
+      pid: 1,
+      text: "啦啦啦"
+    }
+    api.createComment(data).then( resp => {
 
+    }).catch(err => {
+      
+    })
   },
   threadCancel: function(e) {
     wx.navigateBack({ delta: 1})

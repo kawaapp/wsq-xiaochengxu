@@ -1,9 +1,12 @@
 <view>帖子列表</view>
 
 <view wx:for="{{topics}}" wx:for-index="idx" wx:for-item="itemName">
-  <view bindtap='topicClick' data-name='{{idx}}}'>{{idx}}: {{itemName.message}} </view>
+  <view bindtap='topicClick' data-name='{{idx}}}'>
+    <text>{{idx}}: {{itemName.name}} </text>
+    <text>{{itemName.text}}</text>
+  </view>
 </view>
-
+  
 <view>
   <button bindtap='newTopic' class='new-topic'>发帖</button>
 </view>

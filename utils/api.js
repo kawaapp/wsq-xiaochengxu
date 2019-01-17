@@ -1,5 +1,5 @@
 // ALL server-side API
-const Host = "http://localhost/"
+const Host = "http://127.0.0.1:1323"
 let g = {
   token: "",
 }
@@ -24,7 +24,7 @@ function req(options = {}) {
 
   // inject token
   const header = Object.assign({
-    'Authorization: Bearer': g.token
+    'Authorization': `Bearer ${g.token}`
   }, options.header);
 
   return new Promise((res, rej) => {
@@ -58,6 +58,7 @@ function isHttpSuccess(status) {
 // login
 // if login success goto home, then register and login
 // TODO: 感觉微信登录不是这么做的，
+// 应该提供一个授权方法，直接到服务授权完事，目前这种流程比较类似于APP的登录流程.
 function autoLogin(name, pw) {
   return new Promise((res, rej) => {
     // check localstorage first
@@ -70,22 +71,28 @@ function autoLogin(name, pw) {
 
     // then try to login
     login(name, pw).then((resp)=>{
-      if (resp.rcode == 200) {
+      console.log("login:", resp)
+      if (resp.statusCode == 200) {
         //success, save token
-        g.token = resp.token
+        g.token = resp.data.access_token
         console.log("get token", resp.data)
         res(g.token)
         wx.setStorage({
           key: 'token',
           data: g.token
         })
-      } else {
+      } else if (resp.statusCode == 400){
         // register
-        // register(name, password)
-        rej({})
+        register(name, password).then((resp) => {
+          autoLogin(name, pw)
+        }).catch((err) => {
+          rej({code: -1, err: err})
+        })
+      } else {
+        rej({ code: resp.statusCode, err: 'access denied'})
       }
-    }).catch(()=> {
-      rej({})
+    }).catch((err)=> {
+      rej({code: -1, err: err})
     })
   })
 }
@@ -93,15 +100,17 @@ function autoLogin(name, pw) {
 // Promised method: User/Topic/Comment
 function login(name, pw) {
   return req({
-    url: `${Host}/api/login`,
-    method: 'POST'
+    url: `${Host}/login`,
+    method: 'POST',
+    data:{name: name, password:pw}
   })
 }
 
 function register(name, pw) {
   return req({
-    url: `${Host}/api/register`,
-    method: 'POST'
+    url: `${Host}/register`,
+    method: 'POST',
+    data: { name: name, password: pw }
   })
 }
 

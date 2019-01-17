@@ -1,22 +1,20 @@
 //logs.js
-const util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
 
 Page({
   data: {
-    topics: [{
-      message: 'foo',
-    }, {
-      message: 'bar'
-    }]
+    topics: []
   },
   onLoad: function () {
     //
-
-
-    this.setData({
-      logs: (wx.getStorageSync('logs') || []).map(log => {
-        return util.formatTime(new Date(log))
-      })
+    api.getTopicList().then( resp =>{
+      if (resp.statusCode == 200) {
+        this.setData({
+          topics: resp.data
+        })
+      }
+    }).catch(err => {
+      console.log("topic", err)
     })
   },
   newTopic: function(e) {
