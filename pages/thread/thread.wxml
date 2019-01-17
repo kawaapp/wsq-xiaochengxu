@@ -1,0 +1,19 @@
+<!--pages/post/posts.wxml-->
+<view class="card">
+  <view class="title">山村咏怀？</view>
+  <view class="detail">
+    <text>一去二三里，烟村四五家。亭台六七座，八九十枝花。</text>
+  </view>
+</view>
+<view>跟帖</view>
+<view wx:for="{{topics}}" wx:for-index="idx" wx:for-item="itemName">
+  <view data-name='{{idx}}}'>{{idx}}: {{itemName.message}} </view>
+</view>
+
+<view>发帖</view>
+<view>
+  <input bindinput="bindKeyInput" placeholder="输入同步到view中"/>
+</view>
+<button bindtap='threadComment' class='primary'>评论</button>
+<button bindtap='threadCancel' class='primary'>取消</button>
+

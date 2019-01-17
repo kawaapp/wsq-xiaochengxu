@@ -1,0 +1,13 @@
+<!--pages/writer/writer.wxml-->
+<view>
+  标题:
+  <input bindinput="bindKeyInput" placeholder="输入标题"/>
+</view>
+
+<view>
+  内容:
+  <input bindinput="bindKeyInput" placeholder="输入内容"/>
+</view>
+
+<button bindtap='writerPublish' class='primary'>发帖</button>
+<button bindtap='writerCancel' class='primary'>取消</button>

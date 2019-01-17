@@ -1,0 +1,5 @@
+.new-topic {
+  position: fixed;
+  bottom: 30rpx;
+  right: 20rpx;
+}
