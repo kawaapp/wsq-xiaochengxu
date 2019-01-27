@@ -1,5 +1,5 @@
 // pages/post/posts.js
-import api from '../../utils/util.js'
+import api from '../../utils/api.js'
 
 Page({
 
@@ -7,15 +7,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    topic: {},
-    comments: [],
+    topic: {
+      id: 0,
+      author: {
+        name: '小虾米',
+        avatar: '',
+        ts: 1548571746979
+      },
+      text: '小虾米啦啦啦',
+      imgs:[],
+    },
+    comments: [
+      {
+        author: {
+          name: '小虾米',
+          avatar: '',
+          ts: 1548571746979
+        },
+        text: '小虾米啦啦啦 \n 小虾米啦啦啦 \n 小虾米啦啦啦 小虾米啦啦啦 \n 小虾米啦啦啦 \n 小虾米啦啦啦 小虾米啦啦啦 \n 小虾米啦啦啦 \n 小虾米啦啦啦',
+      },
+      {
+        author: {
+          name: '小虾米',
+          avatar: '',
+          ts: 1548571746979
+        },
+        text: '小虾米啦啦啦',
+      }
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    api.getCommentList(1).then(resp => {
+    api.getCommentList(this.data.topic.id).then(resp => {
       if (resp.statusCode == 200) {
         this.setData({
           comments: resp.data

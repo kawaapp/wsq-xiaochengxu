@@ -1,19 +1,41 @@
 <!--pages/post/posts.wxml-->
+
 <view class="card">
-  <view class="title">山村咏怀？</view>
-  <view class="detail">
-    <text>一去二三里，烟村四五家。亭台六七座，八九十枝花。</text>
+  <view class="horizontal">
+      <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+        src="{{topic.author.avatar?topic.author.avatar:'/res/img/user_icon.png'}}" 
+        />
+    <view>
+      <view class='title'>{{topic.author.name}}</view>
+      <view class='subtitle'>摘要信息</view>
+    </view>
+  </view>
+
+  <view style='margin-top:4px;'>
+    <text>{{topic.text}}</text>
   </view>
 </view>
-<view>跟帖</view>
-<view wx:for="{{topics}}" wx:for-index="idx" wx:for-item="itemName">
-  <view data-name='{{idx}}}'>{{idx}}: {{itemName.message}} </view>
+<view style='margin-bottom:4px;'/>
+
+<view>评论</view>
+<view class="card">
+  <view wx:for="{{comments}}" wx:for-index="idx" wx:for-item="item">
+    <view class="h-top">
+      <image class="avatar-large"
+        src="{{topic.author.avatar?topic.author.avatar:'/res/img/user_icon.png'}}" 
+        />
+      <view style='width:100%;'>
+        <view class='title'>{{item.author.name}}</view>
+        <view class='comment-detail'>{{item.text}}</view>
+        <view class='subtitle'>{{'1-27 20:10'}}</view>
+        <view class='line'></view>
+      </view>
+    </view>
+  </view>
+  <view style='margin-bottom:4px;'/>
 </view>
 
-<view>发帖</view>
-<view>
-  <input bindinput="bindKeyInput" placeholder="输入同步到view中"/>
+<view class='bottom-bar'>
+  <button bindtap='threadComment' class='primary'>评论</button>
 </view>
-<button bindtap='threadComment' class='primary'>评论</button>
-<button bindtap='threadCancel' class='primary'>取消</button>
 

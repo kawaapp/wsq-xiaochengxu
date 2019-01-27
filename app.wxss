@@ -1,3 +1,5 @@
+@import 'style/weui.wxss';
+
 /**app.wxss**/
 .container {
   height: 100%;
@@ -13,4 +15,65 @@
 page{
   background-color:#eee;
   height:100%;
+}
+
+.card {
+  border: 2px solid #ffffff;
+  background-color: #ffffff;
+  box-shadow: 4px 1px 1px #cccccc;
+  margin-bottom: 8px;
+  position: relative;
+  padding: 8px;
+}
+
+.line {
+  height: 1px;
+  background-color: #f8f8f8;
+  margin: 8px 0;
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+}
+
+
+.avatar-large {
+  width: 45px; 
+  height: 45px;
+  min-width: 45px;
+  max-width: 45px;
+}
+
+.title {
+  font-size: 13px;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #888888;
+}
+
+.flow-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.img-text {
+  display: flex;
+  align-items: center;
+}
+
+.img-text image{
+  height: 16px;
+  width: 16px;
+  margin-left: 4px;
+}
+
+.img-text text {
+  text-align: center;
+  width: 24px;
+  font-size: 14px;
+  color: #888888;
 }

@@ -1,13 +1,10 @@
 <!--pages/writer/writer.wxml-->
-<view>
-  标题:
-  <input bindinput="bindTitle" placeholder="输入标题"/>
+<view class="card">
+  <view>
+    <textarea bindinput="bindContent" placeholder="请输入文本" style="height: 3.3em" />
+    <view class="weui-textarea-counter">0/200</view>
+  </view>
 </view>
-
-<view>
-  内容:
-  <input bindinput="bindContent" placeholder="输入内容"/>
-</view>
-
+<view style='margin-bottom:8px;'></view>
 <button bindtap='writerPublish' class='primary'>发帖</button>
 <button bindtap='writerCancel' class='primary'>取消</button>

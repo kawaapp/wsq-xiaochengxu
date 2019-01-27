@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
-	"appid": "touristappid",
+	"appid": "wx2ac6b4ccbb2aeaa3",
 	"projectname": "%E4%BA%91%E5%8F%91%E5%B8%96",
 	"condition": {
 		"search": {

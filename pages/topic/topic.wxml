@@ -1,12 +1,34 @@
-<view>帖子列表</view>
-
-<view wx:for="{{topics}}" wx:for-index="idx" wx:for-item="itemName">
-  <view bindtap='topicClick' data-name='{{idx}}}'>
-    <text>{{idx}}: {{itemName.name}} </text>
-    <text>{{itemName.text}}</text>
+<view style='margin-bottom:4px;'/>
+<view wx:for="{{topics}}" wx:for-index="idx" wx:for-item="item">
+  <view class="card">
+    <view class="horizontal">
+      <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
+        />
+      <view>
+        <view class='title'>{{item.author.name}}</view>
+        <view class='subtitle'>摘要信息</view>
+      </view>
+    </view>
+    <view style='margin-bottom:4px;'/>
+    <view style='margin-left:4px;' bindtap='topicClick'>
+      <text>{{item.text}}</text>
+    </view>
+    <view class='line'></view>
+    <view class='flow-right'>
+      <view class='img-text' bindtap='topicClick'>
+        <image src='/res/img/comment.png'></image>
+        <text>{{item.stats.comment}}</text>
+      </view>
+      <view class='img-text'>
+        <image src='/res/img/like.png'></image>
+        <text>{{item.stats.like}}</text>
+      </view>
+    </view>
   </view>
+  <view style='margin-bottom:4px;'/>
 </view>
-  
+
 <view>
   <button bindtap='newTopic' class='new-topic'>发帖</button>
 </view>

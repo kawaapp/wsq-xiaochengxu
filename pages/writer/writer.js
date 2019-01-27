@@ -1,5 +1,6 @@
 // pages/writer/writer.js
 import api from '../../utils/api.js'
+import util from'../../utils/util.js'
 
 Page({
 
@@ -18,6 +19,9 @@ Page({
   },
   writerPublish: function() {
     api.createTopic({name: this.data.title, text: this.data.content}).then((resp)=> {
+      // refresh list
+      util.setResult(this)
+      //
       if (resp.statusCode == 200) {
         wx.navigateBack({delta: 1})
       }

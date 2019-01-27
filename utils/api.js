@@ -57,9 +57,9 @@ function isHttpSuccess(status) {
 
 // login
 // if login success goto home, then register and login
-// TODO: 感觉微信登录不是这么做的，
-// 应该提供一个授权方法，直接到服务授权完事，目前这种流程比较类似于APP的登录流程.
-function autoLogin(name, pw) {
+// 自动授权
+function autoAuth() {
+  console.log("start auto auth..")
   return new Promise((res, rej) => {
     // check localstorage first
     const value = wx.getStorageSync('token')
@@ -67,37 +67,66 @@ function autoLogin(name, pw) {
       g.token = value
       res(value)
       return
-    } 
+    }
 
-    // then try to login
-    login(name, pw).then((resp)=>{
-      console.log("login:", resp)
-      if (resp.statusCode == 200) {
-        //success, save token
-        g.token = resp.data.access_token
-        console.log("get token", resp.data)
-        res(g.token)
-        wx.setStorage({
-          key: 'token',
-          data: g.token
-        })
-      } else if (resp.statusCode == 400){
-        // register
-        register(name, password).then((resp) => {
-          autoLogin(name, pw)
-        }).catch((err) => {
-          rej({code: -1, err: err})
-        })
-      } else {
-        rej({ code: resp.statusCode, err: 'access denied'})
-      }
-    }).catch((err)=> {
-      rej({code: -1, err: err})
+    // try to auth
+    wx.login({
+      success: function (resp) {
+        if (resp.code) {
+          console.log('get code:', resp.code)
+          req({
+            url: `${Host}/auth`,
+            method: 'POST',
+            data: {
+              code: resp.code,
+            }
+          }).then((resp) => {
+            // 返回一个本地的 Token
+            console.log(resp)
+            if (resp.statusCode == 200) {
+              //success, save token
+              g.token = resp.data.access_token
+              console.log("get token", resp.data)
+              res(g.token)
+              wx.setStorage({
+                key: 'token',
+                data: g.token
+              })
+            } else {
+              rej({ code: -1, err: 'fail:' + resp.statusCode})
+            }
+          }).catch((err) => {
+            console.log(err)
+            rej({ code: -1, err: err })
+          })
+        } else {
+          rej({ code: -1, err: 'wx.login return nil code' })
+        }
+      },
+      fail: function(err) {
+        rej({ code: -1, err: err })
+      },
     })
   })
 }
 
 // Promised method: User/Topic/Comment
+function auth() {
+  wx.login({
+    success: function(resp) {
+      if (resp.code) {
+        req({
+          url: `${Host}/auth`,
+          method: 'POST',
+          data: {
+            code: resp.code,
+          }
+        })
+      }
+    }
+  })
+}
+
 function login(name, pw) {
   return req({
     url: `${Host}/login`,
@@ -151,34 +180,35 @@ function deleteTopic(id) {
 // get comment list
 function getCommentList(pid) {
   return req({
-    url: '/api/posts/${pid}/comments/',
+    url: `${Host}/api/posts/${pid}/comments/`,
     method: 'GET'
   })
 }
 
 function createComment(data) {
   return req({
-    url: '/api/posts/comments',
+    url: `${Host}/api/posts/comments`,
     method: 'POST'
   })
 }
 
 function updateComment(id, data) {
   return req({
-    url: '/api/posts/comments/${id}',
+    url: `${Host}/api/posts/comments/${id}`,
     method: 'PUT'
   })
 }
 
 function deleteComment(id) {
   return req({
-    url: '/api/posts/comments/${id}',
+    url: `${Host}/api/posts/comments/${id}`,
     method: 'DELETE'
   })
 }
 
 module.exports = {
-  autoLogin: autoLogin,
+  autoAuth: autoAuth,
+
   // topic
   getTopicList: getTopicList,
   createTopic: createTopic,

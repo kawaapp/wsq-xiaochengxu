@@ -14,6 +14,17 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+function setResult(data) {
+  const pages = getCurrentPages();
+  if (pages.length >= 2) {
+    const prevPage = pages[pages.length - 2]  //上一个页面
+    if (prevPage.onResult) {
+      prevPage.onResult(data)
+    }
+  }
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  setResult: setResult
 }
