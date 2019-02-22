@@ -1,5 +1,8 @@
+const util = require('util.js')
+
 // ALL server-side API
-const Host = "http://127.0.0.1:1323"
+//const Host = "http://127.0.0.1:1323"
+const Host = "https://siftapi.com"
 let g = {
   token: "",
 }
@@ -63,7 +66,8 @@ function autoAuth() {
   return new Promise((res, rej) => {
     // check localstorage first
     const value = wx.getStorageSync('token')
-    if (value) {
+    console.log("get catch token", value)
+    if (value && !util.jwtExpire(value)) {
       g.token = value
       res(value)
       return
@@ -127,21 +131,15 @@ function auth() {
   })
 }
 
-function login(name, pw) {
+// update user profile
+function updateUser(data) {
   return req({
-    url: `${Host}/login`,
-    method: 'POST',
-    data:{name: name, password:pw}
+    url: `${Host}/api/users`,
+    method: 'PUT'
   })
 }
 
-function register(name, pw) {
-  return req({
-    url: `${Host}/register`,
-    method: 'POST',
-    data: { name: name, password: pw }
-  })
-}
+
 
 // get topic list
 function getTopicList(page) {
@@ -206,8 +204,120 @@ function deleteComment(id) {
   })
 }
 
+// favors
+function getPostFavorList(pid, since, limit) {
+  return req({
+    url: `${Host}/api/posts/${pid}/favors?since_id=${since}&limit=${limit}`,
+    method: 'GET'
+  })
+}
+
+function getPostFavorCount(pid) {
+  return req({
+    url: `${Host}/api/posts/${pid}/favors/count`,
+    method: 'GET'
+  })
+}
+
+function createPostFavor(pid) {
+  return req({
+    url: `${Host}/api/posts/favors`,
+    method: 'POST',
+    data: {pid: pid}
+  })
+}
+
+function deletePostFavor(pid) {
+  return req({
+    url: `${Host}/api/${pid}/favors`,
+    method: 'DELETE'
+  })
+}
+
+// comment favors
+function getCommentFavorList(cid, since, limit) {
+  return req({
+    url: `${Host}/api/comments/${cid}/favors?since_id=${since}&limit=${limit}`,
+    method: 'GET'
+  })
+}
+
+function getCommentFavorCount(cid) {
+  return req({
+    url: `${Host}/api/comments/${cid}/favors/count`,
+    method: 'GET'
+  })
+}
+
+function createCommentFavor(cid) {
+  return req({
+    url: `${Host}/api/comments/favors`,
+    method: 'POST'
+  })
+}
+
+function deleteCommentFavor(cid) {
+  return req({
+    url: `${Host}/api/comments/${cid}/favors`,
+    method: 'DELETE'
+  })
+}
+
+// tags
+function getPostByTag(tag) {
+  return req({
+    url: `${Host}/api/tags/${tag}/posts`,
+    method: 'GET'
+  })
+}
+
+function getTagList() {
+  return req({
+    url: `${Host}/api/tags`,
+    method: 'GET'
+  })
+}
+
+function createTag(tag) {
+  return req({
+    url: `${Host}/api/tags/posts`,
+    method: 'POST'
+  })
+}
+
+// message
+function getMessageList(since, limit) {
+  return req({
+    url: `${Host}/messages?since_id=${since}&limit=${limit}`,
+    method: 'GET'
+  })
+}
+
+function getMessageCount() {
+  return req({
+    url: `${Host}/messages/count`,
+    method: 'GET'
+  })
+}
+
+function setMessageRead(id) {
+  return req({
+    url: `${Host}/messages/${id}/read`,
+    method: 'PUT'
+  })
+}
+
+function setAllMessageRead() {
+  return req({
+    url: `${Host}/messages/read`,
+    method: 'PUT'
+  })
+}
+
+
 module.exports = {
   autoAuth: autoAuth,
+  updateUser: updateUser,
 
   // topic
   getTopicList: getTopicList,
@@ -219,4 +329,26 @@ module.exports = {
   createComment: createComment,
   updateComment: updateComment,
   deleteComment: deleteComment,
+
+  // favors
+  getPostFavorList: getPostFavorList,
+  getPostFavorCount: getPostFavorCount,
+  createPostFavor: createPostFavor,
+  deletePostFavor: deletePostFavor,
+
+  getCommentList: getCommentList,
+  getCommentFavorCount: getCommentFavorCount,
+  createCommentFavor: createCommentFavor,
+  deleteCommentFavor: deleteCommentFavor,
+
+  // tags
+  getPostByTag: getPostByTag,
+  getTagList: getTagList,
+  createTag: createTag,
+
+  // messages
+  getMessageList: getMessageList,
+  getMessageCount: getMessageCount,
+  setMessageRead: setMessageRead,
+  setAllMessageRead: setAllMessageRead
 }
