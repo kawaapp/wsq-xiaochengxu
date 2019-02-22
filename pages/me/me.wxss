@@ -1,0 +1,26 @@
+/* pages/me/me.wxss */
+.me-bg {
+  background: #20ACAB;
+  padding: 8px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  max-height: 48px;
+  max-width: 48px;
+}
+
+.icon-small {
+  width: 24px;
+  height: 24px;
+  max-height: 24px;
+  max-width: 24px;
+}
+
+.arrow-right {
+  width: 20px;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+}

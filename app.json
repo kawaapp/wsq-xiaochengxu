@@ -1,11 +1,36 @@
 {
   "pages": [
-    "pages/thread/thread",
     "pages/topic/topic",
-    "pages/writer/writer",
     "pages/login/login",
-    "pages/index/index"
+    "pages/thread/thread",
+    "pages/writer/writer",
+    "pages/index/index",
+    "pages/message/message",
+    "pages/me/me"
   ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/topic/topic",
+        "text": "首页",
+        "iconPath": "res/img/home.png",
+        "selectedIconPath": "res/img/home_focus.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "res/img/msg.png",
+        "selectedIconPath": "res/img/msg_focus.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "res/img/me.png",
+        "selectedIconPath": "res/img/me_focus.png"
+      }
+    ],
+    "selectedColor": "#20ACAB"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

@@ -2,5 +2,9 @@
 <text>自动登录中...</text>
 
 <view>
-  <button bindtap='wxlogin' class='new-topic'>登录</button>
+  <button bindtap='wxlogin'>登录</button>
+</view>
+
+<view>
+  <button open-type="getUserInfo" bindgetuserinfo="bindUserInfo">授权</button>
 </view>
