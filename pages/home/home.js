@@ -18,7 +18,11 @@ const util = require('../../utils/util.js')
 // },....]
 Page({
   data: {
-    posts: []
+    posts: [],
+    loader: {
+      ing: false, // 是否正在加载
+      more: true, // 是否有更多数据
+    }
   },
   onLoad: function () {
     //
@@ -66,7 +70,30 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data.loader.ing || !this.data.loader.more) {
+      return
+    }
 
+    var posts = this.data.posts
+    var sinceId = 0
+    var limit = 20
+    if (posts.length > 0) {
+      sinceId = posts[posts.length-1].id
+    }
+    api.getTopicList(sinceId, limit).then((resp) => {
+      this.data.loader.ing = false
+      if (resp.statusCode == 200 && resp.data) {
+        if(resp.data.length < 20) {
+          console.log("no more data..." + sinceId)
+          this.data.loader.more = false
+        } 
+        this.setData({
+          posts: posts.concat(resp.data)
+        })
+      }
+    }).catch((err) => {
+      this.data.loader.ing = false
+    })
   },
 
   newTopic: function(e) {

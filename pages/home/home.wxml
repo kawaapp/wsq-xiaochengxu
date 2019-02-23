@@ -29,6 +29,13 @@
   <view style='margin-bottom:4px;'/>
 </view>
 
+<view wx:if='{{loader.ing}}' style='text-align:center;'>
+  <text>正在加载...</text>
+</view>
+<view wx:if='{{!loader.more}}' style='text-align:center;'>
+  <text>没有更多数据了</text>
+</view>
+
 <view>
   <button bindtap='newTopic' class='new-topic'>发帖</button>
 </view>
