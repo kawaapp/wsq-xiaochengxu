@@ -16,6 +16,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 从当前页面传递数据到上一个页面
 function setResult(data) {
   const pages = getCurrentPages();
   if (pages.length >= 2) {
@@ -24,6 +25,20 @@ function setResult(data) {
       prevPage.onResult(data)
     }
   }
+}
+
+// 从当前页面发送数据到目的页面，使用全局变量实现
+// 需要用 getTransitData 方法提取
+function setTransitData(key, value) {
+  var g = getApp().globalData
+  g.transit[key] = value
+}
+
+function getTransitData(key) {
+  var g = getApp().globalData
+  var v = g.transit[key]
+  g.transit[key] = null
+  return v
 }
 
 function jwtDecode(token) {
@@ -48,6 +63,8 @@ function jwtExpire(token, ahead) {
 module.exports = {
   formatTime: formatTime,
   setResult: setResult,
+  sendRequest: setTransitData,
+  getRequest: getTransitData,
   jwtDecode: jwtDecode,
   jwtExpire, jwtExpire
 }

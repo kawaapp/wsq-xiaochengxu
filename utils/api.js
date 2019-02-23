@@ -190,9 +190,9 @@ function deleteTopic(id) {
 }
 
 // get comment list
-function getCommentList(pid) {
+function getCommentList(pid, since, limit) {
   return req({
-    url: `${Host}/api/posts/${pid}/comments/`,
+    url: `${Host}/api/posts/${pid}/comments`,
     method: 'GET'
   })
 }
@@ -200,7 +200,8 @@ function getCommentList(pid) {
 function createComment(data) {
   return req({
     url: `${Host}/api/posts/comments`,
-    method: 'POST'
+    method: 'POST',
+    data: data,
   })
 }
 

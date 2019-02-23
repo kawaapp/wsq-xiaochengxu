@@ -1,5 +1,5 @@
 <view style='margin-bottom:8px;'/>
-<view wx:for="{{posts}}" wx:for-index="idx" wx:for-item="item">
+<view wx:for="{{posts}}" wx:for-item="item">
   <view class="card">
     <view class="horizontal">
       <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
@@ -11,12 +11,12 @@
       </view>
     </view>
     <view style='margin-bottom:4px;'/>
-    <view style='margin-left:4px;' bindtap='topicClick'>
+    <view style='margin-left:4px;' bindtap='topicClick' data-item="{{item}}">
       <text>{{item.content}}</text>
     </view>
     <view class='line'></view>
     <view class='flow-right'>
-      <view class='img-text' bindtap='topicClick'>
+      <view class='img-text' bindtap='topicClick' wx:data-index="{{item.id}}">
         <image src='/res/img/comment.png'></image>
         <text>{{item.stats.comment}}</text>
       </view>

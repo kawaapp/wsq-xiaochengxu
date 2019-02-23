@@ -3,16 +3,16 @@
 <view class="card">
   <view class="horizontal">
       <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
-        src="{{topic.author.avatar?topic.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{post.author.avatar?post.author.avatar:'/res/img/user_icon.png'}}" 
         />
     <view>
-      <view class='title'>{{topic.author.name}}</view>
+      <view class='title'>{{post.author.nickname}}</view>
       <view class='subtitle'>摘要信息</view>
     </view>
   </view>
 
   <view style='margin-top:4px;'>
-    <text>{{topic.text}}</text>
+    <text>{{post.content}}</text>
   </view>
 </view>
 <view style='margin-bottom:4px;'/>
@@ -22,7 +22,7 @@
   <view wx:for="{{comments}}" wx:for-index="idx" wx:for-item="item">
     <view class="h-top">
       <image class="avatar-large"
-        src="{{topic.author.avatar?topic.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view style='width:100%;'>
         <view class='title'>{{item.author.name}}</view>
@@ -35,7 +35,17 @@
   <view style='margin-bottom:4px;'/>
 </view>
 
-<view class='bottom-bar'>
-  <button bindtap='threadComment' class='primary'>评论</button>
+<!--底部评论框 -->
+<view class="release">
+    <textarea class="text" bindinput='bindInput'
+          placeholder-class="input_null" 
+          fixed="true" 
+          maxlength="-1" 
+          show-confirm-bar="false" 
+          cursor-spacing="15" 
+          auto-height="true" 
+          focus="{{reply.focus}}"
+          placeholder="回复 {{releaseName}}"></textarea>
+    <view class="submit" bindtap='sendComment'>发送</view>
 </view>
 
