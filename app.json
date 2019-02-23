@@ -1,17 +1,17 @@
 {
   "pages": [
-    "pages/topic/topic",
     "pages/login/login",
+    "pages/home/home",
+    "pages/message/message",
+    "pages/me/me",
     "pages/thread/thread",
     "pages/writer/writer",
-    "pages/index/index",
-    "pages/message/message",
-    "pages/me/me"
+    "pages/index/index"
   ],
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/topic/topic",
+        "pagePath": "pages/home/home",
         "text": "首页",
         "iconPath": "res/img/home.png",
         "selectedIconPath": "res/img/home_focus.png"

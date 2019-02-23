@@ -1,3 +1,5 @@
+const api = require('../../utils/api.js')
+
 // pages/me/me.js
 Page({
 
@@ -16,7 +18,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    api.getSelf().then( (resp) => {
+      if (resp.statusCode == 200) {
+        this.setData({ user: resp.data})
+      }
+    })
   },
   login: function() {
     wx.navigateTo({

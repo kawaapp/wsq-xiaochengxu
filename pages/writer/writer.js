@@ -18,9 +18,14 @@ Page({
     this.setData({content: e.detail.value})
   },
   writerPublish: function() {
-    api.createTopic({name: this.data.title, text: this.data.content}).then((resp)=> {
+    var data = {
+      title: this.data.title,
+      content: this.data.content
+    }
+    
+    api.createTopic(data).then((resp)=> {
       // refresh list
-      util.setResult(this)
+      util.setResult({ ok: resp.statusCode == 200})
       //
       if (resp.statusCode == 200) {
         wx.navigateBack({delta: 1})

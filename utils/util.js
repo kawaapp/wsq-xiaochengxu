@@ -39,7 +39,7 @@ function jwtExpire(token, ahead) {
   if (!ahead) {
     ahead = 1800
   }
-  if (jwtDecode(token).exp + ahead < Date.now()/1000) {
+  if (Date.now()/1000 < jwtDecode(token).exp - ahead) {
     return false
   } 
   return true

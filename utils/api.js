@@ -1,8 +1,8 @@
 const util = require('util.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://siftapi.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://siftapi.com"
 let g = {
   token: "",
 }
@@ -66,12 +66,17 @@ function autoAuth() {
   return new Promise((res, rej) => {
     // check localstorage first
     const value = wx.getStorageSync('token')
-    console.log("get catch token", value)
+
+    console.log('validate cache token:', value)
+
     if (value && !util.jwtExpire(value)) {
+      console.log("use cached token:" + value)
       g.token = value
       res(value)
       return
     }
+
+    console.log("try login..", value)
 
     // try to auth
     wx.login({
@@ -135,16 +140,25 @@ function auth() {
 function updateUser(data) {
   return req({
     url: `${Host}/api/users`,
-    method: 'PUT'
+    method: 'PUT',
+    data: data,
+  })
+}
+
+// return self user-info
+function self() {
+  return req({
+    url: `${Host}/api/users/self`,
+    method: 'GET'
   })
 }
 
 
 
 // get topic list
-function getTopicList(page) {
+function getTopicList(since, limit) {
   return req({
-    url: `${Host}/api/posts`,
+    url: `${Host}/api/posts?since_id=${since}&limit=${limit}`,
     method: 'GET'
   })
 }
@@ -318,6 +332,7 @@ function setAllMessageRead() {
 module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
+  getSelf: self,
 
   // topic
   getTopicList: getTopicList,

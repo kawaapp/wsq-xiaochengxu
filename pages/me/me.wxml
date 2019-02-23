@@ -4,12 +4,12 @@
     <image class='avatar' 
       src="{{user.avatar?user.avatar:'/res/img/user_icon.png'}}">
     </image>
-    <view>
-      <view class='title'>{{user.nickname}}</view>
+    <view style='margin-left:8px;'>
+      <view class='title'>{{user.nickname?user.nickname:'路人'}}</view>
       <view class='subtitle'>{{user.summary}}</view>
     </view>
-    <view style='margin-left:auto;'>
-      <button bindtap='login'>登录</button>
+    <view hidden='{{user.nickname}}' style='margin-left:auto;'>
+      <button bindtap='login'>获取昵称</button>
     </view>
   </view>
 </view>

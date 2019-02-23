@@ -1,18 +1,18 @@
 <view style='margin-bottom:8px;'/>
-<view wx:for="{{topics}}" wx:for-index="idx" wx:for-item="item">
+<view wx:for="{{posts}}" wx:for-index="idx" wx:for-item="item">
   <view class="card">
     <view class="horizontal">
       <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
-        <view class='title'>{{item.author.name}}</view>
+        <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
         <view class='subtitle'>摘要信息</view>
       </view>
     </view>
     <view style='margin-bottom:4px;'/>
     <view style='margin-left:4px;' bindtap='topicClick'>
-      <text>{{item.text}}</text>
+      <text>{{item.content}}</text>
     </view>
     <view class='line'></view>
     <view class='flow-right'>
