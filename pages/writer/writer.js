@@ -22,10 +22,14 @@ Page({
       title: this.data.title,
       content: this.data.content
     }
-    
+
     api.createTopic(data).then((resp)=> {
       // refresh list
-      util.setResult({ ok: resp.statusCode == 200})
+      util.setResult({ 
+        req: 'newpost',
+        ok: resp.statusCode == 200,
+        data: resp.data
+      })
       //
       if (resp.statusCode == 200) {
         wx.navigateBack({delta: 1})

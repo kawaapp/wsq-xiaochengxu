@@ -37,6 +37,10 @@ Page({
     if (data && data.ok && data.req == 'newpost') {
       // data.post
       // 新增帖子到列表头部
+      this.data.posts.unshift(data.data)
+      this.setData({
+        posts: this.data.posts
+      })
     }
     console.log('home, on result data:' + data)
   },
