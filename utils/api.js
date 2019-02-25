@@ -244,7 +244,7 @@ function createPostFavor(pid) {
 
 function deletePostFavor(pid) {
   return req({
-    url: `${Host}/api/${pid}/favors`,
+    url: `${Host}/api/posts/${pid}/favors`,
     method: 'DELETE'
   })
 }

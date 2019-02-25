@@ -16,13 +16,14 @@
     </view>
     <view class='line'></view>
     <view class='flow-right'>
-      <view class='img-text' bindtap='topicClick' wx:data-index="{{item.id}}">
+      <view class='img-text' bindtap='commentClick' data-idx="{{index}}">
         <image src='/res/img/comment.png'></image>
-        <text>{{item.stats.comment}}</text>
+        <text>{{item.stats.comments}}</text>
       </view>
-      <view class='img-text'>
+      <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
         <image src='/res/img/like.png'></image>
-        <text>{{item.stats.like}}</text>
+        <text>{{item.stats.favors}}</text>
+        <text wx:if='{{item.stats.favored > 0}}'>已赞</text>
       </view>
     </view>
   </view>

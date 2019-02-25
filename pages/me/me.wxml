@@ -9,7 +9,7 @@
       <view class='subtitle'>{{user.summary}}</view>
     </view>
     <view hidden='{{user.nickname}}' style='margin-left:auto;'>
-      <button bindtap='login'>获取昵称</button>
+      <button open-type="getUserInfo" bindgetuserinfo="bindUserInfo">获取昵称</button>
     </view>
   </view>
 </view>

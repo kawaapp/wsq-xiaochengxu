@@ -60,6 +60,8 @@ function jwtExpire(token, ahead) {
   return true
 }
 
+// update list item
+
 module.exports = {
   formatTime: formatTime,
   setResult: setResult,

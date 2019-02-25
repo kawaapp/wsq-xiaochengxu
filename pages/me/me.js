@@ -21,13 +21,28 @@ Page({
     api.getSelf().then( (resp) => {
       if (resp.statusCode == 200) {
         this.setData({ user: resp.data})
+        console.log("get user data:", resp.data)
       }
     })
   },
-  login: function() {
-    wx.navigateTo({
-      url: '/pages/login/login',
-    })
+  bindUserInfo: function (e) {
+    var user = e.detail.userInfo
+    if (user) {
+      var data = {
+        avatar: user.avatarUrl,
+        city: user.city,
+        gender: user.gender,
+        language: user.language,
+        nickname: user.nickName
+      }
+      api.updateUser(data).then((resp) => {
+        if (resp.statusCode == 200) {
+          console.log("授权成功")
+          this.setData({user: resp.data})
+        }
+      })
+    }
+    console.log(e.detail)
   },
   /**
    * 用户点击右上角分享

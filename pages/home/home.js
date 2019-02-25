@@ -10,8 +10,9 @@ const util = require('../../utils/util.js')
 //     ts: 1548571746979,
 //   },
 //   stats: {
-//     comment: 1,
-//       like: 0
+//     favored: 0,
+//     favors: 1,
+//     comment: 1
 //   },
 //   text: '小虾米 啦啦啦',
 //   imgs: [],
@@ -59,6 +60,8 @@ Page({
           this.setData({
             posts: resp.data
           })
+
+          console.log(resp.data[0])
         }
 
       }).catch((err) => {
@@ -108,14 +111,42 @@ Page({
       url: '/pages/thread/thread',
     })
   },
-  topicFavor: function(e) {
-    var idx = e.currentTarget.dataset.name
-    console.log("idx:", idx)
-    var post = this.data.topics[idx]
-    api.createPostFavor(post.id).then((resp) => {
-      if (resp.statusCode == 200) {
-        post.stats.like += 1
-      }
+  commentClick: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    console.log("comment clicked", idx)
+    var item = this.data.posts[idx]
+    util.sendRequest('post', item)
+    wx.navigateTo({
+      url: '/pages/thread/thread',
     })
+  },
+  favorClick: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    var item = this.data.posts[idx]
+    var key = 'posts[' + idx + '].stats'
+
+    if (item.stats.favored > 0) {
+      console.log("delete favor")
+      api.deletePostFavor(item.id).then( resp => {
+        if (resp.statusCode == 200) {
+          item.stats.favored = false,
+          item.stats.favors -= 1
+          this.setData({[key]: item.stats})
+        }
+        console.log("delete favor:", resp.statusCode)
+      })
+    } else {
+      console.log("create favor")
+      api.createPostFavor(item.id).then((resp) => {
+        if (resp.statusCode == 200) {
+          item.stats.favors += 1
+          item.stats.favored = true
+          this.setData({[key]: item.stats })
+        }
+        console.log("favor fail:", resp.statusCode)
+      }).catch(err => {
+        console.log("favor err:", err)
+      })
+    }
   },
 })

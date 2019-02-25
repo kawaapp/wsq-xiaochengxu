@@ -32,11 +32,14 @@ Page({
         city: user.city,
         gender: 1,
         language: user.language,
-        nickName: user.nickName
+        nickname: user.nickName
       }
+      console.log(user)
       api.updateUser(data).then((resp) => {
         if (resp.statusCode == 200) {
           console.log("授权成功")
+
+          console.log(resp.data)
         }
       })
     }
