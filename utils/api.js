@@ -303,28 +303,28 @@ function createTag(tag) {
 // message
 function getMessageList(since, limit) {
   return req({
-    url: `${Host}/messages?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/messages?since_id=${since}&limit=${limit}`,
     method: 'GET'
   })
 }
 
 function getMessageCount() {
   return req({
-    url: `${Host}/messages/count`,
+    url: `${Host}/api/messages/count`,
     method: 'GET'
   })
 }
 
 function setMessageRead(id) {
   return req({
-    url: `${Host}/messages/${id}/read`,
+    url: `${Host}/api/messages/${id}/read`,
     method: 'PUT'
   })
 }
 
 function setAllMessageRead() {
   return req({
-    url: `${Host}/messages/read`,
+    url: `${Host}/api/messages/read`,
     method: 'PUT'
   })
 }

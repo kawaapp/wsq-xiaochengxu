@@ -1,27 +1,35 @@
 <!--pages/message/message.wxml-->
 <view class='card'>
-  <view class='horizontal'>
+  <view class='horizontal' bindtap='favorClick'>
     <image class='icon-m' style='margin: 4px 4px 4px 0px;'
         src="/res/img/msg_at.png" 
         />
     <view>
-      <text>@我的</text>
+      <text>点赞</text>
     </view>
-    <image class='arrow_right' style='margin-left: auto;' 
-      src="/res/img/arrow_right.png"/>
+    <view class='horizontal' style='margin-left: auto;' >
+      <view class='red-tag' wx:if='{count.favors > 0}'>
+        {{count.favors}}
+      </view>
+      <image class='arrow_right' src="/res/img/arrow_right.png"/>
+    </view>
   </view>
 
   <view class='line' style='margin-left:48px;'></view>
 
-  <view class='horizontal'>
+  <view class='horizontal' bindtap='commentClick'>
     <image class='icon-m' style='margin: 4px 4px 4px 0px;'
         src="/res/img/msg_cmt.png" 
         />
     <view>
       <text>评论</text>
     </view>
-    <image class='arrow_right' style='margin-left: auto;' 
-      src="/res/img/arrow_right.png" />
+    <view class='horizontal' style='margin-left: auto;' >
+      <view class='red-tag' wx:if='{count.favors > 0}'>
+        {{count.comments}}
+      </view>
+      <image class='arrow_right' src="/res/img/arrow_right.png" />
+    </view>
   </view>
 
 </view>

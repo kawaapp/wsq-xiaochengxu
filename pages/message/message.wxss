@@ -12,3 +12,12 @@
   min-width: 40px;
   max-width: 40px;
 }
+
+.red-tag {
+  border-radius: .8em;
+  background: #FF4444;
+  color: #fff;
+  text-align: center;
+  min-width: 1.6em;
+  font-size: 1em;
+}
