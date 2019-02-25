@@ -1,0 +1,4 @@
+/* pages/me/list/favor.wxss */
+.gray-bg {
+  background: lightgray;
+}

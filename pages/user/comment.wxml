@@ -1,0 +1,23 @@
+<view style='margin-bottom:8px;'/>
+<view wx:for="{{comments}}" wx:for-item="item">
+  <view class="card">
+    <text>我评论: {{ item.text }}</text>
+    <view class="horizontal gray-bg">
+      <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
+        />
+      <view>
+        <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
+        <view class='subtitle'>{{item.content}}</view>
+      </view>
+    </view>
+  </view>
+  <view style='margin-bottom:4px;'/>
+</view>
+
+<view wx:if='{{loader.ing}}' style='text-align:center;'>
+  <text>正在加载...</text>
+</view>
+<view wx:if='{{!loader.more}}' style='text-align:center;'>
+  <text>没有更多数据了</text>
+</view>
