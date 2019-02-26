@@ -19,10 +19,8 @@ Page({
    */
   onLoad: function (options) {
     api.getSelf().then( (resp) => {
-      if (resp.statusCode == 200) {
-        this.setData({ user: resp.data})
-        console.log("get user data:", resp.data)
-      }
+      this.setData({ user: resp.data})
+      console.log("get user data:", resp.data)
     })
   },
   bindUserInfo: function (e) {
@@ -36,10 +34,8 @@ Page({
         nickname: user.nickName
       }
       api.updateUser(data).then((resp) => {
-        if (resp.statusCode == 200) {
           console.log("授权成功")
           this.setData({user: resp.data})
-        }
       })
     }
     console.log(e.detail)

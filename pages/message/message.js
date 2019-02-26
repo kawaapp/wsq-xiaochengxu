@@ -52,9 +52,9 @@ Page({
 
 function refreshMessage(p) {
   api.getMessageCount().then((resp) => {
-    if (resp.statusCode == 200) {
-      p.setData({ count: resp.data })
-    }
+    p.setData({ count: resp.data })
     console.log("get message count:", resp)
+  }).catch( err => {
+    console.log(err)
   })
 }

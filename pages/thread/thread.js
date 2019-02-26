@@ -8,7 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    post: {},
+    item: {
+      idx: null,
+      post: {},
+    },
     comments: [],
     loader: {
       ing: false,
@@ -29,26 +32,24 @@ Page({
       console.log("err, no post found")
       return
     }
-
+   
     // set post data
     this.setData({
-      post: post
+      item: post
     })
 
     // request comments
-    api.getCommentList(post.id).then(resp => {
-      if (resp.statusCode == 200) {
-        this.setData({
-          comments: resp.data
-        })
-        console.log("get comment data:", resp.data)
-      }
+    api.getCommentList(item.post.id).then(resp => {
+      this.setData({
+        comments: resp.data
+      })
+      console.log("get comment data:", resp.data)
     }).catch(err => {
       console.log('thread:', err)
     })
   },
   onPullDownRefresh: function(e) {
-    var pid = this.data.post.id
+    var pid = this.data.item.post.id
     api.getCommentList(pid).then( resp => {
       wx.stopPullDownRefresh()
       if (resp.data) {
@@ -69,7 +70,7 @@ Page({
     if (comments.length > 0) {
       sinceId = comments[comments.length - 1]
     }
-    var pid = this.data.post.id
+    var pid = this.data.item.post.id
     api.getCommentList(pid, sinceId, limit).then(resp => {
       if (resp.data && resp.data.length < limit) {
         this.data.loader.more = false
@@ -90,19 +91,24 @@ Page({
   sendComment: function(e) {
     console.log("get comment", this.data.reply.text)
     // send comment
-    const data = {
-      pid: this.data.post.id,
+    var data = {
+      pid: this.data.item.post.id,
       text: this.data.reply.text,
     }
     api.createComment(data).then( resp => {
-      if(resp.statusCode == 200) {
-          var comments = this.data.comments
-          comments.unshift(resp.data)
-          this.setData({
-            comments: comments
-          })
-        console.log("评论成功！！！", resp.data)
-      }
+      var comments = this.data.comments
+      comments.unshift(resp.data)
+      this.setData({
+        comments: comments
+      })
+      util.setResult({
+        ok: true,
+        req: 'newcomment',
+        idx: this.data.item.idx,
+      })
+      console.log('set result:' + this.data.idx)
+
+      console.log("评论成功！！！", resp.data)
     }).catch(err => {
       console.log(err)
     })

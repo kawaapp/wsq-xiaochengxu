@@ -3,16 +3,16 @@
 <view class="card">
   <view class="horizontal">
       <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
-        src="{{post.author.avatar?post.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
         />
     <view>
-      <view class='title'>{{post.author.nickname}}</view>
+      <view class='title'>{{item.post.author.nickname}}</view>
       <view class='subtitle'>摘要信息</view>
     </view>
   </view>
 
   <view style='margin-top:4px;'>
-    <text>{{post.content}}</text>
+    <text>{{item.post.content}}</text>
   </view>
 </view>
 <view style='margin-bottom:4px;'/>

@@ -39,10 +39,22 @@ function req(options = {}) {
       dataType,
       responseType,
       success(r) {
-        res(r);
+        if (r.statusCode == 200) {
+          res(r);
+        } else if (r.statusCode == 401) {
+          autoAuth()
+        } else {
+          rej({ 
+            code: r.statusCode, 
+            err: resp.data
+          })
+        }
       },
       fail(err) {
-        rej(err);
+        rej({
+          code: -1,
+          err: err
+        });
       },
       complete
     });
@@ -66,9 +78,6 @@ function autoAuth() {
   return new Promise((res, rej) => {
     // check localstorage first
     const value = wx.getStorageSync('token')
-
-    console.log('validate cache token:', value)
-
     if (value && !util.jwtExpire(value)) {
       console.log("use cached token:" + value)
       g.token = value
