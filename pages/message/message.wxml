@@ -8,7 +8,7 @@
       <text>点赞</text>
     </view>
     <view class='horizontal' style='margin-left: auto;' >
-      <view class='red-tag' wx:if='{count.favors > 0}'>
+      <view class='red-tag' wx:if='{{count.favors > 0}}'>
         {{count.favors}}
       </view>
       <image class='arrow_right' src="/res/img/arrow_right.png"/>
@@ -25,7 +25,7 @@
       <text>评论</text>
     </view>
     <view class='horizontal' style='margin-left: auto;' >
-      <view class='red-tag' wx:if='{count.favors > 0}'>
+      <view class='red-tag' wx:if='{{count.favors > 0}}'>
         {{count.comments}}
       </view>
       <image class='arrow_right' src="/res/img/arrow_right.png" />

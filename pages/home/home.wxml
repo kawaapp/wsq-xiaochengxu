@@ -21,9 +21,8 @@
         <text>{{item.stats.comments}}</text>
       </view>
       <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
-        <image src='/res/img/like.png'></image>
+        <image src="{{item.stats.favored > 0 ? '/res/img/liked.png' : '/res/img/like.png'}}"></image>
         <text>{{item.stats.favors}}</text>
-        <text wx:if='{{item.stats.favored > 0}}'>已赞</text>
       </view>
     </view>
   </view>

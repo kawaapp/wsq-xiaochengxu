@@ -6,7 +6,12 @@
     "pages/me/me",
     "pages/thread/thread",
     "pages/writer/writer",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/message/list/favor",
+    "pages/message/list/comment",
+    "pages/user/post",
+    "pages/user/comment",
+    "pages/user/favor"
   ],
   "tabBar": {
     "list": [

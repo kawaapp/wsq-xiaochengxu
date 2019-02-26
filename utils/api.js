@@ -153,10 +153,30 @@ function self() {
   })
 }
 
+function getUserPostList(uid, since, limit) {
+  return req({
+    url: `${Host}/api/users/${uid}/posts?since_id=${since}&limit=${limit}`,
+    method: 'GET'
+  })
+}
+
+function getUserCommentList(uid, since, limit) {
+  return req({
+    url: `${Host}/api/users/${uid}/comments?since_id=${since}&limit=${limit}`,
+    method: 'GET'
+  })
+}
+
+function getUserFavorList(uid, since, limit) {
+  return req({
+    url: `${Host}/api/users/${uid}/favors?since_id=${since}&limit=${limit}`,
+    method: 'GET'
+  })
+}
 
 
 // get topic list
-function getTopicList(since, limit) {
+function getPostList(since, limit) {
   return req({
     url: `${Host}/api/posts?since_id=${since}&limit=${limit}`,
     method: 'GET'
@@ -164,7 +184,7 @@ function getTopicList(since, limit) {
 }
 
 // create topic
-function createTopic(data) {
+function createPost(data) {
   return req({
     url: `${Host}/api/posts`,
     method: 'POST',
@@ -173,7 +193,7 @@ function createTopic(data) {
 }
 
 // update topic
-function updateTopic(id, data) {
+function updatePost(id, data) {
   return req({
     url: `${Host}/api/posts/${id}`,
     method: 'PUT',
@@ -182,7 +202,7 @@ function updateTopic(id, data) {
 }
 
 // delete topic
-function deleteTopic(id) {
+function deletePost(id) {
   return req({
     url: `${Host}/api/posts/${id}`,
     method: 'DELETE'
@@ -334,12 +354,17 @@ module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
   getSelf: self,
+  getUserPostList: getUserPostList,
+  getUserCommentList: getUserCommentList,
+  getUserFavorList: getUserFavorList,
 
-  // topic
-  getTopicList: getTopicList,
-  createTopic: createTopic,
-  updateTopic: updateTopic,
-  deleteTopic: deleteTopic,
+  // post
+  getTopicList: getPostList,
+  createTopic: createPost,
+  updateTopic: updatePost,
+  deleteTopic: deletePost,
+
+
   // comment
   getCommentList: getCommentList,
   createComment: createComment,

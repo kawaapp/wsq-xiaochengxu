@@ -16,7 +16,7 @@
 
 <!-- 其它信息 -->
 <view class='card'>
-  <view class='horizontal'>
+  <view class='horizontal' bindtap='postClick'>
     <image class='icon-small' style='margin: 4px 4px 4px 0;'
       src='/res/img/msg_cmt.png'></image>
     <text class='title'>我的帖子</text>
@@ -25,7 +25,7 @@
   </view>
   <view class='line' style='margin-left:48px;'></view>
 
-  <view class='horizontal'>
+  <view class='horizontal' bindtap='commentClick'>
     <image class='icon-small' style='margin: 4px 4px 4px 0;'
       src='/res/img/msg_cmt.png'></image>
     <text class='title'>我的评论</text>
@@ -35,7 +35,7 @@
   <view class='line' style='margin-left:48px;'></view>
 
 
-  <view class='horizontal'>
+  <view class='horizontal' bindtap='favorClick'>
     <image class='icon-small' style='margin: 4px 4px 4px 0;'
       src='/res/img/msg_cmt.png'></image>
     <text class='title'>我的点赞</text>

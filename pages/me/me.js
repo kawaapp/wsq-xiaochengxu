@@ -44,10 +44,19 @@ Page({
     }
     console.log(e.detail)
   },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  postClick: function(e) {
+    wx.navigateTo({
+      url: '/pages/user/post',
+    })
+  },
+  commentClick: function(e) {
+    wx.navigateTo({
+      url: '/pages/user/comment',
+    })
+  },
+  favorClick: function(e) {
+    wx.navigateTo({
+      url: '/pages/user/favor',
+    })
   }
 })
