@@ -46,7 +46,7 @@ function req(options = {}) {
         } else {
           rej({ 
             code: r.statusCode, 
-            err: resp.data
+            err: r.data
           })
         }
       },
@@ -296,7 +296,8 @@ function getCommentFavorCount(cid) {
 function createCommentFavor(cid) {
   return req({
     url: `${Host}/api/comments/favors`,
-    method: 'POST'
+    method: 'POST',
+    data: {cid: cid} 
   })
 }
 
@@ -330,9 +331,9 @@ function createTag(tag) {
 }
 
 // message
-function getMessageList(since, limit) {
+function getMessageList(q, since, limit) {
   return req({
-    url: `${Host}/api/messages?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/messages?q=${q}&since_id=${since}&limit=${limit}`,
     method: 'GET'
   })
 }

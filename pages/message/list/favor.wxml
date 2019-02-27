@@ -1,2 +1,26 @@
-<!--pages/message/list/favor.wxml-->
-<text>pages/message/list/favor.wxml</text>
+<view wx:for="{{messages}}" wx:for-item="item">
+  <view>
+    <view class="h-top"  style='padding-left:12px;'>
+      <image class='avatar-large' style='margin: 0px 8px;'
+        src="{{item.from.avatar?item.from.avatar:'/res/img/user_icon.png'}}" 
+        />
+      <view style='width:100%;'>
+        <view class='fade-title'>
+          {{item.from.nickname?item.from.nickname:'匿名'}}
+          赞了你
+        </view>
+        <view class='title'>{{item.content}}</view>
+        <view class='subtitle' style='margin-top:8px;' >2019.02.29</view>
+        <view class='line'/>
+      </view>
+    </view>
+  </view>
+  <view style='margin-bottom:4px;'/>
+</view>
+
+<view wx:if='{{loader.ing}}' style='text-align:center;'>
+  <text>正在加载...</text>
+</view>
+<view wx:if='{{!loader.more}}' style='text-align:center;'>
+  <text>没有更多数据了</text>
+</view>

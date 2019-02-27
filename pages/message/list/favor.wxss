@@ -1,1 +1,9 @@
 /* pages/message/list/favor.wxss */
+page {
+    background-color:#fff;
+}
+
+.h-top {
+  display: flex;
+  align-items: top;
+}

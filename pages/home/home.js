@@ -115,8 +115,12 @@ Page({
     })
   },
   topicClick: function(e) {
-    var item = e.currentTarget.dataset.item
-    util.sendRequest('post', item)
+    var idx = e.currentTarget.dataset.idx
+    var post = this.data.posts[idx]
+    util.sendRequest('post', {
+      idx: idx,
+      post: post
+    })
     wx.navigateTo({
       url: '/pages/thread/thread',
     })

@@ -1,1 +1,10 @@
 /* pages/message/list/comment.wxss */
+
+page {
+    background-color:#fff;
+}
+
+.h-top {
+  display: flex;
+  align-items: top;
+}

@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "赞"
+  "navigationBarTitleText": "赞",
+  "enablePullDownRefresh": true
 }

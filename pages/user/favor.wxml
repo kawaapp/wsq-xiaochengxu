@@ -4,11 +4,11 @@
     <text>赞了这篇帖子</text>
     <view class="horizontal gray-bg">
       <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
-        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.actor.avatar?item.actor.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
-        <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
-        <view class='subtitle'>{{item.content}}</view>
+        <view class='title'>{{item.actor.nickname?item.actor.nickname:'匿名'}}</view>
+        <view class='subtitle'>{{item.subject}}</view>
       </view>
     </view>
   </view>

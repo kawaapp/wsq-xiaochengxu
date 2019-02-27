@@ -7,62 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    messages: [],
+    loader: {
+      ing: false,
+      more: true,
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    api.getMessageList('comment').then( resp => {
+      this.setData({ messages: resp.data})
+    })
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    api.getMessageList('comment').then(resp => {
+      this.setData({ messages: resp.data })
+      console.log(resp)
+    }).catch(err => {
+      console.log(err)
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.loader.ing || !this.data.loader.more) {
+      return
+    }
+    var messages = this.data.messages
+    var since = 0
+    var limit = 20
+    if (messages && messages.length > 0) {
+      since = messages[messages.length - 1].id
+    }
+    api.getMessageList('favor', since, limit).then(resp => {
+      if (esp.data.length < limit) {
+        this.data.loader.more = false
+      }
+      this.setData({ messages: messages.concat(resp.data) })
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -49,6 +49,11 @@ page{
   font-size: 13px;
 }
 
+.fade-title {
+  font-size: 13px;
+  color: #888888;
+}
+
 .subtitle {
   font-size: 11px;
   color: #888888;
@@ -76,4 +81,14 @@ page{
   width: 24px;
   font-size: 14px;
   color: #888888;
+}
+
+.single-line {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.gray-bg {
+  background: #f8f8f8;
 }

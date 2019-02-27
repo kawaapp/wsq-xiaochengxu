@@ -37,6 +37,8 @@ App({
     userInfo: null,
     transit: {
       post: null
-    }
+    },
+    post: [],
+    thread: {},
   }
 })
