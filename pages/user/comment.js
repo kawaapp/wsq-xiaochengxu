@@ -56,7 +56,7 @@ Page({
       since = comments[comments.length - 1].id
     }
     api.getUserCommentList(this.data.user.uid, since, limit).then(resp => {
-      if (len(resp.data) < limit) {
+      if (resp.data.length < limit) {
         this.data.loader.more = false
       }
       this.setData({ comments: comments.concat(resp.data) })

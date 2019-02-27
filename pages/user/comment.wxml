@@ -1,14 +1,14 @@
 <view style='margin-bottom:8px;'/>
 <view wx:for="{{comments}}" wx:for-item="item">
-  <view class="card">
-    <text>我评论: {{ item.text }}</text>
+  <view class="card" style='padding: 8px;'>
+    <text class='title'>我: {{ item.content }}</text>
     <view class="horizontal gray-bg">
-      <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+      <image class='avatar-large' style='margin-right: 8px;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
-        <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
-        <view class='subtitle'>{{item.content}}</view>
+        <view class='title'>@{{item.replier.nickname?item.replier.nickname:'匿名'}}</view>
+        <view class='subtitle single-line'>{{item.subject}}</view>
       </view>
     </view>
   </view>

@@ -14,7 +14,6 @@
     <view style='margin-left:4px;' bindtap='topicClick' data-item="{{item}}">
       <text>{{item.content}}</text>
     </view>
-    <view class='line'></view>
   </view>
   <view style='margin-bottom:4px;'/>
 </view>

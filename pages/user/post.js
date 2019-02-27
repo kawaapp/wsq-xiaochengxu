@@ -52,7 +52,7 @@ Page({
       since = posts[posts.length-1].id
     }
     api.getUserPostList(this.data.user.uid, since, limit).then( resp => {
-      if (len(resp.data) < limit) {
+      if (resp.data.length < limit) {
         this.data.loader.more = false
       }
       this.setData({ posts: posts.concat(resp.data)})
