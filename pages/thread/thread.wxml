@@ -1,8 +1,8 @@
 <!--pages/post/posts.wxml-->
 
-<view class="card">
+<view class="card" style='padding: 8px'>
   <view class="horizontal">
-      <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+      <image class='avatar-large' style='margin-right: 8px;'
         src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
         />
     <view>
@@ -10,30 +10,80 @@
       <view class='subtitle'>摘要信息</view>
     </view>
   </view>
-
-  <view style='margin-top:4px;'>
+  <view style='margin-top:8px;'>
     <text>{{item.post.content}}</text>
+  </view>
+  <view>
+    <text class='subtitle'>分享</text>
   </view>
 </view>
 <view style='margin-bottom:4px;'/>
 
-<view>评论</view>
 <view class="card">
-  <view wx:for="{{comments}}" wx:for-index="idx" wx:for-item="item">
+  <view>
+    <text>评论 {{item.post.stats.comments}}</text>
+    <text style='margin: auto;'>赞 {{item.post.stats.favors}}</text>
+  </view>
+  <view class='line' />
+
+  <!-- Comment List -->
+  <view wx:for="{{comments}}" wx:for-item="item">
     <view class="h-top">
-      <image class="avatar-large"
+      <image class="avatar-large" style='margin-right:8px;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view style='width:100%;'>
-        <view class='title'>{{item.author.name}}</view>
-        <view class='comment-detail'>{{item.text}}</view>
-        <view class='subtitle'>{{'1-27 20:10'}}</view>
+        <!-- Reply user name and content-->
+        <view class='subtitle'>
+          {{
+            item.author.nickname? item.author.nickname: '匿名' 
+          }}
+        </view>
+        <view class='comment-detail'>{{item.content}}</view>
+
+        <!-- Reply List / Comment on Comment  -->
+        <view wx:if='{{item.reply_list}}' class='gray-bg' style='padding:6px;'>
+          <view class='subtitle' wx:for="{{item.reply_list}}" wx:for-item="item">
+            <text>{{item.author.nickname}}:</text>
+            <text>{{item.content}}</text>
+          </view>
+        </view>
+
+        <!-- Comment and Favor bar-->
+        <view class='flow-right' style='margin-top:4px;'>
+          <!-- date -->
+          <view class='subtitle' style='margin-right:auto;'>{{'1-27 20:10'}}</view>
+
+          <!-- Commennt -->
+          <view class='img-text' style='margin-right:8px'
+                bindtap='commentClick' 
+                data-idx="{{index}}">
+            <image src='/res/img/comment.png'></image>
+          </view>
+
+          <!-- Favor -->
+          <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
+            <image src="{{ item.stats.favored>0?'/res/img/liked.png':'/res/img/like.png'}}"></image>
+            <text>{{item.stats.favors}}</text>
+          </view>
+        </view>
         <view class='line'></view>
       </view>
     </view>
   </view>
   <view style='margin-bottom:4px;'/>
 </view>
+
+<!-- 列表加载状态 -->
+<view wx:if='{{loader.ing}}' style='text-align:center;'>
+  <text>正在加载...</text>
+</view>
+<view wx:if='{{!loader.more}}' style='text-align:center;'>
+  <text>没有更多数据了</text>
+</view>
+
+<!--Empty view -->
+<view style='height:10px;'></view>
 
 <!--底部评论框 -->
 <view class="release">
