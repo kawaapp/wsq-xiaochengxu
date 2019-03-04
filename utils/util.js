@@ -69,7 +69,7 @@ function hashtag(text) {
   return null
 }
 
-// 
+// "123 #456# 789" => {{text:'123'}, {tag:true, text:'#456#'}, {text:'789'}}
 function decorateText(text) {
   var styled = []
   var tags = hashtag(text)
@@ -90,6 +90,13 @@ function decorateText(text) {
   return styled
 }
 
+// Test white space
+// Instead of checking the entire string to see if there's only whitespace, 
+// just check to see if there's at least one character of non whitespace:
+function isWhiteSpace(str) {
+  return !/\S/.test(str)
+}
+
 // update list item
 
 module.exports = {
@@ -101,4 +108,5 @@ module.exports = {
   jwtExpire: jwtExpire,
   hashtag: hashtag,
   decorateText: decorateText,
+  isWhiteSpace: isWhiteSpace,
 }

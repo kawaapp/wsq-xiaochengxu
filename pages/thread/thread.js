@@ -120,13 +120,23 @@ Page({
 
 // comment on post 
 function commentPost(p, data) {
+  if (util.isWhiteSpace(data.content)) {
+    console.log("data is empty!")
+    return
+  }
+
   // send comment
   api.createComment(data).then( resp => {
     var comments = p.data.comments
     comments.unshift(resp.data)
     p.setData({
-      comments: comments
+      comments: comments,
+      reply: {text:""},
     })
+    // p.data.reply.text = ""
+    // p.setData({
+    //   reply: p.data.reply,
+    // })
     util.setResult({
       ok: true,
       req: 'newcomment',

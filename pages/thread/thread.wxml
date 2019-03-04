@@ -87,7 +87,7 @@
 
 <!--底部评论框 -->
 <view class="release">
-    <textarea class="text" bindinput='bindInput'
+    <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
           placeholder-class="input_null" 
           fixed="true" 
           maxlength="-1" 
