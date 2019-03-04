@@ -92,3 +92,7 @@ page{
 .gray-bg {
   background: #f8f8f8;
 }
+
+.highlight {
+  color:dodgerblue;
+}

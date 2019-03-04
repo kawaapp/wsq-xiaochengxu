@@ -15,7 +15,10 @@
       </view>
       <view style='margin-bottom:4px;'/>
       <view style='margin-left:4px;'>
-        <text>{{item.content}}</text>
+        <text 
+          wx:for="{{item.styled}}" 
+          wx:for-item="text" 
+          class="{{text.tag?'highlight':''}}">{{text.text}} </text>
       </view>
     </view>
 

@@ -1,8 +1,8 @@
 const util = require('util.js')
 
 // ALL server-side API
-const Host = "http://127.0.0.1:1323"
-//const Host = "https://siftapi.com"
+//const Host = "http://127.0.0.1:1323"
+const Host = "https://siftapi.com"
 let g = {
   token: "",
 }

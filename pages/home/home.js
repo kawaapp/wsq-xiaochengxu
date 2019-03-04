@@ -15,6 +15,7 @@ const util = require('../../utils/util.js')
 //     comment: 1
 //   },
 //   text: '小虾米 啦啦啦',
+//   styledText: ['123', '#hashtag#', 'abc']
 //   imgs: [],
 // },....]
 Page({
@@ -29,7 +30,7 @@ Page({
     // 进入第一次加载
     api.getTopicList().then( resp => {
       this.setData({
-        posts: resp.data
+        posts: decoratePosts(resp.data)
       })
     }).catch(err => {
       console.log("topic", err)
@@ -41,7 +42,9 @@ Page({
       if (data.req == 'newpost') {
         // data.post
         // 新增帖子到列表头部
-        this.data.posts.unshift(data.data)
+        var post = data.data
+        post.styled = util.decorateText(post.content)
+        this.data.posts.unshift(post)
         this.setData({
           posts: this.data.posts
         })
@@ -71,7 +74,7 @@ Page({
       api.getTopicList().then((resp) => {
         wx.stopPullDownRefresh()
         this.setData({
-          posts: resp.data
+          posts: decoratePosts(resp.data)
         })
         console.log(resp.data[0])
       }).catch((err) => {
@@ -90,7 +93,7 @@ Page({
     var posts = this.data.posts
     var sinceId = 0
     var limit = 20
-    if (posts.length > 0) {
+    if (posts && posts.length > 0) {
       sinceId = posts[posts.length-1].id
     }
     api.getTopicList(sinceId, limit).then((resp) => {
@@ -100,8 +103,9 @@ Page({
           console.log("no more data..." + sinceId)
           this.data.loader.more = false
         } 
+        var styled = decoratePosts(resp.data)
         this.setData({
-          posts: posts.concat(resp.data)
+          posts: posts.concat(styled)
         })
       }
     }).catch((err) => {
@@ -166,3 +170,11 @@ Page({
     }
   },
 })
+
+
+function decoratePosts(posts) {
+  for (var i = 0; i < posts.length; i++) {
+    posts[i].styled = util.decorateText(posts[i].content)
+  }
+  return posts
+}

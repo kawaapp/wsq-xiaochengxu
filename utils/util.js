@@ -60,6 +60,36 @@ function jwtExpire(token, ahead) {
   return true
 }
 
+// hashtag
+function hashtag(text) {
+  var regex = /#[^#]+#/g
+  if (text) {
+    return text.match(regex)
+  }
+  return null
+}
+
+// 
+function decorateText(text) {
+  var styled = []
+  var tags = hashtag(text)
+
+  if (tags && tags.length > 0) {
+    for (var i = 0; i < tags.length; i++) {
+      var array = text.split(tags[i])
+      if (array[0]) {
+        styled.push({ tag: false, text: array[0] })
+      }
+      styled.push({ tag: true, text: tags[i] })
+      text = array[1]
+    }
+  }
+  if (text) {
+    styled.push({ tag: false, text: text})
+  }
+  return styled
+}
+
 // update list item
 
 module.exports = {
@@ -68,5 +98,7 @@ module.exports = {
   sendRequest: setTransitData,
   getRequest: getTransitData,
   jwtDecode: jwtDecode,
-  jwtExpire, jwtExpire
+  jwtExpire: jwtExpire,
+  hashtag: hashtag,
+  decorateText: decorateText,
 }
