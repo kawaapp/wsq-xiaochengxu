@@ -18,7 +18,10 @@ Page({
       more: true,
     },
     reply: {
+      index: -1,
+      hint: "",
       text: "",
+      enable: true,
       focus: false
     }
   },
@@ -85,24 +88,38 @@ Page({
   bindInput: function(e) {
     this.data.reply.text = e.detail.value
   },
+  clickMask: function(e) {
+    this.setData({
+      reply: {
+        focus: false,
+        index: -1,
+        hint: "",
+      },
+    })
+    console.log("focus set false..")
+  },
   clickReply: function(e) {
     this.setData({reply:{focus: true}})
-  },
-  sendComment: function(e) {
-    console.log("get comment", this.data.reply.text)
-    commentPost(this, {
-      post_id: this.data.item.post.id,
-      content: this.data.reply.text,
-    })
   },
   threadCancel: function(e) {
     wx.navigateBack({ delta: 1})
   },
-  commentClick: function(e) {
+  clickListComment: function(e) {
     console.log('comment on comment click!!')
-    commentComment(this, e.currentTarget.dataset.idx)
+    // commennt on comment
+    var d = this.data
+    var idx = e.currentTarget.dataset.idx
+    var parent = d.comments[idx]
+    d.reply.index = idx
+    d.reply.hint = parent.author.nickname
+    d.reply.focus = true
+
+    // prepare ui state
+    this.setData({
+      reply: d.reply
+    })
   },
-  favorClick: function(e) {
+  clickListFavor: function(e) {
     // favor on comment
     var idx = e.currentTarget.dataset.idx
     var comment = this.data.comments[idx]
@@ -114,6 +131,22 @@ Page({
       unfavorComent(this, idx, comment)
     } else {
       favorComment(this, idx, comment)
+    }
+  },
+  sendComment: function (e) {
+    console.log("get comment", this.data.reply.text)
+    var reply = this.data.reply
+    if (util.isWhiteSpace(reply.text)) {
+      return
+    }
+    console.log("reply index:", reply)
+    if (reply.index >= 0) {
+      commentComment(this, reply.index)
+    } else {
+      commentPost(this, {
+        post_id: this.data.item.post.id,
+        content: this.data.reply.text,
+      })
     }
   }
 })
@@ -131,12 +164,10 @@ function commentPost(p, data) {
     comments.unshift(resp.data)
     p.setData({
       comments: comments,
-      reply: {text:""},
     })
-    // p.data.reply.text = ""
-    // p.setData({
-    //   reply: p.data.reply,
-    // })
+    p.setData({
+      reply: {text: "", index: -1, hint: "", focus: false}
+    })
     util.setResult({
       ok: true,
       req: 'newcomment',
@@ -157,9 +188,7 @@ function commentComment(p, idx) {
   var key = 'comments[' + idx + '].reply_list'
 
   // prepare ui state  TODO 这里需要和输入框双向绑定数据..
-  p.setData({
-    reply: { focus: true, text: '@' + parent.author.nickname }
-  })
+
   if (!parent.reply_list) {
     parent.reply_list = []
   }
@@ -176,6 +205,9 @@ function commentComment(p, idx) {
     parent.reply_list.push(resp.data)
     p.setData({ 
       [key]: parent.reply_list 
+    })
+    p.setData({
+      reply: { text: "", index: -1, hint: "", focus: false }
     })
     console.log("评论成功！！！", resp.data)
   }).catch(err => {

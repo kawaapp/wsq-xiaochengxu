@@ -56,13 +56,13 @@
 
           <!-- Commennt -->
           <view class='img-text' style='margin-right:8px'
-                bindtap='commentClick' 
+                bindtap='clickListComment' 
                 data-idx="{{index}}">
             <image src='/res/img/comment.png'></image>
           </view>
 
           <!-- Favor -->
-          <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
+          <view class='img-text' bindtap='clickListFavor' data-idx="{{index}}">
             <image src="{{ item.stats.favored>0?'/res/img/liked.png':'/res/img/like.png'}}"></image>
             <text>{{item.stats.favors}}</text>
           </view>
@@ -86,16 +86,32 @@
 <view style='height:10px;'></view>
 
 <!--底部评论框 -->
-<view class="release">
+<!--底部评论框 -->
+<view class='bottom-bar'>
+  <view class='left' bindtap='threadCancel'>
+    <image style='margin: 0 auto;' src="/res/img/arrow_left.png"></image>
+  </view>
+  <view class='middle' bindtap='clickReply'>
+    <text>说点什么...</text>
+  </view>
+  <view class='right center' bindtap='clickFavor'>
+    <image
+      src="{{ item.post.stats.favored>0?'/res/img/liked.png':'/res/img/like.png'}}"></image>
+  </view>
+</view>
+
+<!-- 隐藏输入框 -->
+<view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" ></view>
+<view class="release" wx:if="{{reply.focus}}">
     <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
+          style="height: 4.4em"
           placeholder-class="input_null" 
           fixed="true" 
           maxlength="-1" 
           show-confirm-bar="false" 
           cursor-spacing="15" 
-          auto-height="true" 
           focus="{{reply.focus}}"
-          placeholder="回复 {{releaseName}}"></textarea>
-    <view class="submit" bindtap='sendComment'>发送</view>
+          placeholder="回复 {{reply.hint}}"></textarea>
+    <view class="{{reply.enable? 'submit': 'submit-disable'}}" bindtap='sendComment'>发送</view>
 </view>
 
