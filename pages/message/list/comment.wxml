@@ -1,5 +1,6 @@
 <view wx:for="{{messages}}" wx:for-item="item">
-  <view>
+  <view wx:if="{{index != 0}}" class='thin-line'/>
+  <view class="{{item.status? '': 'unread'}}" style='padding:12px 0 8px 0;'>
     <view class="h-top"  style='padding-left:12px;'>
       <image class='avatar-large' style='margin: 0px 8px;'
         src="{{item.from.avatar?item.from.avatar:'/res/img/user_icon.png'}}" 
@@ -11,11 +12,9 @@
         </view>
         <view class='title'>{{item.content}}</view>
         <view class='subtitle' style='margin-top:8px;' >2019.02.29</view>
-        <view class='line'/>
       </view>
     </view>
   </view>
-  <view style='margin-bottom:4px;'/>
 </view>
 
 <view wx:if='{{loader.ing}}' style='text-align:center;'>

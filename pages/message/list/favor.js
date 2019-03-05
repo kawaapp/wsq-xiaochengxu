@@ -51,7 +51,7 @@ Page({
       since = messages[messages.length - 1].id
     }
     api.getMessageList('favor', since, limit).then(resp => {
-      if (esp.data.length < limit) {
+      if (resp.data.length < limit) {
         this.data.loader.more = false
       }
       this.setData({ messages: messages.concat(resp.data) })
