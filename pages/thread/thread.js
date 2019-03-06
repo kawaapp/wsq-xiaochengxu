@@ -30,26 +30,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var item = util.getRequest("post")
-    if (!item) {
-      console.log("err, no post found")
-      return
-    }
-   
-    // set post data
-    this.setData({
-      item: item
-    })
-
-    // request comments
-    api.getCommentList(item.post.id).then(resp => {
-      this.setData({
-        comments: resp.data
+    var _this = this
+    function setup(item) {
+      // set post data
+      _this.setData({
+        item: item
       })
-      console.log("get comment data:", resp.data)
-    }).catch(err => {
-      console.log('thread:', err)
-    })
+
+      // request comments
+      api.getCommentList(item.post.id).then(resp => {
+        _this.setData({
+          comments: resp.data
+        })
+        console.log("get comment data:", resp.data)
+      }).catch(err => {
+        console.log('thread:', err)
+      })
+    }
+    var item = util.getRequest("post")
+    if (item) {
+      setup(item)
+      return
+    } 
+    var pid = options.pid
+    if (pid) {
+      api.getPost(pid).then( resp => {
+        setup({ idx: -1, post: resp.data })
+      }).catch( err => {
+        console.log(err)
+      })
+    }
   },
   onPullDownRefresh: function(e) {
     if (!this.data.item) {
