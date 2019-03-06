@@ -26,6 +26,7 @@
     <!-- Comment and Favor bar -->
     <view class='line'></view>
     <view class='flow-right'>
+      <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
       <view class='img-text' bindtap='commentClick' data-idx="{{index}}">
         <image src='/res/img/comment.png'></image>
         <text>{{item.stats.comments}}</text>

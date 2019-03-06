@@ -206,6 +206,8 @@ Page({
 function decoratePosts(posts) {
   for (var i = 0; i < posts.length; i++) {
     posts[i].styled = util.decorateText(posts[i].content)
+    var utc = new Date(posts[i].created_at * 1000)
+    posts[i].time = util.formatTime(utc)
   }
   return posts
 }

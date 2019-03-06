@@ -41,7 +41,7 @@ Page({
       // request comments
       api.getCommentList(item.post.id).then(resp => {
         _this.setData({
-          comments: resp.data
+          comments: formatTimes(resp.data)
         })
         console.log("get comment data:", resp.data)
       }).catch(err => {
@@ -286,4 +286,13 @@ function deletePost(p, item) {
       delta: 1,
     })
   })
+}
+
+function formatTimes(comments) {
+  var i = 0, n = comments.length
+  for(; i < n; i++) {
+    var utc = new Date(comments[i].at * 1000)
+    comments[i].time = util.formatTime(utc)
+  }
+  return comments
 }

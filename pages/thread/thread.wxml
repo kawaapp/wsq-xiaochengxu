@@ -29,6 +29,7 @@
 
   <!-- Comment List -->
   <view wx:for="{{comments}}" wx:for-item="item">
+    <view wx:if="{{index != 0}}" class='line' style='margin-left:48px;'></view>
     <view class="h-top">
       <image class="avatar-large" style='margin-right:8px;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
@@ -53,7 +54,7 @@
         <!-- Comment and Favor bar-->
         <view class='flow-right' style='margin-top:4px;'>
           <!-- date -->
-          <view class='subtitle' style='margin-right:auto;'>{{'1-27 20:10'}}</view>
+          <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
 
           <!-- Commennt -->
           <view class='img-text' style='margin-right:8px'
@@ -68,7 +69,6 @@
             <text>{{item.stats.favors}}</text>
           </view>
         </view>
-        <view class='line'></view>
       </view>
     </view>
   </view>

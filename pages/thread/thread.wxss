@@ -9,7 +9,8 @@
   margin-left: auto;
   width: 24px;
   height: 24px;
-  align-self: flex-start;
+  align-self: start;
+  margin-top: -4px;
 }
 
 .comment-detail {
