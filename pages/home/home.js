@@ -24,6 +24,9 @@ Page({
     loader: {
       ing: false, // 是否正在加载
       more: true, // 是否有更多数据
+    },
+    menu: {
+      show: false,
     }
   },
   onLoad: function () {
@@ -51,8 +54,6 @@ Page({
       } else if (data.req == 'newcomment') {
         // 刷新评论数量
         var item = this.data.posts[data.idx]
-        console.log("data:", data)
-        console.log("item:", item)
         var key = 'posts[' + data.idx + '].stats'
         if (!item.stats) {
           item.stats = {}
@@ -168,6 +169,12 @@ Page({
         console.log("favor err:", err)
       })
     }
+  },
+  clickMenu: function(e) {
+    this.setData({menu: {show: true}})
+  },
+  clickMask: function(e) {
+    this.setData({menu: {show: false}})
   },
 })
 

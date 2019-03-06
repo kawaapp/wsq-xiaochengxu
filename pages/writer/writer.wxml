@@ -5,6 +5,11 @@
     <view class="weui-textarea-counter">0/200</view>
   </view>
 </view>
-<view style='margin-bottom:8px;'></view>
-<button bindtap='writerPublish' class='primary'>发帖</button>
-<button bindtap='writerCancel' class='primary'>取消</button>
+<button style='margin-top: 12px;' 
+  class='btn-submit' 
+  hover-class='btn-submit-hover'
+  bindtap='writerPublish'>发帖</button>
+<button style='margin-top: 4px;' 
+  class='btn-cancel' 
+  hover-class='btn-cancel-hover'
+  bindtap='writerCancel'>取消</button>

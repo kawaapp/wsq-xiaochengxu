@@ -12,6 +12,7 @@
           <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
           <view class='subtitle'>摘要信息</view>
         </view>
+        <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>
       <view style='margin-bottom:4px;'/>
       <view style='margin-left:4px;'>
@@ -47,4 +48,14 @@
 
 <view>
   <button bindtap='newTopic' class='new-topic'>发帖</button>
+</view>
+
+<!-- 上拉菜单 -->
+<view class="popup-mask" bindtap="clickMask" wx:if="{{menu.show}}"></view>
+<view animation="{{animationData}}" class="popup" wx:if="{{menu.show}}">
+  <!--drawer content-->
+  <view class="content">
+    <view class="text line">删除</view>
+    <view class="text line">取消</view>
+  </view>
 </view>

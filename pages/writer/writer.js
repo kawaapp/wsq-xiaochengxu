@@ -18,6 +18,10 @@ Page({
     this.setData({content: e.detail.value})
   },
   writerPublish: function() {
+    if (util.isWhiteSpace(this.data.content)) {
+      return
+    }
+    
     var data = {
       title: this.data.title,
       content: this.data.content

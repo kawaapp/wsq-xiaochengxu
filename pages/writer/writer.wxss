@@ -1,1 +1,24 @@
 /* pages/writer/writer.wxss */
+.btn-submit {
+  width: 96%;
+  background-color: rgba(52, 193, 192, 1);
+  color: #fff;
+}
+
+.btn-submit-hover {
+  width: 96%;
+  background-color: rgba(52, 193, 192, .6);
+  color: #fff;
+}
+
+.btn-cancel {
+  width: 96%;
+  background-color: #f8f8f8;
+  color:gray;
+}
+
+.btn-cancel-hover {
+  width: 96%;
+  background-color: lightgray;
+  color:gray;
+}

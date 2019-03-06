@@ -3,3 +3,47 @@
   bottom: 30rpx;
   right: 20rpx;
 }
+
+.menu {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  align-self: flex-start;
+}
+
+.popup-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+}
+
+.popup {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+  background: #fff;
+}
+
+.popup.content {
+  padding: 20rpx 40rpx;
+  height: 470rpx;
+  overflow-y: scroll;
+}
+
+.popup.content.text{
+  padding:20rpx;
+  font:42rpx "microsoft yahei";
+  text-align: center;
+}
+.popup.content.line{
+  border-bottom: 1px solid #f8f8f8;
+}
