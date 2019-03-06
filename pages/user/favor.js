@@ -54,10 +54,19 @@ Page({
       since = favors[favors.length - 1].id
     }
     api.getUserFavorList(this.data.user.uid, since, limit).then(resp => {
-      if (esp.data.length < limit) {
+      if (resp.data.length < limit) {
         this.data.loader.more = false
       }
       this.setData({ favors: favors.concat(resp.data) })
     })
   },
+  // 列表点击
+  clickItem: function (e) {
+    var idx = e.currentTarget.dataset.idx
+    var favor = this.data.favors[idx]
+    // 跳转到帖子，并设置为已读
+    wx.navigateTo({
+      url: '/pages/thread/thread?pid=' + favor.post_id,
+    })
+  }, 
 })

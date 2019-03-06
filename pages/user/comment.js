@@ -61,5 +61,14 @@ Page({
       }
       this.setData({ comments: comments.concat(resp.data) })
     })
-  }
+  },
+  // 列表点击
+  clickItem: function (e) {
+    var idx = e.currentTarget.dataset.idx
+    var comment = this.data.comments[idx]
+    // 跳转到帖子，并设置为已读
+    wx.navigateTo({
+      url: '/pages/thread/thread?pid=' + comment.post_id,
+    })
+  }, 
 })

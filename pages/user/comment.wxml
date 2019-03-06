@@ -1,6 +1,6 @@
 <view style='margin-bottom:8px;'/>
 <view wx:for="{{comments}}" wx:for-item="item">
-  <view class="card" style='padding: 8px;'>
+  <view class="card" style='padding: 8px;' bindtap='clickItem' data-idx='{{index}}'>
     <text class='title'>我: {{ item.content }}</text>
     <view class="horizontal gray-bg">
       <image class='avatar-large' style='margin-right: 8px;'

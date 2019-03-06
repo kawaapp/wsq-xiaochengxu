@@ -1,6 +1,6 @@
 <view style='margin-bottom:8px;'/>
 <view wx:for="{{favors}}" wx:for-item="item">
-  <view class="card">
+  <view class="card" bindtap='clickItem' data-idx='{{index}}'>
     <text>赞了这篇帖子</text>
     <view class="horizontal gray-bg">
       <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
