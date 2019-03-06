@@ -1,4 +1,6 @@
 const api = require('../../../utils/api.js')
+const util = require('../../../utils/util.js')
+
 
 // pages/message/list/favor.js
 Page({
@@ -19,7 +21,8 @@ Page({
    */
   onLoad: function (options) {
     api.getMessageList('favor').then( resp => {
-      this.setData({ messages: resp.data})
+      var unpacked = unpackMsgContent(resp.data)
+      this.setData({ messages: unpacked })
       console.log("get favor message list:", resp.data)
     }).catch( err => {
       console.log(err)
@@ -31,7 +34,8 @@ Page({
    */
   onPullDownRefresh: function () {
     api.getMessageList('favor').then(resp => {
-      this.setData({ messages: resp.data })
+      var unpacked = unpackMsgContent(resp.data)
+      this.setData({ messages: unpacked })
     }).catch(err => {
       console.log(err)
     })
@@ -54,7 +58,39 @@ Page({
       if (resp.data.length < limit) {
         this.data.loader.more = false
       }
-      this.setData({ messages: messages.concat(resp.data) })
+      var unpacked = unpackMsgContent(resp.data)
+      this.setData({ messages: messages.concat(unpacked) })
     })
   },
+  clickItem: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    var msg = this.data.messages[idx]
+    var key = 'messages['+idx+'].status'
+    // 跳转到帖子，并设置为已读
+    this.setData({
+      [key]: 1,
+    })
+    api.setMessageRead(msg.id).catch( err => {
+      console.log(err)
+    })
+    // fetch post and goto thread page
+    wx.navigateTo({
+      url: '/pages/thread/thread?pid='+msg.post_id,
+    })
+  }
 })
+
+function unpackMsgContent(msgs) {
+  var i = 0 
+  var n = msgs.length
+  for (; i < n; i++) {
+    var json = util.jsonParse(msgs[i].content)
+    if (json.ok) {
+      msgs[i].post_id = json.object.post_id
+      msgs[i].message = json.object.message
+    } else {
+      msgs[i].message = msgs[i].content
+    }
+  }
+  return msgs
+}

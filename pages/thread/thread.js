@@ -52,6 +52,9 @@ Page({
     })
   },
   onPullDownRefresh: function(e) {
+    if (!this.data.item) {
+      return
+    }
     var pid = this.data.item.post.id
     api.getCommentList(pid).then( resp => {
       wx.stopPullDownRefresh()

@@ -192,6 +192,13 @@ function getPostList(since, limit) {
   })
 }
 
+function getPost(id) {
+  return req({
+    url: `${Host}/api/posts/${id}`,
+    method: 'GET'
+  })
+}
+
 // create topic
 function createPost(data) {
   return req({
@@ -370,6 +377,7 @@ module.exports = {
 
   // post
   getTopicList: getPostList,
+  getPost: getPost,
   createTopic: createPost,
   updateTopic: updatePost,
   deleteTopic: deletePost,

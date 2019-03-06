@@ -97,6 +97,18 @@ function isWhiteSpace(str) {
   return !/\S/.test(str)
 }
 
+// Parse json
+function jsonParse(str) {
+  var r = {}
+  try {
+    r.object = JSON.parse(str)
+    r.ok = true
+  } catch (e) {
+    r.ok = false
+  }
+  return r
+}
+
 // update list item
 
 module.exports = {
@@ -109,4 +121,5 @@ module.exports = {
   hashtag: hashtag,
   decorateText: decorateText,
   isWhiteSpace: isWhiteSpace,
+  jsonParse: jsonParse,
 }
