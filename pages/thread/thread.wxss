@@ -5,6 +5,13 @@
   align-items: top;
 }
 
+.menu {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  align-self: flex-start;
+}
+
 .comment-detail {
   font-size: 12px;
   color: #333;

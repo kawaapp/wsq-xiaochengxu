@@ -1,6 +1,7 @@
 // pages/post/posts.js
 import api from '../../utils/api.js'
 import util from '../../utils/util.js'
+const app = getApp()
 
 Page({
 
@@ -96,6 +97,33 @@ Page({
       })
     }).catch(err => {
 
+    })
+  },
+  clickMenu: function (e) {
+    var item = this.data.item.post
+    var menu = {
+      items: ["不感兴趣"],
+      actions: [function () { }],
+    }
+    var user = app.globalData.userInfo
+    var _this = this
+    if (user && user.id == item.author.id) {
+      menu.items.push("删除")
+      menu.actions.push(function () {
+        deletePost(_this, item)
+      })
+    }
+    wx.showActionSheet({
+      itemList: menu.items,
+      success: function (res) {
+        console.log(JSON.stringify(res))
+        console.log(res.tapIndex) // 用户点击的按钮，从上到下的顺序，从0开始
+        var fn = menu.actions[res.tapIndex]
+        fn()
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
     })
   },
   bindInput: function(e) {
@@ -249,5 +277,13 @@ function unfavorComent(p, idx, comment) {
     p.setData({ [key]: comment.stats })
   }).catch( err => {
     console.log(err)
+  })
+}
+
+function deletePost(p, item) {
+  api.deletePost(item.id).then(resp => {
+    wx.navigateBack({
+      delta: 1,
+    })
   })
 }

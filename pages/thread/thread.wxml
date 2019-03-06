@@ -2,13 +2,14 @@
 
 <view class="card" style='padding: 8px'>
   <view class="horizontal">
-      <image class='avatar-large' style='margin-right: 8px;'
-        src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
-        />
+    <image class='avatar-large' style='margin-right: 8px;'
+      src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
+      />
     <view>
       <view class='title'>{{item.post.author.nickname}}</view>
       <view class='subtitle'>摘要信息</view>
     </view>
+    <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
   </view>
   <view style='margin-top:8px;'>
     <text>{{item.post.content}}</text>

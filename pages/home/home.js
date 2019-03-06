@@ -1,6 +1,7 @@
 //logs.js
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
+const app  = getApp()
 
 // topics:[
 // {
@@ -171,10 +172,33 @@ Page({
     }
   },
   clickMenu: function(e) {
-    this.setData({menu: {show: true}})
-  },
-  clickMask: function(e) {
-    this.setData({menu: {show: false}})
+    var idx = e.currentTarget.dataset.idx
+    var item = this.data.posts[idx]
+    var menu = {
+      items: ["不感兴趣"],
+      actions: [function(){}],
+    }
+    var user = app.globalData.userInfo
+    var _this = this
+    if (user && user.id == item.author.id) {
+      menu.items.push("删除")
+      menu.actions.push(function() {
+        deletePost(_this, idx)
+      })
+    }
+
+    wx.showActionSheet({
+      itemList: menu.items,
+      success: function (res) {
+        console.log(JSON.stringify(res))
+        console.log(res.tapIndex) // 用户点击的按钮，从上到下的顺序，从0开始
+        var fn = menu.actions[res.tapIndex]
+        fn()
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
 })
 
@@ -184,4 +208,16 @@ function decoratePosts(posts) {
     posts[i].styled = util.decorateText(posts[i].content)
   }
   return posts
+}
+
+function deletePost(p, idx) {
+  var posts = p.data.posts
+  var post  = posts[idx]
+  api.deletePost(post.id).then( resp => {
+    posts.splice(idx, 1)
+    p.setData({ posts: posts })
+    console.log("删除成功")
+  }).catch( err => {
+    console.log("删除失败")
+  })
 }

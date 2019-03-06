@@ -378,9 +378,8 @@ module.exports = {
   // post
   getTopicList: getPostList,
   getPost: getPost,
-  createTopic: createPost,
-  updateTopic: updatePost,
-  deleteTopic: deletePost,
+  createPost: createPost,
+  deletePost: deletePost,
 
 
   // comment

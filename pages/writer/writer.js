@@ -27,7 +27,7 @@ Page({
       content: this.data.content
     }
 
-    api.createTopic(data).then((resp)=> {
+    api.createPost(data).then((resp)=> {
       // refresh list
       util.setResult({ 
         req: 'newpost',

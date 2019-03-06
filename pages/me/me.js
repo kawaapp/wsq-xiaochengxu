@@ -1,4 +1,5 @@
 const api = require('../../utils/api.js')
+const app = getApp()
 
 // pages/me/me.js
 Page({
@@ -19,6 +20,7 @@ Page({
    */
   onLoad: function (options) {
     api.getSelf().then( (resp) => {
+      app.globalData.userInfo = resp.data
       this.setData({ user: resp.data})
       console.log("get user data:", resp.data)
     })
