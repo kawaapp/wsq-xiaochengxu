@@ -47,7 +47,7 @@ Page({
     if (this.data.loader.ing || !this.data.loader.more) {
       return
     }
-    var favors = this.data.posts
+    var favors = this.data.favors
     var since = 0
     var limit = 20
     if (favors && favors.length > 0) {
@@ -57,7 +57,9 @@ Page({
       if (resp.data.length < limit) {
         this.data.loader.more = false
       }
-      this.setData({ favors: favors.concat(resp.data) })
+      if (resp.data) {
+        this.setData({ favors: favors.concat(resp.data) })
+      }
     })
   },
   // 列表点击
