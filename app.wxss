@@ -20,16 +20,16 @@ page{
 .card {
   border: 2px solid #ffffff;
   background-color: #ffffff;
-  box-shadow: 4px 1px 1px #cccccc;
-  margin-bottom: 8px;
+  box-shadow: 9.36rpx 2.34rpx 2.34rpx #cccccc;
+  margin-bottom: 18.72rpx;
   position: relative;
-  padding: 8px;
+  padding: 18.72rpx;
 }
 
 .line {
   height: 1px;
   background-color: #f8f8f8;
-  margin: 8px 0;
+  margin: 18.72rpx 0;
 }
 
 .horizontal {
@@ -39,23 +39,23 @@ page{
 
 
 .avatar-large {
-  width: 45px; 
-  height: 45px;
-  min-width: 45px;
-  max-width: 45px;
+  width: 106rpx; 
+  height: 106rpx;
+  min-width: 106rpx;
+  max-width: 106rpx;
 }
 
 .title {
-  font-size: 13px;
+  font-size: 30rpx;
 }
 
 .fade-title {
-  font-size: 13px;
+  font-size: 30rpx;
   color: #888888;
 }
 
 .subtitle {
-  font-size: 11px;
+  font-size: 26rpx;
   color: #888888;
 }
 
@@ -71,15 +71,15 @@ page{
 }
 
 .img-text image{
-  height: 16px;
-  width: 16px;
-  margin-left: 4px;
+  height: 38rpx;
+  width: 38rpx;
+  margin-left: 9.36rpx;
 }
 
 .img-text text {
   text-align: center;
-  width: 24px;
-  font-size: 14px;
+  width: 56rpx;
+  font-size: 32rpx;
   color: #888888;
 }
 

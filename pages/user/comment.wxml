@@ -1,9 +1,9 @@
-<view style='margin-bottom:8px;'/>
+<view style='margin-bottom:18rpx;'/>
 <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card" style='padding: 8px;' bindtap='clickItem' data-idx='{{index}}'>
     <text class='title'>我: {{ item.content }}</text>
     <view class="horizontal gray-bg">
-      <image class='avatar-large' style='margin-right: 8px;'
+      <image class='avatar-large' style='margin-right: 18rpx;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
@@ -12,7 +12,7 @@
       </view>
     </view>
   </view>
-  <view style='margin-bottom:4px;'/>
+  <view style='margin-bottom:9.36rpx;'/>
 </view>
 
 <view wx:if='{{loader.ing}}' style='text-align:center;'>

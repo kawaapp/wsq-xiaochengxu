@@ -1,11 +1,11 @@
-<view style='margin-bottom:8px;'/>
+<view style='margin-bottom:18rpx;'/>
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card">
     
     <!-- Content Area -->
     <view bindtap='topicClick' data-idx="{{index}}">
       <view class="horizontal">
-        <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+        <image class='avatar-large' style='margin: 10rpx 10rpx 10rpx 0px;'
           src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
           />
         <view>
@@ -14,8 +14,8 @@
         </view>
         <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>
-      <view style='margin-bottom:4px;'/>
-      <view style='margin-left:4px;'>
+      <view style='margin-bottom:9.36rpx;'/>
+      <view style='margin-left:9.36rpx;'>
         <text 
           wx:for="{{item.styled}}" 
           wx:for-item="text" 
@@ -38,7 +38,7 @@
       </view>
     </view>
   </view>
-  <view style='margin-bottom:4px;'/>
+  <view style='margin-bottom:9.36rpx;'/>
 </view>
 
 <view wx:if='{{loader.ing}}' style='text-align:center;'>

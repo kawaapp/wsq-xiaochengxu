@@ -1,9 +1,9 @@
 <view wx:for="{{messages}}" wx:for-item="item" wx:key="{{item.id}}">
   <view wx:if="{{index != 0}}" class='thin-line'/>
-  <view class="{{item.status? '': 'unread'}}" style='padding:12px 0 8px 0;'
+  <view class="{{item.status? '': 'unread'}}" style='padding:28rpx 0 18rpx 0;'
         bindtap='clickItem' data-idx="{{index}}">
-    <view class="h-top"  style='padding-left:12px;'>
-      <image class='avatar-large' style='margin: 0px 8px;'
+    <view class="h-top"  style='padding-left:28rpx;'>
+      <image class='avatar-large' style='margin: 0px 18rpx;'
         src="{{item.from.avatar?item.from.avatar:'/res/img/user_icon.png'}}" 
         />
       <view style='width:100%;'>

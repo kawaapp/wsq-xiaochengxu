@@ -6,7 +6,7 @@
 
 .menu {
   margin-left: auto;
-  width: 24px;
-  height: 24px;
+  width: 56rpx;
+  height: 56rpx;
   align-self: flex-start;
 }

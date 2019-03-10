@@ -7,14 +7,14 @@
 
 .menu {
   margin-left: auto;
-  width: 24px;
-  height: 24px;
+  width: 56rpx;
+  height: 56rpx;
   align-self: start;
-  margin-top: -4px;
+  margin-top: -9.36rpx;
 }
 
 .comment-detail {
-  font-size: 12px;
+  font-size: 28rpx;
   color: #333;
 }
 
@@ -23,8 +23,8 @@
 }
 
 .bottom-bar {
-  border-top: .5px solid #f0f0f0;
-  height: 48px;
+  border-top: 1rpx solid #f0f0f0;
+  height: 112rpx;
   background-color: white;
   position: fixed;
   bottom: 0px;
@@ -35,29 +35,29 @@
 }
 
 .bottom-bar image {
-  width: 20px;
-  height: 20px;
+  width: 46.8rpx;
+  height: 46.8rpx;
 }
 
 .bottom-bar .left {
   display:flex;
   justify-content: center; 
-  width: 64px;
+  width: 150rpx;
 }
 
 .bottom-bar .middle {
   background-color:#f8f8f8;
-  border-radius: 12px;
-  padding: 6px 12px;
+  border-radius: 28rpx;
+  padding: 14rpx 28rpx;
   flex: 1;
-  font-size: 11px;
+  font-size: 26rpx;
   color: #888888;
 }
 
 .bottom-bar .right {
   display:flex;
   justify-content: center; 
-  width: 64px;
+  width: 150rpx;
 }
 
 .bg-mask {

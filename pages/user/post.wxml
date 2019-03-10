@@ -1,8 +1,8 @@
-<view style='margin-bottom:8px;'/>
+<view style='margin-bottom:18rpx;'/>
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card" bindtap='clickItem' data-idx='{{index}}'>
     <view class="horizontal">
-      <image class='avatar-large' style='margin: 4px 4px 4px 0px;'
+      <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
@@ -10,8 +10,8 @@
         <view class='subtitle'>摘要信息</view>
       </view>
     </view>
-    <view style='margin-bottom:4px;'/>
-    <view style='margin-left:4px;' bindtap='topicClick' data-item="{{item}}">
+    <view style='margin-bottom:9.36rpx;'/>
+    <view style='margin-left:9.36rpx;' bindtap='topicClick' data-item="{{item}}">
       <text>{{item.content}}</text>
     </view>
   </view>
