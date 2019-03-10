@@ -5,7 +5,7 @@
     <!-- Content Area -->
     <view bindtap='topicClick' data-idx="{{index}}">
       <view class="horizontal">
-        <image class='avatar-large' style='margin: 10rpx 10rpx 10rpx 0px;'
+        <image class='avatar-large' style='margin: 10rpx 18rpx 10rpx 0px;'
           src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
           />
         <view>

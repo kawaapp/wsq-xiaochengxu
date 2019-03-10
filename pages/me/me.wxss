@@ -9,6 +9,7 @@
   height: 112rpx;
   max-height: 112rpx;
   max-width: 112rpx;
+  border-radius: 56rpx;
 }
 
 .icon-small {

@@ -43,6 +43,7 @@ page{
   height: 106rpx;
   min-width: 106rpx;
   max-width: 106rpx;
+  border-radius: 54rpx;
 }
 
 .title {
