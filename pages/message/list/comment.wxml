@@ -1,4 +1,4 @@
-<view wx:for="{{messages}}" wx:for-item="item">
+<view wx:for="{{messages}}" wx:for-item="item" wx:key="{{item.id}}">
   <view wx:if="{{index != 0}}" class='thin-line'/>
   <view class="{{item.status? '': 'unread'}}" style='padding:12px 0 8px 0;'
         bindtap='clickItem' data-idx="{{index}}">
@@ -11,8 +11,8 @@
           {{item.from.nickname?item.from.nickname:'匿名'}}
           评论了你
         </view>
-        <view class='title'>{{item.content}}</view>
-        <view class='subtitle' style='margin-top:8px;' >2019.02.29</view>
+        <view class='title'>{{item.comment}}</view>
+        <view class='subtitle' style='margin-top:8px;' >{{item.time}}</view>
       </view>
     </view>
   </view>

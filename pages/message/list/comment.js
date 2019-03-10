@@ -78,16 +78,18 @@ Page({
 })
 
 function unpackMsgContent(msgs) {
+  console.log(msgs)
   var i = 0
   var n = msgs.length
   for (; i < n; i++) {
     var json = util.jsonParse(msgs[i].content)
     if (json.ok) {
       msgs[i].post_id = json.object.post_id
-      msgs[i].message = json.object.message
+      msgs[i].comment = json.object.comment
     } else {
-      msgs[i].message = msgs[i].content
+      msgs[i].comment = msgs[i].content
     }
+    msgs[i].time = util.formatTime(new Date(msgs[i].created_at * 1000))
   }
   return msgs
 }

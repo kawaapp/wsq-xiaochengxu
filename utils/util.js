@@ -103,6 +103,7 @@ function jsonParse(str) {
     r.ok = true
   } catch (e) {
     r.ok = false
+    r.err = e
   }
   return r
 }

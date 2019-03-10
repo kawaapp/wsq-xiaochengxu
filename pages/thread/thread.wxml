@@ -28,7 +28,7 @@
   <view class='line' />
 
   <!-- Comment List -->
-  <view wx:for="{{comments}}" wx:for-item="item">
+  <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
     <view wx:if="{{index != 0}}" class='line' style='margin-left:48px;'></view>
     <view class="h-top">
       <image class="avatar-large" style='margin-right:8px;'
@@ -45,7 +45,10 @@
 
         <!-- Reply List / Comment on Comment  -->
         <view wx:if='{{item.reply_list}}' class='gray-bg' style='padding:6px;'>
-          <view class='subtitle' wx:for="{{item.reply_list}}" wx:for-item="item">
+          <view class='subtitle' 
+            wx:for="{{item.reply_list}}" 
+            wx:for-item="item"
+            wx:key="{{item.id}}">
             <text>{{item.author.nickname}}:</text>
             <text>{{item.content}}</text>
           </view>

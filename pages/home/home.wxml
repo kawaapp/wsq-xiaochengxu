@@ -1,5 +1,5 @@
 <view style='margin-bottom:8px;'/>
-<view wx:for="{{posts}}" wx:for-item="item">
+<view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card">
     
     <!-- Content Area -->
@@ -19,6 +19,7 @@
         <text 
           wx:for="{{item.styled}}" 
           wx:for-item="text" 
+          wx:key="{{index}}"
           class="{{text.tag?'highlight':''}}">{{text.text}} </text>
       </view>
     </view>

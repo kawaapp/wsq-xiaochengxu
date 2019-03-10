@@ -87,10 +87,11 @@ function unpackMsgContent(msgs) {
     var json = util.jsonParse(msgs[i].content)
     if (json.ok) {
       msgs[i].post_id = json.object.post_id
-      msgs[i].message = json.object.message
+      msgs[i].subject = json.object.subject
     } else {
-      msgs[i].message = msgs[i].content
+      msgs[i].subject = msgs[i].content
     }
+    msgs[i].time = util.formatTime(new Date(msgs[i].created_at * 1000))
   }
   return msgs
 }
