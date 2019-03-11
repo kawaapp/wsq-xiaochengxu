@@ -28,9 +28,24 @@ Page({
     },
     menu: {
       show: false,
-    }
+    },
+    meta: {
+      // hero_image: "https://pic2.zhimg.com/v2-59e5f19045f4246de807bf351c3f07ae_r.jpg",
+      // logo:"https://cdn.pixabay.com/photo/2017/07/10/19/42/logo-2491236_960_720.png",
+      // title:"卡哇轻社区",
+      // pv: "30W",
+      // users: "3.6W"
+    },
   },
   onLoad: function () {
+    // 加载社区信息
+    api.getMetaData().then( resp => {
+      this.setData({
+        meta: resp.data
+      })
+      console.log("get meta:", resp.data)
+    })
+
     // 进入第一次加载
     api.getTopicList().then( resp => {
       this.setData({

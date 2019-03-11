@@ -145,6 +145,37 @@ function auth() {
   })
 }
 
+// mata-data
+
+function getMetaData() {
+  return req({
+    url: `${Host}/api/metadata`,
+    method: 'GET'
+  })
+}
+
+// 签到API
+function checkin(date) {
+  if (date == undefined) {
+    date = ""
+  }
+  return req({
+    url: `${Host}/api/activity/sign/${date}`,
+    method: 'POST'
+  })
+}
+
+function checkState(date) {
+  if (date == undefined) {
+    date = ""
+  }
+  return req({
+    url: `${Host}/api/activity/sign/${date}`,
+    method: 'GET'
+  })
+}
+
+
 // update user profile
 function updateUser(data) {
   return req({
@@ -374,6 +405,11 @@ module.exports = {
   getUserPostList: getUserPostList,
   getUserCommentList: getUserCommentList,
   getUserFavorList: getUserFavorList,
+
+  // meta
+  getMetaData: getMetaData,
+  checkin: checkin,
+  checkState: checkState,
 
   // post
   getTopicList: getPostList,

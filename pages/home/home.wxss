@@ -1,3 +1,42 @@
+
+.brand {
+  padding: 24rpx 18rpx;
+}
+
+.logo {
+  border: 6rpx solid white;
+  border-radius: 16rpx;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  color: white;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: white;
+}
+
+.h-bottom {
+  display: flex;
+  align-items:flex-end;
+}
+
+.v-right {
+  display: flex;
+  flex-direction:column;
+  align-items: flex-end;
+}
+
+.btn-normal {
+  border: 1px solid white;
+  border-radius: 14rpx;
+  color: white;
+}
+
 .new-topic {
   position: fixed;
   bottom: 30rpx;

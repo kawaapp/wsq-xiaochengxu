@@ -1,3 +1,22 @@
+<!-- 品牌 -->
+<view class='brand' 
+  style="background-image: url({{meta.hero_image}}); background-color: rgba(0, 0, 0, .6);">
+  <!-- 搜索框-->
+  <view></view>
+  <!-- 品牌展示 -->
+  <view class='h-bottom' style='margin-top:56rpx;'>
+    <image class='logo' src="{{meta.logo}}">
+    </image>
+    <view class="v-right" style='margin-left: auto;'>
+      <view class='title'>{{meta.title}}</view>
+      <view class='subtitle'>
+        <text space="ensp">总浏览 {{meta.pv}} 用户数 {{meta.users}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 列表 -->
 <view style='margin-bottom:18rpx;'/>
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card">
