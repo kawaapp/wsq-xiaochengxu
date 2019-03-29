@@ -1,4 +1,4 @@
-const api = require('../../utils/api.js')
+const ctr = require('./favor_ctr.js')
 
 // pages/me/list/favor.js
 Page({
@@ -22,53 +22,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options && options.uid) {
-      this.data.user.uid = options.uid
-    }
-    api.getUserFavorList(this.data.user.uid).then(resp => {
-      console.log("user get favor:", resp)
-      this.setData({ favors: resp.data })
-    })
+    ctr.setup(this)
+    ctr.onLoad(options)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    api.getUserFavorList(this.data.user.uid).then(resp => {
-      this.setData({ favors: resp.data })
-    })
+    ctr.onPullDownRefresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.loader.ing || !this.data.loader.more) {
-      return
-    }
-    var favors = this.data.favors
-    var since = 0
-    var limit = 20
-    if (favors && favors.length > 0) {
-      since = favors[favors.length - 1].id
-    }
-    api.getUserFavorList(this.data.user.uid, since, limit).then(resp => {
-      if (resp.data.length < limit) {
-        this.data.loader.more = false
-      }
-      if (resp.data) {
-        this.setData({ favors: favors.concat(resp.data) })
-      }
-    })
+    ctr.onReachBottom()
   },
   // 列表点击
   clickItem: function (e) {
-    var idx = e.currentTarget.dataset.idx
-    var favor = this.data.favors[idx]
-    // 跳转到帖子，并设置为已读
-    wx.navigateTo({
-      url: '/pages/thread/thread?pid=' + favor.post_id,
-    })
+   ctr.onClickItem(e)
   }, 
 })

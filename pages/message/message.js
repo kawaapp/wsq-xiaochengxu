@@ -1,4 +1,4 @@
-const api = require('../../utils/api.js')
+const ctr = require('./controller.js')
 
 // pages/message/message.js
 Page({
@@ -14,18 +14,22 @@ Page({
     list:[]
   },
 
+  onLoad: function(options) {
+    ctr.setup(this)
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    refreshMessage(this)
+    ctr.refreshMessage()
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    refreshMessage(this)
+    ctr.refreshMessage()
   },
 
   /**
@@ -49,12 +53,3 @@ Page({
     })
   }
 })
-
-function refreshMessage(p) {
-  api.getMessageCount().then((resp) => {
-    p.setData({ count: resp.data })
-    console.log("get message count:", resp)
-  }).catch( err => {
-    console.log(err)
-  })
-}

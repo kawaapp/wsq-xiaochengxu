@@ -1,8 +1,10 @@
 const util = require('util.js')
 
 // ALL server-side API
-const Host = "http://127.0.0.1:1323"
-//const Host = "https://siftapi.com"
+//const Host = "http://127.0.0.1:1323"
+const Host = "http://wsq.kawaapp.com"
+const AppKey = "MC77XYGDCH2V7UBFYATDO7Y2EEGT77THJ62IGP4YOYJTG4LVKYIA===="
+
 let g = {
   token: "",
 }
@@ -27,7 +29,8 @@ function req(options = {}) {
 
   // inject token
   const header = Object.assign({
-    'Authorization': `Bearer ${g.token}`
+    'Authorization': `Bearer ${g.token}`,
+    'AppKey': AppKey, 
   }, options.header);
 
   return new Promise((res, rej) => {
@@ -93,7 +96,7 @@ function autoAuth() {
         if (resp.code) {
           console.log('get code:', resp.code)
           req({
-            url: `${Host}/auth`,
+            url: `${Host}/api/auth`,
             method: 'POST',
             data: {
               code: resp.code,
@@ -134,7 +137,7 @@ function auth() {
     success: function(resp) {
       if (resp.code) {
         req({
-          url: `${Host}/auth`,
+          url: `${Host}/api/auth`,
           method: 'POST',
           data: {
             code: resp.code,
@@ -215,10 +218,10 @@ function getUserFavorList(uid, since, limit) {
 }
 
 
-// get topic list
-function getPostList(since, limit) {
+// get topic list, fitler: top,val,adz
+function getPostList(since, limit, filter) {
   return req({
-    url: `${Host}/api/posts?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/posts?since_id=${since}&limit=${limit}&filter=${filter}`,
     method: 'GET'
   })
 }

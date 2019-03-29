@@ -1,6 +1,5 @@
 // pages/writer/writer.js
-import api from '../../utils/api.js'
-import util from'../../utils/util.js'
+const ctr = require('./controller.js')
 
 Page({
 
@@ -18,30 +17,7 @@ Page({
     this.setData({content: e.detail.value})
   },
   writerPublish: function() {
-    if (util.isWhiteSpace(this.data.content)) {
-      return
-    }
-    
-    var data = {
-      title: this.data.title,
-      content: this.data.content
-    }
-
-    api.createPost(data).then((resp)=> {
-      // refresh list
-      util.setResult({ 
-        req: 'newpost',
-        ok: resp.statusCode == 200,
-        data: resp.data
-      })
-      //
-      if (resp.statusCode == 200) {
-        wx.navigateBack({delta: 1})
-      }
-    }).catch((err)=>{
-      // 发布失败
-      console.log("write:", err)
-    })
+    ctr.onClickSubmit()
   },
 
   writerCancel: function() {

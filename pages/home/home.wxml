@@ -16,6 +16,18 @@
   </view>
 </view>
 
+<!-- 顶部TAB -->
+<scroll-view scroll-x="true" class="tab-h" scroll-left="{{tab.scrollLeft}}">
+    <block wx:for-items="{{tab.items}}" wx:key="{{index}}">
+      <view 
+        data-idx="{{index}}" 
+        bindtap="clickTab"
+        class="tab-item {{tab.current == index ?'active':''}}">
+        {{item}}
+      </view>
+    </block>
+</scroll-view>
+
 <!-- 列表 -->
 <view style='margin-bottom:18rpx;'/>
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">

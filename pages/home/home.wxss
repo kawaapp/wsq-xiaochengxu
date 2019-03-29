@@ -49,3 +49,34 @@
   height: 56rpx;
   align-self: flex-start;
 }
+
+.tab-h {
+  height: 100rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: #f7f7f7;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.tab-item {
+  margin: 0 36rpx;
+  display: inline-block;
+}
+.tab-item.active {
+  color: #20ACAB;
+  position: relative;
+}
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 66rpx;
+  background: #20ACAB;
+  position: absolute;
+  bottom: 0;
+  left: 5rpx;
+  border-radius: 16rpx;
+}
