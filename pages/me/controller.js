@@ -7,6 +7,10 @@ function setup(_view) {
 }
 
 function onLoad(options) {
+  if (app.globalData.userInfo) {
+    view.setData({ user: resp.data })
+  }
+  // update 
   api.getSelf().then((resp) => {
     app.globalData.userInfo = resp.data
     view.setData({ user: resp.data })

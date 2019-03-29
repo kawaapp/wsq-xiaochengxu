@@ -27,6 +27,11 @@ function onLoad(opt) {
   }).catch(err => {
     console.log("topic", err)
   })
+
+  // 用户信息
+  api.getSelf().then((resp) => {
+    app.globalData.userInfo = resp.data
+  })
 }
 
 function onResult(data) {

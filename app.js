@@ -34,11 +34,12 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
     transit: {
       post: null
     },
-    post: [],
-    thread: {},
+    // App data
+    posts: [],
+    meta: {},
+    userInfo: {},
   }
 })
