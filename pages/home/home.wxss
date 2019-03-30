@@ -12,12 +12,11 @@
 
 .title {
   font-size: 36rpx;
-  color: white;
 }
 
 .subtitle {
   font-size: 28rpx;
-  color: white;
+  color: #888888;
 }
 
 .h-bottom {
@@ -40,7 +39,9 @@
 .new-topic {
   position: fixed;
   bottom: 30rpx;
-  right: 20rpx;
+  right: 30rpx;
+  width: 128rpx;
+  height: 128rpx;
 }
 
 .menu {

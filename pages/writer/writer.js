@@ -10,6 +10,11 @@ Page({
     title: "",
     content: "",
   },
+  onLoad(options) {
+    ctr.setup(this)
+    ctr.onLoad(options)
+  },
+
   bindTitle: function(e) {
     this.setData({title: e.detail.value})
   },

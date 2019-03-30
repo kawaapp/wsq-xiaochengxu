@@ -80,5 +80,5 @@
 </view>
 
 <view>
-  <button bindtap='newTopic' class='new-topic'>发帖</button>
+  <image catchtap='newTopic' class='new-topic' src="/res/img/write.png"></image>
 </view>

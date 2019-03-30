@@ -2,7 +2,7 @@
 <view class='card'>
   <view class='horizontal' bindtap='favorClick'>
     <image class='icon-m' style='margin: 4px 4px 4px 0px;'
-        src="/res/img/msg_at.png" 
+        src="/res/img/msg_like.png" 
         />
     <view>
       <text>点赞</text>

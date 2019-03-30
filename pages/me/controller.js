@@ -7,8 +7,9 @@ function setup(_view) {
 }
 
 function onLoad(options) {
-  if (app.globalData.userInfo) {
-    view.setData({ user: resp.data })
+  const user = app.globalData.userInfo
+  if (user) {
+    view.setData({ user: user })
   }
   // update 
   api.getSelf().then((resp) => {
