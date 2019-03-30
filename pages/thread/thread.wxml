@@ -113,9 +113,9 @@
           fixed="true" 
           maxlength="-1" 
           show-confirm-bar="false" 
-          cursor-spacing="15" 
+          cursor-spacing="128rpx" 
           focus="{{reply.focus}}"
           placeholder="回复 {{reply.hint}}"></textarea>
-    <view class="{{reply.enable? 'submit': 'submit-disable'}}" bindtap='sendComment'>发送</view>
+    <view class="{{'submit'}}" bindtap='sendComment'>发送</view>
 </view>
 

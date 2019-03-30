@@ -81,8 +81,13 @@ function onReachBottom(e) {
 function onClickMenu(e) {
   var item = view.data.item.post
   var menu = {
-    items: ["不感兴趣"],
-    actions: [function () { }],
+    items: ["举报"],
+    actions: [function () { 
+      wx.showToast({
+        title: '举报成功',
+        icon: 'success',
+      })
+    }],
   }
   var user = app.globalData.userInfo
   if (user && user.id == item.author.id) {

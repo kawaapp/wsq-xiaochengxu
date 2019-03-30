@@ -72,7 +72,7 @@
 
 .release{
     display: flex;
-    align-items: flex-end; /*底部对齐*/
+    align-items: flex-start; /*底部对齐*/
     justify-content: space-between; /*两端对齐*/
     box-sizing: border-box;
     position: fixed;

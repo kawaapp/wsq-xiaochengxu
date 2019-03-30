@@ -18,6 +18,14 @@ function onLoad(options) {
 function onPullDownRefresh() {
   api.getUserPostList(view.data.user.uid).then(resp => {
     view.setData({ posts: resp.data })
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success',
+    })
+  }).catch( err => {
+    wx.stopPullDownRefresh()
+    wx.showToast({ title: '刷新失败', icon: 'fail'})
   })
 }
 
@@ -31,11 +39,20 @@ function onReachBottom() {
   if (posts && posts.length > 0) {
     since = posts[posts.length - 1].id
   }
+  var loader = view.data.loader
+  loader.ing = true
+  view.setData({loader: loader})
   api.getUserPostList(view.data.user.uid, since, limit).then(resp => {
+    loader.ing = false
     if (resp.data.length < limit) {
-      view.data.loader.more = false
+      loader.more = false
     }
+    view.setData({ loader: loader })
     view.setData({ posts: posts.concat(resp.data) })
+  }).catch( err=> {
+    loader.ing = false
+    view.setData({ loader: loader })
+    wx.showToast({ title: '刷新失败', icon: 'fail'})
   })
 }
 

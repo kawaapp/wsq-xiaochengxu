@@ -25,3 +25,14 @@
   max-height: 46rpx;
   max-width: 46rpx;
 }
+
+.btn {
+  background-color: rgba(52, 193, 192, 1);
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.btn-hover {
+  background-color: rgba(52, 193, 192, .6);
+  color: #fff;
+}

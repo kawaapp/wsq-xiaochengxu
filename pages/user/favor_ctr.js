@@ -18,6 +18,17 @@ function onLoad(options) {
 function onPullDownRefresh() {
   api.getUserFavorList(view.data.user.uid).then(resp => {
     view.setData({ favors: resp.data })
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success',
+    })
+  }).catch( err => {
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '刷新失败',
+      icon: 'fail',
+    })
   })
 }
 
@@ -31,13 +42,25 @@ function onReachBottom() {
   if (favors && favors.length > 0) {
     since = favors[favors.length - 1].id
   }
+  var loader = view.data.loader
+  loader.ing = true
+  view.setData({loader: loader})
   api.getUserFavorList(view.data.user.uid, since, limit).then(resp => {
+    loader.ing = false
     if (resp.data.length < limit) {
-      view.data.loader.more = false
+      loader.more = false
     }
     if (resp.data) {
       view.setData({ favors: favors.concat(resp.data) })
     }
+    view.setData({loader: loader})
+  }).catch( err=> {
+    loader.ing = false
+    view.setData({loader: loader})
+    wx.showToast({
+      title: '加载失败',
+      icon: 'fail',
+    })
   })
 }
 

@@ -17,6 +17,17 @@ function onLoad(options) {
 function onPullDownRefresh() {
   api.getUserCommentList(view.data.user.uid).then(resp => {
     view.setData({ comments: resp.data })
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success',
+    })
+  }).catch( err => {
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '刷新失败',
+      icon: 'fail',
+    })
   })
 }
 
@@ -30,11 +41,23 @@ function onReachBottom() {
   if (comments && comments.length > 0) {
     since = comments[comments.length - 1].id
   }
+  var loader = view.data.loader
+  loader.ing = true
+  view.setData({ loader: loader})
   api.getUserCommentList(view.data.user.uid, since, limit).then(resp => {
+    loader.ing = false
     if (resp.data.length < limit) {
-      view.data.loader.more = false
+      loader.more = false
     }
+    view.setData({ loader: loader })
     view.setData({ comments: comments.concat(resp.data) })
+  }).catch(err => {
+    loader.ing = false
+    view.setData({ loader: loader })
+    wx.showToast({
+      title: '加载失败',
+      icon: 'fail',
+    })
   })
 }
 
