@@ -139,8 +139,12 @@ function onClickMenu(e) {
   var idx = e.currentTarget.dataset.idx
   var item = view.data.posts[idx]
   var menu = {
-    items: ["不感兴趣"],
-    actions: [function () { }],
+    items: ["举报"],
+    actions: [function () {
+      wx.showToast({
+        title: '举报成功',
+      })
+    }],
   }
   var user = app.globalData.userInfo
   if (user && user.id == item.author.id) {
