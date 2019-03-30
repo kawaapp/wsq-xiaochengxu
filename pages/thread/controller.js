@@ -35,6 +35,9 @@ function onLoad(options) {
       setup({ idx: -1, post: resp.data })
     }).catch(err => {
       console.log(err)
+      wx.showToast({
+        title: '加载失败', icon: 'fail'
+      })
     })
   }
 }
@@ -51,6 +54,9 @@ function onPullDownRefresh(e) {
     }
   }).catch(err => {
     wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '评论加载失败', icon: 'fail'
+    })
     console.log("comment refresh err")
   })
 }
@@ -65,16 +71,25 @@ function onReachBottom(e) {
   if (comments.length > 0) {
     sinceId = comments[comments.length - 1]
   }
+  var loader = view.data.loader
   var pid = view.data.item.post.id
+  loader.ing = true
+  view.setData({loader: loader})
   api.getCommentList(pid, sinceId, limit).then(resp => {
+    loader.ing = false
     if (resp.data && resp.data.length < limit) {
-      view.data.loader.more = false
+      loader.more = false
     }
-    view.data.setData({
+    view.setData({loader: loader})
+    view.setData({
       comments: comments.concat(resp.data)
     })
   }).catch(err => {
-
+      loader.ing = false
+      view.setData({loader: loader})
+      wx.showToast({
+        title: '加载失败', icon: 'success'
+      })
   })
 }
 
@@ -181,10 +196,15 @@ function commentPost(data) {
       req: 'newcomment',
       idx: view.data.item.idx,
     })
+    wx.showToast({
+      title: '发送成功', icon: 'success'
+    })
     console.log('set result:' + view.data.idx)
-
     console.log("评论成功！！！", resp.data)
   }).catch(err => {
+    wx.showToast({
+      title: '发送失败', icon: 'fail'
+    })
     console.log(err)
   })
 }
@@ -217,8 +237,14 @@ function commentComment(idx) {
     view.setData({
       reply: { text: "", index: -1, hint: "", focus: false }
     })
+    wx.showToast({
+      title: '已发送', icon: 'success'
+    })
     console.log("评论成功！！！", resp.data)
   }).catch(err => {
+    wx.showToast({
+      title: '发送失败', icon: 'fail'
+    })
     console.log(err)
   })
 }
