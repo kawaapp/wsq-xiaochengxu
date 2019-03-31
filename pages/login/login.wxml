@@ -1,10 +1,2 @@
 <!--pages/login/login.wxml-->
-<text>自动登录中...</text>
-
-<view>
-  <button bindtap='wxlogin'>登录</button>
-</view>
-
-<view>
-  <button open-type="getUserInfo" bindgetuserinfo="bindUserInfo">授权</button>
-</view>
+<!-- <text>自动登录中...</text> -->

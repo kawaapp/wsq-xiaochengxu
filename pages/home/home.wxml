@@ -1,14 +1,14 @@
 <!-- 品牌 -->
 <view class='brand' 
-  style="background-image: url({{meta.hero_image}}); background-color: rgba(0, 0, 0, .6);">
+  style="background-image: url({{meta.app_cover}});background-color: rgba(0, 0, 0, .4);">
   <!-- 搜索框-->
   <view></view>
   <!-- 品牌展示 -->
   <view class='h-bottom' style='margin-top:56rpx;'>
-    <image class='logo' src="{{meta.logo}}">
+    <image class='logo' src="{{meta.app_logo}}">
     </image>
     <view class="v-right" style='margin-left: auto;'>
-      <view class='title'>{{meta.title}}</view>
+      <view class='title' style='color: white;'>{{meta.app_name}}</view>
       <view class='subtitle'>
         <text space="ensp">总浏览 {{meta.pv}} 用户数 {{meta.users}}</text>
       </view>
