@@ -8,7 +8,7 @@
       <view class='title'>{{user.nickname?user.nickname:'路人'}}</view>
       <view class='subtitle'>{{user.summary}}</view>
     </view>
-    <view hidden='{{!user.nickname}}' style='margin-left:auto;'>
+    <view hidden='{{user.nickname}}' style='margin-left:auto;'>
       <button class='btn' open-type="getUserInfo" bindgetuserinfo="bindUserInfo">获取昵称</button>
     </view>
   </view>

@@ -415,7 +415,7 @@ module.exports = {
   checkState: checkState,
 
   // post
-  getTopicList: getPostList,
+  getPostList: getPostList,
   getPost: getPost,
   createPost: createPost,
   deletePost: deletePost,

@@ -13,10 +13,10 @@
 }
 
 .icon-small {
-  width: 56rpx;
-  height: 56rpx;
-  max-height: 56rpx;
-  max-width: 56rpx;
+  width: 72rpx;
+  height: 72rpx;
+  max-height: 72rpx;
+  max-width: 72rpx;
 }
 
 .arrow-right {

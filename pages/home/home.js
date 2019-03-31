@@ -37,7 +37,7 @@ Page({
       users: ""
     },
     tab: {
-      current: 1, //预设默认选中的栏目
+      current: 0, //预设默认选中的栏目
       scrollLeft: 0, //tab滚动条距离左侧距离
       items: ["全部", "精华"],
     },
@@ -48,7 +48,7 @@ Page({
     if (tab.current != idx) {
       tab.current = idx
       this.setData({ tab: tab })
-      this.onTabChanged(idx)
+      ctr.onTabChanged(idx)
     }
   },
   onLoad: function (opt) {
@@ -71,17 +71,15 @@ Page({
   onReachBottom: function () {
     ctr.onReachBottom()
   },
-  // 切换 TAB
-  onTabChanged: function(idx) {
-    ///
-     
 
-  },
+  // 发新贴
   newTopic: function(e) {
     wx.navigateTo({
       url: '/pages/writer/writer',
     })
   },
+
+  // 点击帖子
   topicClick: function(e) {
     var idx = e.currentTarget.dataset.idx
     var post = this.data.posts[idx]
@@ -93,6 +91,8 @@ Page({
       url: '/pages/thread/thread',
     })
   },
+
+  // 点击评论
   commentClick: function(e) {
     var idx = e.currentTarget.dataset.idx
     var post = this.data.posts[idx]
@@ -104,9 +104,13 @@ Page({
       url: '/pages/thread/thread',
     })
   },
+
+  // 点击点赞
   favorClick: function(e) {
     ctr.onClickFavor(e)
   },
+
+  // 点击菜单
   clickMenu: function(e) {
     ctr.onClickMenu(e)
   },

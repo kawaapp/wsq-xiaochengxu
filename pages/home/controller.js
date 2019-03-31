@@ -4,9 +4,30 @@ const app = getApp()
 
 var view = undefined
 
+// 当前的TAB页面数据
+var tabData = []
+
 // Home Controller 
 function setup(_view) {
   view = _view
+  
+  var i = 0, n = view.data.tab.items.length
+  for (; i < n; i++) {
+    tabData.push({ loader: {
+      ing: view.data.loader.ing,
+      more: view.data.loader.more,
+    }, posts: []})
+  }
+
+  // bind tab-data to view
+  bindTabData(view.data.tab.current)
+}
+
+function bindTabData(idx) {
+  console.log('bindTabData:', idx, tabData[idx])
+  var data = tabData[idx]
+  view.setData({posts: data.posts})
+  view.setData({loader: data.loader})
 }
 
 // First Load
@@ -20,13 +41,7 @@ function onLoad(opt) {
   })
 
   // 进入第一次加载
-  api.getTopicList().then(resp => {
-    view.setData({
-      posts: decoratePosts(resp.data)
-    })
-  }).catch(err => {
-    console.log("topic", err)
-  })
+  refreshList(view.data.tab.current)
 
   // 用户信息
   api.getSelf().then((resp) => {
@@ -34,8 +49,51 @@ function onLoad(opt) {
   })
 }
 
+// 切换 TAB
+function onTabChanged(idx) {
+  console.log("on tab changed:", idx)
+  refreshList(idx)
+}
+
+function refreshList(tabIndex) {
+  var data = tabData[tabIndex]
+  if (data.loader.ing) {
+    return
+  }
+  var fitler = ""
+  if (tabIndex == 1) {
+    fitler = "val"
+  }
+  var limit = 20
+  data.loader.ing = true
+  data.posts = []
+  bindTabData(tabIndex)
+  console.log("load data for tab:" + tabIndex, "filter:" + fitler)
+  api.getPostList(0, limit, fitler).then(resp => {
+    if (resp.data && resp.data.length < limit) {
+      data.loader.more = false
+    }
+    data.posts = decoratePosts(resp.data)
+    data.loader.ing = false
+    if (view.data.tab.current == tabIndex) {
+      bindTabData(tabIndex)
+    }
+    wx.stopPullDownRefresh()
+  }).catch(err => {
+    data.loader.ing = false
+    if (view.data.tab.current == tabIndex) {
+      bindTabData(tabIndex)
+    }
+    wx.stopPullDownRefresh()
+    wx.showToast({
+      title: '加载失败', icon: 'fail'
+    })
+    console.log("topic", err)
+  })
+}
+
 function onResult(data) {
-  if (data && data.ok) {
+  if (data && data.ok && view.data.tab.current == 0) {
     if (data.req == 'newpost') {
       // data.post
       // 新增帖子到列表头部
@@ -63,45 +121,49 @@ function onResult(data) {
   console.log('home, on result data:' + data)
 }
 
-// 下拉事件
+// 下拉事件是全局的，如果页面正在刷新，无论哪个页面都应该
+// 直接停掉下拉刷新
 function onPullDownRefresh() {
-  api.getTopicList().then((resp) => {
-    wx.stopPullDownRefresh()
-    view.setData({
-      posts: decoratePosts(resp.data)
-    })
-    console.log(resp.data[0])
-  }).catch((err) => {
-    wx.stopPullDownRefresh()
-    console.log(err)
-  })
+  if (view.data.loader.ing) {
+    wx.wx.stopPullDownRefresh()
+    return
+  }
+  refreshList(view.data.tab.current)
 }
 
 function onReachBottom() {
   if (view.data.loader.ing || !view.data.loader.more) {
     return
   }
-
-  var posts = view.data.posts
+  var data = tabData[view.data.tab.current]
+  var posts = data.posts
   var sinceId = 0
   var limit = 20
   if (posts && posts.length > 0) {
     sinceId = posts[posts.length - 1].id
   }
-  api.getTopicList(sinceId, limit).then((resp) => {
-    view.data.loader.ing = false
+  var current = view.data.tab.current
+  api.getPostList(sinceId, limit).then((resp) => {
+    data.loader.ing = false
     if (resp.data) {
       if (resp.data.length < 20) {
         console.log("no more data..." + sinceId)
-        view.data.loader.more = false
+        data.loader.more = false
       }
       var styled = decoratePosts(resp.data)
-      view.setData({
-        posts: posts.concat(styled)
-      })
+      data.posts = posts.concat(styled)
+      if (current == view.data.tab.current) {
+        bindTabData(current)
+      }
     }
   }).catch((err) => {
-    view.data.loader.ing = false
+    data.loader.ing = false
+    if (current == view.data.tab.current) {
+      bindTabData(current)
+    }
+    wx.showToast({
+      title: '加载失败', icon: 'fail'
+    })
   })
 }
 
@@ -192,6 +254,7 @@ function deletePost(idx) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onTabChanged: onTabChanged,
   onResult: onResult,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
