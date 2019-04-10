@@ -1,9 +1,10 @@
 const util = require('util.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
-const AppKey = "MC77XYGDCH2V7UBFYATDO7Y2EEGT77THJ62IGP4YOYJTG4LVKYIA===="
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
+const AppKey = "CRLVKZ7BMKMX3HYJ6JD3NHFHRUFWH5NDPGWXC3I754AXLJR2XNKA===="
+//"G5L4FCXPCNN7RIYKKZIIH3KMHAUMXHNFRKSPRPFLW5SGCY62PPWQ===="
 
 let g = {
   token: "",

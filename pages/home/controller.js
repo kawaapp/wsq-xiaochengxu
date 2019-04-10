@@ -33,12 +33,12 @@ function bindTabData(idx) {
 // First Load
 function onLoad(opt) {
   // 加载社区信息
-  // api.getMetaData().then(resp => {
-  //   view.setData({
-  //     meta: resp.data
-  //   })
-  //   console.log("get meta:", resp.data)
-  // })
+  api.getMetaData().then(resp => {
+    view.setData({
+      meta: resp.data
+    })
+    console.log("get meta:", resp.data)
+  })
 
   // 进入第一次加载
   refreshList(view.data.tab.current)
