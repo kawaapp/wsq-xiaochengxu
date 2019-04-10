@@ -105,6 +105,12 @@
     color: #66CC00;
 }
 
+.submit button {
+  outline:none;
+  border:none;
+  list-style: none;
+}
+
 .release .submit-disable {
   width: 116rpx;
   height: 64rpx;

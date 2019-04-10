@@ -30,8 +30,8 @@ Page({
       show: false,
     },
     meta: {
-      app_cover: "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
-      app_logo: "https://placeit-assets.s3-accelerate.amazonaws.com/landing-pages/twitch-logo-maker-3/gaming-channel-custom-logo-maker-with-girly-avatar-1323h-768x768.png",
+      app_cover: "",
+      app_logo: "",
       app_name: "卡哇微社区",
       pv: "",
       users: ""

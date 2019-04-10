@@ -116,6 +116,8 @@
           cursor-spacing="128rpx" 
           focus="{{reply.focus}}"
           placeholder="回复 {{reply.hint}}"></textarea>
-    <view class="{{'submit'}}" bindtap='sendComment'>发送</view>
+    <view class="submit">
+      <text catchtap='sendComment'>发送</text>
+    </view>
 </view>
 

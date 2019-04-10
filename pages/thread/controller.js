@@ -157,9 +157,6 @@ function onClickListFavor(e) {
 }
 
 function onClickSendComment(e) {
-  wx.showToast({
-    title: 'clicked sennd',
-  })
   console.log("get comment", view.data.reply.text)
   var reply = view.data.reply
   if (util.isWhiteSpace(reply.text)) {
