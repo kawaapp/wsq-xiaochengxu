@@ -49,6 +49,23 @@ function onLoad(opt) {
   })
 }
 
+function onClickNewPost(e) {
+  if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
+    wx.navigateTo({
+      url: '/pages/writer/writer',
+    })
+  } else {
+    wx.switchTab({
+      url: '/pages/me/me',
+    })
+    setTimeout(function () {
+      wx.showToast({
+        title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
+      })
+    }, 500); 
+  }
+}
+
 // 切换 TAB
 function onTabChanged(idx) {
   console.log("on tab changed:", idx)
@@ -270,4 +287,5 @@ module.exports = {
   onReachBottom: onReachBottom,
   onClickFavor: onClickFavor,
   onClickMenu: onClickMenu,
+  onClickNewPost: onClickNewPost,
 }

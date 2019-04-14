@@ -74,9 +74,7 @@ Page({
 
   // 发新贴
   newTopic: function(e) {
-    wx.navigateTo({
-      url: '/pages/writer/writer',
-    })
+    ctr.onClickNewPost(e)
   },
 
   // 点击帖子

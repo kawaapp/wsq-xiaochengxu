@@ -55,7 +55,7 @@ Page({
     console.log("focus set false..")
   },
   clickReply: function(e) {
-    this.setData({reply:{focus: true}})
+    ctr.onClickReply(e)
   },
   clickFavor: function(e) {
     ctr.onClikcFavorPost(e)

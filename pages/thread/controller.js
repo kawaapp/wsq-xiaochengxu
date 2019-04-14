@@ -130,8 +130,34 @@ function onClickMenu(e) {
   })
 }
 
+function replyHook() {
+  if (!(app.globalData.userInfo && app.globalData.userInfo.nickname)) {
+    wx.switchTab({
+      url: '/pages/me/me',
+    })
+    setTimeout(function () {
+      wx.showToast({
+        title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
+      })
+    }, 500); 
+    return true
+  }
+  return false
+}
+
+function onClickReply(e) {
+  if (replyHook()) {
+    return
+  }
+  view.setData({ reply: { focus: true } })
+}
+
 function onClickListComment(e) {
   console.log('comment on comment click!!')
+  if (replyHook()) {
+    return
+  }
+
   // commennt on comment
   var d = view.data
   var idx = e.currentTarget.dataset.idx
@@ -338,6 +364,7 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickMenu: onClickMenu,
+  onClickReply: onClickReply,
   onClickListComment: onClickListComment,
   onClickListFavor: onClickListFavor,
   onClickSendComment: onClickSendComment,
