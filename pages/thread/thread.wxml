@@ -22,7 +22,7 @@
 
 <view class="card">
   <view>
-    <text>评论 {{item.post.stats.comments}}</text>
+    <text style='margin-right:8px;'>评论 {{item.post.stats.comments}}</text>
     <text style='margin: auto;'>赞 {{item.post.stats.favors}}</text>
   </view>
   <view class='line' />
@@ -117,7 +117,7 @@
           focus="{{reply.focus}}"
           placeholder="回复 {{reply.hint}}"></textarea>
     <view class="submit">
-      <text catchtap='sendComment'>发送</text>
+      <button bindtap='sendComment'>发送</button>
     </view>
 </view>
 

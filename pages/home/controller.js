@@ -99,7 +99,10 @@ function onResult(data) {
       // data.post
       // 新增帖子到列表头部
       var post = data.data
-      post.styled = util.decorateText(post.content)
+      if (!post.stats) {
+        item.stats = {}
+      }
+      decoratePost(post)
       view.data.posts.unshift(post)
       view.setData({
         posts: view.data.posts
@@ -233,11 +236,17 @@ function onClickMenu(e) {
 
 function decoratePosts(posts) {
   for (var i = 0; i < posts.length; i++) {
-    posts[i].styled = util.decorateText(posts[i].content)
-    var utc = new Date(posts[i].created_at * 1000)
-    posts[i].time = util.formatTime(utc)
+    decoratePost(posts[i])
   }
   return posts
+}
+
+function decoratePost(post) {
+  post.styled = util.decorateText(post.content)
+  var utcTime = post.created_at * 1000
+  post.time = util.formatTime(new Date(utcTime))
+  post.agoTime = util.agoTime(utcTime)
+  return post
 }
 
 function deletePost(idx) {

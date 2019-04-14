@@ -41,7 +41,7 @@
           />
         <view>
           <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
-          <view class='subtitle'>摘要信息</view>
+          <view class='subtitle'>{{item.agoTime}}</view>
         </view>
         <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>

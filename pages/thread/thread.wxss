@@ -82,7 +82,7 @@
     padding: 18rpx 0 18rpx 30rpx;
     background-color: #F7F8F7;
     font-size: 28rpx;
-    z-index: 999;
+    z-index: 1000;
 }
 .release .text{
     width: 604rpx;
@@ -103,13 +103,17 @@
     line-height: 64rpx;
     text-align: center;
     color: #66CC00;
+    z-index: 1001;
 }
 
 .submit button {
-  outline:none;
-  border:none;
-  list-style: none;
+  font-size: 32rpx;
+  padding-left: 0px;
+  padding-right: 0px;
+  color: #66CC00;
+
 }
+.submit button::after{ border: none; }
 
 .release .submit-disable {
   width: 116rpx;

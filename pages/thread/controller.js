@@ -284,7 +284,7 @@ function deletePost(item) {
 function formatTimes(comments) {
   var i = 0, n = comments.length
   for (; i < n; i++) {
-    var utc = new Date(comments[i].at * 1000)
+    var utc = new Date(comments[i].created_at * 1000)
     comments[i].time = util.formatTime(utc)
   }
   return comments
