@@ -1,7 +1,7 @@
 <!--pages/message/message.wxml-->
 <view class='card'>
   <view class='horizontal' bindtap='favorClick'>
-    <image class='icon-m' style='margin: 4px 4px 4px 0px;'
+    <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
         src="/res/img/msg_like.png" 
         />
     <view>
@@ -15,10 +15,10 @@
     </view>
   </view>
 
-  <view class='line' style='margin-left:48px;'></view>
+  <view class='line' style='margin-left:112rpx;'></view>
 
   <view class='horizontal' bindtap='commentClick'>
-    <image class='icon-m' style='margin: 4px 4px 4px 0px;'
+    <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
         src="/res/img/msg_cmt.png" 
         />
     <view>

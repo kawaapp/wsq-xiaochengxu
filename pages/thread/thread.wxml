@@ -1,8 +1,8 @@
 <!--pages/post/posts.wxml-->
 
-<view class="card" style='padding: 8px'>
+<view class="card" style='padding: 18rpx'>
   <view class="horizontal">
-    <image class='avatar-large' style='margin-right: 8px;'
+    <image class='avatar-large' style='margin-right: 18rpx;'
       src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
       />
     <view>
@@ -11,27 +11,27 @@
     </view>
     <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
   </view>
-  <view style='margin-top:8px;'>
+  <view style='margin-top:18rpx;'>
     <text>{{item.post.content}}</text>
   </view>
   <view>
     <text class='subtitle'>分享</text>
   </view>
 </view>
-<view style='margin-bottom:4px;'/>
+<view style='margin-bottom:9rpx;'/>
 
 <view class="card">
   <view>
-    <text style='margin-right:8px;'>评论 {{item.post.stats.comments}}</text>
+    <text style='margin-right:18rpx;'>评论 {{item.post.stats.comments}}</text>
     <text style='margin: auto;'>赞 {{item.post.stats.favors}}</text>
   </view>
   <view class='line' />
 
   <!-- Comment List -->
   <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
-    <view wx:if="{{index != 0}}" class='line' style='margin-left:48px;'></view>
+    <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
     <view class="h-top">
-      <image class="avatar-large" style='margin-right:8px;'
+      <image class="avatar-large" style='margin-right:18rpx;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
       <view style='width:100%;'>
@@ -44,7 +44,7 @@
         <view class='comment-detail'>{{item.content}}</view>
 
         <!-- Reply List / Comment on Comment  -->
-        <view wx:if='{{item.reply_list}}' class='gray-bg' style='padding:6px;'>
+        <view wx:if='{{item.reply_list}}' class='gray-bg' style='padding:14rpx;'>
           <view class='subtitle' 
             wx:for="{{item.reply_list}}" 
             wx:for-item="item"
@@ -55,12 +55,12 @@
         </view>
 
         <!-- Comment and Favor bar-->
-        <view class='flow-right' style='margin-top:4px;'>
+        <view class='flow-right' style='margin-top:9rpx;'>
           <!-- date -->
           <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
 
           <!-- Commennt -->
-          <view class='img-text' style='margin-right:8px'
+          <view class='img-text' style='margin-right:18rpx'
                 bindtap='clickListComment' 
                 data-idx="{{index}}">
             <image src='/res/img/comment.png'></image>
@@ -75,7 +75,7 @@
       </view>
     </view>
   </view>
-  <view style='margin-bottom:4px;'/>
+  <view style='margin-bottom:9rpx;'/>
 </view>
 
 <!-- 列表加载状态 -->
@@ -87,7 +87,7 @@
 </view>
 
 <!--Empty view -->
-<view style='height:10px;'></view>
+<view style='height:24rpx;'></view>
 
 <!--底部评论框 -->
 <!--底部评论框 -->

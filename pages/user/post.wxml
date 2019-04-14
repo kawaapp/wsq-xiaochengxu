@@ -15,7 +15,7 @@
       <text>{{item.content}}</text>
     </view>
   </view>
-  <view style='margin-bottom:4px;'/>
+  <view style='margin-bottom:9rpx;'/>
 </view>
 
 <view wx:if='{{loader.ing}}' style='text-align:center;'>

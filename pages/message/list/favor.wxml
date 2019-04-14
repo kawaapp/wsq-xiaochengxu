@@ -12,7 +12,7 @@
           赞了你
         </view>
         <view class='title'>{{item.subject}}</view>
-        <view class='subtitle' style='margin-top:8px;' >{{item.time}}</view>
+        <view class='subtitle' style='margin-top:18rpx;' >{{item.time}}</view>
       </view>
     </view>
   </view>
