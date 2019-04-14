@@ -9,6 +9,38 @@ const formatTime = date => {
   return [month, day].map(formatNumber).join('/') + ' ' + [hour, minute].map(formatNumber).join(':')
 }
 
+const minute = 1000 * 60;
+const hour = minute * 60;
+const day = hour * 24;
+const week = day * 7;
+const halfamonth = day * 15;
+const month = day * 30;
+
+const agoTime = dateTimeStamp => {
+  var now = new Date().getTime();
+  var diffValue = now - dateTimeStamp;
+  var v = 0
+  var result = ""
+  if ((v = diffValue/month) >= 1) {
+    if (v >= 3) {
+      result = "3 个月前"
+    } else {
+      result = "" + (v|0) + " 月前"
+    }
+  } else if ((v = diffValue/week) >= 1) {
+    result = "" + (v|0) + " 周前"
+  } else if ((v = diffValue/day) >= 1) {
+    result = "" + (v|0) + " 天前"
+  } else if ((v = diffValue/hour) >= 1) {
+    result = "" + (v|0) + " 小时前"
+  } else if ((v = diffValue/minute) >= 1) {
+    result = "" + (v|0) + " 分钟前"
+  } else {
+    result = "刚刚"
+  }
+  return result
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -112,6 +144,7 @@ function jsonParse(str) {
 
 module.exports = {
   formatTime: formatTime,
+  agoTime: agoTime,
   setResult: setResult,
   sendRequest: setTransitData,
   getRequest: getTransitData,
