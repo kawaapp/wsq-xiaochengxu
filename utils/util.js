@@ -124,7 +124,7 @@ function decorateText(text) {
 // Instead of checking the entire string to see if there's only whitespace, 
 // just check to see if there's at least one character of non whitespace:
 function isWhiteSpace(str) {
-  return !/\S/.test(str)
+  return !str || (!/\S/.test(str))
 }
 
 // Parse json

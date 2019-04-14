@@ -57,6 +57,9 @@ Page({
   clickReply: function(e) {
     this.setData({reply:{focus: true}})
   },
+  clickFavor: function(e) {
+    ctr.onClikcFavorPost(e)
+  },
   threadCancel: function(e) {
     wx.navigateBack({ delta: 1})
   },

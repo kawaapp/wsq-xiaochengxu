@@ -185,7 +185,7 @@ function onClickFavor(e) {
     api.deletePostFavor(item.id).then(resp => {
       item.stats.favored = false,
         item.stats.favors -= 1
-      this.setData({ [key]: item.stats })
+      view.setData({ [key]: item.stats })
       console.log("delete favor:", resp.statusCode)
     })
   } else {

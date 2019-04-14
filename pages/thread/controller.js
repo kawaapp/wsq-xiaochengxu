@@ -160,6 +160,10 @@ function onClickSendComment(e) {
   console.log("get comment", view.data.reply.text)
   var reply = view.data.reply
   if (util.isWhiteSpace(reply.text)) {
+    wx.showToast({
+      title: '评论不能为空',
+      icon: 'none',
+    })
     return
   }
   console.log("reply index:", reply)
@@ -272,6 +276,39 @@ function unfavorComent(idx, comment) {
   })
 }
 
+function onClikcFavorPost(e) {
+  var updateFavorState = (p) => {
+    view.setData({item: {post:p}})
+  }
+  var p = view.data.item.post
+  if (p.stats && p.stats.favored) {
+    api.deletePostFavor(p.id).then( resp => {
+      p.stats.favored = 0
+      if (p.stats.favors > 0) {
+        p.stats.favors -= 1
+      }
+      updateFavorState(p)
+    }).catch( err => {
+      wx.showToast({
+        title: '发送失败',
+        icon: 'none'
+      })
+      console.log(err)
+    })
+  } else {
+    api.createPostFavor(p.id).then(resp => {
+      p.stats.favored = 1
+      p.stats.favors += 1
+      updateFavorState(p)
+    }).catch(err => {
+      wx.showToast({
+        title: '发送失败',
+        icon: 'none'
+      })
+      console.log(err)
+    })
+  }
+}
 
 function deletePost(item) {
   api.deletePost(item.id).then(resp => {
@@ -299,4 +336,5 @@ module.exports = {
   onClickListComment: onClickListComment,
   onClickListFavor: onClickListFavor,
   onClickSendComment: onClickSendComment,
+  onClikcFavorPost: onClikcFavorPost,
 }
