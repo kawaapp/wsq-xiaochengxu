@@ -62,7 +62,7 @@ function onClickNewPost(e) {
       wx.showToast({
         title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
       })
-    }, 500); 
+    }, 300); 
   }
 }
 
