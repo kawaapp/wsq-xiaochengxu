@@ -87,7 +87,7 @@ function refreshList(tabIndex) {
     }
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '加载失败', icon: 'fail'
+      title: '加载失败', icon: 'none'
     })
     console.log("topic", err)
   })
@@ -166,7 +166,7 @@ function onReachBottom() {
       bindTabData(current)
     }
     wx.showToast({
-      title: '加载失败', icon: 'fail'
+      title: '加载失败', icon: 'none'
     })
   })
 }

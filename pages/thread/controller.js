@@ -9,6 +9,11 @@ function setup(_view) {
 
 function onLoad(options) {
   function setup(item) {
+    console.log("get posst:", item)
+
+    var utc = item.post.created_at * 1000
+    item.post.agoTime = util.agoTime(utc)
+
     // set post data
     view.setData({
       item: item
@@ -36,7 +41,7 @@ function onLoad(options) {
     }).catch(err => {
       console.log(err)
       wx.showToast({
-        title: '加载失败', icon: 'fail'
+        title: '加载失败', icon: 'none'
       })
     })
   }
@@ -55,7 +60,7 @@ function onPullDownRefresh(e) {
   }).catch(err => {
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '评论加载失败', icon: 'fail'
+      title: '评论加载失败', icon: 'none'
     })
     console.log("comment refresh err")
   })
@@ -207,7 +212,7 @@ function commentPost(data) {
     console.log("评论成功！！！", resp.data)
   }).catch(err => {
     wx.showToast({
-      title: '发送失败', icon: 'fail'
+      title: '发送失败', icon: 'none'
     })
     console.log(err)
   })
@@ -247,7 +252,7 @@ function commentComment(idx) {
     console.log("评论成功！！！", resp.data)
   }).catch(err => {
     wx.showToast({
-      title: '发送失败', icon: 'fail'
+      title: '发送失败', icon: 'none'
     })
     console.log(err)
   })

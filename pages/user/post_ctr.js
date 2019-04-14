@@ -25,7 +25,7 @@ function onPullDownRefresh() {
     })
   }).catch( err => {
     wx.stopPullDownRefresh()
-    wx.showToast({ title: '刷新失败', icon: 'fail'})
+    wx.showToast({ title: '刷新失败', icon: 'none'})
   })
 }
 
@@ -52,7 +52,7 @@ function onReachBottom() {
   }).catch( err=> {
     loader.ing = false
     view.setData({ loader: loader })
-    wx.showToast({ title: '刷新失败', icon: 'fail'})
+    wx.showToast({ title: '刷新失败', icon: 'none'})
   })
 }
 
