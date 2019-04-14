@@ -4,11 +4,13 @@
     <text class='title'>我: {{ item.content }}</text>
     <view class="horizontal gray-bg">
       <image class='avatar-large' style='margin-right: 18rpx;'
-        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.replier.avatar?item.replier.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
         <view class='title'>@{{item.replier.nickname?item.replier.nickname:'匿名'}}</view>
-        <view class='subtitle single-line'>{{item.subject}}</view>
+        <view style='width:560rpx;'>
+          <text class='subtitle single-line'>{{item.subject}}</text>
+        </view>
       </view>
     </view>
   </view>
@@ -21,3 +23,4 @@
 <view wx:if='{{!loader.more}}' style='text-align:center;'>
   <text class="fade-title">— 没有更多数据了 —</text>
 </view>
+<view style='height:9.36rpx;'/>

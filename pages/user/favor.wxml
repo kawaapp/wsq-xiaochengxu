@@ -1,14 +1,16 @@
 <view style='margin-bottom:18rpx;'/>
 <view wx:for="{{favors}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card" bindtap='clickItem' data-idx='{{index}}'>
-    <text>赞了这篇帖子</text>
+    <text class='title'>赞了这篇帖子</text>
     <view class="horizontal gray-bg">
       <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
         src="{{item.actor.avatar?item.actor.avatar:'/res/img/user_icon.png'}}" 
         />
       <view>
         <view class='title'>{{item.actor.nickname?item.actor.nickname:'匿名'}}</view>
-        <view class='subtitle'>{{item.subject}}</view>
+        <view style='width:560rpx'>
+          <text class='subtitle single-line'>{{item.subject}}</text>
+        </view>
       </view>
     </view>
   </view>
@@ -21,3 +23,4 @@
 <view wx:if='{{!loader.more}}' style='text-align:center;'>
   <text class="fade-title">— 没有更多数据了 —</text>
 </view>
+<view style='height:9.36rpx;'/>

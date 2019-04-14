@@ -9,26 +9,54 @@ function onLoad(options) {
   if (options && options.uid) {
     view.data.user.uid = options.uid
   }
+  var loader = view.data.loader
+  loader.ing = true
+  view.setData({loader: loader})
+
   api.getUserFavorList(view.data.user.uid).then(resp => {
-    console.log("user get favor:", resp)
+    loader.ing = false
+    if (resp.data && resp.data.length < 20) {
+      loader.more = false
+    }
+    view.setData({ loader: loader })
     view.setData({ favors: resp.data })
+  }).catch( err => {
+    console.log(err)
+    wx.showToast({
+      title: '加载失败', icon: 'none'
+    })
+    loader.ing = false
+    view.setData({ loader: loader })
   })
 }
 
 function onPullDownRefresh() {
+  if (view.loader.ing) {
+    return
+  }
+
+  var loader = view.data.loader
+  loader.ing = true
+  view.setData({ loader: loader })
+
   api.getUserFavorList(view.data.user.uid).then(resp => {
+    loader.ing = false
+    if (resp.data && resp.data.length < 20) {
+      loader.more = false
+    }
+    view.setData({ loader: loader })
     view.setData({ favors: resp.data })
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '刷新成功',
-      icon: 'success',
+      title: '刷新成功', icon: 'success',
     })
   }).catch( err => {
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '刷新失败',
-      icon: 'none',
+      title: '刷新失败', icon: 'none',
     })
+    loader.ing = false
+    view.setData({ loader: loader })
   })
 }
 
@@ -58,8 +86,7 @@ function onReachBottom() {
     loader.ing = false
     view.setData({loader: loader})
     wx.showToast({
-      title: '加载失败',
-      icon: 'none',
+      title: '加载失败', icon: 'none',
     })
   })
 }

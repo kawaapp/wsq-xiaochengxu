@@ -85,9 +85,10 @@ page{
 }
 
 .single-line {
+  display: block;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow:ellipsis;
 }
 
 .gray-bg {

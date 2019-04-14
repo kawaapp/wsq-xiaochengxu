@@ -100,7 +100,7 @@ function onResult(data) {
       // 新增帖子到列表头部
       var post = data.data
       if (!post.stats) {
-        item.stats = {}
+        post.stats = {}
       }
       decoratePost(post)
       view.data.posts.unshift(post)

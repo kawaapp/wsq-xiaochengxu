@@ -87,7 +87,7 @@
 </view>
 
 <!--Empty view -->
-<view style='height:24rpx;'></view>
+<view style='height:112rpx;'></view>
 
 <!--底部评论框 -->
 <!--底部评论框 -->
