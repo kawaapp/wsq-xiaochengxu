@@ -38,6 +38,9 @@ Page({
   onReachBottom: function(e) {
     ctr.onReachBottom(e)
   },
+  clickImage: function(e) {
+    ctr.onClickImage(e)
+  },
   clickMenu: function (e) {
     ctr.onClickMenu(e)
   },

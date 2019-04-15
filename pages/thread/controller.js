@@ -13,6 +13,9 @@ function onLoad(options) {
 
     var utc = item.post.created_at * 1000
     item.post.agoTime = util.agoTime(utc)
+    if (!item.post.images && item.post.media) {
+      item.post.images = JSON.parse(item.post.media.path)
+    }
 
     // set post data
     view.setData({
@@ -45,6 +48,18 @@ function onLoad(options) {
       })
     })
   }
+}
+
+function onClickImage(e) {
+  var images = view.data.item.post.images
+  var current = 0
+  if (e.currentTarget.dataset.idx) {
+    current = e.currentTarget.dataset.idx
+  }
+  wx.previewImage({
+    urls: images,
+    current: current,
+  })
 }
 
 function onPullDownRefresh(e) {
@@ -361,6 +376,7 @@ function formatTimes(comments) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onClickImage: onClickImage,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickMenu: onClickMenu,

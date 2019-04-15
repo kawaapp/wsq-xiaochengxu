@@ -108,6 +108,9 @@ function decorateList(posts) {
   for (; i < n; i++) {
     var utcTime = posts[i].created_at * 1000
     posts[i].time = util.formatTime(new Date(utcTime))
+    if (posts[i].media) {
+      posts[i].images = JSON.parse(posts[i].media.path)
+    }
   }
   return posts
 }

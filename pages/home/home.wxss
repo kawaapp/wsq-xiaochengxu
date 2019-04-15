@@ -19,22 +19,6 @@
   color: #888888;
 }
 
-.image-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.thumb {
-  width: 28vw;
-  height: 28vw;
-  margin: 6rpx;
-}
-
-.image-single {
-  max-width: 60vw;
-  max-height: 60vw;
-}
-
 .h-bottom {
   display: flex;
   align-items:flex-end;

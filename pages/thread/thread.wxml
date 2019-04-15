@@ -13,6 +13,27 @@
   </view>
   <view style='margin-top:18rpx;'>
     <text>{{item.post.content}}</text>
+    
+    <!-- images -->
+    <view wx:if="{{item.post.images}}">
+          <view wx:if="{{item.post.images.length == 1}}">
+            <image
+              src="{{item.post.images[0]}}" 
+              mode='aspectFill' 
+              catchtap='clickImage'
+              data-idx='{{0}}'
+              ></image>
+          </view>
+          <view class='image-list' wx:if="{{item.post.images.length >=2 }}">
+            <view wx:for="{{item.post.images}}" wx:for-item="item" wx:key="{{item}}">
+              <image class="thumb"
+                src="{{item}}" 
+                mode='aspectFill' 
+                catchtap='clickImage' 
+                data-idx="{{index}}" ></image>
+            </view>
+          </view>
+        </view> 
   </view>
   <view>
     <text class='subtitle'>分享</text>
