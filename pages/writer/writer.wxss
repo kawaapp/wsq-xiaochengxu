@@ -22,3 +22,43 @@
   background-color: lightgray;
   color:gray;
 }
+
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  width: 28vw;
+  height: 28vw;
+  margin: 6rpx;
+}
+
+.thumb image {
+  width: 100%;
+  height: 100%;
+}
+
+.thumb .del {
+  position:absolute;
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 48rpx;
+  height: 48rpx;
+  opacity: .6;
+}
+
+.add {
+  background: #f8f8f8;
+  width: 30vw;
+  height: 30vw;
+  margin: 6rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add image {
+  width: 40%;
+  height: 40%;
+}

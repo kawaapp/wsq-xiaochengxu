@@ -9,6 +9,7 @@ Page({
   data: {
     title: "",
     content: "",
+    images: [],
   },
   onLoad(options) {
     ctr.setup(this)
@@ -24,7 +25,15 @@ Page({
   writerPublish: function() {
     ctr.onClickSubmit()
   },
-
+  chooseImage: function(e) {
+    ctr.onChooseImage(e)
+  },
+  clickImage: function(e) {
+    ctr.onClickImage(e)
+  },
+  clickDelete: function(e) {
+    ctr.onDeleteImage(e)
+  },
   writerCancel: function() {
     wx.navigateBack({
       delta: 1
