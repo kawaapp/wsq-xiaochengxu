@@ -263,6 +263,9 @@ function decoratePost(post) {
   var utcTime = post.created_at * 1000
   post.time = util.formatTime(new Date(utcTime))
   post.agoTime = util.agoTime(utcTime)
+  if (post.media) {
+    post.images = JSON.parse(post.media.path)
+  }
   return post
 }
 
@@ -278,6 +281,30 @@ function deletePost(idx) {
   })
 }
 
+function onClickImage(e) {
+  var index = e.target.dataset.idx
+  var array = index.split('-')
+  
+  var pid = parseInt(array[0])
+  var sub = parseInt(array[1])
+
+  console.log("get:" + pid + " image:" + sub)
+
+  var images = view.data.posts[pid].images
+  var current = sub
+
+  wx.previewImage({
+    urls: images,
+    current: images[current],
+  })
+}
+
+function onClickImageList(e) {
+  var index = e.currentTarget.dataset.idx
+  var index2 = e.target.dataset.idx
+  console.log("get index:" + index + " index2:" + index2)
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -288,4 +315,5 @@ module.exports = {
   onClickFavor: onClickFavor,
   onClickMenu: onClickMenu,
   onClickNewPost: onClickNewPost,
+  onClickImage: onClickImage,
 }

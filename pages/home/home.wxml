@@ -52,6 +52,26 @@
           wx:for-item="text" 
           wx:key="{{index}}"
           class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+        <view wx:if="{{item.images}}">
+          <view wx:if="{{item.images.length == 1}}">
+            <image class='image-single' 
+              src="{{item.images[0]}}" 
+              mode='aspectFill' 
+              catchtap='clickImage'
+              data-idx='{{index}}-{{0}}'
+              ></image>
+          </view>
+          <view class='image-list' wx:if="{{item.images.length >=2 }}">
+            <view wx:for="{{item.images}}" 
+              wx:for-item="item" wx:key="{{item}}" wx:for-index="sub">
+              <image class="thumb"
+                src="{{item}}" 
+                mode='aspectFill' 
+                catchtap='clickImage' 
+                data-idx="{{index}}-{{sub}}" ></image>
+            </view>
+          </view>
+        </view>        
       </view>
     </view>
 
