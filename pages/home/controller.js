@@ -233,7 +233,7 @@ function onClickMenu(e) {
   if (user && user.id == item.author.id) {
     menu.items.push("删除")
     menu.actions.push(function () {
-      deletePost(view, idx)
+      deletePost(idx)
     })
   }
 
@@ -275,9 +275,15 @@ function deletePost(idx) {
   api.deletePost(post.id).then(resp => {
     posts.splice(idx, 1)
     view.setData({ posts: posts })
+    wx.showToast({
+      title: '删除成功',
+    })
     console.log("删除成功")
   }).catch(err => {
     console.log("删除失败")
+    wx.showToast({
+      title: '删除失败', icon: 'none'
+    })
   })
 }
 
