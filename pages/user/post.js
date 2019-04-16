@@ -41,5 +41,9 @@ Page({
   // 列表点击
   clickItem: function (e) {
     ctr.onClickItem(e)
+  },
+
+  clickImage: function(e) {
+    ctr.onClickImage(e)
   }
 })
