@@ -8,8 +8,8 @@ Page({
    */
   data: {
     count: {
-      favors: 10,
-      comments: 1,
+      favors: 0,
+      comments: 0,
     },
     list:[]
   },
