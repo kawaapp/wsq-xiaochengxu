@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "帖子详情",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }
