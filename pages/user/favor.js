@@ -7,8 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    favors: [
-    ],
+    favors: [],
     user: {
       uid: 0,
     },

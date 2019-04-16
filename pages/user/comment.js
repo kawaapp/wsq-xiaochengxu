@@ -7,11 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comments: [
-      {
-        text: "啦啦啦"
-      }
-    ],
+    comments: [],
     user: {
       uid: 0,
     },

@@ -1,1 +1,7 @@
 /* pages/me/list/post.wxss */
+
+.thumb {
+  width: 24vw;
+  height: 24vw;
+  margin: 6rpx;
+}

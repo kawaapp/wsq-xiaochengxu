@@ -117,7 +117,7 @@ function onResult(data) {
       // 新增帖子到列表头部
       var post = data.data
       if (!post.stats) {
-        post.stats = {}
+        post.stats = { comments: 0, favors: 0}
       }
       decoratePost(post)
       view.data.posts.unshift(post)
@@ -129,7 +129,7 @@ function onResult(data) {
       var item = view.data.posts[data.idx]
       var key = 'posts[' + data.idx + '].stats'
       if (!item.stats) {
-        item.stats = {}
+        item.stats = { comments: 0, favors: 0 }
       }
       if (item.stats.comments) {
         item.stats.comments += 1
