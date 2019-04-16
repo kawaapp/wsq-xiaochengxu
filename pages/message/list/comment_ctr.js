@@ -14,11 +14,27 @@ function onLoad(opt) {
 }
 
 function onPullDownRefresh() {
+  if (view.data.loader.ing) {
+    return
+  }
+
+  view.setData({ loader: {ing: true} })
   api.getMessageList('comment').then(resp => {
+    wx.stopPullDownRefresh()
+    var loader = {ing: false}
     var unpacked = unpackMsgContent(resp.data)
+    if (unpacked && unpacked.length < 20) {
+      loader.more = false
+    }
+    view.setData({ loader: loader })
     view.setData({ messages: unpacked })
     console.log(resp)
   }).catch(err => {
+    wx.stopPullDownRefresh()
+    view.setData({ loader: { ing: false } })
+    wx.showToast({
+      title: '刷新失败', icon: 'none'
+    })
     console.log(err)
   })
 }
@@ -33,12 +49,20 @@ function onReachBottom() {
   if (messages && messages.length > 0) {
     since = messages[messages.length - 1].id
   }
+  view.setData({ loader: { ing: true } })
   api.getMessageList('comment', since, limit).then(resp => {
+    var loader = {ing: false}
     if (resp.data.length < limit) {
-      view.data.loader.more = false
+      loader.more = false
     }
+    view.setData( {loader: loader })
     var unpacked = unpackMsgContent(resp.data)
     view.setData({ messages: messages.concat(unpacked) })
+  }).catch( err => {
+    view.setData({ loader: { ing: false } })
+    wx.showToast({
+      title: '加载失败', icon: 'none'
+    })
   })
 }
 

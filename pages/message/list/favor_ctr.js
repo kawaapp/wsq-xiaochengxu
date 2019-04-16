@@ -17,11 +17,27 @@ function onLoad(options) {
 }
 
 function onPullDownRefresh() {
+  if (view.data.loader.ing) {
+    return
+  }
+
+  view.setData({loader:{ing: true}})
   api.getMessageList('favor').then(resp => {
+    wx.stopPullDownRefresh()
+    var loader = { ing: false, more: true }
     var unpacked = unpackMsgContent(resp.data)
+    if (unpacked && unpacked.length < 20) {
+      loader.more = false
+    }
+    view.setData({ loader: loader })
     view.setData({ messages: unpacked })
   }).catch(err => {
+    wx.stopPullDownRefresh()
     console.log(err)
+    view.setData({ loader: { ing: false } })
+    wx.showToast({
+      title: '刷新失败', icon: 'none'
+    })
   })
 }
 
@@ -35,12 +51,21 @@ function onReachBottom() {
   if (messages && messages.length > 0) {
     since = messages[messages.length - 1].id
   }
+  view.setData({ loader: { ing: true } })
   api.getMessageList('favor', since, limit).then(resp => {
+    var loader = { ing: false, more: true }
     if (resp.data.length < limit) {
-      view.data.loader.more = false
+      loader.more = false
     }
     var unpacked = unpackMsgContent(resp.data)
+    view.setData({ loader: loader })
     view.setData({ messages: messages.concat(unpacked) })
+  }).catch( err => {
+    console.log(err)
+    view.setData({ loader: { ing: false } })
+    wx.showToast({
+      title: '加载失败', icon: 'none'
+    })
   })
 }
 

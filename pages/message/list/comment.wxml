@@ -19,8 +19,9 @@
 </view>
 
 <view wx:if='{{loader.ing}}' style='text-align:center;'>
-  <text>正在加载...</text>
+  <text class="fade-title">正在加载...</text>
 </view>
 <view wx:if='{{!loader.more}}' style='text-align:center;'>
-  <text>没有更多数据了</text>
+  <text class="fade-title">— 没有更多数据了 —</text>
 </view>
+<view style='height:9.36rpx;'/>
