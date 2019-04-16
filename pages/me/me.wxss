@@ -36,3 +36,16 @@
   background-color: rgba(52, 193, 192, .6);
   color: #fff;
 }
+
+.info {
+  position: fixed;
+  bottom: 30rpx;
+  width: 100%;
+}
+
+.info text {
+  display: block;
+  text-align: center;
+  font-size: 26rpx;
+  color: #9c9b9b;
+}

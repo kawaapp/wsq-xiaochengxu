@@ -43,3 +43,7 @@
       src='/res/img/arrow_right.png'></image>
   </view>
 </view>
+
+<view class='info'>
+  <text>卡哇微社区(kawaapp.com) 提供技术支持</text>
+</view>
