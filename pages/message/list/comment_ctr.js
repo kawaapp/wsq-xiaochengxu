@@ -33,7 +33,7 @@ function onReachBottom() {
   if (messages && messages.length > 0) {
     since = messages[messages.length - 1].id
   }
-  api.getMessageList('favor', since, limit).then(resp => {
+  api.getMessageList('comment', since, limit).then(resp => {
     if (resp.data.length < limit) {
       view.data.loader.more = false
     }
