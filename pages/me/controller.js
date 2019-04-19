@@ -31,6 +31,7 @@ function bindUserInfo(e) {
     }
     api.updateUser(data).then((resp) => {
       console.log("授权成功")
+      app.globalData.userInfo = resp.data
       view.setData({ user: resp.data })
     })
   }

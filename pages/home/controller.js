@@ -146,7 +146,7 @@ function onResult(data) {
 // 直接停掉下拉刷新
 function onPullDownRefresh() {
   if (view.data.loader.ing) {
-    wx.wx.stopPullDownRefresh()
+    wx.stopPullDownRefresh()
     return
   }
   refreshList(view.data.tab.current)
