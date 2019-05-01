@@ -49,8 +49,8 @@
 
 .add {
   background: #f8f8f8;
-  width: 30vw;
-  height: 30vw;
+  width: 28vw;
+  height: 28vw;
   margin: 6rpx;
   display: flex;
   justify-content: center;
