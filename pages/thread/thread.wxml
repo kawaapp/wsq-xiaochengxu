@@ -126,19 +126,19 @@
 </view>
 
 <!-- 隐藏输入框 -->
-<view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" ></view>
+<view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" >
 <view class="release" wx:if="{{reply.focus}}">
-    <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
-          style="height: 4.4em"
-          placeholder-class="input_null" 
-          fixed="true" 
-          maxlength="-1" 
-          show-confirm-bar="false" 
-          cursor-spacing="128rpx" 
-          focus="{{reply.focus}}"
-          placeholder="回复 {{reply.hint}}"></textarea>
-    <view class="submit">
-      <button bindtap='sendComment'>发送</button>
-    </view>
+      <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
+            style="height: 4.4em"
+            placeholder-class="input_null" 
+            fixed="true" 
+            maxlength="-1" 
+            show-confirm-bar="false" 
+            cursor-spacing="128rpx" 
+            focus="{{reply.focus}}"
+            placeholder="回复 {{reply.hint}}"></textarea>
+      <view class="submit">
+        <button catchtap='sendComment'>发送</button>
+      </view>
+  </view>
 </view>
-
