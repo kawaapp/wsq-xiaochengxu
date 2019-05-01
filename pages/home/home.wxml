@@ -9,7 +9,7 @@
     </image>
     <view class="v-right" style='margin-left: auto;'>
       <view class='title' style='color: white;'>{{meta.app_name}}</view>
-      <view class='subtitle'>
+      <view class='subtitle' style='color: #ffffff11;'>
         <text space="ensp">总浏览 {{meta.pv}} 用户数 {{meta.users}}</text>
       </view>
     </view>
