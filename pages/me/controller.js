@@ -34,6 +34,12 @@ function bindUserInfo(e) {
       app.globalData.userInfo = resp.data
       view.setData({ user: resp.data })
     })
+
+    // save in localStorage, and refresh when lauch
+    wx.setStorage({
+      key: 'user',
+      data: data,
+    })
   }
   console.log(e.detail)
 }

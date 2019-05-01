@@ -44,8 +44,18 @@ function onLoad(opt) {
   refreshList(view.data.tab.current)
 
   // 用户信息
+  try {
+    const value = wx.getStorageSync('user')
+    if (value) {
+      app.globalData.userInfo = value
+    }
+  } catch (e) {
+    // Do something when catch error
+  }
   api.getSelf().then((resp) => {
     app.globalData.userInfo = resp.data
+    // refresh local storage
+    wx.setStorage({ key: 'user', data: resp.data })
   })
 }
 
