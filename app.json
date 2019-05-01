@@ -41,5 +41,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "克洛洛社区",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
