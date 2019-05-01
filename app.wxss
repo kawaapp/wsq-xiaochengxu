@@ -110,6 +110,11 @@ page{
   margin: 6rpx;
 }
 
+.thumb image {
+  width: 100%;
+  height: 100%;
+}
+
 .image-single {
   max-width: 60vw;
   max-height: 60vw;

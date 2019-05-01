@@ -31,6 +31,7 @@
 .thumb {
   width: 28vw;
   height: 28vw;
+  margin: 6rpx;
 }
 
 .thumb image {

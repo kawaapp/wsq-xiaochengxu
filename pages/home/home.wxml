@@ -62,9 +62,9 @@
               ></image>
           </view>
           <view class='image-list' wx:if="{{item.images.length >=2 }}">
-            <view wx:for="{{item.images}}" 
+            <view class="thumb" wx:for="{{item.images}}" 
               wx:for-item="item" wx:key="{{item}}" wx:for-index="sub">
-              <image class="thumb"
+              <image
                 src="{{item}}" 
                 mode='aspectFill' 
                 catchtap='clickImage' 
