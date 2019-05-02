@@ -2,7 +2,7 @@
 <view wx:for="{{favors}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card" bindtap='clickItem' data-idx='{{index}}'>
     <text class='title'>赞了这篇帖子</text>
-    <view class="horizontal gray-bg">
+    <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
         src="{{item.actor.avatar?item.actor.avatar:'/res/img/user_icon.png'}}" 
         />

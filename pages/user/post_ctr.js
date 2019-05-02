@@ -52,7 +52,8 @@ function onPullDownRefresh() {
     if (resp.data && resp.data.length < 20) {
       loader.more = false
     }
-    view.setData({ posts: resp.data })
+    var data = decorateList(resp.data)
+    view.setData({ posts: data })
     view.setData({ loader: loader })
     wx.stopPullDownRefresh()
     wx.showToast({
@@ -85,8 +86,9 @@ function onReachBottom() {
     if (resp.data.length < limit) {
       loader.more = false
     }
+    var data = decorateList(resp.data)
     view.setData({ loader: loader })
-    view.setData({ posts: posts.concat(resp.data) })
+    view.setData({ posts: posts.concat(data) })
   }).catch( err=> {
     loader.ing = false
     view.setData({ loader: loader })

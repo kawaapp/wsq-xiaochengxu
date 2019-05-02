@@ -10,15 +10,6 @@
   height: 144rpx;
 }
 
-.title {
-  font-size: 36rpx;
-}
-
-.subtitle {
-  font-size: 28rpx;
-  color: #888888;
-}
-
 .h-bottom {
   display: flex;
   align-items:flex-end;

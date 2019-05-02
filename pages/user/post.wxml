@@ -11,7 +11,7 @@
       </view>
     </view>
     <view style='margin-bottom:6rpx;'/>
-    <view style='margin-left:112rpx;' bindtap='topicClick' data-item="{{item}}">
+    <view style='margin-left:90rpx;' bindtap='topicClick' data-item="{{item}}">
       <text class='title'>{{item.content}}</text>
       <view wx:if="{{item.images}}">
           <view wx:if="{{item.images.length == 1}}">

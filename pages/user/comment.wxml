@@ -2,7 +2,7 @@
 <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card" style='padding: 18rpx;' bindtap='clickItem' data-idx='{{index}}'>
     <text class='title'>我: {{ item.content }}</text>
-    <view class="horizontal gray-bg">
+    <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin-right: 18rpx;'
         src="{{item.replier.avatar?item.replier.avatar:'/res/img/user_icon.png'}}" 
         />
