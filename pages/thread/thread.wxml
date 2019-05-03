@@ -36,9 +36,7 @@
           </view>
         </view> 
   </view>
-  <view>
-    <text class='subtitle'>分享</text>
-  </view>
+  
 </view>
 <view style='margin-bottom:9rpx;'/>
 
