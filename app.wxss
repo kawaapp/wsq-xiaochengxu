@@ -18,11 +18,10 @@ page{
 }
 
 .card {
-  border: 2px solid #ffffff;
   background-color: #ffffff;
   margin-bottom: 18.72rpx;
   position: relative;
-  padding: 18.72rpx;
+  padding: 2.5vw;
 }
 
 .line {
@@ -104,9 +103,9 @@ page{
 }
 
 .thumb {
-  width: 28vw;
-  height: 28vw;
-  margin: 6rpx;
+  width: 30vw;
+  height: 30vw;
+  padding: 6rpx;
 }
 
 .thumb image {
@@ -115,8 +114,8 @@ page{
 }
 
 .image-single {
-  max-width: 60vw;
-  max-height: 60vw;
+  width: 100%;
+  max-height: 100vw;
 }
 
 .p-1 {

@@ -1,7 +1,12 @@
 /* pages/me/list/post.wxss */
 
 .thumb {
-  width: 24vw;
-  height: 24vw;
-  margin: 6rpx;
+  width: 22vw;
+  height: 22vw;
+  padding: 6rpx;
+}
+
+.image-single {
+  max-width: 70vw;
+  max-height: 70vw;
 }

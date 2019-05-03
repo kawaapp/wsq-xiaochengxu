@@ -46,7 +46,7 @@
         <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>
       <view style='margin-bottom:9.36rpx;'/>
-      <view style='margin-left:9.36rpx;'>
+      <view>
         <text 
           wx:for="{{item.styled}}" 
           wx:for-item="text" 

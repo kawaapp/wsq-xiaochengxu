@@ -17,7 +17,7 @@
     <!-- images -->
     <view wx:if="{{item.post.images}}">
           <view wx:if="{{item.post.images.length == 1}}">
-            <image
+            <image class='image-single'
               src="{{item.post.images[0]}}" 
               mode='aspectFill' 
               catchtap='clickImage'
