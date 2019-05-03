@@ -56,7 +56,7 @@
         />
       <view style='width:100%;'>
         <!-- Reply user name and content-->
-        <view class='subtitle'>
+        <view class='subtitle' style='color:#222;'>
           {{
             item.author.nickname? item.author.nickname: '匿名' 
           }}
@@ -69,8 +69,8 @@
             wx:for="{{item.reply_list}}" 
             wx:for-item="item"
             wx:key="{{item.id}}">
-            <text>{{item.author.nickname}}:</text>
-            <text>{{item.content}}</text>
+            <text style='color:#666;'>{{item.author.nickname}}: </text>
+            <text style='color:#333;'>{{item.content}}</text>
           </view>
         </view>
 
