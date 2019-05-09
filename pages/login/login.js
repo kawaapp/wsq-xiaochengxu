@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    visible: false,
   },
 
   /**
@@ -21,7 +21,22 @@ Page({
         url: '/pages/home/home',
       })
     }).catch((err) => {
-      wx.showToast("登录失败：" + err)
+        wx.showToast({
+          title: '自动登录失败:' + err.code, icon: 'none', duration: 2000,
+        })
+        this.setData({ visible: true })
+    })
+  },
+  clickLogin: function() {
+    api.autoAuth().then(() => {
+      console.log("go to main page")
+      wx.switchTab({
+        url: '/pages/home/home',
+      })
+    }).catch ((err) => {
+      wx.showToast({
+        title: '登录失败:' + err.code, icon: 'none', duration: 2000,
+      })
     })
   },
   bindUserInfo: function(e) {

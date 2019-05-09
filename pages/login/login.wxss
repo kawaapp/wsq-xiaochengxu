@@ -1,2 +1,16 @@
 /* pages/login/login.wxss */
+.login-view {
+  width: 50%;
+  margin: 50% auto; 
+}
+ 
+.login-button-normal {
+  background-color: #f8f8f8;
+  color:gray;
+  font-size: 32rpx;
+}
 
+.login-button-hover {
+  background-color: lightgray;
+  color:gray;
+}
