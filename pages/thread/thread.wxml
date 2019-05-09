@@ -6,7 +6,7 @@
       src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
       />
     <view>
-      <view class='title'>{{item.post.author.nickname}}</view>
+      <view class='title b5'>{{item.post.author.nickname}}</view>
       <view class='subtitle'>{{item.post.agoTime}}</view>
     </view>
     <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />

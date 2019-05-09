@@ -1,6 +1,6 @@
 <!-- 品牌 -->
-<view class='brand' 
-  style="background-image: url({{meta.app_cover}});background-color: rgba(0, 0, 0, .4);background-size:100% auto;">
+<view style="background-image: url({{meta.app_cover}});background-size:100% auto;">
+<view class='brand'>
   <!-- 搜索框-->
   <view></view>
   <!-- 品牌展示 -->
@@ -8,12 +8,13 @@
     <image class='logo' src="{{meta.app_logo}}">
     </image>
     <view class="v-right" style='margin-left: auto;'>
-      <view class='title' style='color: white;'>{{meta.app_name}}</view>
+      <view class='app-name'>{{meta.app_name}}</view>
       <view class='subtitle' style='color: #ffffff11;'>
         <text space="ensp">总浏览 {{meta.pv}} 用户数 {{meta.users}}</text>
       </view>
     </view>
   </view>
+</view>
 </view>
 
 <!-- 顶部TAB -->
@@ -40,7 +41,7 @@
           src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
           />
         <view>
-          <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
+          <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
           <view class='subtitle'>{{item.agoTime}}</view>
         </view>
         <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />

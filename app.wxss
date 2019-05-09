@@ -133,3 +133,7 @@ page{
 .p-4 {
   padding: 32rpx;
 }
+
+.b5 {
+  font-weight: 450;
+}

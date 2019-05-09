@@ -1,6 +1,7 @@
 
 .brand {
   padding: 24rpx 18rpx;
+  background-color: rgba(0, 0, 0, .4);
 }
 
 .logo {
@@ -8,6 +9,12 @@
   border-radius: 16rpx;
   width: 144rpx;
   height: 144rpx;
+}
+
+.app-name {
+  font-size: 32rpx;
+  color: white; 
+  font-weight:600;
 }
 
 .h-bottom {
