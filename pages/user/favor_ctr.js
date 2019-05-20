@@ -96,7 +96,7 @@ function onClickItem(e) {
   var favor = view.data.favors[idx]
   // 跳转到帖子，并设置为已读
   wx.navigateTo({
-    url: '/pages/thread/thread?pid=' + favor.post_id,
+    url: '/pages/thread/thread?pid=' + favor.entity_id,
   })
 }
 
