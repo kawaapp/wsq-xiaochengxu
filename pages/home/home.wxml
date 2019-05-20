@@ -20,7 +20,7 @@
 <!-- 公告部分 -->
 <view class='card' wx:if="{{speaker.title}}" style='margin-bottom: 16rpx;'>
   <view class='single-line speaker' bindtap='clickSpeaker'>
-    <image class='speaker' src='/res/img/speaker.png'></image>
+    <image src='/res/img/speaker.png'></image>
     <text style='margin-right: 8rpx;'>公告: </text> 
     <text>{{ speaker.title }}</text>
   </view>
@@ -31,7 +31,7 @@
   <view class='top-post' wx:for="{{tops}}" wx:for-item="item" wx:key="{{item.id}}">
     <view style='height: 16rpx;' wx:if="{{index > 0}}"></view>
     <view class='single-line' style='width: 720rpx;' 
-      data-idx='{{index}} 
+      data-idx='{{index}}' 
       bindtap='clickTopList' 
       >
       <text class='top'>顶</text> <text>{{item.title}}</text>
@@ -52,7 +52,7 @@
 </scroll-view>
 
 <!-- 列表 -->
-<view style='margin-bottom:18rpx;'/>
+<view style='margin-bottom:1rpx; background-color: #fefefe;'/>
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card">
     

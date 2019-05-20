@@ -81,14 +81,16 @@
 }
 
 .speaker {
-  width: 720rpx; 
+  width: 720rpx;
   font-size: 28rpx;
 }
 
 .speaker image {
-  width: 24rpx; 
-  height: 24rpx;
+  width: 30rpx; 
+  height: 30rpx;
   margin-right: 16rpx;
+  vertical-align: middle;
+  margin-top: -5rpx;
 }
 
 .top-post {
@@ -96,8 +98,8 @@
 }
 
 .top-post .top {
-  width: 48rpx;
-  height: 48rpx;
+  width: 30rpx;
+  height: 30rpx;
   padding: 0 4rpx;
   vertical-align: middle;
   border-radius: 4rpx;
@@ -106,4 +108,6 @@
   color: white;
   background-color: red;
   margin-right: 16rpx;
+  position: relative;
+  top: -2rpx;
 }

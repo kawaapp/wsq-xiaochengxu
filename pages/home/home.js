@@ -95,9 +95,7 @@ Page({
   // 点击置顶帖
   clickTopList: function(e) {
     var idx = e.currentTarget.dataset.idx
-    var post = this.data.tops[0]
-    // TODO 此处BUG不知道怎么回事
-    console.log("idx:" + idx + 'post:', post)
+    var post = this.data.tops[idx]
     util.sendRequest('post', {
       idx: idx,
       post: post,
