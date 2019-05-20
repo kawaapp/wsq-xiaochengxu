@@ -55,7 +55,7 @@
   box-sizing: border-box;
   overflow: hidden;
   line-height: 80rpx;
-  background: #f7f7f7;
+  background: #fff;
   font-size: 16px;
   white-space: nowrap;
 }
