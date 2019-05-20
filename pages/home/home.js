@@ -21,6 +21,11 @@ const util = require('../../utils/util.js')
 // },....]
 Page({
   data: {
+    speaker: {
+      text: "欢迎来到卡哇微社区",
+      link: "",
+    },
+    tops: [],
     posts: [],
     loader: {
       ing: false, // 是否正在加载
@@ -75,6 +80,22 @@ Page({
   // 发新贴
   newTopic: function(e) {
     ctr.onClickNewPost(e)
+  },
+
+  // 点击置顶帖
+  clickTopList: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    var post = this.data.tops[0]
+    // TODO 此处BUG不知道怎么回事
+    console.log("idx:" + idx + 'post:', post)
+    util.sendRequest('post', {
+      idx: idx,
+      post: post,
+      viewonly: true,
+    })
+    wx.navigateTo({
+      url: '/pages/thread/thread',
+    })
   },
 
   // 点击帖子

@@ -40,6 +40,20 @@ function onLoad(opt) {
     console.log("get meta:", resp.data)
   })
 
+  // 加载置顶列表
+  api.getPostList(0, 1000, "top").then(resp => {
+    const items = resp.data
+    if (items) {
+      items.map( item => {
+        item.title = getTitle(item)
+      })
+      view.setData({
+        tops: items,
+      })
+      console.log("get top-list:", items)
+    }
+  })
+
   // 进入第一次加载
   refreshList(view.data.tab.current)
 
@@ -57,6 +71,17 @@ function onLoad(opt) {
     // refresh local storage
     wx.setStorage({ key: 'user', data: resp.data })
   })
+}
+
+function getTitle(item) {
+  if (!item || !item.content) {
+    return ""
+  }
+  var array = item.content.split("\n")
+  if (array.length > 0) {
+    return array[0]
+  }
+  return ""
 }
 
 function onClickNewPost(e) {

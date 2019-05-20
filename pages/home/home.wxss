@@ -79,3 +79,26 @@
   left: 5rpx;
   border-radius: 16rpx;
 }
+
+.speaker {
+  width: 24rpx; 
+  height: 24rpx;
+  margin-right: 16rpx;
+}
+
+.top-post {
+  font-size: 28rpx;
+}
+
+.top-post .top {
+  width: 48rpx;
+  height: 48rpx;
+  padding: 0 4rpx;
+  vertical-align: middle;
+  border-radius: 4rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: white;
+  background-color: red;
+  margin-right: 16rpx;
+}
