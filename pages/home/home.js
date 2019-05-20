@@ -22,7 +22,7 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     speaker: {
-      text: "欢迎来到卡哇微社区",
+      title: "",
       link: "",
     },
     tops: [],
@@ -80,6 +80,16 @@ Page({
   // 发新贴
   newTopic: function(e) {
     ctr.onClickNewPost(e)
+  },
+
+  // 点击公告
+  clickSpeaker: function(e) {
+    var url = this.data.speaker.link
+    if (url) {
+      wx.navigateTo({
+        url: '/pages/webview/webview?q=' + encodeURI(url),
+      })
+    }
   },
 
   // 点击置顶帖

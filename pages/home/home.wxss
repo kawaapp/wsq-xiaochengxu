@@ -81,6 +81,11 @@
 }
 
 .speaker {
+  width: 720rpx; 
+  font-size: 28rpx;
+}
+
+.speaker image {
   width: 24rpx; 
   height: 24rpx;
   margin-right: 16rpx;

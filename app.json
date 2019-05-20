@@ -10,7 +10,8 @@
     "pages/message/list/comment",
     "pages/user/post",
     "pages/user/comment",
-    "pages/user/favor"
+    "pages/user/favor",
+    "pages/webview/webview"
   ],
   "tabBar": {
     "list": [

@@ -38,6 +38,12 @@ function onLoad(opt) {
       meta: resp.data
     })
     console.log("get meta:", resp.data)
+
+    const pub = {
+      title: resp.data.app_pubtitle,
+      link: resp.data.app_publink,
+    }
+    view.setData({ speaker: pub })
   })
 
   // 加载置顶列表
