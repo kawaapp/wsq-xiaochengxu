@@ -50,27 +50,29 @@
   <!-- Comment List -->
   <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
     <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
-    <view class="h-top">
+    <view class="comment">
       <image class="avatar-large" style='margin-right:18rpx;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
-      <view style='width:100%;'>
+      <view style='width:100%;' bindtap='clickListCommentAction'>
         <!-- Reply user name and content-->
-        <view class='subtitle' style='color:#222;'>
+        <view class='nickname'>
           {{
             item.author.nickname? item.author.nickname: '匿名' 
           }}
         </view>
-        <view class='comment-detail'>{{item.content}}</view>
+        <view class='detail'>{{item.content}}</view>
 
         <!-- Reply List / Comment on Comment  -->
-        <view wx:if='{{item.reply_list}}' class='gray-bg' style='padding:14rpx;'>
-          <view class='subtitle' 
+        <view wx:if='{{item.reply_list}}' class='gray-bg reply'>
+          <view
             wx:for="{{item.reply_list}}" 
             wx:for-item="item"
             wx:key="{{item.id}}">
-            <text style='color:#576b95;'>{{item.author.nickname}}: </text>
-            <text style='color:#333;'>{{item.content}}</text>
+            <text class='nickname'>{{item.author.nickname}}</text>
+            <text>回复</text>
+            <text class='nickname'>{{item.author.nickname}}</text>
+            <text class='detail'>: {{item.content}}</text>
           </view>
         </view>
 

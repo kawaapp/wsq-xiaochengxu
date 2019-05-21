@@ -74,5 +74,11 @@ Page({
   },
   sendComment: function (e) {
     ctr.onClickSendComment(e)
+  }, 
+  clickListCommentAction: function(e) {
+    ctr.onClickListCommentAction(e)
+  },
+  clickListReplyAction: function(e) {
+    ctr.onClickListReplyAction(e)
   }
 })

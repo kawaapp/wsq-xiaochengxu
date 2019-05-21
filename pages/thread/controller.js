@@ -233,6 +233,7 @@ function commentPost(data) {
 
   // send comment
   api.createComment(data).then(resp => {
+    formatTime(resp.data)
     var comments = view.data.comments
     comments.unshift(resp.data)
     view.setData({
@@ -373,6 +374,39 @@ function formatTimes(comments) {
   return comments
 }
 
+function formatTime(item) {
+  var utc = new Date(item.created_at * 1000)
+  item.time = util.formatTime(utc)
+}
+
+function onClickListCommentAction(e) {
+  var item = view.data.item.post
+  var menu = {
+    items: ["删除", "回复"],
+    actions: [function () {
+      // 删除 posst
+    }, function() {
+      // 回复
+    }],
+  }
+  wx.showActionSheet({
+    itemList: menu.items,
+    success: function (res) {
+      var fn = menu.actions[res.tapIndex]
+      if (fn) {
+        fn()
+      }
+    },
+    fail: function (res) {
+      console.log(res.errMsg)
+    }
+  })
+}
+
+function onClickListReplyAction(e) {
+
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -385,4 +419,6 @@ module.exports = {
   onClickListFavor: onClickListFavor,
   onClickSendComment: onClickSendComment,
   onClikcFavorPost: onClikcFavorPost,
+  onClickListCommentAction: onClickListCommentAction,
+  onClickListReplyAction: onClickListReplyAction,
 }
