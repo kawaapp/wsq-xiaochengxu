@@ -267,17 +267,21 @@ function onClickListComment(e) {
 }
 
 function onClickListCommentAction(e) {
-  if (replyHook()) { return; }
-
   var idx = e.currentTarget.dataset.idx
   var array = idx.split('-')
   var index = array[0], sub = array[1]
 
   var actionDelete = function() {
+    if (replyHook()) {
+      return;
+    }
     deleteComment(index, sub)
   }
 
   var actionReply = function() {
+    if (replyHook()) { 
+      return; 
+    }
     // commennt on comment
     var d = view.data
     var hint 
@@ -298,14 +302,58 @@ function onClickListCommentAction(e) {
   }
 
   var menu = {
-    items: ["删除", "回复"],
-    actions: [actionDelete, actionReply],
+    items: ["回复"],
+    actions: [actionReply],
+  }
+  // 是否显示删除菜单
+  var uid = undefined
+  if (sub) {
+    uid = view.data.comments[index].reply_list[sub].author.id
+  } else {
+    uid = view.data.comments[index].author.id
+  }
+  var user = app.globalData.userInfo
+  if (user && user.id == uid) {
+    menu.items.push("删除")
+    menu.actions.push(actionDelete)
   }
   showActionSheet(menu.items, menu.actions)
 }
 
 function deleteComment(index, sub) {
+  var item = {}
+  if (sub) {
+    var reply_list = view.data.comments[index].reply_list
+    var key = 'comments[' + index + '].reply_list'
 
+    item.id = reply_list[sub].id
+    item.action = function() {
+      reply_list.splice(sub, 1)
+      view.setData({
+        [key]: reply_list
+      })
+    }
+  } else {
+    var comments = view.data.comments
+    item.id = comments[index].id
+    item.action = function() {
+      comments.splice(index, 1)
+      view.setData({
+        comments: comments,
+      })
+    }
+  }
+  api.deleteComment(item.id).then( resp => {
+    item.action()
+    wx.showToast({
+      title: '删除成功', icon: 'none'
+    })
+  }).catch( err => {
+    wx.showToast({
+      title: '删除失败', icon: 'none'
+    })
+    console.log(err)
+  })
 }
 
 // 发送评论，针对帖子、回复、回复的回复
