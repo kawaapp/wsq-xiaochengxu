@@ -18,6 +18,7 @@ Page({
     },
     reply: {
       index: -1,
+      subindex: -1,
       hint: "",
       text: "",
       enable: true,
@@ -58,7 +59,7 @@ Page({
     console.log("focus set false..")
   },
   clickReply: function(e) {
-    ctr.onClickReply(e)
+    ctr.onClickReplyPost(e)
   },
   clickFavor: function(e) {
     ctr.onClikcFavorPost(e)
@@ -78,7 +79,4 @@ Page({
   clickListCommentAction: function(e) {
     ctr.onClickListCommentAction(e)
   },
-  clickListReplyAction: function(e) {
-    ctr.onClickListReplyAction(e)
-  }
 })

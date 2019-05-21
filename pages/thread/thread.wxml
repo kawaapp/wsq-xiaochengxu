@@ -54,7 +54,7 @@
       <image class="avatar-large" style='margin-right:18rpx;'
         src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
         />
-      <view style='width:100%;' bindtap='clickListCommentAction'>
+      <view style='width:100%;' data-idx="{{index}}-{{sub}}" bindtap='clickListCommentAction'>
         <!-- Reply user name and content-->
         <view class='nickname'>
           {{
@@ -68,10 +68,14 @@
           <view
             wx:for="{{item.reply_list}}" 
             wx:for-item="item"
-            wx:key="{{item.id}}">
+            wx:key="{{item.id}}"
+            wx:for-index="sub"
+            data-idx="{{index}}-{{sub}}"
+            catchtap='clickListCommentAction'
+            >
             <text class='nickname'>{{item.author.nickname}}</text>
-            <text>回复</text>
-            <text class='nickname'>{{item.author.nickname}}</text>
+            <text wx:if="{{item.reply}}">回复</text>
+            <text wx:if="{{item.reply}}" class='nickname'>{{item.replier.nickname}}</text>
             <text class='detail'>: {{item.content}}</text>
           </view>
         </view>
@@ -128,7 +132,7 @@
 
 <!-- 隐藏输入框 -->
 <view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" >
-<view class="release" wx:if="{{reply.focus}}">
+<view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
       <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
             style="height: 4.4em"
             placeholder-class="input_null" 

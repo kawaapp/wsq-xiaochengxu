@@ -113,6 +113,24 @@ function onReachBottom(e) {
   })
 }
 
+function replyHook() {
+  if (!(app.globalData.userInfo && app.globalData.userInfo.nickname)) {
+    wx.switchTab({
+      url: '/pages/me/me',
+    })
+    setTimeout(function () {
+      wx.showToast({
+        title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
+      })
+    }, 500);
+    return true
+  }
+  return false
+}
+
+// ------- 针对帖子的动作 ---------
+
+// 点击帖子菜单
 function onClickMenu(e) {
   var item = view.data.item.post
   var menu = {
@@ -131,62 +149,64 @@ function onClickMenu(e) {
       deletePost(item)
     })
   }
-  wx.showActionSheet({
-    itemList: menu.items,
-    success: function (res) {
-      console.log(JSON.stringify(res))
-      console.log(res.tapIndex) // 用户点击的按钮，从上到下的顺序，从0开始
-      var fn = menu.actions[res.tapIndex]
-      fn()
-    },
-    fail: function (res) {
-      console.log(res.errMsg)
-    }
+  showActionSheet(menu.items, menu.actions)
+}
+
+// 删除帖子
+function deletePost(item) {
+  api.deletePost(item.id).then(resp => {
+    wx.navigateBack({
+      delta: 1,
+    })
   })
 }
 
-function replyHook() {
-  if (!(app.globalData.userInfo && app.globalData.userInfo.nickname)) {
-    wx.switchTab({
-      url: '/pages/me/me',
-    })
-    setTimeout(function () {
-      wx.showToast({
-        title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
-      })
-    }, 500); 
-    return true
+// 对帖子点赞、取消点赞
+function onClikcFavorPost(e) {
+  var updateFavorState = (p) => {
+    view.setData({ item: { post: p } })
   }
-  return false
+  var p = view.data.item.post
+  if (p.stats && p.stats.favored) {
+    api.deletePostFavor(p.id).then(resp => {
+      p.stats.favored = 0
+      if (p.stats.favors > 0) {
+        p.stats.favors -= 1
+      }
+      updateFavorState(p)
+    }).catch(err => {
+      wx.showToast({
+        title: '发送失败',
+        icon: 'none'
+      })
+      console.log(err)
+    })
+  } else {
+    api.createPostFavor(p.id).then(resp => {
+      p.stats.favored = 1
+      p.stats.favors += 1
+      updateFavorState(p)
+    }).catch(err => {
+      wx.showToast({
+        title: '发送失败',
+        icon: 'none'
+      })
+      console.log(err)
+    })
+  }
 }
 
-function onClickReply(e) {
+// 对帖子评论
+function onClickReplyPost(e) {
   if (replyHook()) {
     return
   }
   view.setData({ reply: { focus: true } })
 }
 
-function onClickListComment(e) {
-  console.log('comment on comment click!!')
-  if (replyHook()) {
-    return
-  }
+// --------- 对评论的动作 ---------
 
-  // commennt on comment
-  var d = view.data
-  var idx = e.currentTarget.dataset.idx
-  var parent = d.comments[idx]
-  d.reply.index = idx
-  d.reply.hint = parent.author.nickname
-  d.reply.focus = true
-
-  // prepare ui state
-  view.setData({
-    reply: d.reply
-  })
-}
-
+// 对评论点赞、取消点赞
 function onClickListFavor(e) {
   // favor on comment
   var idx = e.currentTarget.dataset.idx
@@ -200,104 +220,6 @@ function onClickListFavor(e) {
   } else {
     favorComment(idx, comment)
   }
-}
-
-function onClickSendComment(e) {
-  console.log("get comment", view.data.reply.text)
-  var reply = view.data.reply
-  if (util.isWhiteSpace(reply.text)) {
-    wx.showToast({
-      title: '评论不能为空',
-      icon: 'none',
-    })
-    return
-  }
-  console.log("reply index:", reply)
-  if (reply.index >= 0) {
-    commentComment(reply.index)
-  } else {
-    commentPost({
-      post_id: view.data.item.post.id,
-      content: view.data.reply.text,
-    })
-  }
-}
-
-
-// comment on post 
-function commentPost(data) {
-  if (util.isWhiteSpace(data.content)) {
-    console.log("data is empty!")
-    return
-  }
-
-  // send comment
-  api.createComment(data).then(resp => {
-    formatTime(resp.data)
-    var comments = view.data.comments
-    comments.unshift(resp.data)
-    view.setData({
-      comments: comments,
-    })
-    view.setData({
-      reply: { text: "", index: -1, hint: "", focus: false }
-    })
-    util.setResult({
-      ok: true,
-      req: 'newcomment',
-      idx: view.data.item.idx,
-    })
-    wx.showToast({
-      title: '发送成功', icon: 'success'
-    })
-    console.log('set result:' + view.data.idx)
-    console.log("评论成功！！！", resp.data)
-  }).catch(err => {
-    wx.showToast({
-      title: '发送失败', icon: 'none'
-    })
-    console.log(err)
-  })
-}
-
-// comment on comment
-function commentComment(idx) {
-  // commennt on comment
-  var parent = view.data.comments[idx]
-  var key = 'comments[' + idx + '].reply_list'
-
-  // prepare ui state  TODO 这里需要和输入框双向绑定数据..
-
-  if (!parent.reply_list) {
-    parent.reply_list = []
-  }
-
-  // send data 
-  var data = {
-    post_id: view.data.item.post.id,
-    content: view.data.reply.text,
-    parent_id: parent.id,
-  }
-
-  // send
-  api.createComment(data).then(resp => {
-    parent.reply_list.push(resp.data)
-    view.setData({
-      [key]: parent.reply_list
-    })
-    view.setData({
-      reply: { text: "", index: -1, hint: "", focus: false }
-    })
-    wx.showToast({
-      title: '已发送', icon: 'success'
-    })
-    console.log("评论成功！！！", resp.data)
-  }).catch(err => {
-    wx.showToast({
-      title: '发送失败', icon: 'none'
-    })
-    console.log(err)
-  })
 }
 
 // favor on comment
@@ -323,55 +245,208 @@ function unfavorComent(idx, comment) {
   })
 }
 
-function onClikcFavorPost(e) {
-  var updateFavorState = (p) => {
-    view.setData({item: {post:p}})
+// 对评论进行回复菜单
+function onClickListComment(e) {
+  console.log('comment on comment click!!')
+  if (replyHook()) {
+    return
   }
-  var p = view.data.item.post
-  if (p.stats && p.stats.favored) {
-    api.deletePostFavor(p.id).then( resp => {
-      p.stats.favored = 0
-      if (p.stats.favors > 0) {
-        p.stats.favors -= 1
-      }
-      updateFavorState(p)
-    }).catch( err => {
-      wx.showToast({
-        title: '发送失败',
-        icon: 'none'
-      })
-      console.log(err)
+
+  // commennt on comment
+  var d = view.data
+  var idx = e.currentTarget.dataset.idx
+  var parent = d.comments[idx]
+  d.reply.index = idx
+  d.reply.hint = parent.author.nickname
+  d.reply.focus = true
+
+  // prepare ui state
+  view.setData({
+    reply: d.reply
+  })
+}
+
+function onClickListCommentAction(e) {
+  if (replyHook()) { return; }
+
+  var idx = e.currentTarget.dataset.idx
+  var array = idx.split('-')
+  var index = array[0], sub = array[1]
+
+  var actionDelete = function() {
+    deleteComment(index, sub)
+  }
+
+  var actionReply = function() {
+    // commennt on comment
+    var d = view.data
+    var hint 
+    if (!sub) {
+      hint = d.comments[index].author.nickname
+    } else {
+      hint = d.comments[index].reply_list[sub].author.nickname
+    }
+    d.reply.index = index
+    d.reply.subIndex = sub
+    d.reply.hint = hint
+    d.reply.focus = true
+
+    // prepare ui state
+    view.setData({
+      reply: d.reply
     })
+  }
+
+  var menu = {
+    items: ["删除", "回复"],
+    actions: [actionDelete, actionReply],
+  }
+  showActionSheet(menu.items, menu.actions)
+}
+
+function deleteComment(index, sub) {
+
+}
+
+// 发送评论，针对帖子、回复、回复的回复
+function onClickSendComment(e) {
+  console.log("get comment", view.data.reply.text)
+  var reply = view.data.reply
+  if (util.isWhiteSpace(reply.text)) {
+    wx.showToast({
+      title: '评论不能为空',
+      icon: 'none',
+    })
+    return
+  }
+  console.log("reply index:", reply)
+  if (reply.index >= 0) {
+    replyToComment(reply.index, reply.subIndex)
   } else {
-    api.createPostFavor(p.id).then(resp => {
-      p.stats.favored = 1
-      p.stats.favors += 1
-      updateFavorState(p)
-    }).catch(err => {
-      wx.showToast({
-        title: '发送失败',
-        icon: 'none'
-      })
-      console.log(err)
+    replyToPost({
+      post_id: view.data.item.post.id,
+      content: view.data.reply.text,
     })
   }
 }
 
-function deletePost(item) {
-  api.deletePost(item.id).then(resp => {
-    wx.navigateBack({
-      delta: 1,
+
+// comment on post 
+function replyToPost(data) {
+  if (util.isWhiteSpace(data.content)) {
+    console.log("data is empty!")
+    return
+  }
+
+  // send comment
+  api.createComment(data).then(resp => {
+    formatTime(resp.data)
+    var comments = view.data.comments
+    comments.unshift(resp.data)
+    view.setData({
+      comments: comments,
     })
+    view.setData({
+      reply: { text: "", index: -1, subindex: -1, hint: "", focus: false }
+    })
+    util.setResult({
+      ok: true,
+      req: 'newcomment',
+      idx: view.data.item.idx,
+    })
+    wx.showToast({
+      title: '发送成功', icon: 'success'
+    })
+    console.log('set result:' + view.data.idx)
+    console.log("评论成功！！！", resp.data)
+  }).catch(err => {
+    wx.showToast({
+      title: '发送失败', icon: 'none'
+    })
+    console.log(err)
   })
 }
+
+// 回复评论和评论的评论
+function replyToComment(idx, subIndex) {
+  // commennt on comment
+  var parent = view.data.comments[idx]
+  var key = 'comments[' + idx + '].reply_list'
+
+  // prepare ui state  TODO 这里需要和输入框双向绑定数据..
+
+  if (!parent.reply_list) {
+    parent.reply_list = []
+  }
+
+  // send data 
+  var data = {
+    post_id: view.data.item.post.id,
+    parent_id: parent.id,
+  }
+
+  // 评论的评论, 藏一个字符用来标识评论之评论
+  // TODO
+  // 为了简化后端逻辑，在此处隐藏一个不可见字符
+  // 来标识当前回复是不是针对回复的回复
+  var replier = undefined
+  if (subIndex && parent.reply_list.length > subIndex) {
+    var reply = parent.reply_list[subIndex]
+    data.reply_id = reply.author.id
+    data.content = '\r' + view.data.reply.text
+    replier = reply.author
+  } else {
+    data.reply_id = parent.author.id
+    data.content = view.data.reply.text
+  }
+
+  // send
+  api.createComment(data).then(resp => {
+    if (subIndex) {
+      resp.data.reply = true
+      resp.data.replier = replier
+    }
+    parent.reply_list.push(resp.data)
+    view.setData({
+      [key]: parent.reply_list
+    })
+    view.setData({
+      reply: { text: "", index: -1, subindex: -1, hint: "", focus: false }
+    })
+    wx.showToast({
+      title: '已发送', icon: 'success'
+    })
+    console.log("评论成功！！！", resp.data)
+  }).catch(err => {
+    wx.showToast({
+      title: '发送失败', icon: 'none'
+    })
+    console.log(err)
+  })
+}
+
 
 function formatTimes(comments) {
   var i = 0, n = comments.length
   for (; i < n; i++) {
     var utc = new Date(comments[i].created_at * 1000)
     comments[i].time = util.formatTime(utc)
+    var reply_list = comments[i].reply_list
+    comments[i].reply_list = decorateReplyList(reply_list)
   }
   return comments
+}
+
+function decorateReplyList(list) {
+  if (list) {
+    var i = 0, n = list.length
+    for (; i < n; i++) {
+      if (list[i].content && list[i].content[0] == `\r`) {
+        list[i].reply = true
+      }
+    }
+    return list
+  }
 }
 
 function formatTime(item) {
@@ -379,32 +454,17 @@ function formatTime(item) {
   item.time = util.formatTime(utc)
 }
 
-function onClickListCommentAction(e) {
-  var item = view.data.item.post
-  var menu = {
-    items: ["删除", "回复"],
-    actions: [function () {
-      // 删除 posst
-    }, function() {
-      // 回复
-    }],
-  }
+function showActionSheet(menus, actions) {
   wx.showActionSheet({
-    itemList: menu.items,
+    itemList: menus,
     success: function (res) {
-      var fn = menu.actions[res.tapIndex]
-      if (fn) {
-        fn()
-      }
+      var fn = actions[res.tapIndex]
+      if (fn) { fn() }
     },
     fail: function (res) {
       console.log(res.errMsg)
     }
   })
-}
-
-function onClickListReplyAction(e) {
-
 }
 
 module.exports = {
@@ -414,11 +474,10 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickMenu: onClickMenu,
-  onClickReply: onClickReply,
+  onClickReplyPost: onClickReplyPost,
   onClickListComment: onClickListComment,
   onClickListFavor: onClickListFavor,
   onClickSendComment: onClickSendComment,
   onClikcFavorPost: onClikcFavorPost,
   onClickListCommentAction: onClickListCommentAction,
-  onClickListReplyAction: onClickListReplyAction,
 }
