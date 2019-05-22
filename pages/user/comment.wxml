@@ -4,7 +4,7 @@
     <text class='title'>我: {{ item.content }}</text>
     <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin-right: 18rpx;'
-        src="{{item.replier.avatar?item.replier.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.replier.avatar?item.replier.avatar: theme+'/user_icon.png'}}" 
         />
       <view>
         <view class='title'>@{{item.replier.nickname?item.replier.nickname:'匿名'}}</view>

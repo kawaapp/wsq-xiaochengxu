@@ -1,4 +1,5 @@
 const ctr = require('./favor_ctr.js')
+const kawa = require('../../../kawa.js')
 
 // pages/message/list/favor.js
 Page({
@@ -7,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: kawa.Theme.Image,
     messages: [],
     loader: {
       ing: false,

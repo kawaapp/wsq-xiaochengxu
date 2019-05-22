@@ -4,7 +4,7 @@
         bindtap='clickItem' data-idx="{{index}}">
     <view class="h-top"  style='padding-left:28rpx;'>
       <image class='avatar-large' style='margin: 0px 18rpx;'
-        src="{{item.from.avatar?item.from.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.from.avatar?item.from.avatar: theme+'/user_icon.png'}}" 
         />
       <view style='width:100%;'>
         <view class='fade-title'>

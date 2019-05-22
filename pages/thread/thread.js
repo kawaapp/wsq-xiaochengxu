@@ -1,5 +1,6 @@
 // pages/post/posts.js
 const ctr = require('./controller.js')
+const kawa = require('../../kawa.js')
 
 Page({
 
@@ -7,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: kawa.Theme.Image,
     item: {
       idx: null,
       post: {},

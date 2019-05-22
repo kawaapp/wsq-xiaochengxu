@@ -3,7 +3,7 @@
   <view class="card" bindtap='clickItem' data-idx='{{index}}'>
     <view class="horizontal">
       <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
-        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.author.avatar?item.author.avatar:theme+'/user_icon.png'}}" 
         />
       <view>
         <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>

@@ -17,25 +17,17 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "res/img/home.png",
-        "selectedIconPath": "res/img/home_focus.png"
+        "text": "首页"
       },
       {
         "pagePath": "pages/message/message",
-        "text": "消息",
-        "iconPath": "res/img/msg.png",
-        "selectedIconPath": "res/img/msg_focus.png"
+        "text": "消息"
       },
       {
         "pagePath": "pages/me/me",
-        "text": "我的",
-        "iconPath": "res/img/me.png",
-        "selectedIconPath": "res/img/me_focus.png"
+        "text": "我的"
       }
-    ],
-    "color": "#b5b5b5",
-    "selectedColor": "#20ACAB"
+    ]
   },
   "window": {
     "backgroundTextStyle": "light",

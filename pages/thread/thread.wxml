@@ -3,13 +3,13 @@
 <view class="card" style='padding: 18rpx'>
   <view class="horizontal">
     <image class='avatar-large' style='margin-right: 18rpx;'
-      src="{{item.post.author.avatar?item.post.author.avatar:'/res/img/user_icon.png'}}" 
+      src="{{item.post.author.avatar?item.post.author.avatar: theme+'/user_icon.png'}}" 
       />
     <view>
       <view class='title b5'>{{item.post.author.nickname}}</view>
       <view class='subtitle'>{{item.post.agoTime}}</view>
     </view>
-    <image class='menu' src="/res/img/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
+    <image class='menu' src="{{theme}}/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
   </view>
   <view style='margin-top:18rpx;'>
     <text>{{item.post.content}}</text>
@@ -52,7 +52,7 @@
     <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
     <view class="comment">
       <image class="avatar-large" style='margin-right:18rpx;'
-        src="{{item.author.avatar?item.author.avatar:'/res/img/user_icon.png'}}" 
+        src="{{item.author.avatar?item.author.avatar: theme+'/user_icon.png'}}" 
         />
       <view style='width:100%;' data-idx="{{index}}-{{sub}}" bindtap='clickListCommentAction'>
         <!-- Reply user name and content-->
@@ -89,12 +89,12 @@
           <view class='img-text' style='margin-right:18rpx'
                 bindtap='clickListComment' 
                 data-idx="{{index}}">
-            <image src='/res/img/comment.png'></image>
+            <image src='{{theme}}/comment.png'></image>
           </view>
 
           <!-- Favor -->
           <view class='img-text' bindtap='clickListFavor' data-idx="{{index}}">
-            <image src="{{ item.stats.favored>0?'/res/img/liked.png':'/res/img/like.png'}}"></image>
+            <image src="{{theme+(item.stats.favored>0?'/liked.png':'/like.png')}}"></image>
             <text>{{item.stats.favors}}</text>
           </view>
         </view>
@@ -119,14 +119,13 @@
 <!--底部评论框 -->
 <view class='bottom-bar'>
   <view class='left' bindtap='threadCancel'>
-    <image style='margin: 0 auto;' src="/res/img/arrow_left.png"></image>
+    <image style='margin: 0 auto;' src="{{theme}}/arrow_left.png"></image>
   </view>
   <view class='middle' bindtap='clickReply'>
     <text>说点什么...</text>
   </view>
   <view class='right center' bindtap='clickFavor'>
-    <image
-      src="{{ item.post.stats.favored>0?'/res/img/liked.png':'/res/img/like.png'}}"></image>
+    <image src="{{theme+(item.post.stats.favored>0?'/liked.png':'/like.png')}}"/>
   </view>
 </view>
 

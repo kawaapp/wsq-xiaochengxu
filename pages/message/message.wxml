@@ -2,7 +2,7 @@
 <view class='card'>
   <view class='horizontal' bindtap='favorClick'>
     <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
-        src="/res/img/msg_like.png" 
+        src="{{theme}}/msg_like.png" 
         />
     <view>
       <text>点赞</text>
@@ -11,7 +11,7 @@
       <view class='red-tag' wx:if='{{count.favors > 0}}'>
         {{count.favors}}
       </view>
-      <image class='arrow_right' src="/res/img/arrow_right.png"/>
+      <image class='arrow_right' src="{{theme}}/arrow_right.png"/>
     </view>
   </view>
 
@@ -19,7 +19,7 @@
 
   <view class='horizontal' bindtap='commentClick'>
     <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
-        src="/res/img/msg_cmt.png" 
+        src="{{theme}}/msg_cmt.png" 
         />
     <view>
       <text>评论</text>
@@ -28,7 +28,7 @@
       <view class='red-tag' wx:if='{{count.comments > 0}}'>
         {{count.comments}}
       </view>
-      <image class='arrow_right' src="/res/img/arrow_right.png" />
+      <image class='arrow_right' src="{{theme}}/arrow_right.png" />
     </view>
   </view>
 

@@ -2,7 +2,7 @@
 <view class='card' style='margin: 18rpx 0 18rpx 0;'>
   <view class='horizontal'>
     <image class='avatar' 
-      src="{{user.avatar?user.avatar:'/res/img/user_icon.png'}}">
+      src="{{user.avatar?user.avatar: theme+'/user_icon.png'}}">
     </image>
     <view style='margin-left:18rpx;'>
       <view class='title'>{{user.nickname?user.nickname:'路人'}}</view>
@@ -18,29 +18,29 @@
 <view class='card'>
   <view class='horizontal' bindtap='postClick'>
     <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
-      src='/res/img/my_post.png'></image>
+      src='{{theme}}/my_post.png'></image>
     <text class='title'>我的帖子</text>
     <image class='arrow-right' style='margin-left:auto;'
-      src='/res/img/arrow_right.png'></image>
+      src='{{theme}}/arrow_right.png'></image>
   </view>
   <view class='line' style='margin-left:112rpx;'></view>
 
   <view class='horizontal' bindtap='commentClick'>
     <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
-      src='/res/img/my_cmt.png'></image>
+      src='{{theme}}/my_cmt.png'></image>
     <text class='title'>我的评论</text>
     <image class='arrow-right' style='margin-left:auto;'
-      src='/res/img/arrow_right.png'></image>
+      src='{{theme}}/arrow_right.png'></image>
   </view>
   <view class='line' style='margin-left:112rpx;'></view>
 
 
   <view class='horizontal' bindtap='favorClick'>
     <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
-      src='/res/img/my_like.png'></image>
+      src='{{theme}}/my_like.png'></image>
     <text class='title'>我的点赞</text>
     <image class='arrow-right' style='margin-left:auto;'
-      src='/res/img/arrow_right.png'></image>
+      src='{{theme}}/arrow_right.png'></image>
   </view>
 </view>
 

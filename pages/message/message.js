@@ -1,4 +1,5 @@
 const ctr = require('./controller.js')
+const kawa = require('../../kawa.js')
 
 // pages/message/message.js
 Page({
@@ -7,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: kawa.Theme.Image,
     count: {
       favors: 0,
       comments: 0,

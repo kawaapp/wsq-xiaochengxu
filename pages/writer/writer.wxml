@@ -6,11 +6,11 @@
   <!-- image list -->
   <view class='image-list'>
     <view class="thumb" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
-      <image class='del' src="/res/img/del.png" bindtap='clickDelete' data-idx="{{index}}"></image>
+      <image class='del' src="{{theme}}/del.png" bindtap='clickDelete' data-idx="{{index}}"></image>
       <image src="{{item}}" mode='aspectFill' bindtap='clickImage' data-idx="{{index}}" ></image>
     </view>
     <view class="add" wx:if='{{images.length < 9}}' >
-      <image bindtap='chooseImage' src="/res/img/plus.png" ></image>
+      <image bindtap='chooseImage' src="{{theme}}/plus.png" ></image>
     </view>
   </view>
 </view>

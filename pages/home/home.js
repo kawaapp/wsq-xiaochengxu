@@ -1,7 +1,7 @@
 //logs.js
 const ctr = require('./controller.js')
-const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
+const kawa = require('../../kawa.js')
 
 // topics:[
 // {
@@ -21,6 +21,7 @@ const util = require('../../utils/util.js')
 // },....]
 Page({
   data: {
+    theme: kawa.Theme.Image,
     speaker: {
       title: "",
       link: "",
@@ -57,6 +58,7 @@ Page({
     }
   },
   onLoad: function (opt) {
+    applyTheme(kawa.Theme)
     ctr.setup(this)
     ctr.onLoad(opt)
   },
@@ -147,3 +149,27 @@ Page({
     ctr.onClickMenu(e)
   },
 })
+
+function applyTheme(theme) {
+  var imgDir = theme.Image
+  wx.setTabBarItem({
+    index: 0,
+    iconPath: imgDir + "/home.png",
+    selectedIconPath: imgDir + "/home_focus.png",
+  })
+  wx.setTabBarItem({
+    index: 1,
+    iconPath: imgDir + "/msg.png",
+    selectedIconPath: imgDir + "/msg_focus.png",
+  })
+  wx.setTabBarItem({
+    index: 2,
+    iconPath: imgDir + "/me.png",
+    selectedIconPath: imgDir + "/me_focus.png",
+  })
+
+  wx.setTabBarStyle({
+    color: "#b5b5b5",
+    selectedColor: theme.MainColor,
+  })
+}
