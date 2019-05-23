@@ -109,7 +109,7 @@
         <text>{{item.stats.comments}}</text>
       </view>
       <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
-        <image src="{{theme}}/{{item.stats.favored > 0 ? '/liked.png' : '/like.png'}}"></image>
+        <image src="{{theme}}{{item.stats.favored > 0 ? '/liked.png' : '/like.png'}}"></image>
         <text>{{item.stats.favors}}</text>
       </view>
     </view>
