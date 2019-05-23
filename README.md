@@ -2,7 +2,17 @@
 该社区小程序由 [卡哇微社区](http://kawaapp.com) 提供，拥有完整的社区功能。卡哇微社区是专业的微信小程序社区解决
 方案，可以帮助客户快速的在微信内搭建自己的小程序社区。你可以通过如下小程序码预览：
 
-<div align=center><img width="180" src="https://kawaapp.com/static/demo.jpg"/></div>
+<div align=center>
+  <div style="display: inline">
+    <img width="180" src="https://kawaapp.com/static/demo.jpg"><img>
+    <p style="text-align: center;">体验DEMO</p>
+  <div>
+    
+  <div style="display: inline">
+    <img width="180" src="https://kawaapp.com/static/fuwuhao.jpg"><img>
+    <p style="text-align: center;">关注公众号</p>
+  <div>
+</div>
 
 ## 编译运行
 小程序使用了卡哇微社区的社区API接口，如果运行该小程序需要在卡哇微社区后端注册用户，然后创建一个社区应用，
