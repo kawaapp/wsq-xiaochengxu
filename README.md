@@ -1,7 +1,4 @@
 # 卡哇微社区小程序
-
-<div align=center><img width="400px" src="https://images.kawaapp.com/img_bji9pvsdbfdqfm68t520.jpg"/></div>
-
 该社区小程序由 [卡哇微社区](http://kawaapp.com) 提供，拥有完整的社区功能。卡哇微社区是专业的微信小程序社区解决
 方案，可以帮助客户快速的在微信内搭建自己的小程序社区。你可以通过如下小程序码预览：
 
