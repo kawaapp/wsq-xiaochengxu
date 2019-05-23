@@ -1,15 +1,15 @@
 # 卡哇微社区小程序
 
-![卡哇微社区]("https://images.kawaapp.com/img_bji9pvsdbfdqfm68t520.jpg")
+<div align=center><img width="400px" src="https://images.kawaapp.com/img_bji9pvsdbfdqfm68t520.jpg"/></div>
 
 该社区小程序由 [卡哇微社区](http://kawaapp.com) 提供，拥有完整的社区功能。卡哇微社区是专业的微信小程序社区解决
 方案，可以帮助客户快速的在微信内搭建自己的小程序社区。你可以通过如下小程序码预览：
 
-![DEMO 演示](https://kawaapp.com/static/demo.jpg)
+<div align=center><img width="180" src="https://kawaapp.com/static/demo.jpg"/></div>
 
 ## 编译运行
 小程序使用了卡哇微社区的社区API接口，如果运行该小程序需要在卡哇微社区后端注册用户，然后创建一个社区应用，
-并配置微信小程序秘钥，相关配置参见：(卡哇微社区新手指南)[https://mp.weixin.qq.com/s/Rw-N6vWTWR9mcVQgkQ_aAA].
+并配置微信小程序秘钥，相关配置参见：[卡哇微社区新手指南](https://mp.weixin.qq.com/s/Rw-N6vWTWR9mcVQgkQ_aAA).
 
 同时还应该在小程序中配置卡哇微社区 AppKey，为了方便测试，项目中已经内置了一个开发用 AppKey.
 在项目目录下，找到 `kawa.js` 配置如下：
@@ -38,8 +38,7 @@ module.exports = {
   Theme: theme_blue,
 }
 ```
-此处已经内置了两套皮肤，如果需要添加皮肤，可以按照上面格式分别添加资源文件并配置主题色，
-资源文件，可以参考 `res/img` 目录下的示例。
+此处已经内置了两套皮肤，如果需要添加皮肤，可以按照上面格式分别添加资源文件并配置主题色。
 
 ## 应用架构
 卡哇微社区采用的是Model/View分离的应用架构，在每个页面下面会包含5个文件：
