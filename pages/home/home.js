@@ -22,6 +22,7 @@ const kawa = require('../../kawa.js')
 Page({
   data: {
     theme: kawa.Theme.Image,
+    color: kawa.Theme.MainColor,
     speaker: {
       title: "",
       link: "",

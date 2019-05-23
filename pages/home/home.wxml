@@ -45,8 +45,10 @@
       <view 
         data-idx="{{index}}" 
         bindtap="clickTab"
+        style="{{tab.current == index ? ('color:'+ color+';' ):''}} "
         class="tab-item {{tab.current == index ?'active':''}}">
-        {{item}}
+        {{item}} 
+        <view class='indicator' style='background: {{color}}'></view>
       </view>
     </block>
 </scroll-view>

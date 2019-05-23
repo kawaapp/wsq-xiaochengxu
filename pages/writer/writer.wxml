@@ -14,7 +14,7 @@
     </view>
   </view>
 </view>
-<button style='margin-top: 28rpx;' 
+<button style='margin-top: 28rpx; background-color: {{color}};' 
   class='btn-submit' 
   hover-class='btn-submit-hover'
   bindtap='writerPublish'>发帖</button>
