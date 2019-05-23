@@ -3,15 +3,7 @@
 方案，可以帮助客户快速的在微信内搭建自己的小程序社区。你可以通过如下小程序码预览：
 
 <div align=center>
-  <div style="display: inline">
-    <img width="180" src="https://kawaapp.com/static/demo.jpg"><img>
-    <p style="text-align: center;">体验DEMO</p>
-  <div>
-    
-  <div style="display: inline">
-    <img width="180" src="https://kawaapp.com/static/fuwuhao.jpg"><img>
-    <p style="text-align: center;">关注公众号</p>
-  <div>
+  <img width="720" src="https://kawaapp.com/static/ad.png"><img>
 </div>
 
 ## 编译运行
