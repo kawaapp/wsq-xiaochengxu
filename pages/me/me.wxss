@@ -1,8 +1,4 @@
 /* pages/me/me.wxss */
-.me-bg {
-  background: #20ACAB;
-  padding: 18rpx;
-}
 
 .avatar {
   width: 112rpx;
@@ -27,14 +23,13 @@
 }
 
 .btn {
-  background-color: rgba(52, 193, 192, 1);
   color: #fff;
   font-size: 32rpx;
 }
 
 .btn-hover {
-  background-color: rgba(52, 193, 192, .6);
   color: #fff;
+  opacity: .6;
 }
 
 .info {

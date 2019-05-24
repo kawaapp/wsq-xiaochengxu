@@ -9,6 +9,7 @@ Page({
    */
   data: {
     theme: kawa.Theme.Image,
+    color: kawa.Theme.MainColor,
     user: {
       avatar: '',
       nickname: '小虾米',
