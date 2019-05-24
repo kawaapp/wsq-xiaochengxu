@@ -14,7 +14,9 @@ Page({
       avatar: '',
       nickname: '小虾米',
       summary: '啦啦啦 我是卖报的小行家',
-    }
+    }, 
+    copyright: "",
+    support: true,
   },
 
   /**

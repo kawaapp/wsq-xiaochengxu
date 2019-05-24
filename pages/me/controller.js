@@ -11,6 +11,13 @@ function onLoad(options) {
   if (user) {
     view.setData({ user: user })
   }
+  const meta = app.globalData.meta
+  if (meta && meta.app_copyright) {
+    view.setData({ copyright: meta.app_copyright })
+  }
+  if (meta && (meta.app_support === 'false')) {
+    view.setData({ support: false })
+  }
   // update 
   api.getSelf().then((resp) => {
     app.globalData.userInfo = resp.data

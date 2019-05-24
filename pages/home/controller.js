@@ -37,6 +37,7 @@ function onLoad(opt) {
     view.setData({
       meta: resp.data
     })
+    app.globalData.meta = resp.data
     console.log("get meta:", resp.data)
 
     const pub = {

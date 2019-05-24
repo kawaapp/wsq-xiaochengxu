@@ -8,7 +8,7 @@
       <view class='title'>{{user.nickname?user.nickname:'路人'}}</view>
       <view class='subtitle'>{{user.summary}}</view>
     </view>
-    <view hidden='{{!user.nickname}}' style='margin-left:auto;'>
+    <view hidden='{{user.nickname}}' style='margin-left:auto;'>
       <button class='btn' 
       hover-class='btn-hover'
       style='background-color: {{color}};'
@@ -49,5 +49,8 @@
 </view>
 
 <view class='info'>
-  <text>卡哇微社区(kawaapp.com) 提供技术支持</text>
+  <text
+    style='color: #576b95; font-size: 30rpx;'
+  >{{copyright}}</text>
+  <text wx:if="{{support}}">卡哇微社区(kawaapp.com) 提供技术支持</text>
 </view>

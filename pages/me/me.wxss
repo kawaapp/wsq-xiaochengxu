@@ -43,4 +43,5 @@
   text-align: center;
   font-size: 26rpx;
   color: #9c9b9b;
+  opacity: .6;
 }
