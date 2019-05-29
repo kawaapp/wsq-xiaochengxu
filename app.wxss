@@ -70,14 +70,14 @@ page{
 }
 
 .img-text image{
-  height: 38rpx;
-  width: 38rpx;
+  height: 48rpx;
+  width: 48rpx;
   margin-left: 9.36rpx;
 }
 
 .img-text text {
   text-align: center;
-  width: 56rpx;
+  width: 86rpx;
   font-size: 32rpx;
   color: #888888;
 }

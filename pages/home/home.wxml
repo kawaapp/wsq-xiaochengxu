@@ -106,11 +106,11 @@
       <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
       <view class='img-text' bindtap='commentClick' data-idx="{{index}}">
         <image src='{{theme}}/comment.png'></image>
-        <text>{{item.stats.comments}}</text>
+        <text>{{item.stats.comments? item.stats.comments: "评论" }}</text>
       </view>
       <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
-        <image src="{{theme}}{{item.stats.favored > 0 ? '/liked.png' : '/like.png'}}"></image>
-        <text>{{item.stats.favors}}</text>
+        <image src="{{theme}}{{item.stats.favored? '/liked.png' : '/like.png'}}"></image>
+        <text style="{{item.stats.favored? ('color:'+color+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
       </view>
     </view>
   </view>

@@ -87,15 +87,15 @@
 
           <!-- Commennt -->
           <view class='img-text' style='margin-right:18rpx'
-                bindtap='clickListComment' 
+                catchtap='clickListComment' 
                 data-idx="{{index}}">
             <image src='{{theme}}/comment.png'></image>
           </view>
 
           <!-- Favor -->
-          <view class='img-text' bindtap='clickListFavor' data-idx="{{index}}">
+          <view class='img-text' catchtap='clickListFavor' data-idx="{{index}}">
             <image src="{{theme+(item.stats.favored>0?'/liked.png':'/like.png')}}"></image>
-            <text>{{item.stats.favors}}</text>
+            <text>{{item.stats.favors? item.stats.favors: "赞" }}</text>
           </view>
         </view>
       </view>
