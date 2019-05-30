@@ -1,6 +1,7 @@
 const theme_default = {
   Image: '/res/default',
-  MainColor: '#20ACAB',
+  MainColor: '#1890ff',
+  TabSelectedColor: '#606060',
 }
 
 const theme_blue = {
@@ -15,5 +16,5 @@ const theme_cyan = {
 
 module.exports = {
   AppKey: "J3PDS76SH6JASQHX2QAY5VQ3QINXIYLEMVIREFADB7Z2BHCWC3VA====",
-  Theme: theme_cyan,
+  Theme: theme_default,
 }

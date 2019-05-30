@@ -171,6 +171,6 @@ function applyTheme(theme) {
 
   wx.setTabBarStyle({
     color: "#b5b5b5",
-    selectedColor: theme.MainColor,
+    selectedColor: theme.TabSelectedColor || theme.MainColor,
   })
 }
