@@ -61,20 +61,23 @@
 }
 
 .tab-item {
-  margin: 0 36rpx;
+  margin: 0 32rpx;
+  font-size: 32rpx;
   display: inline-block;
+  opacity: .7;
 }
 .tab-item.active {
   position: relative;
+  opacity: 1;
 }
 
 .tab-item .indicator {
   display: none;
   height: 8rpx;
-  width: 66rpx;
+  width: 52rpx;
   position: absolute;
-  bottom: 0;
-  left: 4rpx;
+  bottom: 4rpx;
+  left: 7rpx;
   border-radius: 16rpx;
 }
 

@@ -95,7 +95,7 @@
           <!-- Favor -->
           <view class='img-text' catchtap='clickListFavor' data-idx="{{index}}">
             <image src="{{theme+(item.stats.favored>0?'/liked.png':'/like.png')}}"></image>
-            <text>{{item.stats.favors? item.stats.favors: "赞" }}</text>
+            <text style="{{item.stats.favored?'color:'+favorColor+';':''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
           </view>
         </view>
       </view>

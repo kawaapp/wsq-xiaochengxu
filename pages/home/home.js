@@ -23,6 +23,8 @@ Page({
   data: {
     theme: kawa.Theme.Image,
     color: kawa.Theme.MainColor,
+    tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
+    favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
     speaker: {
       title: "",
       link: "",

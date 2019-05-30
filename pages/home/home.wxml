@@ -45,10 +45,10 @@
       <view 
         data-idx="{{index}}" 
         bindtap="clickTab"
-        style="{{tab.current == index ? ('color:'+ color+';' ):''}} "
+        style="{{tab.current == index ? ('color:'+tabColor+';' ):''}} "
         class="tab-item {{tab.current == index ?'active':''}}">
         {{item}} 
-        <view class='indicator' style='background: {{color}}'></view>
+        <view class='indicator' style='background: {{tabColor}}'></view>
       </view>
     </block>
 </scroll-view>
@@ -110,7 +110,7 @@
       </view>
       <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
         <image src="{{theme}}{{item.stats.favored? '/liked.png' : '/like.png'}}"></image>
-        <text style="{{item.stats.favored? ('color:'+color+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
+        <text style="{{item.stats.favored? ('color:'+favroColor+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
       </view>
     </view>
   </view>
