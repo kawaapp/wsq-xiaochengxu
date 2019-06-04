@@ -78,6 +78,29 @@ function onLoad(opt) {
     // refresh local storage
     wx.setStorage({ key: 'user', data: resp.data })
   })
+
+  // 话题列表
+  try {
+    wx.getStorage({ key: 'topic', success: function(res) {
+        showTopic(res.data)
+    }})
+  } catch(e){}
+
+  api.getTagList().then( resp => {
+    app.globalData.topics = resp.data
+    showTopic(resp.data)
+    // refresh local storage
+    wx.setStorage({ key: 'topic', data: resp.data })
+  })
+}
+
+// show topic
+function showTopic(items) {
+  if (!items || items.length == 0) {
+    return
+  }
+  items.unshift({text: "全部话题"})
+  view.setData({ topic: { items: items, selected: -1}})
 }
 
 function getTitle(item) {
@@ -353,6 +376,26 @@ function onClickImageList(e) {
   console.log("get index:" + index + " index2:" + index2)
 }
 
+function onClickTopic(e) {
+  // 高亮选项
+  var idx = e.target.dataset.idx;
+  var topic = view.data.topic
+  if (topic.selected == idx) {
+    topic.selected = -1
+  } else {
+    topic.selected = idx
+  }
+  view.setData({ topic: topic })
+
+  // 刷新列表
+  if (topic.selected == 0) {
+    refreshList(0)
+  } else {
+    var hash = topic.items[topic.selected]
+    refreshList(0, hash)
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -364,4 +407,5 @@ module.exports = {
   onClickMenu: onClickMenu,
   onClickNewPost: onClickNewPost,
   onClickImage: onClickImage,
+  onClickTopic: onClickTopic,
 }

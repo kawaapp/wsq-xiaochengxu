@@ -6,14 +6,34 @@
   <!-- image list -->
   <view class='image-list'>
     <view class="thumb" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
-      <image class='del' src="{{theme}}/del.png" bindtap='clickDelete' data-idx="{{index}}"></image>
-      <image src="{{item}}" mode='aspectFill' bindtap='clickImage' data-idx="{{index}}" ></image>
+      <image class='del' 
+        src="{{theme}}/del.png" 
+        bindtap='clickDelete' 
+        data-idx="{{index}}">
+      </image>
+      <image src="{{item}}" 
+        mode='aspectFill' 
+        bindtap='clickImage' 
+        data-idx="{{index}}" >
+      </image>
     </view>
     <view class="add" wx:if='{{images.length < 9}}' >
       <image bindtap='chooseImage' src="{{theme}}/plus.png" ></image>
     </view>
   </view>
+  <view wx:if="{{topic.items}}">
+    <view class='line'></view>
+    <view class='tag-title'>选择话题</view>
+    <view class='tag-list'>
+       <text class='tag'
+        bindtap='clickTag'
+        data-idx="{{index}}"
+        style="{{index == topic.selected? 'border: 1rpx solid '+color:''}}"
+        wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </text>
+    </view>
+  </view>
 </view>
+
 <button style='margin-top: 28rpx; background-color: {{color}};' 
   class='btn-submit' 
   hover-class='btn-submit-hover'

@@ -13,6 +13,10 @@ Page({
     title: "",
     content: "",
     images: [],
+    topic: {
+      items: ["临时工", "兼职", "小时工", "长期工", "一去二三里", "烟村四五家"],
+      selected: -1,
+    }
   },
   onLoad(options) {
     ctr.setup(this)
@@ -41,5 +45,8 @@ Page({
     wx.navigateBack({
       delta: 1
     })
+  },
+  clickTag: function(e) {
+    ctr.onClickTag(e)
   }
 })

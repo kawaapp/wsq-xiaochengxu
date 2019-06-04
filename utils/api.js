@@ -132,7 +132,7 @@ function autoAuth() {
   })
 }
 
-// Promised method: User/Topic/Comment
+// Promised method: User/Post/Comment
 function auth() {
   wx.login({
     success: function(resp) {
@@ -219,7 +219,7 @@ function getUserFavorList(uid, since, limit) {
 }
 
 
-// get topic list, fitler: top,val,adz
+// get post list, fitler: top,val,adz
 function getPostList(since, limit, filter) {
   return req({
     url: `${Host}/api/posts?since_id=${since}&limit=${limit}&filter=${filter}`,
@@ -234,7 +234,7 @@ function getPost(id) {
   })
 }
 
-// create topic
+// create post
 function createPost(data) {
   return req({
     url: `${Host}/api/posts`,
@@ -243,7 +243,7 @@ function createPost(data) {
   })
 }
 
-// update topic
+// update post
 function updatePost(id, data) {
   return req({
     url: `${Host}/api/posts/${id}`,
@@ -252,7 +252,7 @@ function updatePost(id, data) {
   })
 }
 
-// delete topic
+// delete post
 function deletePost(id) {
   return req({
     url: `${Host}/api/posts/${id}`,

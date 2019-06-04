@@ -61,3 +61,22 @@
   width: 40%;
   height: 40%;
 }
+
+.tag-title {
+  font-size: 32rpx;
+  margin: 6rpx 0;
+}
+
+.tag-list {
+  margin-left: -14rpx; 
+}
+
+.tag {
+  border: 1rpx solid lightgray;
+  border-radius: 2px;
+  font-size: 32rpx;
+  color: gray;
+  padding: 8rpx 16rpx;
+  margin: 4rpx 16rpx;
+  word-break: keep-all;
+}

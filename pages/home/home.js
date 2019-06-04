@@ -50,6 +50,10 @@ Page({
       scrollLeft: 0, //tab滚动条距离左侧距离
       items: ["全部", "精华"],
     },
+    topic: {
+      items: ["全部话题", "临时工", "兼职", "小时工", "长期工", "一去二三里", "烟村四五家"],
+      selected: -1,
+    }
   },
   clickTab: function(e) {
     var idx = e.target.dataset.idx;
@@ -151,6 +155,11 @@ Page({
   clickMenu: function(e) {
     ctr.onClickMenu(e)
   },
+
+  // 点击话题标签
+  clickTopic: function(e) {
+    ctr.onClickTopic(e)
+  }
 })
 
 function applyTheme(theme) {

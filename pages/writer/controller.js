@@ -1,5 +1,6 @@
 import api from '../../utils/api.js'
 import util from '../../utils/util.js'
+const app = getApp()
 
 var view = undefined
 function setup(v) {
@@ -7,6 +8,11 @@ function setup(v) {
 }
 
 function onLoad(options) {
+  var topic = app.globalData.topics
+  view.setData({ topic: { items: topic, selected: -1}})
+}
+
+function refreshTopics() {
 
 }
 
@@ -54,6 +60,12 @@ function onClickSubmit() {
   var data = {
     title: view.data.title,
     content: view.data.content
+  }
+
+  // attach topic
+  var topic = view.data.topic
+  if (topic.selected >= 0 && topic.selected < topic.items.length) {
+    data.content = '#' + topic.items[topic.selected] + '#' + data.content
   }
 
   var handler = undefined
@@ -136,6 +148,18 @@ function uploadFile(file) {
   })
 }
 
+
+function onClickTag(e) {
+  var idx = e.target.dataset.idx;
+  var topic = view.data.topic
+  if (topic.selected == idx) {
+    topic.selected = -1
+  } else {
+    topic.selected = idx
+  }
+  view.setData({ topic: topic })
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -143,4 +167,5 @@ module.exports = {
   onDeleteImage: onDeleteImage,
   onChooseImage: onChooseImage,
   onClickSubmit: onClickSubmit,
+  onClickTag: onClickTag,
 }

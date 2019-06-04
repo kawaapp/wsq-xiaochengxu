@@ -116,3 +116,14 @@
   position: relative;
   top: -2rpx;
 }
+
+.tag {
+  border: 1rpx solid lightgray;
+  border-radius: 2px;
+  font-size: 32rpx;
+  color: gray;
+  padding: 8rpx 16rpx;
+  margin: 8rpx 32rpx 48rpx 0rpx;
+  word-break: keep-all;
+  line-height: 38rpx;
+}

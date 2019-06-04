@@ -53,8 +53,22 @@
     </block>
 </scroll-view>
 
-<!-- 列表 -->
+<!-- 线 -->
 <view style='margin-bottom:1rpx; background-color: #fefefe;'/>
+
+<!-- 话题标签 -->
+<view class='card' wx:if="{{topic.items}}">
+  <view class='tag-list'>
+      <text class='tag'
+      bindtap='clickTopic'
+      data-idx="{{index}}"
+      style="{{index == topic.selected? 'border: 1rpx solid '+color:''}}"
+      wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </text>
+  </view>
+  <view style='margin-bottom:9.36rpx; background-color: #fefefe;'/>
+</view>
+
+<!-- 列表 -->
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card">
     

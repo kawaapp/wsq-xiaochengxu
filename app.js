@@ -41,5 +41,6 @@ App({
     posts: [],
     meta: {},
     userInfo: {},
+    topics: [],
   }
 })
