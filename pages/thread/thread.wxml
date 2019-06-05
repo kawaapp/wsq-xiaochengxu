@@ -101,6 +101,11 @@
       </view>
     </view>
   </view>
+
+  <!-- 没有任何回复的时候显示 -->
+  <view class='empty' wx:if="{{!loader.ing && comments.length == 0}}">
+    <view>暂时没有人回复哟</view>
+  </view>
   <view style='margin-bottom:9rpx;'/>
 </view>
 

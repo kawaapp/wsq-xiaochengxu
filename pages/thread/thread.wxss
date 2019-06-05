@@ -145,3 +145,17 @@
   text-align: center;
   color:#C9C9C9;
 }
+
+.empty {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  align-items: center;
+}
+
+.empty view {
+  width: 100%;
+  color: #C9C9C9;
+  font-size: 32rpx;
+  text-align: center;
+}
