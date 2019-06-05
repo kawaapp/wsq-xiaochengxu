@@ -388,6 +388,14 @@ function onClickTopic(e) {
   refreshList(0, getSelectedTopic())
 }
 
+function onClickShare(res) {
+  var meta = app.globalData.meta
+  return {
+    title: meta.app_name,
+    path: '/pages/login/login?q=home'
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -400,4 +408,5 @@ module.exports = {
   onClickNewPost: onClickNewPost,
   onClickImage: onClickImage,
   onClickTopic: onClickTopic,
+  onClickShare: onClickShare,
 }

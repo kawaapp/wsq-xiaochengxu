@@ -83,7 +83,6 @@ function autoAuth() {
     // check localstorage first
     const value = wx.getStorageSync('token')
     if (value && !util.jwtExpire(value)) {
-      console.log("use cached token:" + value)
       g.token = value
       res(value)
       return

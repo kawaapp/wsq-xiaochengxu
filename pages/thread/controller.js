@@ -8,6 +8,24 @@ function setup(_view) {
 }
 
 function onLoad(options) {
+  view.data.shared = options.shared
+  
+  // 非分享链接，直接打开
+  if (!options.shared) {
+    fetch(options)
+  } else {
+    // 如果是分享的链接，需要先登录 
+    api.autoAuth().then(() => {
+      fetch(options)
+    }).catch((err) => {
+      wx.showToast({
+        title: '帖子打开失败:' + err.code, icon: 'none', duration: 2000,
+      })
+    })
+  }
+}
+
+function fetch(options) {
   function setup(item) {
     console.log("get posst:", item)
 
@@ -155,10 +173,17 @@ function onClickMenu(e) {
 // 删除帖子
 function deletePost(item) {
   api.deletePost(item.id).then(resp => {
-    wx.navigateBack({
-      delta: 1,
-    })
+    gotoHome()
   })
+}
+
+// 返回首页
+function gotoHome() {
+  if (!view.data.shared) {
+    wx.navigateBack({ delta: 1 })
+  } else {
+    wx.switchTab({ url: '/pages/home/home' })
+  }
 }
 
 // 对帖子点赞、取消点赞
@@ -515,6 +540,18 @@ function showActionSheet(menus, actions) {
   })
 }
 
+function onClickShare(res) {
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  console.log("click share!!")
+  var post = view.data.item.post
+  return {
+    path: '/pages/thread/thread?shared=true&pid=76'// + post.id
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -528,4 +565,6 @@ module.exports = {
   onClickSendComment: onClickSendComment,
   onClikcFavorPost: onClikcFavorPost,
   onClickListCommentAction: onClickListCommentAction,
+  onClickShare: onClickShare,
+  gotoHome: gotoHome,
 }

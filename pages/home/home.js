@@ -159,6 +159,10 @@ Page({
   // 点击话题标签
   clickTopic: function(e) {
     ctr.onClickTopic(e)
+  },
+
+  onShareAppMessage: function (res) {
+    ctr.onClickShare(res)
   }
 })
 

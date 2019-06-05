@@ -26,7 +26,8 @@ Page({
       text: "",
       enable: true,
       focus: false
-    }
+    },
+    shared: false,
   },
 
   /**
@@ -41,6 +42,9 @@ Page({
   },
   onReachBottom: function(e) {
     ctr.onReachBottom(e)
+  },
+  onShareAppMessage: function (res) {
+    return ctr.onClickShare(res)
   },
   clickImage: function(e) {
     ctr.onClickImage(e)
@@ -68,7 +72,7 @@ Page({
     ctr.onClikcFavorPost(e)
   },
   threadCancel: function(e) {
-    wx.navigateBack({ delta: 1})
+    ctr.gotoHome()
   },
   clickListComment: function(e) {
     ctr.onClickListComment(e)
