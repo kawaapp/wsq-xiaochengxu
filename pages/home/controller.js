@@ -185,32 +185,7 @@ function refreshList(tabIndex, topic) {
 
 function onResult(data) {
   if (data && data.ok && view.data.tab.current == 0) {
-    if (data.req == 'newpost') {
-      // data.post
-      // 新增帖子到列表头部
-      var post = data.data
-      if (!post.stats) {
-        post.stats = { comments: 0, favors: 0}
-      }
-      decoratePost(post)
-      view.data.posts.unshift(post)
-      view.setData({
-        posts: view.data.posts
-      })
-    } else if (data.req == 'newcomment') {
-      // 刷新评论数量
-      var item = view.data.posts[data.idx]
-      var key = 'posts[' + data.idx + '].stats'
-      if (!item.stats) {
-        item.stats = { comments: 0, favors: 0 }
-      }
-      if (item.stats.comments) {
-        item.stats.comments += 1
-      } else {
-        item.stats.comments = 1
-      }
-      view.setData({ [key]: item.stats })
-    }
+    refreshList(0, getSelectedTopic())
   }
   console.log('home, on result data:' + data)
 }
