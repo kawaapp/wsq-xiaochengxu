@@ -118,7 +118,7 @@
     <view class='line'></view>
     <view class='flow-right'>
       <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
-      <view class='img-text' bindtap='commentClick' data-idx="{{index}}">
+      <view class='comment' bindtap='commentClick' data-idx="{{index}}">
         <image src='{{theme}}/comment.png'></image>
         <text>{{item.stats.comments? item.stats.comments: "评论" }}</text>
       </view>
