@@ -16,27 +16,26 @@
     
     <!-- images -->
     <view wx:if="{{item.post.images}}">
-          <view wx:if="{{item.post.images.length == 1}}">
-            <image class='image-single'
-              src="{{item.post.images[0]}}" 
+        <view wx:if="{{item.post.images.length == 1}}">
+          <image class='image-single'
+            src="{{item.post.images[0]}}" 
+            mode='aspectFill' 
+            catchtap='clickImage'
+            data-idx='{{0}}'
+            ></image>
+        </view>
+        <view class='image-list' wx:if="{{item.post.images.length >=2 }}">
+          <view class="thumb"
+            wx:for="{{item.post.images}}" wx:for-item="item" wx:key="{{item}}">
+            <image
+              src="{{item}}" 
               mode='aspectFill' 
-              catchtap='clickImage'
-              data-idx='{{0}}'
-              ></image>
+              catchtap='clickImage' 
+              data-idx="{{index}}" ></image>
           </view>
-          <view class='image-list' wx:if="{{item.post.images.length >=2 }}">
-            <view class="thumb"
-              wx:for="{{item.post.images}}" wx:for-item="item" wx:key="{{item}}">
-              <image
-                src="{{item}}" 
-                mode='aspectFill' 
-                catchtap='clickImage' 
-                data-idx="{{index}}" ></image>
-            </view>
-          </view>
-        </view> 
+        </view>
+      </view> 
   </view>
-  
 </view>
 <view style='margin-bottom:9rpx;'/>
 
@@ -129,8 +128,12 @@
   <view class='middle' bindtap='clickReply'>
     <text>说点什么...</text>
   </view>
-  <view class='right center' bindtap='clickFavor'>
-    <image src="{{theme+(item.post.stats.favored>0?'/liked.png':'/like.png')}}"/>
+  <view class='right center'>
+    <image bindtap='clickFavor' 
+      src="{{theme+(item.post.stats.favored>0?'/liked.png':'/like.png')}}"/>
+    <button open-type='share' class='share'>
+      <image src="{{theme}}/share.png"/>
+    </button>
   </view>
 </view>
 

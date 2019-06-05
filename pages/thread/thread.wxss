@@ -64,7 +64,7 @@
 .bottom-bar .left {
   display:flex;
   justify-content: center; 
-  width: 150rpx;
+  width: 120rpx;
 }
 
 .bottom-bar .middle {
@@ -79,7 +79,22 @@
 .bottom-bar .right {
   display:flex;
   justify-content: center; 
-  width: 150rpx;
+  align-items: center;
+  width: 180rpx;
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  margin-left: 20rpx;
+}
+
+.share::after {
+  border: 0;
 }
 
 .bg-mask {

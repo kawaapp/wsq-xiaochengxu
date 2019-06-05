@@ -548,7 +548,7 @@ function onClickShare(res) {
   console.log("click share!!")
   var post = view.data.item.post
   return {
-    path: '/pages/thread/thread?shared=true&pid=76'// + post.id
+    path: '/pages/thread/thread?shared=true&pid='+ post.id
   }
 }
 
