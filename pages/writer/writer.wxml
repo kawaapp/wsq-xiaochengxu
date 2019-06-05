@@ -25,11 +25,11 @@
     <view class='line'></view>
     <view class='tag-title'>选择话题</view>
     <view class='tag-list'>
-       <text class='tag'
+       <view class='tag'
         bindtap='clickTag'
         data-idx="{{index}}"
-        style="{{index == topic.selected? 'border: 1rpx solid '+color:''}}"
-        wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </text>
+        style="{{index == topic.selected? 'color:' +tabColor+ ';border-color:'+tabColor:''}}"
+        wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </view>
     </view>
   </view>
 </view>

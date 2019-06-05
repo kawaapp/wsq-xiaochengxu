@@ -117,15 +117,20 @@
   top: -2rpx;
 }
 
+.tag-list {
+  margin-left: -14rpx; 
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .tag {
-  border: 1rpx solid lightgray;
+  border: 1px solid lightgray;
   border-radius: 2px;
   font-size: 32rpx;
   color: gray;
-  padding: 8rpx 16rpx;
-  margin: 8rpx 32rpx 48rpx 0rpx;
+  padding: 6rpx 16rpx;
+  margin: 6rpx 16rpx;
   word-break: keep-all;
-  line-height: 38rpx;
 }
 
 

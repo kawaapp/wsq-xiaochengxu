@@ -10,6 +10,7 @@ Page({
   data: {
     theme: kawa.Theme.Image,
     color: kawa.Theme.MainColor,
+    tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
     title: "",
     content: "",
     images: [],
