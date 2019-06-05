@@ -86,11 +86,15 @@
       </view>
       <view style='margin-bottom:9.36rpx;'/>
       <view>
-        <text 
-          wx:for="{{item.styled}}" 
-          wx:for-item="text" 
-          wx:key="{{index}}"
-          class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+        <!-- Text -->
+        <view>
+          <text 
+            wx:for="{{item.styled}}" 
+            wx:for-item="text" 
+            wx:key="{{index}}"
+            class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+        </view>
+        <!-- Image -->
         <view wx:if="{{item.images}}">
           <view wx:if="{{item.images.length == 1}}">
             <image class='image-single' 

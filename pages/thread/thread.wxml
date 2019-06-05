@@ -12,7 +12,14 @@
     <image class='menu' src="{{theme}}/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
   </view>
   <view style='margin-top:18rpx;'>
-    <text>{{item.post.content}}</text>
+    <!-- Text -->
+    <view>
+      <text 
+            wx:for="{{item.post.styled}}" 
+            wx:for-item="text" 
+            wx:key="{{index}}"
+            class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+    </view>
     
     <!-- images -->
     <view wx:if="{{item.post.images}}">

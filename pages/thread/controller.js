@@ -27,12 +27,13 @@ function onLoad(options) {
 
 function fetch(options) {
   function setup(item) {
-    console.log("get posst:", item)
-
     var utc = item.post.created_at * 1000
     item.post.agoTime = util.agoTime(utc)
     if (!item.post.images && item.post.media) {
       item.post.images = JSON.parse(item.post.media.path)
+    }
+    if (!item.post.styled) {
+      item.post.styled = util.decorateText(item.post.content)
     }
 
     // set post data

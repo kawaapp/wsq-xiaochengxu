@@ -67,7 +67,7 @@ function onClickSubmit() {
   var tag = undefined
   if (topic.selected >= 0 && topic.selected < topic.items.length) {
     tag = topic.items[topic.selected].text
-    data.content = '#' + tag + '#' + data.content
+    data.content = '#' + tag + '# ' + data.content
   }
 
   var handler = undefined

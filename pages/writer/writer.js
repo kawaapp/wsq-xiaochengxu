@@ -15,7 +15,7 @@ Page({
     content: "",
     images: [],
     topic: {
-      items: ["临时工", "兼职", "小时工", "长期工", "一去二三里", "烟村四五家"],
+      items: [],
       selected: -1,
     }
   },
