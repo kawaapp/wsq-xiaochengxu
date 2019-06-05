@@ -99,8 +99,16 @@ function showTopic(items) {
   if (!items || items.length == 0) {
     return
   }
-  items.unshift({text: "全部话题"})
-  view.setData({ topic: { items: items, selected: -1}})
+  var topics = items.slice(0)
+  topics.unshift({text: "全部话题"})
+  view.setData({ topic: { items: topics, selected: -1}})
+}
+
+function getSelectedTopic() {
+  var topic = view.data.topic
+  if (topic.selected > 0 && topic.selected < topic.items.length) {
+    return topic.items[topic.selected].text
+  }
 }
 
 function getTitle(item) {
@@ -137,7 +145,7 @@ function onTabChanged(idx) {
   refreshList(idx)
 }
 
-function refreshList(tabIndex) {
+function refreshList(tabIndex, topic) {
   var data = tabData[tabIndex]
   if (data.loader.ing) {
     return
@@ -152,7 +160,7 @@ function refreshList(tabIndex) {
   data.posts = []
   bindTabData(tabIndex)
   console.log("load data for tab:" + tabIndex, "filter:" + fitler)
-  api.getPostList(0, limit, fitler).then(resp => {
+  api.getPostList(0, limit, fitler, topic).then(resp => {
     if (resp.data && resp.data.length < limit) {
       data.loader.more = false
     }
@@ -214,14 +222,28 @@ function onPullDownRefresh() {
     wx.stopPullDownRefresh()
     return
   }
-  refreshList(view.data.tab.current)
+  var tabIndex = view.data.tab.current
+  if (tabIndex == 0) {
+    refreshList(tabIndex, getSelectedTopic())
+  } else {
+    refreshList(tabIndex)
+  }
 }
 
 function onReachBottom() {
   if (view.data.loader.ing || !view.data.loader.more) {
     return
   }
-  var data = tabData[view.data.tab.current]
+  var tabIndex = view.data.tab.current
+  var filter = ""
+  if (tabIndex == 1) {
+    filter = "val"
+  }
+  var topic = undefined
+  if (tabIndex == 0) {
+    topic = getSelectedTopic()
+  }
+  var data = tabData[tabIndex]
   var posts = data.posts
   var sinceId = 0
   var limit = 20
@@ -229,7 +251,7 @@ function onReachBottom() {
     sinceId = posts[posts.length - 1].id
   }
   var current = view.data.tab.current
-  api.getPostList(sinceId, limit).then((resp) => {
+  api.getPostList(sinceId, limit, filter, topic).then((resp) => {
     data.loader.ing = false
     if (resp.data) {
       if (resp.data.length < 20) {
@@ -251,6 +273,10 @@ function onReachBottom() {
       title: '加载失败', icon: 'none'
     })
   })
+}
+
+function listLoadMore(tabIndex, topic) {
+
 }
 
 function onClickFavor(e) {
@@ -276,7 +302,7 @@ function onClickFavor(e) {
       item.stats.favors += 1
       item.stats.favored = true
       view.setData({ [key]: item.stats })
-      console.log("favor fail:", resp.statusCode)
+      console.log("favor succ:", resp.statusCode)
     }).catch(err => {
       console.log("favor err:", err)
     })
@@ -380,20 +406,11 @@ function onClickTopic(e) {
   // 高亮选项
   var idx = e.target.dataset.idx;
   var topic = view.data.topic
-  if (topic.selected == idx) {
-    topic.selected = -1
-  } else {
-    topic.selected = idx
-  }
+  topic.selected = idx
   view.setData({ topic: topic })
 
   // 刷新列表
-  if (topic.selected == 0) {
-    refreshList(0)
-  } else {
-    var hash = topic.items[topic.selected]
-    refreshList(0, hash)
-  }
+  refreshList(0, getSelectedTopic())
 }
 
 module.exports = {

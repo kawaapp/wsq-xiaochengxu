@@ -219,12 +219,19 @@ function getUserFavorList(uid, since, limit) {
 }
 
 
-// get post list, fitler: top,val,adz
-function getPostList(since, limit, filter) {
-  return req({
-    url: `${Host}/api/posts?since_id=${since}&limit=${limit}&filter=${filter}`,
-    method: 'GET'
-  })
+// get post list, fitler: top,val,adz, topic
+function getPostList(since, limit, filter, topic) {
+  if (!topic) {
+    return req({
+      url: `${Host}/api/posts?since_id=${since}&limit=${limit}&filter=${filter}`,
+      method: 'GET'
+    })
+  } else {
+    return req({
+      url: `${Host}/api/tags/${topic}/posts?since_id=${since}&limit=${limit}`,
+      method: 'GET'
+    })
+  }
 }
 
 function getPost(id) {
@@ -365,10 +372,11 @@ function getTagList() {
   })
 }
 
-function createTag(tag) {
+function linkTagPost(data) {
   return req({
     url: `${Host}/api/tags/posts`,
-    method: 'POST'
+    method: 'POST',
+    data: data,
   })
 }
 
@@ -442,7 +450,7 @@ module.exports = {
   // tags
   getPostByTag: getPostByTag,
   getTagList: getTagList,
-  createTag: createTag,
+  linkTagPost: linkTagPost,
 
   // messages
   getMessageList: getMessageList,

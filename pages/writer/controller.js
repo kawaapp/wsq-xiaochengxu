@@ -64,8 +64,10 @@ function onClickSubmit() {
 
   // attach topic
   var topic = view.data.topic
+  var tag = undefined
   if (topic.selected >= 0 && topic.selected < topic.items.length) {
-    data.content = '#' + topic.items[topic.selected] + '#' + data.content
+    tag = topic.items[topic.selected].text
+    data.content = '#' + tag + '#' + data.content
   }
 
   var handler = undefined
@@ -80,6 +82,11 @@ function onClickSubmit() {
     title: '正在发送...',
   })
   handler.then((resp) => {
+    // 关联标签和文章
+    if (tag) {
+      linkTagPost(tag, resp.data.id)
+    }
+
     // refresh list
     util.setResult({
       req: 'newpost',
@@ -97,6 +104,14 @@ function onClickSubmit() {
     wx.showToast({
       title: '发送失败', icon: 'none'
     })
+  })
+}
+
+function linkTagPost(tag, pid) {
+  api.linkTagPost({tags:[tag], pid: pid}).then( resp => {
+    console.log("link success:" + resp.statusCode)
+  }).catch( err => {
+    console.log(err)
   })
 }
 

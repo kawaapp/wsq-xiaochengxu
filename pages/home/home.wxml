@@ -57,7 +57,7 @@
 <view style='margin-bottom:1rpx; background-color: #fefefe;'/>
 
 <!-- 话题标签 -->
-<view class='card' wx:if="{{topic.items}}">
+<view class='card' wx:if="{{topic.items && tab.current == 0}}">
   <view class='tag-list'>
       <text class='tag'
       bindtap='clickTopic'
