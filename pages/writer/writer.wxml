@@ -21,7 +21,7 @@
       <image bindtap='chooseImage' src="{{theme}}/plus.png" ></image>
     </view>
   </view>
-  <view wx:if="{{topic.items}}">
+  <view wx:if="{{topic.items && topic.items.length > 0}}">
     <view class='line'></view>
     <view class='tag-title'>选择话题</view>
     <view class='tag-list'>
