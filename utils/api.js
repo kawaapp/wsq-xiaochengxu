@@ -408,6 +408,14 @@ function setAllMessageRead() {
   })
 }
 
+// 举报接口
+function createReport(data) {
+  return req({
+    url: `${Host}/api/reports`,
+    method: 'POST',
+    data: data,
+  })
+}
 
 module.exports = {
   autoAuth: autoAuth,
@@ -455,5 +463,8 @@ module.exports = {
   getMessageList: getMessageList,
   getMessageCount: getMessageCount,
   setMessageRead: setMessageRead,
-  setAllMessageRead: setAllMessageRead
+  setAllMessageRead: setAllMessageRead,
+
+  // reports
+  createReport: createReport,
 }

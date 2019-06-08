@@ -290,13 +290,11 @@ function onClickMenu(e) {
   var menu = {
     items: ["举报"],
     actions: [function () {
-      wx.showToast({
-        title: '举报成功',
-      })
+      report(item)
     }],
   }
   var user = app.globalData.userInfo
-  if (user && user.id == item.author.id) {
+  if (user && item.author && user.id == item.author.id) {
     menu.items.push("删除")
     menu.actions.push(function () {
       deletePost(idx)
@@ -317,11 +315,39 @@ function onClickMenu(e) {
   })
 }
 
-function decoratePosts(posts) {
-  for (var i = 0; i < posts.length; i++) {
-    decoratePost(posts[i])
+function report(post) {
+  var data = {
+    entity_id: post.id,
+    entity_ty: 0,
   }
-  return posts
+  api.createReport(data).then( resp => {
+    wx.showToast({
+      title: '举报成功',
+    })
+  }).catch( err => {
+    wx.showToast({
+      title: '举报失败：网络错误', icon: 'none',
+    })
+  })
+}
+
+function decoratePosts(posts) {
+  var result = []
+  var author = app.globalData.userInfo
+
+  for (var i = 0; i < posts.length; i++) {
+    var post = posts[i]
+    var hide = (post.status >> 2) & 1
+
+    // 如是本人的帖子则不隐藏
+    if (post.author && author && post.author.id == author.id) {
+      hide = false
+    }
+    if (!hide) {
+      result.push(decoratePost(post))
+    }
+  }
+  return result
 }
 
 function decoratePost(post) {
