@@ -316,10 +316,16 @@ function onClickMenu(e) {
 }
 
 function report(post) {
+  var digest = {
+    text: post.content,
+    images: post.images,
+  }
   var data = {
     entity_id: post.id,
     entity_ty: 0,
+    content: JSON.stringify(digest)
   }
+
   api.createReport(data).then( resp => {
     wx.showToast({
       title: '举报成功',
