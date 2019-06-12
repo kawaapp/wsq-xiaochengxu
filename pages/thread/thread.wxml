@@ -42,6 +42,15 @@
           </view>
         </view>
       </view> 
+      <!-- 地理位置 -->
+      <view wx:if="{{item.post.location && item.post.location.name}}"
+        catchtap='clickLocation'
+        data-idx='{{index}}'
+        class='location'
+        >
+        <image src='{{theme}}/location.png'/>
+        <text>{{item.post.location.name}}</text>
+      </view>
   </view>
 </view>
 <view style='margin-bottom:9rpx;'/>

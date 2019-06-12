@@ -13,6 +13,7 @@ Page({
     tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
     title: "",
     content: "",
+    location: "",
     images: [],
     topic: {
       items: [],
@@ -49,5 +50,11 @@ Page({
   },
   clickTag: function(e) {
     ctr.onClickTag(e)
+  }, 
+  clickLocation: function(e) {
+    ctr.onClickLocation(e)
+  },
+  clickDeleteLocation: function(e) {
+    ctr.onDeleteLocation(e)
   }
 })

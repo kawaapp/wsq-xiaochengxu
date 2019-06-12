@@ -141,6 +141,20 @@ function jsonParse(str) {
 }
 
 // update list item
+function getCityName(addr) {
+  if (addr) {
+    var city = undefined
+    var index = addr.indexOf('市')
+    if (index >= 0 ) {
+      city = addr.substring(0, index+1)
+    }
+    index = city.indexOf('省')
+    if (index >= 0) {
+      city = city.substring(index+1)
+    }
+    return city
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -154,4 +168,5 @@ module.exports = {
   decorateText: decorateText,
   isWhiteSpace: isWhiteSpace,
   jsonParse: jsonParse,
+  getCityName: getCityName,
 }

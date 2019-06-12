@@ -35,6 +35,11 @@ function fetch(options) {
     if (!item.post.styled) {
       item.post.styled = util.decorateText(item.post.content)
     }
+    if (item.post.location) {
+      try {
+        item.post.location = JSON.parse(item.post.location)
+      } catch(err){}
+    }
 
     // set post data
     view.setData({
@@ -553,6 +558,16 @@ function onClickShare(res) {
   }
 }
 
+function onClickLocation(e) {
+  var post = view.data.item.post
+  var location = post.location
+  if (location) {
+    wx.openLocation({
+      latitude: location.lat, longitude: location.lng, name: location.name,
+    })
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -568,4 +583,5 @@ module.exports = {
   onClickListCommentAction: onClickListCommentAction,
   onClickShare: onClickShare,
   gotoHome: gotoHome,
+  onClickLocation: onClickLocation,
 }

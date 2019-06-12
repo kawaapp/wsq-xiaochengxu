@@ -118,6 +118,19 @@ page{
   max-height: 100vw;
 }
 
+.location {
+  font-size: 28rpx;
+  color: #576b95;
+  display: flex;
+  align-items:center;
+}
+
+.location image {
+  width: 32rpx; 
+  height: 32rpx; 
+  margin-right: 6rpx; 
+}
+
 .p-1 {
   padding: 8rpx;
 }

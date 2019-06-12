@@ -82,3 +82,11 @@
   margin: 6rpx 16rpx;
   word-break: keep-all;
 }
+
+.arrow_right {
+  margin-left: auto;
+  width: 48rpx; 
+  height: 48rpx;
+  min-width: 48rpx;
+  max-width: 48rpx;
+}

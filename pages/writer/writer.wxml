@@ -21,6 +21,20 @@
       <image bindtap='chooseImage' src="{{theme}}/plus.png" ></image>
     </view>
   </view>
+  <!-- 选择位置 -->
+  <view>
+    <view class='line'></view>
+    <view class='horizontal' bindtap='clickLocation'>
+      <view></view>
+      <view class='tag-title'>{{location && location.name ? location.name: '所在位置'}}</view>
+      <image wx:if="{{location && location.name}}"
+        catchtap='clickDeleteLocation'
+        class='arrow_right' src="{{theme}}/del.png"/>
+      <image wx:if="{{!location || !location.name}}"
+         class='arrow_right' src="{{theme}}/arrow_right.png"/>
+    </view>
+  </view>
+  <!-- 选择话题 -->
   <view wx:if="{{topic.items && topic.items.length > 0}}">
     <view class='line'></view>
     <view class='tag-title'>选择话题</view>

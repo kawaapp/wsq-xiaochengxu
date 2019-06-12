@@ -161,9 +161,15 @@ Page({
     ctr.onClickTopic(e)
   },
 
+  // 点击分享
   onShareAppMessage: function (res) {
     ctr.onClickShare(res)
-  }
+  },
+
+  // 点击位置标签
+  clickLocation: function(e) {
+    ctr.onClickLocation(e)
+  },
 })
 
 function applyTheme(theme) {

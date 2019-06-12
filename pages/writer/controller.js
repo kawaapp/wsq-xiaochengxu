@@ -57,9 +57,15 @@ function onClickSubmit() {
     return
   }
 
+  // 文本内容
   var data = {
     title: view.data.title,
     content: view.data.content
+  }
+
+  // 地理位置
+  if (view.data.location) {
+    data.location = JSON.stringify(view.data.location)
   }
 
   // attach topic
@@ -175,6 +181,30 @@ function onClickTag(e) {
   view.setData({ topic: topic })
 }
 
+function onClickLocation(e) {
+  wx.chooseLocation({
+    success: function(res) {
+      var showname = res.name
+      var city = util.getCityName(res.address)
+      if (city) {
+        showname = city + '·' + res.name
+      }
+      var location = {
+        name: showname,
+        address: res.address,
+        lat: res.latitude,
+        lng: res.longitude,
+      }
+      view.setData({ location: location})
+    },
+  })
+}
+
+function onDeleteLocation(e) {
+  console.log("delete location...")
+  view.setData({location: {}})
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -183,4 +213,6 @@ module.exports = {
   onChooseImage: onChooseImage,
   onClickSubmit: onClickSubmit,
   onClickTag: onClickTag,
+  onClickLocation: onClickLocation,
+  onDeleteLocation: onDeleteLocation,
 }

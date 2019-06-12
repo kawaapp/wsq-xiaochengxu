@@ -129,10 +129,25 @@ function decorateList(posts) {
     if (posts[i].media) {
       posts[i].images = JSON.parse(posts[i].media.path)
     }
+    if (posts[i].location) {
+      try {
+        posts[i].location = JSON.parse(posts[i].location)
+      } catch (err) { }
+    }
   }
   return posts
 }
 
+function onClickLocation(e) {
+  var idx = e.currentTarget.dataset.idx
+  var item = view.data.posts[idx]
+  var location = item.location
+  if (location) {
+    wx.openLocation({
+      latitude: location.lat, longitude: location.lng, name: location.name,
+    })
+  }
+}
 
 module.exports = {
   setup: setup,
@@ -141,4 +156,5 @@ module.exports = {
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
   onClickImage: onClickImage,
+  onClickLocation: onClickLocation,
 }

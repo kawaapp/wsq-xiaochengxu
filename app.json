@@ -13,6 +13,11 @@
     "pages/user/favor",
     "pages/webview/webview"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "显示发帖的位置"
+    }
+  },
   "tabBar": {
     "list": [
       {

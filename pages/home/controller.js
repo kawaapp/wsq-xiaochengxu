@@ -364,6 +364,11 @@ function decoratePost(post) {
   if (post.media) {
     post.images = JSON.parse(post.media.path)
   }
+  if (post.location) {
+    try {
+      post.location = JSON.parse(post.location)
+    } catch(err){}
+  }
   return post
 }
 
@@ -428,6 +433,17 @@ function onClickShare(res) {
   }
 }
 
+function onClickLocation(e) {
+  var idx = e.currentTarget.dataset.idx
+  var item = view.data.posts[idx]
+  var location = item.location
+  if (location) {
+    wx.openLocation({
+      latitude: location.lat, longitude: location.lng, name: location.name,
+    })
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -441,4 +457,5 @@ module.exports = {
   onClickImage: onClickImage,
   onClickTopic: onClickTopic,
   onClickShare: onClickShare,
+  onClickLocation: onClickLocation,
 }

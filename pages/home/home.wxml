@@ -114,14 +114,23 @@
                 data-idx="{{index}}-{{sub}}" ></image>
             </view>
           </view>
-        </view>        
+        </view>  
+        <!-- 地理位置 -->
+        <view wx:if="{{item.location && item.location.name}}"
+          catchtap='clickLocation'
+          data-idx='{{index}}'
+          class='location'
+          >
+          <image src='{{theme}}/location.png'/>
+          <text>{{item.location.name}}</text>
+        </view>
       </view>
     </view>
 
     <!-- Comment and Favor bar -->
     <view class='line'></view>
     <view class='flow-right'>
-      <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
+      <view class='fade-title' style='margin-right:auto;'>{{item.time}}</view>
       <view class='comment' bindtap='commentClick' data-idx="{{index}}">
         <image src='{{theme}}/comment.png'></image>
         <text>{{item.stats.comments? item.stats.comments: "评论" }}</text>

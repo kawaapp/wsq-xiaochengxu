@@ -11,6 +11,7 @@
       </view>
     </view>
     <view style='margin-bottom:6rpx;'/>
+    <!-- 图片 和 文字-->
     <view style='margin-left:90rpx;' bindtap='topicClick' data-item="{{item}}">
       <text class='title'>{{item.content}}</text>
       <view wx:if="{{item.images}}">
@@ -32,7 +33,14 @@
                 data-idx="{{index}}-{{sub}}" ></image>
             </view>
           </view>
-        </view> 
+      </view> 
+      <!-- 地理位置 -->
+      <view wx:if="{{item.location && item.location.name}}"
+        catchtap='clickLocation'
+        data-idx='{{index}}'
+        >
+        <text class='location'>{{item.location.name}}</text>
+      </view>
     </view>
   </view>
   <view style='margin-bottom:9rpx;'/>
