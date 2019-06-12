@@ -75,14 +75,11 @@ function fetch(options) {
 }
 
 function onClickImage(e) {
+  var idx = e.currentTarget.dataset.idx
   var images = view.data.item.post.images
-  var current = 0
-  if (e.currentTarget.dataset.idx) {
-    current = e.currentTarget.dataset.idx
-  }
   wx.previewImage({
     urls: images,
-    current: current,
+    current: images[idx],
   })
 }
 

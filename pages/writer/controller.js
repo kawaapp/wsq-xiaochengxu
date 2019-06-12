@@ -17,7 +17,7 @@ function refreshTopics() {
 }
 
 function onClickImage(e) {
-  var index = e.target.dataset.index
+  var index = e.currentTarget.dataset.idx
   var images = view.data.images
   wx.previewImage({
     urls: images,
@@ -26,7 +26,7 @@ function onClickImage(e) {
 }
 
 function onDeleteImage(e) {
-  var index = e.target.dataset.index
+  var index = e.currentTarget.dataset.idx
   var images = view.data.images
   images.splice(index, 1)
   view.setData({images: images})

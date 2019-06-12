@@ -9,14 +9,16 @@
       <view class='del'>
         <image
           src="{{theme}}/del.png" 
+          data-idx="{{index}}"
           bindtap='clickDelete' 
-          data-idx="{{index}}">
+          >
         </image>
       </view>
       <image src="{{item}}" 
         mode='aspectFill' 
+        data-idx="{{index}}"
         bindtap='clickImage' 
-        data-idx="{{index}}" >
+        >
       </image>
     </view>
     <view class="add" wx:if='{{images.length < 9}}' >
