@@ -40,11 +40,20 @@
 
 .thumb .del {
   position:absolute;
-  margin-left: 0px;
   margin-top: 0px;
-  width: 48rpx;
-  height: 48rpx;
-  opacity: .6;
+  margin-left: 22vw;
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 24rpx;
+  background: rgba(0, 0, 0, .3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumb .del image {
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .add {

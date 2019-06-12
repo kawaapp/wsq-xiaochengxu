@@ -6,11 +6,13 @@
   <!-- image list -->
   <view class='image-list'>
     <view class="thumb" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
-      <image class='del' 
-        src="{{theme}}/del.png" 
-        bindtap='clickDelete' 
-        data-idx="{{index}}">
-      </image>
+      <view class='del'>
+        <image
+          src="{{theme}}/del.png" 
+          bindtap='clickDelete' 
+          data-idx="{{index}}">
+        </image>
+      </view>
       <image src="{{item}}" 
         mode='aspectFill' 
         bindtap='clickImage' 
@@ -29,7 +31,7 @@
       <view class='tag-title'>{{location && location.name ? location.name: '所在位置'}}</view>
       <image wx:if="{{location && location.name}}"
         catchtap='clickDeleteLocation'
-        class='arrow_right' src="{{theme}}/del.png"/>
+        class='arrow_right' src="{{theme}}/clear.png"/>
       <image wx:if="{{!location || !location.name}}"
          class='arrow_right' src="{{theme}}/arrow_right.png"/>
     </view>
