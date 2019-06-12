@@ -399,19 +399,23 @@ function onClickSendComment(e) {
   if (reply.index >= 0) {
     replyToComment(reply.index, reply.subIndex)
   } else {
-    replyToPost({
-      post_id: view.data.item.post.id,
-      content: view.data.reply.text,
-    })
+    replyToPost(reply.text)
   }
 }
 
 
 // comment on post 
-function replyToPost(data) {
-  if (util.isWhiteSpace(data.content)) {
+function replyToPost(replyText) {
+  if (util.isWhiteSpace(replyText)) {
     console.log("data is empty!")
     return
+  }
+
+  var post = view.data.item.post
+  var data = {
+    content: replyText,
+    post_id: post.id,
+    reply_id: post.author.id
   }
 
   // send comment
