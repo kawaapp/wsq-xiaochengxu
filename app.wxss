@@ -131,6 +131,20 @@ page{
   margin-right: 6rpx; 
 }
 
+.btn-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  background-color: #fff;
+}
+
+.btn-clear::after {
+  border: 0;
+}
+
 .p-1 {
   padding: 8rpx;
 }

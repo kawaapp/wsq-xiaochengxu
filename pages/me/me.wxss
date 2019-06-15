@@ -45,3 +45,16 @@
   color: #9c9b9b;
   opacity: .6;
 }
+
+.bind {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+} 

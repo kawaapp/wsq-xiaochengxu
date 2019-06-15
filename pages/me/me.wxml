@@ -5,15 +5,26 @@
       src="{{user.avatar?user.avatar: theme+'/user_icon.png'}}">
     </image>
     <view style='margin-left:18rpx;'>
-      <view class='title'>{{user.nickname?user.nickname:'路人'}}</view>
-      <view class='subtitle'>{{user.summary}}</view>
+      <view class='title' style='font-size:30rpx;' >{{user.nickname?user.nickname:'路人'}}</view>
+      <button wx:if="{{user.nickname && metadata.user_mode}}"
+        open-type="getPhoneNumber"
+        bindgetphonenumber="getPhoneNumber"
+        class='btn-clear subtitle'>{{user.phone? user.phone: '绑定手机号'}}</button>
     </view>
     <view hidden='{{user.nickname}}' style='margin-left:auto;'>
-      <button class='btn' 
+      <button wx:if="{{metadata.user_mode < 2}}"
+      class='btn' 
       hover-class='btn-hover'
       style='background-color: {{color}};'
       open-type="getUserInfo" 
-      bindgetuserinfo="bindUserInfo">获取昵称</button>
+      bindgetuserinfo="bindUserInfo"
+      >绑定昵称</button>
+      <button wx:if="{{metadata.user_mode == 2}}"
+      class='btn' 
+      hover-class='btn-hover'
+      style='background-color: {{color}};'
+      bindtap='clickBindProfile'
+      >绑定资料</button>
     </view>
   </view>
 </view>
@@ -48,6 +59,7 @@
   </view>
 </view>
 
+<!-- 版权信息 -->
 <view class='info'>
   <text
     style='color: #576b95; font-size: 30rpx;'

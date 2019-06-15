@@ -417,6 +417,15 @@ function createReport(data) {
   })
 }
 
+// 解密接口
+function decrypt(data) {
+  return req({
+    url: `${Host}/api/actions/decrypt`,
+    method: 'POST',
+    data: data,
+  })
+}
+
 module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
@@ -467,4 +476,7 @@ module.exports = {
 
   // reports
   createReport: createReport,
+
+  // actions
+  decrypt: decrypt,
 }

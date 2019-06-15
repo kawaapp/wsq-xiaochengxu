@@ -1,0 +1,43 @@
+/* pages/me/bind.wxss */
+.vertical {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.avatar {
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.title {
+  font-size: 32rpx;
+}
+
+.btn {
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.btn-hover {
+  color: #fff;
+  opacity: .6;
+}
+
+.next {
+  background-color: #f8f8f8;
+  color:gray;
+  font-size: 32rpx;
+}
+
+.next-hover {
+  color:gray;
+  opacity: .6;
+}
+
+.pre {
+  font-size: 28rpx;
+  color: gray;
+}
