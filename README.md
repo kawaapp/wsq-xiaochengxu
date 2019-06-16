@@ -8,7 +8,7 @@
 
 ## 编译运行
 小程序使用了卡哇微社区的社区API接口，如果运行该小程序需要在卡哇微社区后端注册用户，然后创建一个社区应用，
-并配置微信小程序秘钥，相关配置参见：[卡哇微社区新手指南](https://mp.weixin.qq.com/s/Rw-N6vWTWR9mcVQgkQ_aAA).
+并配置微信小程序秘钥，相关配置参见：[卡哇微社区新手指南](https://mp.weixin.qq.com/s/3hsjr7ZKHlmbw-4HOhCM0A).
 
 同时还应该在小程序中配置卡哇微社区 AppKey，为了方便测试，项目中已经内置了一个开发用 AppKey.
 在项目目录下，找到 `kawa.js` 配置如下：
