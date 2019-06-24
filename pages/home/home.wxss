@@ -119,6 +119,7 @@
 
 .tag-list {
   margin-left: -14rpx; 
+  margin-right: -14rpx;
   display: flex;
   flex-wrap: wrap;
 }
@@ -128,8 +129,8 @@
   border-radius: 2px;
   font-size: 32rpx;
   color: gray;
-  padding: 6rpx 16rpx;
-  margin: 6rpx 16rpx;
+  padding: 4rpx 12rpx;
+  margin: 6rpx 12rpx;
   word-break: keep-all;
 }
 
