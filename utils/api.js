@@ -226,8 +226,9 @@ function getPostList(since, limit, filter, topic) {
       method: 'GET'
     })
   } else {
+    var encoded = encodeURIComponent(topic)
     return req({
-      url: `${Host}/api/tags/${topic}/posts?since_id=${since}&limit=${limit}`,
+      url: `${Host}/api/tags/${encoded}/posts?since_id=${since}&limit=${limit}`,
       method: 'GET'
     })
   }
@@ -358,8 +359,9 @@ function deleteCommentFavor(cid) {
 
 // tags
 function getPostByTag(tag) {
+  var encoded = encodeURIComponent(tag)
   return req({
-    url: `${Host}/api/tags/${tag}/posts`,
+    url: `${Host}/api/tags/${encoded}/posts`,
     method: 'GET'
   })
 }
