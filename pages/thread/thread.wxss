@@ -123,20 +123,17 @@
 }
 .release .text{
     width: 604rpx;
-    min-height: 34rpx;
-    max-height: 102rpx; /*最多显示三行*/
     border-width: 15rpx 20rpx; /*使用padding与预期留白不一致，故使用border*/
     border-style: solid;
     border-color:  #ffffff;
     line-height: 34rpx;
-    font-size: 28rpx;
+    font-size: 30rpx;
     background-color: #ffffff;
     border-radius: 4rpx;
 }
 
 .release .submit{
     width: 116rpx;
-    height: 128rpx;
     line-height: 64rpx;
     text-align: center;
     color: #66CC00;
@@ -154,10 +151,6 @@
 .submit button::after{ border: none; }
 
 .release .submit-disable {
-  width: 116rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  text-align: center;
   color:#C9C9C9;
 }
 

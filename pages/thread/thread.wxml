@@ -160,16 +160,17 @@
 <view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" >
 </view>
 <view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
-      <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
-            style="height: 4.4em"
+      <input class="text" bindinput='bindInput'
             placeholder-class="input_null" 
-            fixed="true"
+            fixed="{{true}}"
             maxlength="-1" 
             show-confirm-bar="{{true}}" 
-            cursor-spacing="128rpx" 
+            cursor-spacing="32rpx" 
             focus="{{reply.focus}}"
-            placeholder="回复 {{reply.hint}}"></textarea>
+            placeholder="回复 {{reply.hint}}"></input>
       <view class="submit">
-        <button catchtap='sendComment'>发送</button>
+        <button 
+        class="{{reply.enable?'':'submit-disable'}}" 
+        catchtap='sendComment'>发送</button>
       </view>
   </view>

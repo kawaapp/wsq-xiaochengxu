@@ -53,7 +53,16 @@ Page({
     ctr.onClickMenu(e)
   },
   bindInput: function(e) {
-    this.data.reply.text = e.detail.value
+    var reply = this.data.reply
+    reply.text = e.detail.value
+    
+    if (e.detail.value && !reply.enable) {
+      reply.enable = true
+      this.setData({ reply: reply })
+    } else if (!e.detail.value && reply.enable) {
+      reply.enable = false
+      this.setData({ reply: reply })
+    }
   },
   clickMask: function(e) {
     this.setData({
