@@ -99,12 +99,12 @@
 
 .bg-mask {
   position: fixed; 
-  top: 0px; left: 0px; right: 0px; bottom: 0px;
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
   z-index: 998;
   /*background-color: #777;     
   opacity:0.5; 
   -moz-opacity:0.5;*/
-  background-color: rgba(1, 1, 0, .6);
+  background-color: rgba(0, 0, 0, .6);
 }
 
 .release{

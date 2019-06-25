@@ -135,6 +135,9 @@
 <!--Empty view -->
 <view style='height:112rpx;'></view>
 
+<!--Fixbug: textarea.cursor-spacing cause view shifting --->
+<view style='height:1000px;' wx:if="{{reply.focus}}"/>
+
 <!--底部评论框 -->
 <!--底部评论框 -->
 <view class='bottom-bar'>
@@ -155,13 +158,14 @@
 
 <!-- 隐藏输入框 -->
 <view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" >
+</view>
 <view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
       <textarea class="text" bindinput='bindInput' value='{{reply.text}}'
             style="height: 4.4em"
             placeholder-class="input_null" 
-            fixed="true" 
+            fixed="true"
             maxlength="-1" 
-            show-confirm-bar="false" 
+            show-confirm-bar="{{true}}" 
             cursor-spacing="128rpx" 
             focus="{{reply.focus}}"
             placeholder="回复 {{reply.hint}}"></textarea>
@@ -169,4 +173,3 @@
         <button catchtap='sendComment'>发送</button>
       </view>
   </view>
-</view>
