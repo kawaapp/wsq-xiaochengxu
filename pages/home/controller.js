@@ -363,6 +363,13 @@ function decoratePosts(posts) {
     if (post.author && author && post.author.id == author.id) {
       hide = false
     }
+
+    // 如果是需要审核的帖子，即使本人也不显示直到已审核
+    // 因为微信审核人员会傻缺的以为你没有审核系统...
+    if ((post.status >> 3) & 1) {
+      hide = true
+    }
+
     if (!hide) {
       result.push(decoratePost(post))
     }

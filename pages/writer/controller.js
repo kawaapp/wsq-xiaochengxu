@@ -88,6 +88,8 @@ function onClickSubmit() {
     title: '正在发送...',
   })
   handler.then((resp) => {
+    wx.hideLoading()
+
     // 关联标签和文章
     if (tag) {
       linkTagPost(tag, resp.data.id)
@@ -102,6 +104,19 @@ function onClickSubmit() {
     //
     if (resp.statusCode == 200) {
       wx.navigateBack({ delta: 1 })
+    }
+
+    // tips
+    if (resp.data && resp.data.status) {
+      var audit = ((resp.data.status >> 3) & 1) != 0
+      if (audit) {
+        console.log("show toast...")
+        setTimeout(function () {
+          wx.showToast({
+            title: '已发布等待审核', icon: 'none'
+          })
+        }, 1000);
+      }
     }
   }).catch((err) => {
     // 发布失败
