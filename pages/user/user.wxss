@@ -1,0 +1,32 @@
+/* pages/user/user.wxss */
+page {
+    background-color:#fff;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vertical .avatar {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 96rpx;
+  border: 8rpx solid #efefef; 
+}
+
+.vertical .nickname {
+  font-size: 48rpx;
+  font-weight: 800;
+  margin-top: 24rpx;
+}
+
+.vertical .ts {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.vertical .msg {
+  margin-top: 48rpx;
+}

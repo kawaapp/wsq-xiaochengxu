@@ -1,0 +1,7 @@
+<!--pages/user/user.wxml-->
+<view class='vertical' style='margin-top: 30vh;'>
+  <image class='avatar' src="{{user.avatar}}"/>
+  <view class='nickname'>{{user.nickname}}</view>
+  <view class='ts'>已加入 {{user.days}} 天</view>
+  <view class='msg'>发消息</view>
+</view>

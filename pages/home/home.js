@@ -115,6 +115,19 @@ Page({
     })
   },
 
+  // 点击头像
+  clickAvatar: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    var post = this.data.posts[idx]
+    util.sendRequest('user', {
+      idx: idx,
+      data: post.author
+    })
+    wx.navigateTo({
+      url: '/pages/user/user',
+    })
+  },
+
   // 点击帖子
   topicClick: function(e) {
     var idx = e.currentTarget.dataset.idx

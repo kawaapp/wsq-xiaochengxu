@@ -12,7 +12,8 @@
     "pages/user/post",
     "pages/user/comment",
     "pages/user/favor",
-    "pages/webview/webview"
+    "pages/webview/webview",
+    "pages/user/user"
   ],
   "permission": {
     "scope.userLocation": {

@@ -75,7 +75,9 @@
     <!-- Content Area -->
     <view bindtap='topicClick' data-idx="{{index}}">
       <view class="horizontal">
-        <image class='avatar-large' style='margin: 10rpx 18rpx 10rpx 0px;'
+        <image catchtap='clickAvatar' data-idx="{{index}}"
+          class='avatar-large' 
+          style='margin: 10rpx 18rpx 10rpx 0px;'
           src="{{item.author.avatar?item.author.avatar:theme+'/user_icon.png'}}" 
           />
         <view>
