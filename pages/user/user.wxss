@@ -24,9 +24,20 @@ page {
 
 .vertical .ts {
   font-size: 28rpx;
-  color: #666;
+  color: #444;
 }
 
 .vertical .msg {
+  font-size: 32rpx;
+  color: #333;
   margin-top: 48rpx;
+  display: flex;
+  align-items: center;
+}
+
+.msg image {
+  height: 48rpx;
+  width: 48rpx;
+  margin-right: 8rpx;
+  margin-top: -2rpx;
 }

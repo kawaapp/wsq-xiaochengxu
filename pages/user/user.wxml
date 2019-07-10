@@ -1,7 +1,10 @@
 <!--pages/user/user.wxml-->
-<view class='vertical' style='margin-top: 30vh;'>
+<view class='vertical' style='padding-top: 25vh;'>
   <image class='avatar' src="{{user.avatar}}"/>
   <view class='nickname'>{{user.nickname}}</view>
   <view class='ts'>已加入 {{user.days}} 天</view>
-  <view class='msg' bindtap='clickSendMessage'>发消息</view>
+  <view class='msg' bindtap='clickSendMessage'>
+    <image src="/res/default/nav_msg.png"/>
+    <text>发消息</text>
+  </view>
 </view>
