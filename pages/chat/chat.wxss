@@ -1,0 +1,21 @@
+/* pages/message/list/chat.wxss */
+@import "./comps/chat-item.wxss";
+@import "./comps/chat-input.wxss";
+
+page {
+    background-color: #EFEFEF;
+}
+
+.chat-page-status-style{
+    width: 100%;
+    height: 54rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26rpx;
+    color: white;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 20;
+}

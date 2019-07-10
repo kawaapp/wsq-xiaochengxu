@@ -1,0 +1,26 @@
+<!--pages/chat/chat.wxml-->
+<import src="./comps/chat-item.wxml"/>
+<import src="./comps/chat-input.wxml"/>
+
+<!-- 顶部状态栏 -->
+<view 
+  class="chat-page-status-style"
+  style="background-color: {{chatStatue==='open'?'#40c9ff':'#888888'}};">
+  {{chatStatusContent}}
+</view>
+
+<!-- 对话列表 -->
+<scroll-view
+        style="height:{{pageHeight}}px;width: 100%;display: flex;flex-direction: column;margin-top: 54rpx;"
+        scroll-y="true"
+        scroll-top="{{scrollTopVal}}"
+        bindtap="resetInputStatus">
+    <block wx:for="{{chatItems}}" wx:key="{{index}}">
+        <template is="chat-item"
+                  data="{{length:chatItems.length,index:index,item:item}}"/>
+    </block>
+
+</scroll-view>
+
+<!-- 输入框 -->
+<template is="chat-input" data="{{inputObj,textMessage}}"/>

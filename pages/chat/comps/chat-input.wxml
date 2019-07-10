@@ -1,0 +1,24 @@
+<template name="chat-input">
+    <view class="input-flex-column" catchtap="">
+        <view class="input-text-voice-super">
+            <input
+                class="chat-input-style" 
+                style="margin-left:{{showVoicePart?0:16}}rpx;"
+                maxlength="500" 
+                confirm-type="send" 
+                value="{{textMessage}}" 
+                bindconfirm="chatInputSendTextMessage" 
+                bindfocus="chatInputBindFocusEvent" 
+                bindblur="chatInputBindBlurEvent" 
+                bindinput="chatInputGetValueEvent"/>
+
+            <view hover-class="press-style-opacity">
+                <view
+                      class="chat-input-send-button-style" 
+                      style="background-color: {{inputObj.inputStyle.sendButtonBgColor}};color: {{inputObj.inputStyle.sendButtonTextColor}};" 
+                      catchtap="chatInputSendTextMessage02">发送</view>
+            </view>
+        </view>
+    </view>
+</template>
+
