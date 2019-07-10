@@ -1,5 +1,5 @@
 // pages/list/list.js
-const ctr = require('./chat_ctr.js')
+const ctr = require('./controller.js')
 
 /**
  * 聊天页面

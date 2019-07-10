@@ -20,6 +20,12 @@ Page({
     user.days = getDays(user.created_at)
     this.setData({ user: user})
   },
+
+  clickSendMessage: function(e) {
+    wx.navigateTo({
+      url: '/pages/chat/chat',
+    })
+  }
 })
 
 function getDays(created_at) {
