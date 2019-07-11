@@ -1,0 +1,37 @@
+<!--pages/signin/signin.wxml-->
+  <!-- 展示用户等级信息 -->
+  <view>
+  <view class='bg'>
+    <view class='user'>
+      <image class='avatar' src="{{user.avatar}}"></image>
+      <text class='grade'>{{user.grade}} 经验值</text>
+    </view>
+  </view>
+
+  <!-- 签到卡片 -->
+  <view class='sign-card'>
+    <view class='title'>已连续签到 3 天</view>
+    <view class='list'>
+      <view class='item' wx:for="{{sign.days}}" wx:for-item="item" wx:key="{{index}}">
+        <text>{{item.signed? '已签到': item.date}}</text>
+        <view class="{{item.signed? 'checked': ''}}" >
+          {{item.signed? '✔': '+'+item.value}}
+        </view>
+      </view>
+    </view>
+    <view style='margin-bottom: 12rpx;'>
+      <button>已签到</button>
+    </view>
+  </view>
+  </view>
+
+  <!-- 排行榜 -->
+  <view class='ranks'>
+    <view class='.title'>排行榜</view>
+    <view class='item' wx:for="{{ranks}}" wx:for-item="item" wx:key="{{index}}">
+      <text class='index'>1</text>
+      <image class='avatar' src="{{item.avatar}}"></image>
+      <text class='name' >{{item.nickname}}</text>
+      <text class='times'>{{item.times}}次</text>
+    </view>
+  </view>

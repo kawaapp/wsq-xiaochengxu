@@ -1,0 +1,145 @@
+/* pages/signin/signin.wxss */
+page {
+    background-color: #fff;
+}
+
+.bg {
+  width: 850rpx;
+  margin-left: -50rpx;
+  height: 340rpx;
+  background-color: #0abab6;
+  border-bottom-left-radius: 300px 80px;
+  border-bottom-right-radius: 300px 80px;
+}
+
+.user {
+  margin-left: 50rpx;
+  padding-top: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.user .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 20rpx 0 60rpx;
+  border: 2px solid rgba(.3, .3, .3, 0.1);
+  border-radius: 50%;
+}
+
+.user .grade {
+  color: white;
+  font-size: 48;
+  font-weight: 800;
+}
+
+.sign-card {
+  position: relative;
+  top: -140rpx;
+  background-color: white;
+  margin: 0 32rpx;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 8rpx;
+  padding: 24rpx 16rpx;
+}
+
+.sign-card .title {
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-left: 8rpx;
+}
+
+.sign-card .list {
+  margin: 36rpx 0px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.sign-card .item {
+  color: #bebebe;
+  font-size: 22rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-card .item text {
+  word-break:keep-all;
+}
+
+.sign-card .item view {
+  margin-top: 14rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 2rpx solid #bebebe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-card .item .checked {
+  background-color: #fdda00;
+  border-color: #fdda00;
+  color: #333;
+}
+
+.sign-card button {
+  width: 240rpx;
+  margin: 0 auto;
+  background-color: #f2f2f2;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.sign-card button::after {
+  border: 0;
+}
+
+.ranks {
+  margin: 0 32rpx;
+  margin-top: -68rpx;
+}
+
+.ranks .title {
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-bottom: 20rpx;
+}
+
+.ranks .item {
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ranks .item .index {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 800;
+  margin-right: 32rpx;
+}
+
+.ranks .item .avatar {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 12rpx;
+}
+
+.ranks .item .name {
+  font-size: 32rpx;
+}
+
+.ranks .item .times {
+  font-size: 32rpx;
+  margin-left: auto;
+}
+
+
+
