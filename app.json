@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/signin/signin",
     "pages/login/login",
     "pages/home/home",
     "pages/message/message",
@@ -16,7 +15,8 @@
     "pages/webview/webview",
     "pages/user/user",
     "pages/chat/chat",
-    "pages/exp/exp"
+    "pages/exp/exp",
+    "pages/signin/signin"
   ],
   "permission": {
     "scope.userLocation": {

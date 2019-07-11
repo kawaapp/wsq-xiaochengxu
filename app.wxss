@@ -41,7 +41,8 @@ page{
   height: 82rpx;
   min-width: 82rpx;
   max-width: 82rpx;
-  border-radius: 41rpx;
+  border: 2rpx solid rgba(0, 0, 0, .1);
+  border-radius: 50%;
 }
 
 .title {

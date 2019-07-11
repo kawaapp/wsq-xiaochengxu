@@ -12,8 +12,8 @@ page {
 .vertical .avatar {
   width: 192rpx;
   height: 192rpx;
-  border-radius: 96rpx;
-  border: 8rpx solid #efefef; 
+  border-radius: 50%;
+  border: 8rpx solid rgba(0, 0, 0, .1); 
 }
 
 .vertical .nickname {

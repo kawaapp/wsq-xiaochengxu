@@ -23,7 +23,7 @@ page {
   width: 100rpx;
   height: 100rpx;
   margin: 0 20rpx 0 60rpx;
-  border: 2px solid rgba(.3, .3, .3, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
 
@@ -101,7 +101,7 @@ page {
 }
 
 .ranks {
-  margin: 0 32rpx;
+  padding: 0 32rpx;
   margin-top: -68rpx;
 }
 
