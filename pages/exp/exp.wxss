@@ -1,1 +1,109 @@
-/* pages/exp/exp.wxss */
+/* pages/signin/signin.wxss */
+page {
+    background-color: #fff;
+}
+
+.bg {
+  height: 380rpx;
+  background-color: #a2f1d9;
+}
+
+.exp {
+  display: flex;
+  align-items: center;
+  padding: 0 128rpx;
+}
+
+.exp .level {
+  font-size: 128rpx;
+  font-weight: 400;
+}
+
+.exp .show_name {
+  font-size: 48rpx;
+  font-weight: 400;
+}
+
+.exp .value {
+  font-size: 32rpx;
+}
+
+.user .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 20rpx 0 60rpx;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.user .grade {
+  color: white;
+  font-size: 48;
+  font-weight: 800;
+}
+
+.user-card {
+  position: absolute;
+  top: 380rpx;
+  right: 32rpx;
+  left: 32rpx;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 8rpx;
+  padding: 24rpx 16rpx;
+  z-index: 1999;
+}
+
+.user-card .avatar {
+  width: 128rpx;
+  height: 128rpx;
+}
+
+.user-card .title {
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-left: 8rpx;
+}
+
+.ranks {
+  padding: 0 32rpx;
+}
+
+.ranks .title {
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-bottom: 20rpx;
+}
+
+.ranks .item {
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ranks .item .index {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 800;
+  margin-right: 32rpx;
+}
+
+.ranks .item .avatar {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 12rpx;
+}
+
+.ranks .item .name {
+  font-size: 32rpx;
+}
+
+.ranks .item .times {
+  font-size: 32rpx;
+  margin-left: auto;
+}
+
+
+

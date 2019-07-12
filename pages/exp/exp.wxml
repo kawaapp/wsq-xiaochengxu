@@ -1,2 +1,38 @@
-<!--pages/exp/exp.wxml-->
-<text>pages/exp/exp.wxml</text>
+<!--pages/signin/signin.wxml-->
+  <!-- 展示用户经验信息 -->
+  <view>
+    <view class='bg' style='padding-top: 100rpx;'>
+      <view class='exp'>
+        <text class='level' style='margin-right: 16rpx;'>Lv3</text>
+        <view>
+          <view class='show_name'>书生虎</view>
+          <view class='value'>经验值：447</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 用户信息卡片 -->
+    <view class='user-card'>
+      <view class='horizontal'>
+        <image class='avatar' src="{{user.avatar}}"></image>
+        <view style='width: 18rpx'></view>
+        <view>
+          <view class='title'>卖报的小行家</view>
+          <view class='subtitle'>你已经加入老虎社区1079天啦</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style='height: 120rpx;'></view>
+
+  <!-- 升级进度 -->
+  <view class='ranks'>
+    <view class='title'>升级进度</view>
+    
+  </view>
+
+  <!-- 经验获取 -->
+  <view class='ranks'>
+    <view class='title'>经验获取</view>
+  </view>
