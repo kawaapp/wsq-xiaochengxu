@@ -17,6 +17,28 @@
   font-weight:600;
 }
 
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2rpx solid white;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: white;
+  padding: 8rpx 18rpx;
+  line-height: 28rpx;
+}
+.button::after{
+  border: 0;
+}
+
+.button image {
+  width: 30rpx;  
+  height: 28rpx; 
+  margin-right: 8rpx;
+}
+
 .h-bottom {
   display: flex;
   align-items:flex-end;

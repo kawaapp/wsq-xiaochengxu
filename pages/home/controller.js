@@ -47,6 +47,11 @@ function onLoad(opt) {
     if (resp.data.user_mode) {
       data.user_mode = parseInt(resp.data.user_mode, 10)
     }
+
+    // test code
+    data.app_pv = '11W'
+    data.app_users = '2W'
+
     view.setData({
       meta: data
     })
@@ -465,6 +470,12 @@ function onClickLocation(e) {
   }
 }
 
+function onClickSignin(e) {
+  wx.navigateTo({
+    url: '/pages/signin/signin',
+  })
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -479,4 +490,5 @@ module.exports = {
   onClickTopic: onClickTopic,
   onClickShare: onClickShare,
   onClickLocation: onClickLocation,
+  onClickSignin: onClickSignin,
 }

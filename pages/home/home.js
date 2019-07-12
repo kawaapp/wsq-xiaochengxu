@@ -86,6 +86,11 @@ Page({
     ctr.onReachBottom()
   },
 
+  // 签到
+  clickSignin : function(e) {
+    ctr.onClickSignin(e)
+  },
+
   // 发新贴
   newTopic: function(e) {
     ctr.onClickNewPost(e)
