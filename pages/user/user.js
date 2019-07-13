@@ -22,8 +22,9 @@ Page({
   },
 
   clickSendMessage: function(e) {
+    var user = this.data.user
     wx.navigateTo({
-      url: '/pages/chat/chat',
+      url: '/pages/chat/chat?uid=' + user.id,
     })
   }
 })

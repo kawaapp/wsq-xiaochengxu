@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
+const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-const Host = "https://wsq.kawaapp.com"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -411,6 +411,36 @@ function setAllMessageRead() {
   })
 }
 
+// 私信接口
+function getChatUserList() {
+  return req({
+    url: `${Host}/api/chat/users`,
+    method: 'GET'
+  })
+}
+
+function getChatListFrom(uid) {
+  return req({
+    url: `${Host}/api/chat/messages?from=${uid}`,
+    method: 'GET'
+  })
+}
+
+function createChatMessage(data) {
+  return req({
+    url: `${Host}/api/chat/messages`,
+    method: 'POST',
+    data: data,
+  })
+}
+
+function setChatMessageReadFrom(uid) {
+  return req({
+    url: `${Host}/api/chat/messsages/read?from=${uid}`,
+    method: 'PUT'
+  })
+}
+
 // 举报接口
 function createReport(data) {
   return req({
@@ -476,6 +506,12 @@ module.exports = {
   getMessageCount: getMessageCount,
   setMessageRead: setMessageRead,
   setAllMessageRead: setAllMessageRead,
+
+  // chat
+  getChatUserList: getChatUserList,
+  getChatMsgListFrom: getChatListFrom,
+  createChatMessage: createChatMessage,
+  setChatMessageRead: setChatMessageReadFrom,
 
   // reports
   createReport: createReport,

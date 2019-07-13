@@ -1,34 +1,29 @@
 // pages/list/list.js
 const ctr = require('./controller.js')
+const input = require("./comps/chat-input")
 
 /**
  * 聊天页面
  */
 Page({
-
+  //{
+  //  showTime: "2015年",
+	//  time: "2015-07-09",
+  //  headUrl: "",
+  //  isMy: true,
+  //  content: "Hello",
+	//  type: 'text',
+  //},
   /**
    * 页面的初始数据
    */
   data: {
     textMessage: '',
     chatItems: [
-      {
-        showTime: "2015年",
-	      time: "2015-07-09",
-        headUrl: "",
-        isMy: true,
-        content: "Hello",
-	      type: 'text',
-      },
-      {
-        showTime: "2015年",
-        time: 0,
-        headUrl: "",
-        isMy: false,
-        content: "Hello",
-        type: 'text',
-      }
     ],
+    other: {
+      uid: undefined,
+    },
     latestPlayVoicePath: '',
     isAndroid: true,
     chatStatue: 'open-f',
@@ -43,30 +38,29 @@ Page({
     ctr.onLoad(options)
   },
 
-  resetInputStatus() {
-    chatInput.closeExtraView();
-  },
-
-  sendMsg({ content, itemIndex, success }) {
-    this.imOperator.onSimulateSendMsg({
-      content,
-      success: (msg) => {
-        this.UI.updateViewWhenSendSuccess(msg, itemIndex);
-        success && success(msg);
-      },
-      fail: () => {
-        this.UI.updateViewWhenSendFailed(itemIndex);
-      }
+  // refresh
+  showMessage(items) {
+    this.setData({
+      chatItems: items,
+      scrollTopVal: items.length * 999,
     })
   },
-  /**
-   * 重发消息
-   * @param e
-   */
-  resendMsgEvent(e) {
-    const itemIndex = parseInt(e.currentTarget.dataset.resendIndex);
-    const item = this.data.chatItems[itemIndex];
-    this.UI.updateDataWhenStartSending(item, false, false);
-    this.msgManager.resend({ ...item, itemIndex });
+
+  // append
+  appendMessage(data) {
+    this.data.chatItems.push(data)
+    this.setData({
+      chatItems: this.data.chatItems,
+      scrollTopVal: this.data.chatItems.length * 999,
+    })
+  },
+
+  // load more
+  shiftMessage(items) {
+    
+  },
+
+  resetInputStatus() {
+    console.log("invoke reset innput..")
   },
 });

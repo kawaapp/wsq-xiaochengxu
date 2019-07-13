@@ -59,4 +59,10 @@ Page({
       url: '/pages/me/bind',
     })
   },
+
+  clickExp: function(e) {
+    wx.navigateTo({
+      url: '/pages/exp/exp',
+    })
+  },
 })

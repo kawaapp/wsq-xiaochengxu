@@ -1,6 +1,6 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
-const chatInput = require("./comps/chat-input")
+const input = require("./comps/chat-input")
 
 const app = getApp()
 
@@ -10,13 +10,13 @@ function setup(_view) {
 }
 
 function onLoad(options) {
-  initData();
+  initData(options.uid);
 }
 
-function initData() {
+function initData(uid) {
   let that = view;
   let systemInfo = wx.getSystemInfoSync();
-  chatInput.init(view, {
+  input.init(view, {
     systemInfo: systemInfo,
     sendButtonBgColor: 'mediumseagreen',
     sendButtonTextColor: 'white',
@@ -28,35 +28,75 @@ function initData() {
   });
 
   // setup input event
-  chatInput.setTextMessageListener((e) => {
+  input.setTextMessageListener((e) => {
     console.log("get input event:" + e.detail.value)
     
-    sendMsg({ 
-      showTime: "2015年",
-      time: "2015-07-09",
-      headUrl: "",
-      isMy: true,
+    var from_id = app.globalData.userInfo.id
+    var to_id = view.data.other.id
+    var data = {
+      from_id: from_id,
+      to_id: to_id,
       content: e.detail.value,
-      type: 'text',
-    })
+    }
+    sendMessage(data)
   });
-}
 
-// message manager
-function showMsg(data) {
-  view.data.chatItems.push(data)
-  view.setData({
-    chatItems: view.data.chatItems.sort(_sortMsgListByTimestamp),
-    scrollTopVal: view.data.chatItems.length * 999,
+  view.data.other.id = parseInt(uid) 
+  
+  // fetch messages from user
+  api.getChatMsgListFrom(uid).then( resp => {
+    console.log("get messages:", resp)
+    var items = massage(resp.data)
+    view.showMessage(items)
+  }).catch(err => {
+    console.log(err)
+  })
+
+  // mark read
+  api.setChatMessageRead(view.data.other.id).then(resp => {
+    console.log("mark success")
+  }).catch(err => {
+    console.log(err)
   })
 }
 
-function sendMsg(data) {
-  showMsg(data)
+// 发送消息
+function sendMessage(data) {
+  api.createChatMessage(data).then( resp => {
+    console.log("get resp:" + data, resp)
+    var items = massage1(resp.data)
+    console.log(items)
+    view.appendMessage(items)
+  }).catch( err => {
+    console.log(err)
+    wx.showToast({ title: '发送失败..', icon: 'fail' })
+  })
 }
 
-function _sortMsgListByTimestamp(item1, item2) {
-  return item1.timestamp - item2.timestamp;
+function massage(items) {
+  items.map( item => {
+    massage1(item)
+  })
+  items.sort((a, b ) => {
+    return a.created_at > b.created_at
+  })
+  return items
+}
+
+function massage1(item) {
+  var user = app.globalData.userInfo
+  var other = view.data.other
+  var utcTime = item.created_at * 1000
+  item.time = util.formatTime(new Date(utcTime))
+  item.showTime = false
+  item.isMy = item.from_id == user.id
+  if (item.isMy) {
+    item.headUrl = user.avatar
+  } else {
+    item.headUrl = other.avatar
+  }
+  item.type = 'text' 
+  return item
 }
 
 module.exports = {
