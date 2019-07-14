@@ -41,7 +41,10 @@ function initData(uid) {
     sendMessage(data)
   });
 
-  view.data.other.id = parseInt(uid) 
+  var other = util.getRequest("user")
+  if (other) {
+    view.data.other = other
+  } 
   
   // fetch messages from user
   api.getChatMsgListFrom(uid).then( resp => {
@@ -73,6 +76,11 @@ function sendMessage(data) {
   })
 }
 
+// 刷新消息
+function onClickRefresh() {
+  console.log("click refresh...")
+}
+
 function massage(items) {
   items.map( item => {
     massage1(item)
@@ -102,4 +110,5 @@ function massage1(item) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onClickRefresh: onClickRefresh,
 }

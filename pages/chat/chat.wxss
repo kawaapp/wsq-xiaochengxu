@@ -6,6 +6,13 @@ page {
     background-color: #EFEFEF;
 }
 
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 54rpx;
+}
+
 .chat-page-status-style{
     width: 100%;
     height: 54rpx;
@@ -18,4 +25,12 @@ page {
     top:0;
     left:0;
     z-index: 20;
+}
+
+.refresh {
+  position: fixed;
+  bottom: 160rpx;
+  right: 20rpx;
+  width: 64rpx;
+  height: 64rpx;
 }

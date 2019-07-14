@@ -53,5 +53,9 @@ Page({
     wx.navigateTo({
       url: '/pages/message/list/comment',
     })
+  },
+
+  clickItem: function(e) {
+    ctr.onClickItem(e)
   }
 })

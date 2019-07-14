@@ -32,8 +32,26 @@ function massage(items) {
   return items
 }
 
+function onClickItem(e) {
+  var idx = e.currentTarget.dataset.idx
+  var item = view.data.chats[idx]
+  var key = 'chats[' + idx + '].status'
+
+  // set from user
+  util.sendRequest('user', item.from)
+
+  // goto chat screen
+  wx.navigateTo({
+    url: '/pages/chat/chat?uid=' + item.from_id,
+  })
+
+  // update item status
+  view.setData({ [key]: 1})
+}
+
 
 module.exports = {
   setup: setup,
   refreshMessage: refreshMessage,
+  onClickItem: onClickItem,
 }

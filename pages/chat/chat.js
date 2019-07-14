@@ -1,7 +1,7 @@
 // pages/list/list.js
 const ctr = require('./controller.js')
 const input = require("./comps/chat-input")
-
+const kawa = require('../../kawa.js')
 /**
  * 聊天页面
  */
@@ -18,11 +18,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: kawa.Theme.Image,
     textMessage: '',
     chatItems: [
     ],
     other: {
       uid: undefined,
+    },
+    reply: {
+      enable: false,
     },
     latestPlayVoicePath: '',
     isAndroid: true,
@@ -36,6 +40,11 @@ Page({
   onLoad(options) {
     ctr.setup(this)
     ctr.onLoad(options)
+  },
+
+  // 点击刷新
+  clickRefresh: function (e) {
+    ctr.onClickRefresh(e)
   },
 
   // refresh

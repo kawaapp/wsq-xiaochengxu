@@ -1,54 +1,50 @@
-input{
-    padding-top: 10rpx;
-    padding-bottom:10rpx;
+input {
+    padding-top: 0rpx;
+    padding-bottom: 0rpx;
     width: 100%;
 }
 
-.extra-btn-style{
-    width: 50rpx;
-    height: 50rpx;
-    padding:25rpx 15rpx;
+.release {
     display: flex;
-    flex-shrink:0;
-}
-.input-text-voice-super{
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    width: 100%;
-    align-items: center;
-    height:100rpx;
-}
-.input-flex-column{
-    width:100%;
-    display: flex;
-    flex-direction:column;
+    align-items: center; /*底部对齐*/
+    justify-content: space-between; /*两端对齐*/
+    box-sizing: border-box;
     position: fixed;
     left: 0;
     bottom: 0;
-}
-
-.list-divide-line {
     width: 100%;
-    height: 1rpx;
-    background-color: #dddddd;
+    padding: 12rpx 0 12rpx 24rpx;
+    background-color: #F7F8F7;
+    font-size: 28rpx;
+    z-index: 1000;
 }
 
-.chat-input-style{
-    border-radius:10rpx;
-    border:1rpx solid gainsboro;
-    margin-top:14rpx;
-    margin-bottom: 13rpx;
-    padding:10rpx;
-    min-height: 51rpx;
-    background-color: #EFEFEF;
-}
-
-.chat-input-send-button-style{
-    width: 100rpx;
-    padding: 15rpx 0;
+.release .text{
+    width: 604rpx;
+    border-style: solid;
+    border-color:  #ffffff;
     font-size: 30rpx;
+    background-color: #ffffff;
+    border-radius: 4rpx;
+}
+
+.release .submit{
+    width: 116rpx;
     text-align: center;
-    margin: 0 10rpx;
-    border-radius: 10rpx;
+    color: #66CC00;
+    z-index: 1001;
+}
+
+.submit button {
+  height: 100%;
+  font-size: 32rpx;
+  padding-left: 0px;
+  padding-right: 0px;
+  color: #66CC00;
+
+}
+.submit button::after{ border: none; }
+
+.release .submit-disable {
+  color:#C9C9C9;
 }

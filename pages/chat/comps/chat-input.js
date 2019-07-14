@@ -1,3 +1,5 @@
+const util = require('../../../utils/util.js')
+
 let _page;
 let inputObj = {};
 let tabbarHeigth = 0, extraButtonClickEvent;
@@ -15,10 +17,6 @@ function init(page, opt) {
 function initData(opt) {
     _page.data.inputObj = inputObj = {
         voiceObj: {},
-        inputStyle: {
-            sendButtonBgColor: opt.sendButtonBgColor || 'mediumseagreen',
-            sendButtonTextColor: opt.sendButtonTextColor || 'white'
-        }
     };
 }
 
@@ -65,6 +63,17 @@ function setTextMessageListener(cb) {
             _page.setData({
                 textMessage: e.detail.value
             })
+          if (!util.isWhiteSpace(e.detail.value) && !_page.data.reply.enable) {
+            _page.setData({
+              reply: {enable: true}
+            })
+          } 
+          
+          if (util.isWhiteSpace(e.detail.value) && _page.data.reply.enable) {
+            _page.setData({
+              reply: { enable: false }
+            })
+          }
         }
     }
 }
