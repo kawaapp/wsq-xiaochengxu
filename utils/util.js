@@ -41,6 +41,21 @@ const agoTime = dateTimeStamp => {
   return result
 }
 
+const msgTime = (date) => {
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+
+  var now = new Date().getTime();
+  var diffValue = now - date;
+  if (diffValue/day >= 1) {
+    return [month, day].join('-')
+  } else {
+    return [hour, minute].join(':')
+  }
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -159,6 +174,7 @@ function getCityName(addr) {
 module.exports = {
   formatTime: formatTime,
   agoTime: agoTime,
+  msgTime: msgTime,
   setResult: setResult,
   sendRequest: setTransitData,
   getRequest: getTransitData,

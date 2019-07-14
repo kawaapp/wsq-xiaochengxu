@@ -1,5 +1,7 @@
 <!--pages/message/message.wxml-->
 <view class='card'>
+
+  <!-- 点赞消息 -->
   <view class='horizontal' bindtap='favorClick'>
     <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
         src="{{theme}}/msg_like.png" 
@@ -17,6 +19,7 @@
 
   <view class='line' style='margin-left:112rpx;'></view>
 
+  <!-- 评论消息 -->
   <view class='horizontal' bindtap='commentClick'>
     <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
         src="{{theme}}/msg_cmt.png" 
@@ -32,4 +35,32 @@
     </view>
   </view>
 
+  <!-- 私信消息 -->
+  <view wx:for="{{chats}}" wx:for-item="item" wx:key="{{item.id}}">
+    <view class='line' style='margin-left:112rpx;'></view>
+    <view class='horizontal'  bindtap='clickItem' data-idx='{{index}}'>
+      <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
+        src="{{item.from.avatar?item.from.avatar: theme+'/user_icon.png'}}" 
+        />
+      <view>
+        <view class='title'>{{item.from.nickname?item.from.nickname:'匿名'}}</view>
+        <view class='subtitle single-line'>{{item.content}}</view>
+      </view>
+      <view style='margin-left: auto;'>
+        <view style='font-size:24rpx; margin-bottom: 20rpx;'>{{item.date}}</view>
+        <view wx:if="{{item.status==0}}" class='circle' style='margin-left: auto;'/>
+      </view>
+    </view>
+  </view>
+
 </view>
+
+
+<!-- 加载提示 -->
+<view wx:if='{{loader.ing}}' style='text-align:center;'>
+  <text class="fade-title">正在加载...</text>
+</view>
+<view wx:if='{{!loader.more}}' style='text-align:center;'>
+  <text class="fade-title">— 没有更多数据了 —</text>
+</view>
+<view style='height:9.36rpx;'/>

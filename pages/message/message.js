@@ -13,7 +13,7 @@ Page({
       favors: 0,
       comments: 0,
     },
-    list:[]
+    chats:[]
   },
 
   onLoad: function(options) {

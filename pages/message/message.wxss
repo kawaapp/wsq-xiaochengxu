@@ -21,3 +21,14 @@
   min-width: 1.6em;
   font-size: 1em;
 }
+
+.title {
+  font-size: 32rpx;
+}
+
+.circle {
+  border-radius: 50%;
+  background: #FF4444;
+  width: 16rpx;
+  height: 16rpx;
+}
