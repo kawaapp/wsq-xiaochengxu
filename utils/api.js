@@ -183,6 +183,13 @@ function getSignList() {
   })
 }
 
+function getSignUserList() {
+  return req({
+    url: `${Host}/api/activity/signs/users`,
+    method: 'GET'
+  })
+}
+
 // update user profile
 function updateUser(data) {
   return req({
@@ -521,6 +528,7 @@ module.exports = {
   signin: signin,
   getSignToday: getSignToday,
   getSignList: getSignList,
+  getSignUserList: getSignUserList,
 
 
   // actions

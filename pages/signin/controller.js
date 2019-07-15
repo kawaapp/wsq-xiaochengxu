@@ -13,18 +13,23 @@ function onLoad(options) {
   var user = app.globalData.userInfo
   view.setData({user: user})
 
+  // show sign-in days
   api.getSignList().then( resp => {
-    console.log( resp.data )
-    var days = getDailySign(resp.data)
-    view.setData({ sign: {
-      days: days,
-    }})
-
+    view.setData({
+        sign: { days: getDailySign(resp.data) }
+    })
   }).catch( err => {
     console.log(err)
   })
 
-  getDailySign()
+  // get ranking list
+  api.getSignUserList().then( resp => {
+    view.setData({
+      ranks: massage(resp.data)
+    })
+  }).catch(err => {
+    console.log(err)
+  })
 }
 
 function getDailySign(items) {
@@ -55,7 +60,7 @@ function getDailySign(items) {
     if (sign) {
       day.signed = true
     } else {
-      day.value = '+40'
+      day.value = '40'
     }
     day.date = day.date.substr(5)
   })
@@ -69,9 +74,16 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('-')
 }
 
-const formatNumber = n => {
+function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
+}
+
+function massage(items) {
+  items.map( item => {
+    item.avatar = 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+  })
+  return items
 }
 
 

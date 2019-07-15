@@ -29,9 +29,12 @@
   <view class='ranks'>
     <view class='.title'>排行榜</view>
     <view class='item' wx:for="{{ranks}}" wx:for-item="item" wx:key="{{index}}">
-      <text class='index'>1</text>
+      <view>
+        <image wx:if="{{index<3}}" class='ranking' src="/res/default/ranking_{{index+1}}.png" />
+        <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
+      </view>
       <image class='avatar' src="{{item.avatar}}"></image>
       <text class='name' >{{item.nickname}}</text>
-      <text class='times'>{{item.times}}次</text>
+      <text class='times'>{{item.sign_count}}次</text>
     </view>
   </view>

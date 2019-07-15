@@ -119,11 +119,17 @@ page {
   align-items: center;
 }
 
+.ranks .item .ranking {
+  width: 96rpx;
+  height: 96rpx;
+}
+
 .ranks .item .index {
+  width: 96rpx;
+  text-align: center;
   color: #333;
   font-size: 32rpx;
   font-weight: 800;
-  margin-right: 32rpx;
 }
 
 .ranks .item .avatar {
