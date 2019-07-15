@@ -471,9 +471,29 @@ function onClickLocation(e) {
 }
 
 function onClickSignin(e) {
-  wx.navigateTo({
-    url: '/pages/signin/signin',
-  })
+  if (view.data.signed) {
+    wx.navigateTo({
+      url: '/pages/signin/signin',
+    })
+    return
+  }
+
+  // 执行签到
+  api.signin().then(resp => {
+    view.setData({ signed: true })
+    if (resp.data.code == 4001) {
+      wx.showToast({
+        title: '已签到', icon: "success"
+      })
+    } else {
+      wx.showToast({
+        title: '签到成功', icon: "success"
+      })
+    }
+  }).catch(err => {
+    console.log(err)
+    wx.showToast({ title: '签到失败', icon: "none" })
+  }) 
 }
 
 module.exports = {

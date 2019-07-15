@@ -11,7 +11,7 @@
       <!-- sign and share button -->
       <view class='horizontal' style='margin-bottom: 8rpx;'>
         <button class='button' bindtap='clickSignin'> 
-        <image src="/res/default/signin.png"/>签到</button>
+        <image src="/res/default/signin.png"/>{{signed? '已签到': '签到'}}</button>
 
         <view style='width:24rpx;'></view>
         

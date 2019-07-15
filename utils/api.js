@@ -159,26 +159,29 @@ function getMetaData() {
 }
 
 // 签到API
-function checkin(date) {
-  if (date == undefined) {
-    date = ""
+function signin(date) {
+  if (!date) {
+    date = ''
   }
   return req({
-    url: `${Host}/api/activity/sign/${date}`,
-    method: 'POST'
+    url: `${Host}/api/activity/signs?date=${date}`,
+    method: 'POST',
   })
 }
 
-function checkState(date) {
-  if (date == undefined) {
-    date = ""
-  }
+function getSignToday() {
   return req({
-    url: `${Host}/api/activity/sign/${date}`,
+    url: `${Host}/api/activity/signs/today`,
     method: 'GET'
   })
 }
 
+function getSignList() {
+  return req({
+    url: `${Host}/api/activity/signs`,
+    method: 'GET'
+  })
+}
 
 // update user profile
 function updateUser(data) {
@@ -469,8 +472,6 @@ module.exports = {
 
   // meta
   getMetaData: getMetaData,
-  checkin: checkin,
-  checkState: checkState,
 
   // post
   getPostList: getPostList,
@@ -515,6 +516,12 @@ module.exports = {
 
   // reports
   createReport: createReport,
+
+  // signin
+  signin: signin,
+  getSignToday: getSignToday,
+  getSignList: getSignList,
+
 
   // actions
   decrypt: decrypt,

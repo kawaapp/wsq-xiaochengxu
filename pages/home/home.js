@@ -53,7 +53,8 @@ Page({
     topic: {
       items: [],
       selected: -1,
-    }
+    },
+    signed: false,
   },
   clickTab: function(e) {
     var idx = e.target.dataset.idx;

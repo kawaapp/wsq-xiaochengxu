@@ -1,3 +1,5 @@
+const ctr = require('./controller.js')
+
 // pages/signin/signin.js
 Page({
 
@@ -6,74 +8,25 @@ Page({
    */
   data: {
     user: {
-      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-      grade: 124,
     },
     sign: {
       title: '已连续签到3天',
-      days:[{
-        date: "07.11",
-        value: 30,
-        signed: true,
-      },{
-        date: "07.11",
-        value: 30,
-        signed: true,
-      }, {
-        date: "07.11",
-        value: 30,
-        signed: true,
-      }, {
-          date: "07.11",
-          value: 40,
-          signed: false,
-      }, {
-          date: "07.11",
-          value: 40,
-          signed: false,
-      }, {
-          date: "07.11",
-          value: 40,
-          signed: false,
-      }, {
-          date: "07.11",
-          value: 40,
-          signed: false,
-      }
+      // {
+      //   date: "07.11",
+      //   value: 30,
+      //   signed: true,
+      // }
+      days:[
       ],
       signed: true,
     },
+    // {
+    //   avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    //   grade: 124,
+    //   nickname: "小可爱",
+    //   times: 120,
+    // }
     ranks: [
-      {
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        grade: 124,
-        nickname: "小可爱",
-        times: 120,
-      },
-      {
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        grade: 124,
-        nickname: "小可爱",
-        times: 120,
-      },
-      {
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        grade: 124,
-        nickname: "小可爱",
-        times: 120,
-      },
-      {
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        grade: 124,
-        nickname: "小可爱",
-        times: 120,
-      },
-      {
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        grade: 124,
-        nickname: "小可爱",
-        times: 120,
-      }
     ],
   },
 
@@ -81,7 +34,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    ctr.setup(this)
+    ctr.onLoad(options)
   },
 
   /**
@@ -90,4 +44,6 @@ Page({
   onReachBottom: function () {
 
   },
+
+  
 })
