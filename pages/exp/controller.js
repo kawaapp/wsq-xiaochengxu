@@ -24,11 +24,11 @@ function onLoad(options) {
   })
 
   // 加载类型列表
-  // api.getExpKindList().then(resp => {
-
-  // }).catch(err => {
-  //   console.log(err)
-  // })
+  api.getExpKindList().then(resp => {
+    view.setData({kinds: resp.data})
+  }).catch(err => {
+    console.log(err)
+  })
 }
 
 function getGrade(exp) {
@@ -36,6 +36,9 @@ function getGrade(exp) {
   if (!grades || grades.length == 0) {
     return
   } 
+  grades.sort( (a, b) => {
+    return a.level < b.level
+  })
   for (var i = 0; i < grades.length; i++) {
     if (grades[i].need_exp > exp) {
       return grades[i]

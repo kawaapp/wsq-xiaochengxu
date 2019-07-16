@@ -12,8 +12,9 @@ Page({
     },
     grades:[
     ],
+    kinds: [
+    ],
     usrGrade: {
-
     },
   },
 

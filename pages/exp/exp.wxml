@@ -29,10 +29,21 @@
   <!-- 升级进度 -->
   <view class='ranks'>
     <view class='title'>升级进度</view>
-    
+    <progress percent="20" show-info />
   </view>
 
-  <!-- 经验获取 -->
+  <!-- 等级列表 -->
   <view class='ranks'>
-    <view class='title'>经验获取</view>
+    <view class='title'>经验等级</view>
+    <view class='list'>
+      <view>
+      </view>
+      <view class='item' wx:for="{{grades}}" wx:for-item="item" wx:key="{{index}}">
+        <view style='margin-right:12rpx;'>Lv{{item.level}}</view>
+        <view>{{item.show_name}}</view>
+        <view style='margin-left:auto;'>{{ ' < ' + item.need_exp}}</view>
+      </view>
+    </view>
   </view>
+
+  <!-- -->

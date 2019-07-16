@@ -164,28 +164,28 @@ function signin(date) {
     date = ''
   }
   return req({
-    url: `${Host}/api/activity/signs?date=${date}`,
+    url: `${Host}/api/signs?date=${date}`,
     method: 'POST',
   })
 }
 
 function getSignToday() {
   return req({
-    url: `${Host}/api/activity/signs/today`,
+    url: `${Host}/api/signs/today`,
     method: 'GET'
   })
 }
 
 function getSignList() {
   return req({
-    url: `${Host}/api/activity/signs`,
+    url: `${Host}/api/signs`,
     method: 'GET'
   })
 }
 
 function getSignUserList(page, size) {
   return req({
-    url: `${Host}/api/activity/signs/users?page=${page}&limit=${size}`,
+    url: `${Host}/api/signs/users?page=${page}&size=${size}`,
     method: 'GET'
   })
 }
@@ -466,6 +466,13 @@ function getExpKindList() {
   })
 }
 
+function getUserListExp(page, size) {
+  return req({
+    url: `${Host}/api/exp/users?page=${page}&size=${size}`,
+    method: 'GET'
+  })
+}
+
 // 举报接口
 function createReport(data) {
   return req({
@@ -548,6 +555,7 @@ module.exports = {
   // exp
   getGradeList: getGradeList,
   getExpKindList: getExpKindList,
+  getUserListExp: getUserListExp,
   
   // actions
   decrypt: decrypt,
