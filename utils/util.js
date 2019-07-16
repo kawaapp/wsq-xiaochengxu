@@ -56,6 +56,12 @@ const msgTime = (date) => {
   }
 }
 
+const getDaysFromNow = (created_at) => {
+  var thatTime = new Date(created_at * 1000)
+  var nowTime = new Date()
+  return Math.floor((nowTime - thatTime) / (1000 * 3600 * 24))
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -175,6 +181,7 @@ module.exports = {
   formatTime: formatTime,
   agoTime: agoTime,
   msgTime: msgTime,
+  getDaysFromNow: getDaysFromNow,
   setResult: setResult,
   sendRequest: setTransitData,
   getRequest: getTransitData,

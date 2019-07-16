@@ -183,9 +183,9 @@ function getSignList() {
   })
 }
 
-function getSignUserList() {
+function getSignUserList(page, size) {
   return req({
-    url: `${Host}/api/activity/signs/users`,
+    url: `${Host}/api/activity/signs/users?page=${page}&limit=${size}`,
     method: 'GET'
   })
 }
@@ -451,6 +451,21 @@ function setChatMessageReadFrom(uid) {
   })
 }
 
+// 经验等级
+function getGradeList() {
+  return req({
+    url: `${Host}/api/exp/grades`,
+    method: 'GET'
+  })
+}
+
+function getExpKindList() {
+  return req({
+    url: `${Host}/api/exp/types`,
+    method: 'GET'
+  })
+}
+
 // 举报接口
 function createReport(data) {
   return req({
@@ -530,7 +545,10 @@ module.exports = {
   getSignList: getSignList,
   getSignUserList: getSignUserList,
 
-
+  // exp
+  getGradeList: getGradeList,
+  getExpKindList: getExpKindList,
+  
   // actions
   decrypt: decrypt,
 }

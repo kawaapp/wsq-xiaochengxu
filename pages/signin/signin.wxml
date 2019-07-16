@@ -10,17 +10,17 @@
 
   <!-- 签到卡片 -->
   <view class='sign-card'>
-    <view class='title'>已连续签到 3 天</view>
+    <view class='title'>已连续签到 {{sign.today.seq_count}} 天</view>
     <view class='list'>
       <view class='item' wx:for="{{sign.days}}" wx:for-item="item" wx:key="{{index}}">
-        <text>{{item.signed? '已签到': item.date}}</text>
+        <text>{{item.signed && !item.today ? '已签到': item.date}}</text>
         <view class="{{item.signed? 'checked': ''}}" >
           {{item.signed? '✔': '+'+item.value}}
         </view>
       </view>
     </view>
     <view style='margin-bottom: 12rpx;'>
-      <button>已签到</button>
+      <button>{{sign.today.signed? '已签到': '未签到'}}</button>
     </view>
   </view>
   </view>

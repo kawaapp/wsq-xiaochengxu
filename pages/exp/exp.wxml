@@ -3,10 +3,10 @@
   <view>
     <view class='bg' style='padding-top: 100rpx;'>
       <view class='exp'>
-        <text class='level' style='margin-right: 16rpx;'>Lv3</text>
+        <text class='level' style='margin-right: 16rpx;'>Lv{{usrGrade.level}}</text>
         <view>
-          <view class='show_name'>书生虎</view>
-          <view class='value'>经验值：447</view>
+          <view class='show_name'>{{usrGrade.show_name}}</view>
+          <view class='value'>经验值：{{user.exp_count}}</view>
         </view>
       </view>
     </view>
@@ -17,8 +17,8 @@
         <image class='avatar' src="{{user.avatar}}"></image>
         <view style='width: 18rpx'></view>
         <view>
-          <view class='title'>卖报的小行家</view>
-          <view class='subtitle'>你已经加入老虎社区1079天啦</view>
+          <view class='title'>{{user.nickname}}</view>
+          <view class='subtitle'>你已经加入社区{{user.joinDays}}天啦</view>
         </view>
       </view>
     </view>

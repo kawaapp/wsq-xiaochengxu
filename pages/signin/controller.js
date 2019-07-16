@@ -15,15 +15,20 @@ function onLoad(options) {
 
   // show sign-in days
   api.getSignList().then( resp => {
+    var days = getDailySign(resp.data)
+    var weekDay = new Date().getDay()
+    var today = days[weekDay]
+
     view.setData({
-        sign: { days: getDailySign(resp.data) }
+      sign: { days: days, today: today }
     })
   }).catch( err => {
     console.log(err)
   })
 
+  var pager = view.data.pager
   // get ranking list
-  api.getSignUserList().then( resp => {
+  api.getSignUserList(pager.index, pager.limit).then( resp => {
     view.setData({
       ranks: massage(resp.data)
     })
@@ -32,9 +37,12 @@ function onLoad(options) {
   })
 }
 
+// 签到规则：连续签到三次之后，再次签到+10
 function getDailySign(items) {
   var date = new Date();
   var weekDay = date.getDay();
+
+  console.log("get week day:", weekDay)
 
   // day array
   var days = []
@@ -42,7 +50,8 @@ function getDailySign(items) {
     var d = new Date();
     d.setDate(date.getDate() - weekDay + i)
     days.push( {
-      date: formatTime(d)
+      date: formatTime(d),
+      index: i,
     })
   }
 
@@ -59,11 +68,44 @@ function getDailySign(items) {
     var sign = mapping[day.date]
     if (sign) {
       day.signed = true
+      day.seq_count = sign.seq_count
     } else {
-      day.value = '40'
+      day.sign = false
+      day.seq_count = 0
     }
-    day.date = day.date.substr(5)
+    if (day.index == weekDay) {
+      day.date = '今天'
+      day.today = true
+    } else {
+      day.date = day.date.substr(5)
+    }
   })
+
+  var last = {
+    seq_count: 0,
+  }
+
+  console.log(days)
+
+  // 先算连续签到次数，过去的天数中，签到是已知的
+  // 未来按已经签到算
+  // 再根据签到次数得到每日经验
+
+  // compute exp
+  for (var i = 0; i < 7; i++) {
+    if (i >= weekDay) {
+      days[i].seq_count = last.seq_count + 1
+    }
+    if (days[i].seq_count == 0) {
+      days[i].value = 0
+    } else if (days[i].seq_count <= 3) {
+      days[i].value = 30
+    } else {
+      days[i].value = 40
+    }
+    last = days[i]
+  }
+
   return days
 }
 
@@ -86,8 +128,38 @@ function massage(items) {
   return items
 }
 
+function onReachBottom() {
+  console.log("on reach bottom..")
+  if (view.data.loader.ing || !view.data.loader.more) {
+    return
+  }
+  var ranks = view.data.ranks
+  var pager = view.data.pager
+  var loader = view.data.loader
+  loader.ing = true
+  view.setData({ loader: loader })
+
+  api.getSignUserList(pager.index+1, pager.limit).then(resp => {
+    loader.ing = false
+    if (resp.data.length < limit) {
+      loader.more = false
+    }
+    pager.index += 1
+    view.setData({ loader: loader })
+    view.setData({ ranks: ranks.concat(resp.data) })
+
+    console.log("get users:", resp.data)
+  }).catch(err => {
+    loader.ing = false
+    view.setData({ loader: loader })
+    wx.showToast({
+      title: '加载失败', icon: 'none',
+    })
+  })
+}
 
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onReachBottom: onReachBottom,
 }

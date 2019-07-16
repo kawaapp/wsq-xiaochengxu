@@ -10,7 +10,6 @@ Page({
     user: {
     },
     sign: {
-      title: '已连续签到3天',
       // {
       //   date: "07.11",
       //   value: 30,
@@ -19,6 +18,8 @@ Page({
       days:[
       ],
       signed: true,
+      today: {
+      }
     },
     // {
     //   avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
@@ -28,6 +29,14 @@ Page({
     // }
     ranks: [
     ],
+    loader: {
+      ing: false,
+      more: true,
+    },
+    pager: {
+      index: 1,
+      limit: 20,
+    }
   },
 
   /**
@@ -42,8 +51,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    ctr.onReachBottom()
   },
-
-  
 })

@@ -17,7 +17,7 @@ Page({
   onLoad: function (options) {
     var req = util.getRequest("user")
     var user = req.data
-    user.days = getDays(user.created_at)
+    user.days = util.getDaysFromNow(user.created_at)
     this.setData({ user: user})
   },
 
@@ -28,9 +28,3 @@ Page({
     })
   }
 })
-
-function getDays(created_at) {
-  var thatTime = new Date(created_at * 1000)
-  var nowTime = new Date()
-  return Math.floor((nowTime - thatTime)/(1000 * 3600 * 24))
-}

@@ -1,3 +1,5 @@
+const ctr = require('./controller.js')
+
 // pages/signin/signin.js
 Page({
 
@@ -6,8 +8,12 @@ Page({
    */
   data: {
     user: {
-      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-      grade: 124,
+      joinDays: 0,
+    },
+    grades:[
+    ],
+    usrGrade: {
+
     },
   },
 
@@ -15,7 +21,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    ctr.setup(this)
+    ctr.onLoad(options)
   },
 
   /**

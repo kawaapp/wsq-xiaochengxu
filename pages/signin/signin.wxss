@@ -7,7 +7,7 @@ page {
   width: 850rpx;
   margin-left: -50rpx;
   height: 340rpx;
-  background-color: #0abab6;
+  background-color: #1be6cd;
   border-bottom-left-radius: 300px 80px;
   border-bottom-right-radius: 300px 80px;
 }
