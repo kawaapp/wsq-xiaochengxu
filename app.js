@@ -42,5 +42,6 @@ App({
     meta: {},
     userInfo: {},
     topics: [],
+    signed: undefined,
   }
 })

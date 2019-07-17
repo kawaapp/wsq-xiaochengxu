@@ -4,33 +4,8 @@ page {
 }
 
 .bg {
-  width: 850rpx;
-  margin-left: -50rpx;
-  height: 340rpx;
-  background-color: #1be6cd;
-  border-bottom-left-radius: 300px 80px;
-  border-bottom-right-radius: 300px 80px;
-}
-
-.user {
-  margin-left: 50rpx;
-  padding-top: 80rpx;
-  display: flex;
-  align-items: center;
-}
-
-.user .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 0 20rpx 0 60rpx;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-}
-
-.user .grade {
-  color: white;
-  font-size: 48;
-  font-weight: 800;
+  height: 180rpx;
+  background-color: #a2f1d9;
 }
 
 .sign-card {
@@ -50,7 +25,7 @@ page {
 }
 
 .sign-card .list {
-  margin: 36rpx 0px;
+  margin: 20rpx 0px;
   display: flex;
   align-items: center;
   justify-content:space-between;
@@ -77,6 +52,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 28rpx;
 }
 
 .sign-card .item .checked {
@@ -89,7 +65,8 @@ page {
   width: 240rpx;
   margin: 0 auto;
   background-color: #f2f2f2;
-  font-size: 28rpx;
+  font-size: 24rpx;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,39 +89,46 @@ page {
 }
 
 .ranks .item {
-  margin-top: 16rpx;
-  margin-bottom: 16rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.ranks .item .ranking {
-  width: 96rpx;
-  height: 96rpx;
+.ranks .ranking {
+  width: 72rpx;
+  height: 72rpx;
 }
 
-.ranks .item .index {
-  width: 96rpx;
+.ranks .index {
+  width: 72rpx;
   text-align: center;
   color: #333;
   font-size: 32rpx;
   font-weight: 800;
 }
 
-.ranks .item .avatar {
-  width: 64rpx;
-  height: 64rpx;
-  margin-right: 12rpx;
+.ranks .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 16rpx;
+  margin-left: 24rpx;
 }
 
-.ranks .item .name {
+.ranks .name {
   font-size: 32rpx;
 }
 
-.ranks .item .times {
-  font-size: 32rpx;
+.ranks .times {
+  font-size: 64rpx;
   margin-left: auto;
+  font-weight: 600;
+  color:#777;
+}
+
+.ranks .unit {
+  font-size:28rpx; 
+  color:#999; 
+  margin-left: 12rpx;
 }
 
 

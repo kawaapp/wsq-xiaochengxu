@@ -13,6 +13,16 @@ function onLoad(options) {
   user.joinDays = util.getDaysFromNow(user.created_at)
   view.setData({ user: user })
 
+  // 更新等级
+  api.getSelf().then((resp) => {
+    app.globalData.userInfo = resp.data
+    // update view
+    view.setData({ user: resp.data })
+
+    // refresh local storage
+    wx.setStorage({ key: 'user', data: resp.data })
+  })
+
   // 加载等级列表
   api.getGradeList().then(resp => {
     view.setData({grades: resp.data})

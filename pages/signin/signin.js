@@ -35,7 +35,7 @@ Page({
     },
     pager: {
       index: 1,
-      limit: 20,
+      size: 20,
     }
   },
 
@@ -53,4 +53,8 @@ Page({
   onReachBottom: function () {
     ctr.onReachBottom()
   },
+
+  clickSign: function() {
+    ctr.onClickSign()
+  }
 })

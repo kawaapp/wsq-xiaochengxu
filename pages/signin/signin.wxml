@@ -2,10 +2,6 @@
   <!-- 展示用户等级信息 -->
   <view>
   <view class='bg'>
-    <view class='user'>
-      <image class='avatar' src="{{user.avatar}}"></image>
-      <text class='grade'>{{user.grade}} 经验值</text>
-    </view>
   </view>
 
   <!-- 签到卡片 -->
@@ -19,22 +15,37 @@
         </view>
       </view>
     </view>
-    <view style='margin-bottom: 12rpx;'>
-      <button>{{sign.today.signed? '已签到': '未签到'}}</button>
+    <view style='margin-top: 24rpx; '>
+      <button bindtap='clickSign'>{{sign.today.signed? '已签到': '未签到'}}</button>
     </view>
   </view>
   </view>
 
+  <!-- 我的签到 -->
+  <view></view>
+
   <!-- 排行榜 -->
   <view class='ranks'>
-    <view class='.title'>排行榜</view>
-    <view class='item' wx:for="{{ranks}}" wx:for-item="item" wx:key="{{index}}">
-      <view>
-        <image wx:if="{{index<3}}" class='ranking' src="/res/default/ranking_{{index+1}}.png" />
+    <view class='.title'>签到榜</view>
+    <view wx:for="{{ranks}}" wx:for-item="item" wx:key="{{index}}">
+      <view class='item'>
+        <image wx:if="{{index<3}}" class='ranking' src="/res/default/rank_{{index+1}}.png" />
         <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
+        <image class='avatar' src="{{item.avatar}}"></image>
+        <text class='name' >{{item.nickname}}</text>
+        <text class='times'>{{item.sign_count}}</text>
+        <text class='unit'>次</text>
+        <view style='width: 12rpx;'> </view>
       </view>
-      <image class='avatar' src="{{item.avatar}}"></image>
-      <text class='name' >{{item.nickname}}</text>
-      <text class='times'>{{item.sign_count}}次</text>
+      <view class='line' style='margin-left:72rpx;'></view>
     </view>
   </view>
+
+<!-- 加载提示 -->
+<view wx:if='{{loader.ing}}' style='text-align:center;'>
+  <text class="fade-title">正在加载...</text>
+</view>
+<view wx:if='{{!loader.more}}' style='text-align:center;'>
+  <text class="fade-title">— 没有更多数据了 —</text>
+</view>
+<view style='height:9.36rpx;'/>

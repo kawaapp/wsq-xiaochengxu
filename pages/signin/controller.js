@@ -139,9 +139,9 @@ function onReachBottom() {
   loader.ing = true
   view.setData({ loader: loader })
 
-  api.getSignUserList(pager.index+1, pager.limit).then(resp => {
+  api.getSignUserList(pager.index+1, pager.size).then(resp => {
     loader.ing = false
-    if (resp.data.length < limit) {
+    if (resp.data.length < pager.size) {
       loader.more = false
     }
     pager.index += 1
@@ -150,6 +150,7 @@ function onReachBottom() {
 
     console.log("get users:", resp.data)
   }).catch(err => {
+    console.log(err)
     loader.ing = false
     view.setData({ loader: loader })
     wx.showToast({
@@ -158,8 +159,35 @@ function onReachBottom() {
   })
 }
 
+function onClickSign(e) {
+  var sign = view.data.sign
+  if (sign.today.signed) {
+    wx.showToast({
+      title: '已经签过到啦', icon: 'none'
+    })
+    return
+  }
+  // 执行签到
+  api.signin().then(resp => {
+    view.setData({ signed: true })
+    if (resp.data.code == 4001) {
+      wx.showToast({
+        title: '已签到', icon: "success"
+      })
+    } else {
+      wx.showToast({
+        title: '签到成功', icon: "success"
+      })
+    }
+  }).catch(err => {
+    console.log(err)
+    wx.showToast({ title: '签到失败', icon: "none" })
+  })
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
   onReachBottom: onReachBottom,
+  onClickSign: onClickSign,
 }

@@ -111,6 +111,17 @@ function onLoad(opt) {
     // refresh local storage
     wx.setStorage({ key: 'topic', data: resp.data })
   })
+
+  // 签到状态
+  var data = app.globalData
+  if (data.signed == undefined) {
+    api.getSignToday().then( resp => {
+      data.signed = resp.data.ok
+      view.setData({signed: data.signed })
+    }).catch( err => {
+      console.log(err)
+    })
+  }
 }
 
 // show topic
