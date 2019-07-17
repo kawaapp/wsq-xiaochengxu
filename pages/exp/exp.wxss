@@ -65,14 +65,26 @@ page {
   margin-left: 8rpx;
 }
 
-.ranks {
-  padding: 0 32rpx;
-}
-
-.ranks .title {
+.exp-title {
   font-size: 38rpx;
   font-weight: 800;
   margin-bottom: 20rpx;
+}
+
+.next {
+  padding: 0 32rpx;
+  margin-bottom: 12rpx;
+}
+
+.next .label {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: gray;
+  margin-left: 18rpx;
+}
+
+.ranks {
+  padding: 0 32rpx;
 }
 
 .ranks .item {

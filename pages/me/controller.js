@@ -29,7 +29,33 @@ function onLoad(options) {
     app.globalData.userInfo = resp.data
     view.setData({ user: resp.data })
     console.log("get user data:", resp.data)
+  }).catch( err => {
+    console.log(err)
   })
+
+  // 更新用户等级
+  if (user.nickname) {
+    console.log("更新用户等级...")
+    var updater = function(grades) {
+      var i = biz.getGrade(grades, user.exp_count)
+      console.log("get grade index:", i)
+      if (i != undefined) {
+        view.setData({
+          expLabel: 'LV' + grades[i].level + ' ' + grades[i].show_name,
+        })
+      }
+    }
+    try {
+      const grades = wx.getStorageSync('grades')
+      if (grades) {
+        app.globalData.grades = grades
+        updater(grades)
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+    updateGrade(updater)
+  }
 }
 
 // refresh page
@@ -95,6 +121,28 @@ function getPhoneNumber(e) {
   } else {
     wx.showToast({title: '绑定手机号失败:0', icon: 'none'})
   }
+}
+
+// 更新等级定义
+function updateGrade(updater) {
+  api.getGradeList().then(resp => {
+    app.globalData.grades = resp.data
+
+    // 更新 UI
+    if (updater) {
+      updater(resp.data)
+    }
+
+    // 保存到本地
+    wx.setStorage({
+      key: 'grades',
+      data: resp.data,
+    })
+
+    console.log("get grades:", resp.data)
+  }).catch(err => {
+    console.log(err)
+  })
 }
 
 module.exports =  {

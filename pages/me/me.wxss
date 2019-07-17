@@ -58,3 +58,11 @@
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 } 
+
+.grade {
+  background: #35a082;
+  color: white;
+  font-size: 20rpx;
+  padding: 2rpx 8rpx;
+  margin-left: 12rpx;
+}

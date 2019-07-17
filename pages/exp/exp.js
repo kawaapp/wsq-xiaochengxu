@@ -8,7 +8,7 @@ Page({
    */
   data: {
     user: {
-      joinDays: 0,
+      joinDays: 0, 
     },
     grades:[
     ],
@@ -16,6 +16,10 @@ Page({
     ],
     usrGrade: {
     },
+    next: {
+      grade: {},
+      percent: 0,
+    }
   },
 
   /**

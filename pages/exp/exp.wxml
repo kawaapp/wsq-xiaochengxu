@@ -27,14 +27,17 @@
   <view style='height: 120rpx;'></view>
 
   <!-- 升级进度 -->
-  <view class='ranks'>
-    <view class='title'>升级进度</view>
-    <progress percent="20" show-info />
+  <view class='next'>
+    <view>
+      <text class='exp-title'>升级进度</text>
+      <text class='label'>{{next.label}}</text>
+    </view>
+    <progress percent="{{user.levelPercent}}" show-info />
   </view>
 
   <!-- 等级列表 -->
   <view class='ranks'>
-    <view class='title'>经验等级</view>
+    <view class='exp-title'>等级说明</view>
     <view class='list'>
       <view>
       </view>

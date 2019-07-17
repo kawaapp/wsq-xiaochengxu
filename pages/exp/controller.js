@@ -1,5 +1,6 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
+const biz = require('../../utils/biz.js')
 
 const app = getApp()
 
@@ -13,24 +14,21 @@ function onLoad(options) {
   user.joinDays = util.getDaysFromNow(user.created_at)
   view.setData({ user: user })
 
-  // 更新等级
-  api.getSelf().then((resp) => {
-    app.globalData.userInfo = resp.data
-    // update view
-    view.setData({ user: resp.data })
+  var grades = app.globalData.grades
+  var i = biz.getGrade(grades, user.exp_count)
+  view.setData({ usrGrade: grades[i]})
+  view.setData({ grades: grades })
 
-    // refresh local storage
-    wx.setStorage({ key: 'user', data: resp.data })
-  })
-
-  // 加载等级列表
-  api.getGradeList().then(resp => {
-    view.setData({grades: resp.data})
-    // user grade
-    var g = getGrade(user.exp)
-    view.setData({usrGrade: g})
-  }).catch(err => {
-    console.log(err)
+  var next = {}
+  if (i+1 >= grades.length) {
+    next.percent = 100
+    next.label = '已达最高级'
+  } else {
+    next.percent = (user.exp_count - grades[i].need_exp) * 100 /grades[i+1].need_exp
+    next.label = '下一个等级，' + 'Lv' + grades[i].level + ' ' + grades[i].show_name
+  }
+  view.setData({
+    next: next,
   })
 
   // 加载类型列表
@@ -41,21 +39,6 @@ function onLoad(options) {
   })
 }
 
-function getGrade(exp) {
-  var grades = view.data.grades
-  if (!grades || grades.length == 0) {
-    return
-  } 
-  grades.sort( (a, b) => {
-    return a.level < b.level
-  })
-  for (var i = 0; i < grades.length; i++) {
-    if (grades[i].need_exp > exp) {
-      return grades[i]
-    } 
-  }
-  return grades[grades.length-1]
-}
 
 function onReachBottom() {
   

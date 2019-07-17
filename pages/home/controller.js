@@ -122,6 +122,9 @@ function onLoad(opt) {
       console.log(err)
     })
   }
+
+  // 等级列表
+  // TODO 或者放在 我的 界面更新.
 }
 
 // show topic
