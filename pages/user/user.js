@@ -23,6 +23,7 @@ Page({
 
   clickSendMessage: function(e) {
     var user = this.data.user
+    util.sendRequest('user', user)
     wx.navigateTo({
       url: '/pages/chat/chat?uid=' + user.id,
     })

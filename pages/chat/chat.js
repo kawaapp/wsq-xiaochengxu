@@ -28,6 +28,9 @@ Page({
     reply: {
       enable: false,
     },
+    loader: {
+      more: true,
+    },
     latestPlayVoicePath: '',
     isAndroid: true,
     chatStatue: 'open-f',
@@ -40,6 +43,12 @@ Page({
   onLoad(options) {
     ctr.setup(this)
     ctr.onLoad(options)
+  },
+  /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+  onPullDownRefresh: function () {
+    ctr.onPullDown()
   },
 
   // 点击刷新
@@ -66,7 +75,13 @@ Page({
 
   // load more
   shiftMessage(items) {
-    
+    if (items && items.length > 0) {
+      var data = items.concat(this.data.chatItems)
+      this.setData({
+        chatItems: data,
+        scrollTopVal: data.length * 999,
+      })
+    }
   },
 
   resetInputStatus() {

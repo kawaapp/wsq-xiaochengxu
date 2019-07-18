@@ -429,9 +429,15 @@ function getChatUserList() {
   })
 }
 
-function getChatListFrom(uid) {
+function getChatListFrom(uid, since, limit) {
+  if (!since) {
+    since = ''  
+  }
+  if (!limit) {
+    limit = ''
+  }
   return req({
-    url: `${Host}/api/chat/messages?from=${uid}`,
+    url: `${Host}/api/chat/messages?from=${uid}&since_id=${since}&limit=${limit}`,
     method: 'GET'
   })
 }
@@ -446,7 +452,7 @@ function createChatMessage(data) {
 
 function setChatMessageReadFrom(uid) {
   return req({
-    url: `${Host}/api/chat/messsages/read?from=${uid}`,
+    url: `${Host}/api/chat/messages/read?from=${uid}`,
     method: 'PUT'
   })
 }

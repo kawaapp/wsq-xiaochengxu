@@ -9,8 +9,12 @@
 .icon-m {
   width: 94rpx; 
   height: 94rpx;
-  min-width: 94rpx;
-  max-width: 94rpx;
+}
+
+.avatar {
+  width: 82rpx; 
+  height: 82rpx;
+  border-radius: 50%;
 }
 
 .red-tag {

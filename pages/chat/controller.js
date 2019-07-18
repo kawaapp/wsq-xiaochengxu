@@ -10,6 +10,7 @@ function setup(_view) {
 }
 
 function onLoad(options) {
+  console.log("option:", options)
   initData(options.uid);
 }
 
@@ -38,6 +39,7 @@ function initData(uid) {
       to_id: to_id,
       content: e.detail.value,
     }
+    console.log("send raw data:", data)
     sendMessage(data)
   });
 
@@ -45,19 +47,31 @@ function initData(uid) {
   if (other) {
     view.data.other = other
   } 
-  
+
   // fetch messages from user
-  api.getChatMsgListFrom(uid).then( resp => {
-    console.log("get messages:", resp)
-    var items = massage(resp.data)
-    view.showMessage(items)
+  refresh(uid)
+
+  // mark read
+  api.setChatMessageRead(uid).then(resp => {
+    console.log("mark success")
   }).catch(err => {
     console.log(err)
   })
+}
 
-  // mark read
-  api.setChatMessageRead(view.data.other.id).then(resp => {
-    console.log("mark success")
+function refresh(uid, tip) {
+  api.getChatMsgListFrom(uid).then(resp => {
+    console.log("get messages:", resp)
+    var items = massage(resp.data)
+    view.showMessage(items)
+    if (!items || items.length < 20) {
+      view.setData({ loader: { more: false } })
+    }
+    if (tip) {
+      wx.showToast({
+        title: '加载成功', icon: 'none'
+      })
+    }
   }).catch(err => {
     console.log(err)
   })
@@ -78,7 +92,7 @@ function sendMessage(data) {
 
 // 刷新消息
 function onClickRefresh() {
-  console.log("click refresh...")
+  refresh(view.data.other.id, true)
 }
 
 function massage(items) {
@@ -89,6 +103,31 @@ function massage(items) {
     return a.created_at > b.created_at
   })
   return items
+}
+
+function onPullDown() {
+  var loader = view.data.loader
+  if (!loader.more) {
+    wx.stopPullDownRefresh()
+    return
+  }
+
+  var since = 0, limit = 20
+  var chatItems = view.data.chatItems
+  if (chatItems.length > 0) {
+    since = chatItems[0].id
+  }
+  api.getChatMsgListFrom(view.data.other.id, since, limit).then( resp => {
+    wx.stopPullDownRefresh()
+    var items = massage(resp.data)
+    view.shiftMessage(items)
+    if (!items || items.length < limit) {
+      view.setData({loader: {more: false}})
+    }
+  }).catch( err => {
+    wx.stopPullDownRefresh()
+    console.log("pull msg err,", err)
+  })
 }
 
 function massage1(item) {
@@ -111,4 +150,5 @@ module.exports = {
   setup: setup,
   onLoad: onLoad,
   onClickRefresh: onClickRefresh,
+  onPullDown: onPullDown,
 }

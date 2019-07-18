@@ -1,6 +1,8 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
 
+const app = getApp()
+
 var view = undefined
 function setup(_view) {
   view = _view
@@ -25,9 +27,15 @@ function refreshMessage() {
 }
 
 function massage(items) {
+  var uid = app.globalData.userInfo.id
   items.map( item => {
     var utcTime = item.created_at * 1000
     item.date = util.msgTime(new Date(utcTime))
+    if (item.from.id == uid) {
+      item.other = item.to
+    } else {
+      item.other = item.from
+    }
   })
   return items
 }
@@ -38,11 +46,12 @@ function onClickItem(e) {
   var key = 'chats[' + idx + '].status'
 
   // set from user
-  util.sendRequest('user', item.from)
+  util.sendRequest('user', item.other)
+
 
   // goto chat screen
   wx.navigateTo({
-    url: '/pages/chat/chat?uid=' + item.from_id,
+    url: '/pages/chat/chat?uid=' + item.other.id,
   })
 
   // update item status

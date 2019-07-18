@@ -1,8 +1,8 @@
-input {
+/* input {
     padding-top: 0rpx;
     padding-bottom: 0rpx;
     width: 100%;
-}
+} */
 
 .release {
     display: flex;

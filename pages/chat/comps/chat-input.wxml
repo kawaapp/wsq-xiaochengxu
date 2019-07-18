@@ -5,6 +5,7 @@
           maxlength="500" 
           confirm-type="send" 
           value="{{textMessage}}" 
+          cursor-spacing="32rpx" 
           bindconfirm="chatInputSendTextMessage" 
           bindfocus="chatInputBindFocusEvent" 
           bindblur="chatInputBindBlurEvent" 
