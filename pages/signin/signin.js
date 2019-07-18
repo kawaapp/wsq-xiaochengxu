@@ -10,23 +10,15 @@ Page({
     user: {
     },
     sign: {
-      // {
-      //   date: "07.11",
-      //   value: 30,
-      //   signed: true,
-      // }
       days:[
       ],
-      signed: true,
       today: {
-      }
+      },
     },
-    // {
-    //   avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-    //   grade: 124,
-    //   nickname: "小可爱",
-    //   times: 120,
-    // }
+    exp: {
+      sign: 1,
+      seq: 2,
+    },
     ranks: [
     ],
     loader: {

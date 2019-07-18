@@ -128,7 +128,8 @@ page {
 .ranks .unit {
   font-size:28rpx; 
   color:#999; 
-  margin-left: 12rpx;
+  margin-left: 14rpx;
+  
 }
 
 

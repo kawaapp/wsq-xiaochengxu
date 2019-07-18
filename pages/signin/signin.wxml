@@ -34,7 +34,7 @@
         <image class='avatar' src="{{item.avatar}}"></image>
         <text class='name' >{{item.nickname}}</text>
         <text class='times'>{{item.sign_count}}</text>
-        <text class='unit'>次</text>
+        <text class='unit'>天</text>
         <view style='width: 12rpx;'> </view>
       </view>
       <view class='line' style='margin-left:72rpx;'></view>
