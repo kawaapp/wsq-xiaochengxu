@@ -22,20 +22,26 @@ function getPhoneNumber(ecrypted, iv) {
   })
 }
 
-
+// 最低级别需要经验应该为 0 
+// 否则初始的时候无法获得等级
 function getGrade(grades, exp) {
   if (!grades || grades.length == 0) {
     return
   }
+
+  // 从小到大排列
   grades.sort((a, b) => {
     return a.level > b.level
   })
-  for (var i = 0; i < grades.length; i++) {
-    if (grades[i].need_exp > exp) {
+
+  // 遇到第一个满足条件的等级时退出
+  // 得到当前对应的等级
+  for (var i = grades.length-1; i >= 0; i--) {
+    if (exp >= grades[i].need_exp) {
       return i
     }
   }
-  return grades.length - 1
+  return
 }
 
 module.exports = {

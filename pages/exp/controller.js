@@ -25,7 +25,7 @@ function onLoad(options) {
     next.label = '已达最高级'
   } else {
     next.percent = (user.exp_count - grades[i].need_exp) * 100 /grades[i+1].need_exp
-    next.label = '下一个等级，' + 'Lv' + grades[i].level + ' ' + grades[i].show_name
+    next.label = '下一个等级，' + 'Lv' + grades[i+1].level + ' ' + grades[i+1].show_name
   }
   view.setData({
     next: next,

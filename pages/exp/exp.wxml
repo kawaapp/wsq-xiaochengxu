@@ -32,7 +32,7 @@
       <text class='exp-title'>升级进度</text>
       <text class='label'>{{next.label}}</text>
     </view>
-    <progress percent="{{user.levelPercent}}" show-info />
+    <progress percent="{{next.percent}}" show-info />
   </view>
 
   <!-- 等级列表 -->
@@ -44,7 +44,7 @@
       <view class='item' wx:for="{{grades}}" wx:for-item="item" wx:key="{{index}}">
         <view style='margin-right:12rpx;'>Lv{{item.level}}</view>
         <view>{{item.show_name}}</view>
-        <view style='margin-left:auto;'>{{ ' < ' + item.need_exp}}</view>
+        <view style='margin-left:auto;'>{{ ' >= ' + item.need_exp}}</view>
       </view>
     </view>
   </view>
