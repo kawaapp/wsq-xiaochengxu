@@ -1,5 +1,6 @@
 const ctr = require('./controller.js') 
 const kawa = require('../../kawa.js')
+const util = require('../../utils/util.js')
 
 // pages/me/me.js
 Page({
@@ -10,6 +11,7 @@ Page({
   data: {
     theme: kawa.Theme.Image,
     color: kawa.Theme.MainColor,
+    gradeColor: kawa.Theme.MainColor,//util.lightenColor(kawa.Theme.MainColor, -20),
     user: {
       avatar: '',
       nickname: '小虾米',

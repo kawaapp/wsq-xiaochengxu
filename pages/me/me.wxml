@@ -7,7 +7,10 @@
     <view style='margin-left:18rpx;'>
       <view class='title' style='font-size:30rpx;' >
         <text>{{user.nickname?user.nickname:'路人'}}</text>
-        <text wx:if="{{expLabel}}" class='grade' bindtap='clickExp'>{{expLabel}}</text>
+        <text wx:if="{{expLabel}}" 
+          class='grade' 
+          style='background-color:{{gradeColor}}'
+          bindtap='clickExp'>{{expLabel}}</text>
       </view>
       <button wx:if="{{user.nickname && metadata.user_mode}}"
         open-type="getPhoneNumber"

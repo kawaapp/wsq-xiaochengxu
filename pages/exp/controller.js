@@ -10,6 +10,12 @@ function setup(_view) {
 }
 
 function onLoad(options) {
+  var theme = view.data.theme
+  wx.setNavigationBarColor({
+    frontColor: theme.fgColor,
+    backgroundColor: theme.bgColor,
+  })
+
   var user = app.globalData.userInfo
   user.joinDays = util.getDaysFromNow(user.created_at)
   view.setData({ user: user })

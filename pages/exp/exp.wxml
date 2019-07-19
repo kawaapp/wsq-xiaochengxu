@@ -1,8 +1,8 @@
 <!--pages/signin/signin.wxml-->
   <!-- 展示用户经验信息 -->
   <view>
-    <view class='bg' style='padding-top: 100rpx;'>
-      <view class='exp'>
+    <view class='bg' style='padding-top: 100rpx; background-color: {{theme.bgColor}}'>
+      <view class='exp' style='color: {{theme.fgColor}}'>
         <text class='level' style='margin-right: 16rpx;'>Lv{{usrGrade.level}}</text>
         <view>
           <view class='show_name'>{{usrGrade.show_name}}</view>
@@ -18,7 +18,7 @@
         <view style='width: 18rpx'></view>
         <view>
           <view class='title'>{{user.nickname}}</view>
-          <view class='subtitle'>你已经加入社区{{user.joinDays}}天啦</view>
+          <view class='subtitle'>你已经加入社区 {{user.joinDays}} 天啦</view>
         </view>
       </view>
     </view>

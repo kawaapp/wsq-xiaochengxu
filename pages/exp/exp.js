@@ -1,4 +1,9 @@
 const ctr = require('./controller.js')
+const kawa = require('../../kawa.js')
+const util = require('../../utils/util.js')
+
+var bgColor = util.lightenColor(kawa.Theme.MainColor, 20)
+var fgColor = util.invertColor(bgColor, true)
 
 // pages/signin/signin.js
 Page({
@@ -7,6 +12,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: {
+      bgColor: bgColor,
+      fgColor: fgColor,
+    },
     user: {
       joinDays: 0, 
     },

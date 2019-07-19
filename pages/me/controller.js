@@ -33,12 +33,11 @@ function onLoad(options) {
     console.log(err)
   })
 
-  // 更新用户等级
-  if (user.nickname) {
-    console.log("更新用户等级...")
+  // 只有用户绑定了昵称，并且开启了经验系统才更新用户等级
+  if (user.nickname && meta.app_exp_limit) {
+    console.log("更新用户等级..." + meta.app_exp_limit)
     var updater = function(grades) {
       var i = biz.getGrade(grades, user.exp_count)
-      console.log("get grade index:", i)
       if (i != undefined) {
         view.setData({
           expLabel: 'LV' + grades[i].level + ' ' + grades[i].show_name,

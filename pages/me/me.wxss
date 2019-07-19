@@ -60,7 +60,6 @@
 } 
 
 .grade {
-  background: #35a082;
   color: white;
   font-size: 20rpx;
   padding: 2rpx 8rpx;
