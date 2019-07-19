@@ -49,28 +49,11 @@ function initData(uid) {
   } 
 
   // fetch messages from user
-  refresh(uid)
-
-  // mark read
-  api.setChatMessageRead(uid).then(resp => {
-    console.log("mark success")
-  }).catch(err => {
-    console.log(err)
-  })
-}
-
-function refresh(uid, tip) {
   api.getChatMsgListFrom(uid).then(resp => {
-    console.log("get messages:", resp)
     var items = massage(resp.data)
     view.showMessage(items)
     if (!items || items.length < 20) {
       view.setData({ loader: { more: false } })
-    }
-    if (tip) {
-      wx.showToast({
-        title: '加载成功', icon: 'none'
-      })
     }
   }).catch(err => {
     console.log(err)
@@ -92,7 +75,30 @@ function sendMessage(data) {
 
 // 刷新消息
 function onClickRefresh() {
-  refresh(view.data.other.id, true)
+  var uid = view.data.other.id
+  api.getChatMsgListFrom(uid).then(resp => {
+    console.log("get messages:", resp)
+    var items = deltaAppend(resp.data)
+    var num = items.length - view.data.chatItems.length
+    view.showMessage(items)
+    wx.showToast({
+      title: '得到' + num + '条新消息', icon: 'none'
+    })
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+function deltaAppend(data) {
+  var items = massage(data)
+  var array = view.data.chatItems.slice()
+  var tailId = array.length > 0 ? array[array.length - 1].id : 0
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].id > tailId) {
+      array.push(items[i])
+    }
+  }
+  return array
 }
 
 function massage(items) {

@@ -33,8 +33,10 @@ function massage(items) {
     item.date = util.msgTime(new Date(utcTime))
     if (item.from.id == uid) {
       item.other = item.to
+      item.unread = false
     } else {
       item.other = item.from
+      item.unread = item.status == 0
     }
   })
   return items

@@ -48,7 +48,7 @@
       </view>
       <view style='margin-left: auto;'>
         <view style='font-size:24rpx; margin-bottom: 20rpx;'>{{item.date}}</view>
-        <view wx:if="{{item.status==0}}" class='circle' style='margin-left: auto;'/>
+        <view wx:if="{{item.unread}}" class='circle' style='margin-left: auto;'/>
       </view>
     </view>
   </view>
