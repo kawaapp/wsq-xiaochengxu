@@ -112,6 +112,7 @@ page {
   height: 80rpx;
   margin-right: 16rpx;
   margin-left: 24rpx;
+  border-radius: 50%;
 }
 
 .ranks .name {
