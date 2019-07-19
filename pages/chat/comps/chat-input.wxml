@@ -2,7 +2,7 @@
     <view class="release" catchtap="">
       <input
           class="text" 
-          maxlength="500" 
+          maxlength="-1" 
           confirm-type="send" 
           value="{{textMessage}}" 
           cursor-spacing="32rpx" 

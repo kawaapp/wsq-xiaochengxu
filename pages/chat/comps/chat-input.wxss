@@ -6,8 +6,8 @@
 
 .release {
     display: flex;
-    align-items: center; /*底部对齐*/
-    justify-content: space-between; /*两端对齐*/
+    align-items: center; 
+    justify-content: space-between; 
     box-sizing: border-box;
     position: fixed;
     left: 0;
@@ -21,8 +21,10 @@
 
 .release .text{
     width: 604rpx;
+    border-width: 15rpx 20rpx; /*使用padding与预期留白不一致，故使用border*/
     border-style: solid;
     border-color:  #ffffff;
+    line-height: 34rpx;
     font-size: 30rpx;
     background-color: #ffffff;
     border-radius: 4rpx;
@@ -47,4 +49,4 @@
 
 .release .submit-disable {
   color:#C9C9C9;
-}
+} 

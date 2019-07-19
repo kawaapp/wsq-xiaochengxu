@@ -46,9 +46,9 @@
         <view class='title'>{{item.other.nickname?item.other.nickname:'用户已删除'}}</view>
         <view class='subtitle single-line'>{{item.content}}</view>
       </view>
-      <view style='margin-left: auto;'>
+      <view style='margin-left: auto; padding-right: 8rpx;'>
         <view style='font-size:24rpx; margin-bottom: 20rpx;'>{{item.date}}</view>
-        <view wx:if="{{item.unread}}" class='circle' style='margin-left: auto;'/>
+        <view wx:if="{{item.unread}}" class='circle' style='margin: 0 auto;'/>
       </view>
     </view>
   </view>

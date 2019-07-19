@@ -8,10 +8,13 @@
             style="width: 100%;display: flex;flex-direction: {{item.isMy?'row-reverse':'row'}};margin-bottom: {{index===length-1?150:20}}rpx;margin-top: 20rpx;">
           
           <image class='chat-avatar' src="{{item.headUrl}}"/>
-          <image 
-            class="chat-list-arrow-style"
-            src="/res/default/bubble_{{item.isMy?'blue':'white'}}.png"/>
-    
+          
+
+          <!-- 气泡 -->
+          <view class="{{item.isMy? 'arrow-right': 'arrow-left'}}">
+          </view>
+
+          <!-- 文本框 -->
           <view 
                 class="{{item.isMy?'isMyWordStyle':'isOtherWordStyle'}}"
                 style="border-radius: 10rpx;padding: 20rpx;font-size: 30rpx;max-width: 60%;"

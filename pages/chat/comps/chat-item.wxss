@@ -19,7 +19,7 @@
 }
 
 .isMyWordStyle {
-    background-color: #8fcbf7;
+    background-color: #a7d5f6;
     color: #213d52;
     margin-right: -1rpx;
     margin-left: 14rpx;
@@ -53,4 +53,24 @@
     width: 11rpx;
     height: 20rpx;
     margin-top: 25rpx
+}
+
+.arrow-right {
+  margin-top: 16rpx;
+  width:0;
+  height:0;
+
+  border-top: 16rpx solid transparent;
+  border-left: 20rpx solid #a7d5f6;
+  border-bottom: 16rpx solid transparent;
+}
+
+.arrow-left {
+  margin-top: 16rpx;
+  width:0;
+  height:0;
+
+  border-top: 16rpx solid transparent;
+  border-right: 20rpx solid white;
+  border-bottom: 16rpx solid transparent;
 }

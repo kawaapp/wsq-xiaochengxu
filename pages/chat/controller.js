@@ -82,7 +82,7 @@ function onClickRefresh() {
     var num = items.length - view.data.chatItems.length
     view.showMessage(items)
     wx.showToast({
-      title: '得到' + num + '条新消息', icon: 'none'
+      title: '' + num + ' 条新消息', icon: 'none'
     })
   }).catch(err => {
     console.log(err)

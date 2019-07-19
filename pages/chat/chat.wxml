@@ -2,17 +2,6 @@
 <import src="./comps/chat-item.wxml"/>
 <import src="./comps/chat-input.wxml"/>
 
-<!-- 顶部状态栏 -->
-<view wx:if="{{chatStatue==='open'}}"
-  class="chat-page-status-style"
-  style="background-color: {{chatStatue==='open'?'#40c9ff':'#888888'}};">
-  {{chatStatusContent}}
-</view>
-
-<view wx:if='{{!loader.more}}' style='text-align:center;'>
-  <text class="fade-title">— 没有更多数据了 —</text>
-</view>
-
 <!-- 对话列表 -->
 <scroll-view
     class='list'
@@ -20,6 +9,11 @@
     scroll-y="true"
     scroll-top="{{scrollTopVal}}"
     bindtap="resetInputStatus">
+
+    <view wx:if='{{!loader.more}}' style='text-align:center;'>
+      <text class="fade-title">— 没有更多数据了 —</text>
+    </view>
+
     <block wx:for="{{chatItems}}" wx:key="{{index}}">
         <template is="chat-item" data="{{length:chatItems.length,index:index,item:item}}"/>
     </block>
