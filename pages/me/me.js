@@ -11,7 +11,7 @@ Page({
   data: {
     theme: kawa.Theme.Image,
     color: kawa.Theme.MainColor,
-    gradeColor: kawa.Theme.MainColor,//util.lightenColor(kawa.Theme.MainColor, -20),
+    gradeColor: util.lightenColor(kawa.Theme.MainColor, -20),
     user: {
       avatar: '',
       nickname: '小虾米',

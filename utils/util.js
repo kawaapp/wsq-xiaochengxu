@@ -178,11 +178,8 @@ function getCityName(addr) {
 }
 
 function lightenColor(col, amt) {
-  var usePound = false;
-
   if (col[0] == "#") {
     col = col.slice(1);
-    usePound = true;
   }
 
   var num = parseInt(col, 16);
@@ -198,7 +195,7 @@ function lightenColor(col, amt) {
   if (g > 255) g = 255;
   else if (g < 0) g = 0;
 
-  return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+  return "#" + padZero(r.toString(16)) + padZero(b.toString(16)) + padZero(g.toString(16));
 }
 
 function invertColor(hex, bw) {

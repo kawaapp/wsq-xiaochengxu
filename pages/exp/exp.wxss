@@ -8,9 +8,10 @@ page {
 }
 
 .exp {
+  padding-top: 8%; 
   display: flex;
   align-items: center;
-  padding: 0 128rpx;
+  justify-content: center;
 }
 
 .exp .level {
@@ -43,7 +44,7 @@ page {
 
 .user-card {
   position: absolute;
-  top: 380rpx;
+  top: 300rpx;
   right: 32rpx;
   left: 32rpx;
   background-color: white;

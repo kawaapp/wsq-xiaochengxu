@@ -1,7 +1,7 @@
 <!--pages/signin/signin.wxml-->
   <!-- 展示用户经验信息 -->
   <view>
-    <view class='bg' style='padding-top: 100rpx; background-color: {{theme.bgColor}}'>
+    <view class='bg' style='background-color: {{theme.bgColor}}'>
       <view class='exp' style='color: {{theme.fgColor}}'>
         <text class='level' style='margin-right: 16rpx;'>Lv{{usrGrade.level}}</text>
         <view>
