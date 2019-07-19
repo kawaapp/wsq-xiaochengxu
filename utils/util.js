@@ -43,16 +43,16 @@ const agoTime = dateTimeStamp => {
 
 const msgTime = (date) => {
   const month = date.getMonth() + 1
-  const day = date.getDate()
+  const _day = date.getDate()
   const hour = date.getHours()
   const minute = date.getMinutes()
 
   var now = new Date().getTime();
   var diffValue = now - date;
   if (diffValue/day >= 1) {
-    return [month, day].join('-')
+    return [month, _day].map(formatNumber).join('-')
   } else {
-    return [hour, minute].join(':')
+    return [hour, minute].map(formatNumber).join(': ')
   }
 }
 
