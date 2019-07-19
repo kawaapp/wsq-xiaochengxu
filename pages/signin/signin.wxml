@@ -1,7 +1,7 @@
 <!--pages/signin/signin.wxml-->
   <!-- 展示用户等级信息 -->
   <view>
-  <view class='bg'>
+  <view class='bg' style='background-color:{{theme.signColor}}'>
   </view>
 
   <!-- 签到卡片 -->

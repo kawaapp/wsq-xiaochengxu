@@ -1,4 +1,6 @@
 const ctr = require('./controller.js')
+const kawa = require('../../kawa.js')
+const util = require('../../utils/util.js')
 
 // pages/signin/signin.js
 Page({
@@ -7,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: {
+      signColor: util.lightenColor(kawa.Theme.MainColor, 20),
+    },
     user: {
     },
     sign: {

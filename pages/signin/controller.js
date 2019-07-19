@@ -1,5 +1,6 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
+const kawa = require('../../kawa.js')
 
 
 const app = getApp()
@@ -10,6 +11,10 @@ function setup(_view) {
 }
 
 function onLoad(options) {
+  wx.setNavigationBarColor({
+    frontColor: '#ffffff',
+    backgroundColor: view.data.theme.signColor,
+  })
   var user = app.globalData.userInfo
   view.setData({user: user})
 
