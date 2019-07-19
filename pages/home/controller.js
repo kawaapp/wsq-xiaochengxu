@@ -1,5 +1,6 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
+const biz = require('../../utils/biz.js')
 const app = getApp()
 
 var view = undefined
@@ -33,35 +34,14 @@ function bindTabData(idx) {
 // First Load
 function onLoad(opt) {
   // 加载社区信息
-  api.getMetaData().then(resp => {
-    var data = {
-      app_logo: resp.data.app_logo,
-      app_cover: resp.data.app_cover,
-      app_name: resp.data.app_name,
-      app_summary: resp.data.app_summary,
-      app_pubtitle: resp.data.app_pubtitle,
-      app_publink: resp.data.app_publink,
-      app_copyright: resp.data.app_copyright,
-      user_mode: 0,
-    }
-    if (resp.data.user_mode) {
-      data.user_mode = parseInt(resp.data.user_mode, 10)
-    }
-
-    // test code
-    data.app_pv = '11W'
-    data.app_users = '2W'
-
+  biz.getMetaData(data => {
     view.setData({
       meta: data
     })
-    console.log("user_mode:", resp.user_mode, parseInt(resp.user_mode, 10))
     app.globalData.meta = data
-    console.log("get meta:", data)
-
-    const pub = {
-      title: resp.data.app_pubtitle,
-      link: resp.data.app_publink,
+    var pub = {
+      title: data.app_pubtitle,
+      link: data.app_publink,
     }
     view.setData({ speaker: pub })
   })

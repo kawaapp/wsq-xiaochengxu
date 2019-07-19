@@ -44,7 +44,35 @@ function getGrade(grades, exp) {
   return
 }
 
+// get meta-data
+function getMetaData(fn) {
+  api.getMetaData().then(resp => {
+    var data = {
+      app_logo: resp.data.app_logo,
+      app_cover: resp.data.app_cover,
+      app_name: resp.data.app_name,
+      app_summary: resp.data.app_summary,
+      app_pubtitle: resp.data.app_pubtitle,
+      app_publink: resp.data.app_publink,
+      app_copyright: resp.data.app_copyright,
+      user_mode: 0,
+      app_exp_limit: 0,
+    }
+    if (resp.data.user_mode) {
+      data.user_mode = parseInt(resp.data.user_mode, 10)
+    }
+    if (resp.data.app_exp_limit) {
+      data.app_exp_limit = parseInt(resp.data.app_exp_limit, 10)
+    }
+
+    if (fn) {
+      fn(data)
+    }
+  })
+}
+
 module.exports = {
   getPhoneNumber: getPhoneNumber,
   getGrade: getGrade,
+  getMetaData: getMetaData,
 }
