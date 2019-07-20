@@ -18,7 +18,8 @@ Page({
     topic: {
       items: [],
       selected: -1,
-    }
+    },
+    showAdd: false,
   },
   onLoad(options) {
     ctr.setup(this)

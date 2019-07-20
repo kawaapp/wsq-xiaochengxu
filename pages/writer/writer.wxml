@@ -1,7 +1,12 @@
 <!--pages/writer/writer.wxml-->
 <view class="card">
   <view>
-    <textarea bindinput="bindContent" placeholder="请输入文本" style="height: 3.3em" />
+    <textarea class='text-input'
+      bindinput="bindContent" 
+      maxlength='500'
+      placeholder="请输入文本"
+      auto-height='{{true}}' 
+      />
   </view>
   <!-- image list -->
   <view class='image-list'>

@@ -1,4 +1,11 @@
 /* pages/writer/writer.wxss */
+.text-input {
+ height: 200rpx;
+ width: 100%;
+ min-height: 200rpx;
+ max-height: 300rpx;
+}
+
 .btn-submit {
   width: 96%;
   color: #fff;
