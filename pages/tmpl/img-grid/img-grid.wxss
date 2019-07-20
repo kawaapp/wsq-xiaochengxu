@@ -1,0 +1,37 @@
+/* pages/tmpl/img-grid/img-grid.wxss */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.cell1 {
+  width: 100%;
+  max-width: 750rpx;
+  max-height: 750rpx;
+}
+
+.cell2 {
+  position: relative;
+  width: 36%;
+  height: 0;
+  padding-bottom: 36%;
+}
+
+.cell3 {
+  position: relative;
+  width: 33.33%;
+  height: 0;
+  padding-bottom: 33.33%;
+}
+
+.inner {
+  position: absolute;
+  padding: 6rpx;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+

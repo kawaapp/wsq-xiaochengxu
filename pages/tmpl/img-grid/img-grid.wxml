@@ -1,0 +1,33 @@
+<!--pages/tmpl/img-grid/img-grid.wxml-->
+<view class='grid'>
+  <!-- 一图 -->
+  <block wx:if="{{images.length==1}}">
+    <view class='cell1'>
+      <image mode='top' style='max-width: 750rpx; max-height: 750rpx;' src="{{images[0]}}"></image>
+    </view>
+  </block>
+
+  <!-- 四图 -->
+  <block wx:elif="{{images.length==4}}">
+    <view class="cell2"
+      wx:for="{{images}}" 
+      wx:for-item="path" 
+      wx:key="{{path}}">
+        <view class='inner'>
+          <image mode='aspectFill' style='width: 100%; height: 100%;' src="{{path}}"></image>
+        </view>
+    </view>
+  </block>
+
+  <!-- 多图 -->
+  <block wx:else>
+    <view class="cell3"
+      wx:for="{{images}}" 
+      wx:for-item="path" 
+      wx:key="{{path}}">
+        <view class='inner'>
+          <image mode='aspectFill' style='width: 100%; height: 100%;' src="{{path}}"></image>
+        </view>
+    </view>
+  </block>
+</view>
