@@ -163,7 +163,7 @@
       <input class="text" bindinput='bindInput'
             placeholder-class="input_null" 
             fixed="{{true}}"
-            maxlength="-1" 
+            maxlength="140" 
             show-confirm-bar="{{true}}" 
             cursor-spacing="32rpx" 
             focus="{{reply.focus}}"
