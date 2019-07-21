@@ -2,8 +2,8 @@
   <view wx:if="{{index != 0}}" class='thin-line'/>
   <view class="{{item.status? '': 'unread'}}" style='padding:28rpx 0 18rpx 0;'
         bindtap='clickItem' data-idx="{{index}}">
-    <view class="h-top"  style='padding-left:28rpx;'>
-      <image class='avatar-large' style='margin: 0px 18rpx;'
+    <view class="h-top"  style='padding:0rpx 28rpx;'>
+      <image class='avatar-large' style='margin: 0px 18rpx 0rpx 8rpx;'
         src="{{item.from.avatar?item.from.avatar: theme+'/user_icon.png'}}" 
         />
       <view style='width:100%;'>
