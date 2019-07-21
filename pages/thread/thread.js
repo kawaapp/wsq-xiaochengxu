@@ -49,18 +49,6 @@ Page({
   clickMenu: function (e) {
     ctr.onClickMenu(e)
   },
-  bindInput: function(e) {
-    var reply = this.data.reply
-    reply.text = e.detail.value
-    
-    if (e.detail.value && !reply.enable) {
-      reply.enable = true
-      this.setData({ reply: reply })
-    } else if (!e.detail.value && reply.enable) {
-      reply.enable = false
-      this.setData({ reply: reply })
-    }
-  },
   clickMask: function(e) {
     this.setData({
       reply: {
@@ -86,7 +74,7 @@ Page({
   clickListFavor: function(e) {
     ctr.onClickListFavor(e)
   },
-  sendComment: function (e) {
+  sendComment: function (e, op) {
     ctr.onClickSendComment(e)
   }, 
   clickListCommentAction: function(e) {

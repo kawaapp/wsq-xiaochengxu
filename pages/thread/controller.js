@@ -377,31 +377,25 @@ function deleteComment(index, sub) {
 
 // 发送评论，针对帖子、回复、回复的回复
 function onClickSendComment(e) {
-  console.log("get comment", view.data.reply.text)
-  var reply = view.data.reply
-  if (util.isWhiteSpace(reply.text)) {
+  var text = e.detail.value
+  if (util.isWhiteSpace(text)) {
     wx.showToast({
-      title: '评论不能为空',
-      icon: 'none',
+      title: '评论不能为空', icon: 'none',
     })
     return
   }
-  console.log("reply index:", reply)
+
+  var reply = view.data.reply
   if (reply.index >= 0) {
-    replyToComment(reply.index, reply.subIndex)
+    replyToComment(text, reply.index, reply.subIndex)
   } else {
-    replyToPost(reply.text)
+    replyToPost(text)
   }
 }
 
 
 // comment on post 
 function replyToPost(replyText) {
-  if (util.isWhiteSpace(replyText)) {
-    console.log("data is empty!")
-    return
-  }
-
   var post = view.data.item.post
   var data = {
     content: replyText,
@@ -439,7 +433,7 @@ function replyToPost(replyText) {
 }
 
 // 回复评论和评论的评论
-function replyToComment(idx, subIndex) {
+function replyToComment(text, idx, subIndex) {
   // commennt on comment
   var parent = view.data.comments[idx]
   var key = 'comments[' + idx + '].reply_list'
@@ -464,11 +458,11 @@ function replyToComment(idx, subIndex) {
   if (subIndex && parent.reply_list.length > subIndex) {
     var reply = parent.reply_list[subIndex]
     data.reply_id = reply.author.id
-    data.content = '\r' + view.data.reply.text
+    data.content = '\r' + text
     replier = reply.author
   } else {
     data.reply_id = parent.author.id
-    data.content = view.data.reply.text
+    data.content = text
   }
 
   // send

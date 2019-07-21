@@ -134,6 +134,11 @@
 <!-- 隐藏输入框 -->
 <view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" >
 </view>
+
+<block wx:if="{{reply.focus}}">
+  <kw-input bind:sendComment='sendComment' hint="{{reply.hint}}" /> 
+</block>
+<!-- 
 <view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
       <input class="text" bindinput='bindInput'
             placeholder-class="input_null" 
@@ -148,4 +153,4 @@
         class="{{reply.enable?'':'submit-disable'}}" 
         catchtap='sendComment'>发送</button>
       </view>
-  </view>
+  </view> -->

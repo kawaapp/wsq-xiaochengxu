@@ -107,53 +107,6 @@
   background-color: rgba(0, 0, 0, .6);
 }
 
-.release{
-    display: flex;
-    align-items: flex-start; /*底部对齐*/
-    justify-content: space-between; /*两端对齐*/
-    box-sizing: border-box;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 18rpx 0 18rpx 30rpx;
-    background-color: #F7F8F7;
-    font-size: 28rpx;
-    z-index: 1000;
-}
-.release .text{
-    width: 604rpx;
-    border-width: 15rpx 20rpx; /*使用padding与预期留白不一致，故使用border*/
-    border-style: solid;
-    border-color:  #ffffff;
-    line-height: 34rpx;
-    font-size: 30rpx;
-    background-color: #ffffff;
-    border-radius: 4rpx;
-}
-
-.release .submit{
-    width: 116rpx;
-    line-height: 64rpx;
-    text-align: center;
-    color: #66CC00;
-    z-index: 1001;
-}
-
-.submit button {
-  height: 100%;
-  font-size: 32rpx;
-  padding-left: 0px;
-  padding-right: 0px;
-  color: #66CC00;
-
-}
-.submit button::after{ border: none; }
-
-.release .submit-disable {
-  color:#C9C9C9;
-}
-
 .empty {
   width: 100%;
   height: 300rpx;
