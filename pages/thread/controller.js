@@ -533,17 +533,21 @@ function showActionSheet(menus, actions) {
 }
 
 function onClickShare(res) {
+  // 来自页面内转发按钮
   if (res.from === 'button') {
-    // 来自页面内转发按钮
     console.log(res.target)
   }
-  console.log("click share!!")
   var post = view.data.item.post
+  var image = undefined
+  if (post.images && post.images.length > 0) {
+    image = post.images[0]
+  }
   return {
-    path: '/pages/thread/thread?shared=true&pid='+ post.id
+    title: post.content,
+    path: '/pages/thread/thread?shared=true&pid='+ post.id,
+    imageUrl: image,
   }
 }
-
 
 module.exports = {
   setup: setup,
