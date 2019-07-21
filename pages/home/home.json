@@ -3,6 +3,7 @@
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "img-grid": "../tmpl/img-grid/img-grid",
-    "location": "../tmpl/location/location"
+    "location": "../tmpl/location/location",
+    "loading": "../tmpl/loading/loading"
   }
 }

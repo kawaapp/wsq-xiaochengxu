@@ -1,0 +1,5 @@
+/* pages/tmpl/loading/loading.wxss */
+.fade-title {
+  font-size: 28rpx;
+  color: #888888;
+}

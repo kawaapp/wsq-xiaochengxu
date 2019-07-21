@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "我的点赞",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "loading": "../tmpl/loading/loading"
+  }
 }
