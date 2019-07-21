@@ -204,7 +204,7 @@ function onReachBottom() {
     loader.ing = false
     view.setData({ loader: loader })
     wx.showToast({
-      title: '加载失败', icon: 'none',
+      title: '加载失败:'+err.code, icon: 'none',
     })
   })
 }
@@ -231,7 +231,7 @@ function onClickSign(e) {
     }
   }).catch(err => {
     console.log(err)
-    wx.showToast({ title: '签到失败', icon: "none" })
+    wx.showToast({ title: '签到失败:'+err.code, icon: "none" })
   })
 }
 

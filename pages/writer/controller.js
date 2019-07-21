@@ -123,7 +123,7 @@ function onClickSubmit() {
     console.log("write:", err)
     wx.hideLoading()
     wx.showToast({
-      title: '发送失败', icon: 'none'
+      title: '发送失败:'+err.code, icon: 'none'
     })
   })
 }

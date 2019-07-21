@@ -68,7 +68,7 @@ function fetch(options) {
     }).catch(err => {
       console.log(err)
       wx.showToast({
-        title: '加载失败', icon: 'none'
+        title: '加载失败:'+err.code, icon: 'none'
       })
     })
   }
@@ -87,7 +87,7 @@ function onPullDownRefresh(e) {
   }).catch(err => {
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '评论加载失败', icon: 'none'
+      title: '评论加载失败:'+err.code, icon: 'none'
     })
     console.log("comment refresh err")
   })
@@ -120,7 +120,7 @@ function onReachBottom(e) {
       loader.ing = false
       view.setData({loader: loader})
       wx.showToast({
-        title: '加载失败', icon: 'success'
+        title: '加载失败:'+err.code, icon: 'success'
       })
   })
 }
@@ -195,8 +195,7 @@ function onClikcFavorPost(e) {
       updateFavorState(p)
     }).catch(err => {
       wx.showToast({
-        title: '发送失败',
-        icon: 'none'
+        title: '发送失败:'+err.code, icon: 'none'
       })
       console.log(err)
     })
@@ -207,8 +206,7 @@ function onClikcFavorPost(e) {
       updateFavorState(p)
     }).catch(err => {
       wx.showToast({
-        title: '发送失败',
-        icon: 'none'
+        title: '发送失败:'+err.code, icon: 'none'
       })
       console.log(err)
     })
@@ -369,7 +367,7 @@ function deleteComment(index, sub) {
     })
   }).catch( err => {
     wx.showToast({
-      title: '删除失败', icon: 'none'
+      title: '删除失败:'+err.code, icon: 'none'
     })
     console.log(err)
   })
@@ -426,7 +424,7 @@ function replyToPost(replyText) {
     console.log("评论成功！！！", resp.data)
   }).catch(err => {
     wx.showToast({
-      title: '发送失败', icon: 'none'
+      title: '发送失败:'+err.code, icon: 'none'
     })
     console.log(err)
   })
@@ -484,7 +482,7 @@ function replyToComment(text, idx, subIndex) {
     console.log("评论成功！！！", resp.data)
   }).catch(err => {
     wx.showToast({
-      title: '发送失败', icon: 'none'
+      title: '发送失败:'+err.code, icon: 'none'
     })
     console.log(err)
   })

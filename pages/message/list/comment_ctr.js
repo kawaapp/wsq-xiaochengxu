@@ -33,7 +33,7 @@ function onPullDownRefresh() {
     wx.stopPullDownRefresh()
     view.setData({ loader: { ing: false } })
     wx.showToast({
-      title: '刷新失败', icon: 'none'
+      title: '刷新失败:'+err.code, icon: 'none'
     })
     console.log(err)
   })
@@ -61,7 +61,7 @@ function onReachBottom() {
   }).catch( err => {
     view.setData({ loader: { ing: false } })
     wx.showToast({
-      title: '加载失败', icon: 'none'
+      title: '加载失败:'+err.code, icon: 'none'
     })
   })
 }

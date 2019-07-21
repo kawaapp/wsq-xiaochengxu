@@ -190,7 +190,7 @@ function refreshList(tabIndex, topic) {
     }
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '加载失败', icon: 'none'
+      title: '加载失败:' + err.code, icon: 'none'
     })
     console.log("topic", err)
   })
@@ -258,7 +258,7 @@ function onReachBottom() {
       bindTabData(current)
     }
     wx.showToast({
-      title: '加载失败', icon: 'none'
+      title: '加载失败:'+err.code, icon: 'none'
     })
   })
 }
@@ -405,7 +405,7 @@ function deletePost(idx) {
   }).catch(err => {
     console.log("删除失败")
     wx.showToast({
-      title: '删除失败', icon: 'none'
+      title: '删除失败:'+err.code, icon: 'none'
     })
   })
 }
@@ -469,7 +469,7 @@ function onClickSignin(e) {
     }
   }).catch(err => {
     console.log(err)
-    wx.showToast({ title: '签到失败', icon: "none" })
+    wx.showToast({ title: '签到失败:'+err.code, icon: "none" })
   }) 
 }
 

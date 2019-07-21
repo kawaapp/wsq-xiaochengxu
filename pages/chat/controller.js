@@ -52,7 +52,7 @@ function sendMessage(data) {
     view.appendMessage(items)
   }).catch( err => {
     console.log(err)
-    wx.showToast({ title: '发送失败..', icon: 'fail' })
+    wx.showToast({ title: '发送失败:'+err.code, icon: 'fail' })
   })
 }
 
