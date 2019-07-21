@@ -1,4 +1,8 @@
 /* pages/login/login.wxss */
+page {
+    background-color:#fff;
+}
+
 .login-view {
   width: 50%;
   margin: 50% auto; 

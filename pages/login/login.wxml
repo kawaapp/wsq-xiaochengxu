@@ -9,4 +9,8 @@
   </button>
 </view>
 
-<img-grid hello="Hello" images="{{images}}"> </img-grid> 
+<view class='login-view' wx:if="{{!visible}}">
+  <view style='text-align: center;'>
+    <text class='fade-title'>登录中...</text>
+  </view>
+</view>
