@@ -8,7 +8,7 @@ function setup(_view) {
 }
 
 function onLoad(options) {
-  view.data.shared = options.shared
+  view.setData({ shared: options.shared})
   
   // 非分享链接，直接打开
   if (!options.shared) {

@@ -140,19 +140,10 @@
 <block wx:if="{{reply.focus}}">
   <kw-input bind:sendComment='sendComment' hint="{{reply.hint}}" /> 
 </block>
-<!-- 
-<view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
-      <input class="text" bindinput='bindInput'
-            placeholder-class="input_null" 
-            fixed="{{true}}"
-            maxlength="140" 
-            show-confirm-bar="{{true}}" 
-            cursor-spacing="32rpx" 
-            focus="{{reply.focus}}"
-            placeholder="回复 {{reply.hint}}"></input>
-      <view class="submit">
-        <button 
-        class="{{reply.enable?'':'submit-disable'}}" 
-        catchtap='sendComment'>发送</button>
-      </view>
-  </view> -->
+
+<!-- 返回首页悬浮框 -->
+<block wx:if="{{shared}}">
+  <view catchtap='threadCancel' class='goto-home' style='background-color:{{mainColor}}'> 
+    <view style='text-align:center; line-height: 100rpx'>首页</view>
+  </view>
+</block>

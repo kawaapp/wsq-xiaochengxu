@@ -10,6 +10,7 @@ Page({
   data: {
     theme: kawa.Theme.Image,
     favorColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
+    mainColor: kawa.Theme.MainColor,
     item: {
       idx: null,
       post: {},
