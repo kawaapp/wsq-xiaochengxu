@@ -20,6 +20,13 @@
   padding-bottom: 36%;
 }
 
+.cell2-fill {
+  position: relative;
+  width: 50%;
+  height: 0;
+  padding-bottom: 50%;
+}
+
 .cell3 {
   position: relative;
   width: 33.33%;

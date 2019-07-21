@@ -4,9 +4,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    hello: {
-      type: String,
-      value: "Hello",
+    fill: {
+      type: Boolean,
+      value: false,
     },
     images: {
       type: Object,

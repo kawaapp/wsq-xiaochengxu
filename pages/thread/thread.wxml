@@ -24,7 +24,7 @@
     <!-- images -->
     <view wx:if="{{item.post.images}}">
       <view style='margin: 12rpx 0rpx'>
-        <img-grid images="{{item.post.images}}"> </img-grid> 
+        <img-grid fill="{{true}}" images="{{item.post.images}}"> </img-grid> 
       </view>
     </view> 
 
