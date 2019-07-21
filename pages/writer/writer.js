@@ -8,9 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    theme: kawa.Theme.Image,
-    color: kawa.Theme.MainColor,
-    tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
+    theme: {
+      images: kawa.Theme.Image,
+      color: kawa.Theme.MainColor,
+      tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
+    },    
     title: "",
     content: "",
     location: "",

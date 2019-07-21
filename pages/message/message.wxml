@@ -4,7 +4,7 @@
   <!-- 点赞消息 -->
   <view class='horizontal' bindtap='favorClick'>
     <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
-        src="{{theme}}/msg_like.png" 
+        src="{{theme.images}}/msg_like.png" 
         />
     <view>
       <text>点赞</text>
@@ -13,7 +13,7 @@
       <view class='red-tag' wx:if='{{count.favors > 0}}'>
         {{count.favors}}
       </view>
-      <image class='arrow_right' src="{{theme}}/arrow_right.png"/>
+      <image class='arrow_right' src="{{theme.images}}/arrow_right.png"/>
     </view>
   </view>
 
@@ -22,7 +22,7 @@
   <!-- 评论消息 -->
   <view class='horizontal' bindtap='commentClick'>
     <image class='icon-m' style='margin: 9rpx 9rpx 9rpx 0px;'
-        src="{{theme}}/msg_cmt.png" 
+        src="{{theme.images}}/msg_cmt.png" 
         />
     <view>
       <text>评论</text>
@@ -31,7 +31,7 @@
       <view class='red-tag' wx:if='{{count.comments > 0}}'>
         {{count.comments}}
       </view>
-      <image class='arrow_right' src="{{theme}}/arrow_right.png" />
+      <image class='arrow_right' src="{{theme.images}}/arrow_right.png" />
     </view>
   </view>
 
@@ -40,7 +40,7 @@
     <view class='line' style='margin-left:112rpx;'></view>
     <view class='horizontal'  bindtap='clickItem' data-idx='{{index}}'>
       <image class='avatar' style='margin: 9rpx 16rpx 9rpx 7rpx;'
-        src="{{item.other.avatar?item.other.avatar: theme+'/user_icon.png'}}" 
+        src="{{item.other.avatar?item.other.avatar: theme.images+'/user_icon.png'}}" 
         />
       <view>
         <view class='title'>{{item.other.nickname?item.other.nickname:'用户已删除'}}</view>

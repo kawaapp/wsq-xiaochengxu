@@ -11,8 +11,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    theme: kawa.Theme.Image,
-    color: kawa.Theme.MainColor,
+    theme: {
+      images: kawa.Theme.Image,
+      color: kawa.Theme.MainColor,
+    },
     user: {
       avatar: '',
       nickname: '',

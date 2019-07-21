@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    theme: kawa.Theme.Image,
+    theme: {
+      images: kawa.Theme.Image,
+    },
     messages: [],
     loader: {
       ing: false,

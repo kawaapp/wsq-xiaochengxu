@@ -30,7 +30,7 @@
 <!-- 公告部分 -->
 <view class='card' wx:if="{{speaker.title}}" style='margin-bottom: 16rpx;'>
   <view class='single-line speaker' bindtap='clickSpeaker'>
-    <image src='{{theme}}/speaker.png'></image>
+    <image src='{{theme.images}}/speaker.png'></image>
     <text style='margin-right: 8rpx;'>公告: </text> 
     <text>{{ speaker.title }}</text>
   </view>
@@ -55,10 +55,10 @@
       <view 
         data-idx="{{index}}" 
         bindtap="clickTab"
-        style="{{tab.current == index ? ('color:'+tabColor+';' ):''}} "
+        style="{{tab.current == index ? ('color:'+theme.tabColor+';' ):''}} "
         class="tab-item {{tab.current == index ?'active':''}}">
         {{item}} 
-        <view class='indicator' style='background: {{tabColor}}'></view>
+        <view class='indicator' style='background: {{theme.tabColor}}'></view>
       </view>
     </block>
 </scroll-view>
@@ -69,10 +69,10 @@
 <!-- 话题标签 -->
 <view class='card' wx:if="{{topic.items && topic.items.length>0  && tab.current == 0}}">
   <view class='tag-list'>
-      <view class='tag'
+    <view class='tag'
       bindtap='clickTopic'
       data-idx="{{index}}"
-      style="{{index == topic.selected? 'color:' +tabColor+ ';border-color:'+tabColor:''}}"
+      style="{{index == topic.selected? 'color:' +theme.tabColor+ ';border-color:'+theme.tabColor:''}}"
       wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </view>
   </view>
   <view style='margin-bottom:9.36rpx; background-color: #fefefe;'/>
@@ -88,13 +88,13 @@
         <image catchtap='clickAvatar' data-idx="{{index}}"
           class='avatar-large' 
           style='margin: 10rpx 18rpx 10rpx 0px;'
-          src="{{item.author.avatar?item.author.avatar:theme+'/user_icon.png'}}" 
+          src="{{item.author.avatar?item.author.avatar:theme.images+'/user_icon.png'}}" 
           />
         <view>
           <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
           <view class='subtitle'>{{item.agoTime}}</view>
         </view>
-        <image class='menu' src="{{theme}}/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
+        <image class='menu' src="{{theme.images}}/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>
       <view style='margin-bottom:9.36rpx;'/>
       <view>
@@ -123,12 +123,12 @@
     <view class='flow-right'>
       <view class='fade-title' style='margin-right:auto;'>{{item.time}}</view>
       <view class='comment' bindtap='commentClick' data-idx="{{index}}">
-        <image src='{{theme}}/comment.png'></image>
+        <image src='{{theme.images}}/comment.png'></image>
         <text>{{item.stats.comments? item.stats.comments: "评论" }}</text>
       </view>
       <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
-        <image src="{{theme}}{{item.stats.favored? '/liked.png' : '/like.png'}}"></image>
-        <text style="{{item.stats.favored? ('color:'+favroColor+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
+        <image src="{{theme.images}}{{item.stats.favored? '/liked.png' : '/like.png'}}"></image>
+        <text style="{{item.stats.favored? ('color:'+theme.favroColor+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
       </view>
     </view>
   </view>
@@ -138,5 +138,5 @@
 <loading loader="{{loader}}"/>
 
 <view>
-  <image catchtap='newTopic' class='new-topic' src="{{theme}}/write.png"></image>
+  <image catchtap='newTopic' class='new-topic' src="{{theme.images}}/write.png"></image>
 </view>

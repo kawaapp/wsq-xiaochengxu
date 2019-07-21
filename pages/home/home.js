@@ -21,10 +21,12 @@ const kawa = require('../../kawa.js')
 // },....]
 Page({
   data: {
-    theme: kawa.Theme.Image,
-    color: kawa.Theme.MainColor,
-    tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
-    favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
+    theme: {
+      images: kawa.Theme.Image,
+      mainColor: kawa.Theme.MainColor,
+      tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
+      favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
+    },
     speaker: {
       title: "",
       link: "",

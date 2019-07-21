@@ -13,7 +13,7 @@
     <view class="thumb" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
       <view class='del'>
         <image
-          src="{{theme}}/del.png" 
+          src="{{theme.images}}/del.png" 
           data-idx="{{index}}"
           bindtap='clickDelete' 
           >
@@ -27,7 +27,7 @@
       </image>
     </view>
     <view class="add" wx:if='{{images.length < 9}}' >
-      <image bindtap='chooseImage' src="{{theme}}/plus.png" ></image>
+      <image bindtap='chooseImage' src="{{theme.images}}/plus.png" ></image>
     </view>
   </view>
   <!-- 选择位置 -->
@@ -38,9 +38,9 @@
       <view class='tag-title'>{{location && location.name ? location.name: '所在位置'}}</view>
       <image wx:if="{{location && location.name}}"
         catchtap='clickDeleteLocation'
-        class='arrow_right' src="{{theme}}/clear.png"/>
+        class='arrow_right' src="{{theme.images}}/clear.png"/>
       <image wx:if="{{!location || !location.name}}"
-         class='arrow_right' src="{{theme}}/arrow_right.png"/>
+         class='arrow_right' src="{{theme.images}}/arrow_right.png"/>
     </view>
   </view>
   <!-- 选择话题 -->
@@ -48,16 +48,16 @@
     <view class='line'></view>
     <view class='tag-title'>选择话题</view>
     <view class='tag-list'>
-       <view class='tag'
+      <view class='tag'
         bindtap='clickTag'
         data-idx="{{index}}"
-        style="{{index == topic.selected? 'color:' +tabColor+ ';border-color:'+tabColor:''}}"
+        style="{{index == topic.selected? 'color:' +theme.tabColor+ ';border-color:'+theme.tabColor:''}}"
         wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </view>
     </view>
   </view>
 </view>
 
-<button style='margin-top: 28rpx; background-color: {{color}};' 
+<button style='margin-top: 28rpx; background-color: {{theme.color}};' 
   class='btn-submit' 
   hover-class='btn-submit-hover'
   bindtap='writerPublish'>发帖</button>

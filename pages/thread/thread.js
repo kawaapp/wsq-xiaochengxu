@@ -8,9 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    theme: kawa.Theme.Image,
-    favorColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
-    mainColor: kawa.Theme.MainColor,
+    theme: {
+      images: kawa.Theme.Image,
+      favorColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
+      color: kawa.Theme.MainColor,
+    },
     item: {
       idx: null,
       post: {},

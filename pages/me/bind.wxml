@@ -2,7 +2,7 @@
 <view wx:if="{{step==0}}" class='vertical' style='margin-top: 120rpx;'>
   <image class='avatar' 
     style='border-radius: 120rpx;'
-    src="{{user.avatar?user.avatar: theme+'/user_icon.png'}}">
+    src="{{user.avatar?user.avatar: theme.images+'/user_icon.png'}}">
   </image>
   <view style='margin-top: 48rpx;'>
     <view class='title'>{{user.nickname?user.nickname:'用户昵称'}}</view>
@@ -13,7 +13,7 @@
   </view>
 
   <button class='btn' 
-  style='background-color: {{color}}; width: 80%; margin-top: 60rpx;'
+  style='background-color: {{theme.color}}; width: 80%; margin-top: 60rpx;'
   hover-class='btn-hover'
   open-type="getUserInfo" 
   bindgetuserinfo="bindUserInfo"
@@ -27,7 +27,7 @@
 <view wx:if="{{step==1}}" class='vertical' style='margin-top: 120rpx;'>
   <image class='avatar' 
     mode='aspectFit'
-    src="{{theme+'/phone.png'}}">
+    src="{{theme.images+'/phone.png'}}">
   </image>
   <view style='margin-top: 48rpx;'>
     <view class='title'>{{user.phone?user.phone:'您的手机号'}}</view>
@@ -38,7 +38,7 @@
   </view>
 
   <button class='btn' 
-  style='background-color: {{color}}; width: 80%; margin-top: 60rpx;'
+  style='background-color: {{theme.color}}; width: 80%; margin-top: 60rpx;'
   hover-class='btn-hover'
   open-type="getPhoneNumber"
   bindgetphonenumber="getPhoneNumber"

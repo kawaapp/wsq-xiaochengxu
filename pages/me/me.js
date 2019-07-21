@@ -9,9 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    theme: kawa.Theme.Image,
-    color: kawa.Theme.MainColor,
-    gradeColor: util.lightenColor(kawa.Theme.MainColor, -20),
+    theme: {
+      images: kawa.Theme.Image,
+      color: kawa.Theme.MainColor,
+      gradeColor: util.lightenColor(kawa.Theme.MainColor, -20),
+    },
     user: {
       avatar: '',
       nickname: '小虾米',
