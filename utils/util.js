@@ -163,18 +163,24 @@ function jsonParse(str) {
 
 // update list item
 function getCityName(addr) {
+  var city = undefined
   if (addr) {
-    var city = undefined
-    var index = addr.indexOf('市')
-    if (index >= 0 ) {
-      city = addr.substring(0, index+1)
+    console.log("get add:" + addr)
+    var index0 = addr.indexOf('省')
+    var index1 = addr.indexOf('市')
+    if (index0 > 0 && index1 > 0 && index1 > index0 ) {
+      city = addr.substring(index0+1, index1+1)
+    } else if (addr.includes('北京市')) {
+      city = '北京市'
+    } else if (addr.includes('上海市')) {
+      city = '上海市'
+    } else if (addr.includes('天津市')) {
+      city = '天津市'
+    } else if (addr.includes('重庆市')) {
+      city = '重庆市'
     }
-    index = city.indexOf('省')
-    if (index >= 0) {
-      city = city.substring(index+1)
-    }
-    return city
   }
+  return city
 }
 
 function lightenColor(col, amt) {
