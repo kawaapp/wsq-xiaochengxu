@@ -59,7 +59,7 @@ const msgTime = (date) => {
 const getDaysFromNow = (created_at) => {
   var thatTime = new Date(created_at * 1000)
   var nowTime = new Date()
-  return Math.floor((nowTime - thatTime) / (1000 * 3600 * 24))
+  return Math.ceil((nowTime - thatTime) / (1000 * 3600 * 24))
 }
 
 const formatNumber = n => {
