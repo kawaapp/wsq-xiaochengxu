@@ -105,22 +105,6 @@ function onClickItem(e) {
   })
 }
 
-function onClickImage(e) {
-  var index = e.target.dataset.idx
-  var array = index.split('-')
-
-  var pid = parseInt(array[0])
-  var sub = parseInt(array[1])
-
-  var images = view.data.posts[pid].images
-  var current = sub
-
-  wx.previewImage({
-    urls: images,
-    current: images[current],
-  })
-}
-
 function decorateList(posts) {
   var i = 0, n = posts.length
   for (; i < n; i++) {
@@ -155,6 +139,5 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
-  onClickImage: onClickImage,
   onClickLocation: onClickLocation,
 }

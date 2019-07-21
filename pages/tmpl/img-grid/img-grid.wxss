@@ -6,9 +6,11 @@
 }
 
 .cell1 {
-  width: 100%;
-  max-width: 750rpx;
-  max-height: 750rpx;
+  padding: 6rpx;
+  position: relative;
+  width: 60%;
+  height: 0;
+  padding-bottom: 60%;
 }
 
 .cell2 {

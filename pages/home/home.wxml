@@ -106,27 +106,12 @@
             wx:key="{{index}}"
             class="{{text.tag?'highlight':''}}">{{text.text}} </text>
         </view>
-        <!-- Image -->
-        <view wx:if="{{item.images}}">
-          <view wx:if="{{item.images.length == 1}}">
-            <image class='image-single' 
-              src="{{item.images[0]}}" 
-              mode='aspectFill' 
-              catchtap='clickImage'
-              data-idx='{{index}}-{{0}}'
-              ></image>
-          </view>
-          <view class='image-list' wx:if="{{item.images.length >=2 }}">
-            <view class="thumb" wx:for="{{item.images}}" 
-              wx:for-item="item" wx:key="{{item}}" wx:for-index="sub">
-              <image
-                src="{{item}}" 
-                mode='aspectFill' 
-                catchtap='clickImage' 
-                data-idx="{{index}}-{{sub}}" ></image>
-            </view>
-          </view>
-        </view>  
+        
+        <!-- Image列表 -->
+        <block wx:if="{{item.images && item.images.length > 0}}">
+          <img-grid images="{{item.images}}"> </img-grid> 
+        </block>
+        
         <!-- 地理位置 -->
         <view wx:if="{{item.location && item.location.name}}"
           catchtap='clickLocation'

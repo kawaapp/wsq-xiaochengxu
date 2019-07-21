@@ -1,4 +1,7 @@
 {
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "img-grid": "../tmpl/img-grid/img-grid"
+  }
 }

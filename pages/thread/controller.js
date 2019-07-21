@@ -74,15 +74,6 @@ function fetch(options) {
   }
 }
 
-function onClickImage(e) {
-  var idx = e.currentTarget.dataset.idx
-  var images = view.data.item.post.images
-  wx.previewImage({
-    urls: images,
-    current: images[idx],
-  })
-}
-
 function onPullDownRefresh(e) {
   if (!view.data.item) {
     return
@@ -572,7 +563,6 @@ function onClickLocation(e) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
-  onClickImage: onClickImage,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickMenu: onClickMenu,

@@ -147,11 +147,6 @@ Page({
     })
   },
 
-  // 点击图片 
-  clickImage: function(e) {
-    ctr.onClickImage(e)
-  },
-
   // 点击评论
   commentClick: function(e) {
     var idx = e.currentTarget.dataset.idx

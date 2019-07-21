@@ -23,34 +23,18 @@
     
     <!-- images -->
     <view wx:if="{{item.post.images}}">
-        <view wx:if="{{item.post.images.length == 1}}">
-          <image class='image-single'
-            src="{{item.post.images[0]}}" 
-            mode='aspectFill' 
-            catchtap='clickImage'
-            data-idx='{{0}}'
-            ></image>
-        </view>
-        <view class='image-list' wx:if="{{item.post.images.length >=2 }}">
-          <view class="thumb"
-            wx:for="{{item.post.images}}" wx:for-item="item" wx:key="{{item}}">
-            <image
-              src="{{item}}" 
-              mode='aspectFill' 
-              catchtap='clickImage' 
-              data-idx="{{index}}" ></image>
-          </view>
-        </view>
-      </view> 
-      <!-- 地理位置 -->
-      <view wx:if="{{item.post.location && item.post.location.name}}"
-        catchtap='clickLocation'
-        data-idx='{{index}}'
-        class='location'
-        >
-        <image src='{{theme}}/location.png'/>
-        <text>{{item.post.location.name}}</text>
-      </view>
+        <img-grid images="{{item.post.images}}"> </img-grid> 
+    </view> 
+    
+    <!-- 地理位置 -->
+    <view wx:if="{{item.post.location && item.post.location.name}}"
+      catchtap='clickLocation'
+      data-idx='{{index}}'
+      class='location'
+      >
+      <image src='{{theme}}/location.png'/>
+      <text>{{item.post.location.name}}</text>
+    </view>
   </view>
 </view>
 <view style='margin-bottom:9rpx;'/>

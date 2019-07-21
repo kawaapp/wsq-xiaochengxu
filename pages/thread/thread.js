@@ -46,9 +46,6 @@ Page({
   onShareAppMessage: function (res) {
     return ctr.onClickShare(res)
   },
-  clickImage: function(e) {
-    ctr.onClickImage(e)
-  },
   clickMenu: function (e) {
     ctr.onClickMenu(e)
   },

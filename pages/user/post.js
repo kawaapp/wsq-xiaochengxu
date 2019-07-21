@@ -45,10 +45,6 @@ Page({
     ctr.onClickItem(e)
   },
 
-  clickImage: function(e) {
-    ctr.onClickImage(e)
-  },
-
   clickLocation: function(e) {
     ctr.onClickLocation(e)
   }

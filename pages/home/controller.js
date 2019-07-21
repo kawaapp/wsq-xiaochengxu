@@ -410,23 +410,6 @@ function deletePost(idx) {
   })
 }
 
-function onClickImage(e) {
-  var index = e.target.dataset.idx
-  var array = index.split('-')
-  
-  var pid = parseInt(array[0])
-  var sub = parseInt(array[1])
-
-  console.log("get:" + pid + " image:" + sub)
-
-  var images = view.data.posts[pid].images
-  var current = sub
-
-  wx.previewImage({
-    urls: images,
-    current: images[current],
-  })
-}
 
 function onClickImageList(e) {
   var index = e.currentTarget.dataset.idx
@@ -500,7 +483,6 @@ module.exports = {
   onClickFavor: onClickFavor,
   onClickMenu: onClickMenu,
   onClickNewPost: onClickNewPost,
-  onClickImage: onClickImage,
   onClickTopic: onClickTopic,
   onClickShare: onClickShare,
   onClickLocation: onClickLocation,

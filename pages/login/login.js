@@ -8,6 +8,9 @@ Page({
    */
   data: {
     visible: false,
+    images: [
+      "https://images.kawaapp.com/img_bjkk50cdbfdqfm68t540.jpg",
+    ],
   },
 
   /**

@@ -8,3 +8,5 @@
    重试登录
   </button>
 </view>
+
+<img-grid hello="Hello" images="{{images}}"> </img-grid> 

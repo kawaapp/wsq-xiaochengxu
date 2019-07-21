@@ -4,7 +4,14 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    hello: {
+      type: String,
+      value: "Hello",
+    },
+    images: {
+      type: Object,
+      value: [],
+    }
   },
 
   /**
@@ -13,8 +20,8 @@ Component({
   data: {
     images: [
       "https://images.kawaapp.com/img_bjkk50cdbfdqfm68t540.jpg",
-      // "https://images.kawaapp.com/img_bkbiucsdbfdqfm68targ.jpg",
-      // "https://images.kawaapp.com/img_bkbiucsdbfdqfm68targ.jpg",
+      //"https://images.kawaapp.com/img_bkbiucsdbfdqfm68targ.jpg",
+      //"https://images.kawaapp.com/img_bkbiucsdbfdqfm68targ.jpg",
 
       // "https://images.kawaapp.com/img_bkbiucsdbfdqfm68targ.jpg",
       // "https://images.kawaapp.com/img_bkbiucsdbfdqfm68targ.jpg",
@@ -30,6 +37,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    clickImage: function(e) {
+      onClickImage(this, e)
+    },
   }
 })
+
+function onClickImage(view, e) {
+  var index = e.target.dataset.idx
+  var images = view.data.images
+  wx.previewImage({
+    urls: images,
+    current: images[index],
+  })
+}

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "img-grid": "../tmpl/img-grid/img-grid"
+  }
 }
