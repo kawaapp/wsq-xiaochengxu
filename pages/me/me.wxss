@@ -64,4 +64,6 @@
   font-size: 20rpx;
   padding: 2rpx 8rpx;
   margin-left: 12rpx;
+  vertical-align: 8%;
+  font-weight: bold;
 }
