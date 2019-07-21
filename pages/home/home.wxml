@@ -100,10 +100,7 @@
       <view>
         <!-- Text -->
         <view>
-          <text 
-            wx:for="{{item.styled}}" 
-            wx:for-item="text" 
-            wx:key="{{index}}"
+          <text wx:for="{{item.styled}}" wx:for-item="text" wx:key="{{index}}"
             class="{{text.tag?'highlight':''}}">{{text.text}} </text>
         </view>
 

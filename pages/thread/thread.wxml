@@ -14,11 +14,9 @@
   <view style='margin-top:18rpx;'>
     <!-- Text -->
     <view>
-      <text 
-            wx:for="{{item.post.styled}}" 
-            wx:for-item="text" 
-            wx:key="{{index}}"
-            class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+      <text wx:for="{{item.post.styled}}" wx:for-item="text" wx:key="{{index}}"
+        selectable='true'
+        class="{{text.tag?'highlight':''}}">{{text.text}} </text>
     </view>
     
     <!-- images -->
