@@ -18,12 +18,9 @@
           <img-grid images="{{item.images}}"> </img-grid> 
       </view> 
       <!-- 地理位置 -->
-      <view wx:if="{{item.location && item.location.name}}"
-        catchtap='clickLocation'
-        data-idx='{{index}}'
-        >
-        <text class='location'>{{item.location.name}}</text>
-      </view>
+      <block wx:if="{{item.location && item.location.name}}">
+        <location location="{{item.location}}" />
+      </block>
     </view>
   </view>
   <view style='margin-bottom:9rpx;'/>

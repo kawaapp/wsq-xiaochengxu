@@ -1,0 +1,5 @@
+<!--pages/tmpl/location/location.wxml-->
+<view class='location' catchtap='clickLocation'>
+  <image src='{{theme}}/location.png'/>
+  <text>{{location.name}}</text>
+</view>

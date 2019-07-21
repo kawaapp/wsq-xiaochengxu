@@ -92,7 +92,4 @@ Page({
   clickListCommentAction: function(e) {
     ctr.onClickListCommentAction(e)
   },
-  clickLocation: function(e) {
-    ctr.onClickLocation(e)
-  }
 })

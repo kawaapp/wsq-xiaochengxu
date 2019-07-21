@@ -44,8 +44,4 @@ Page({
   clickItem: function (e) {
     ctr.onClickItem(e)
   },
-
-  clickLocation: function(e) {
-    ctr.onClickLocation(e)
-  }
 })

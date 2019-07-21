@@ -550,15 +550,6 @@ function onClickShare(res) {
   }
 }
 
-function onClickLocation(e) {
-  var post = view.data.item.post
-  var location = post.location
-  if (location) {
-    wx.openLocation({
-      latitude: location.lat, longitude: location.lng, name: location.name,
-    })
-  }
-}
 
 module.exports = {
   setup: setup,
@@ -574,5 +565,4 @@ module.exports = {
   onClickListCommentAction: onClickListCommentAction,
   onClickShare: onClickShare,
   gotoHome: gotoHome,
-  onClickLocation: onClickLocation,
 }

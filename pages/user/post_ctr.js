@@ -122,22 +122,10 @@ function decorateList(posts) {
   return posts
 }
 
-function onClickLocation(e) {
-  var idx = e.currentTarget.dataset.idx
-  var item = view.data.posts[idx]
-  var location = item.location
-  if (location) {
-    wx.openLocation({
-      latitude: location.lat, longitude: location.lng, name: location.name,
-    })
-  }
-}
-
 module.exports = {
   setup: setup,
   onLoad: onLoad,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
-  onClickLocation: onClickLocation,
 }
