@@ -1,6 +1,7 @@
 <!--pages/tmpl/input/input.wxml-->
 <view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
   <input class="text" 
+    value='{{textMessage}}'
     bindinput='bindInput'
     placeholder-class="input_null" 
     fixed="{{true}}"

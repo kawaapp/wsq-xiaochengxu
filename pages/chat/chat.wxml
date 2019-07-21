@@ -1,6 +1,5 @@
 <!--pages/chat/chat.wxml-->
 <import src="./comps/chat-item.wxml"/>
-<import src="./comps/chat-input.wxml"/>
 
 <!-- 对话列表 -->
 <scroll-view
@@ -21,7 +20,7 @@
 </scroll-view>
 
 <!-- 输入框 -->
-<template is="chat-input" data="{{inputObj,textMessage, reply}}"/>
+<kw-input bind:sendComment='sendComment' hint="{{reply.hint}}" />
 
 <!-- 刷新 -->
 <view>

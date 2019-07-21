@@ -1,6 +1,5 @@
 /* pages/message/list/chat.wxss */
 @import "./comps/chat-item.wxss";
-@import "./comps/chat-input.wxss";
 
 page {
     background-color: #EFEFEF;

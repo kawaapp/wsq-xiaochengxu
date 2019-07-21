@@ -1,6 +1,5 @@
 // pages/list/list.js
 const ctr = require('./controller.js')
-const input = require("./comps/chat-input")
 const kawa = require('../../kawa.js')
 /**
  * 聊天页面
@@ -82,6 +81,11 @@ Page({
         scrollTopVal: data.length * 999,
       })
     }
+  },
+
+  // send message
+  sendComment: function(e) {
+    ctr.onSendMessage(e)
   },
 
   resetInputStatus() {

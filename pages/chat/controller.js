@@ -1,7 +1,5 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
-const input = require("./comps/chat-input")
-
 const app = getApp()
 
 var view = undefined
@@ -15,34 +13,6 @@ function onLoad(options) {
 }
 
 function initData(uid) {
-  let that = view;
-  let systemInfo = wx.getSystemInfoSync();
-  input.init(view, {
-    systemInfo: systemInfo,
-    sendButtonBgColor: 'mediumseagreen',
-    sendButtonTextColor: 'white',
-  });
-
-  that.setData({
-    pageHeight: systemInfo.windowHeight,
-    isAndroid: systemInfo.system.indexOf("Android") !== -1,
-  });
-
-  // setup input event
-  input.setTextMessageListener((e) => {
-    console.log("get input event:" + e.detail.value)
-    
-    var from_id = app.globalData.userInfo.id
-    var to_id = view.data.other.id
-    var data = {
-      from_id: from_id,
-      to_id: to_id,
-      content: e.detail.value,
-    }
-    console.log("send raw data:", data)
-    sendMessage(data)
-  });
-
   var other = util.getRequest("user")
   if (other) {
     view.data.other = other
@@ -58,6 +28,19 @@ function initData(uid) {
   }).catch(err => {
     console.log(err)
   })
+}
+
+// 发送消息
+function onSendMessage(e) {
+  var from_id = app.globalData.userInfo.id
+  var to_id = view.data.other.id
+  var data = {
+    from_id: from_id,
+    to_id: to_id,
+    content: e.detail.value,
+  }
+  console.log("send raw data:", data)
+  sendMessage(data)
 }
 
 // 发送消息
@@ -157,4 +140,5 @@ module.exports = {
   onLoad: onLoad,
   onClickRefresh: onClickRefresh,
   onPullDown: onPullDown,
+  onSendMessage: onSendMessage, 
 }

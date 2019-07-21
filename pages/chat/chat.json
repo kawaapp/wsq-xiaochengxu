@@ -1,5 +1,9 @@
 {
   "navigationBarTitleText": "私信",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "loading": "../tmpl/loading/loading",
+    "kw-input": "../tmpl/input/kw-input"
+  }
 }
