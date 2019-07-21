@@ -8,6 +8,7 @@ Page({
    */
   data: {
     visible: false,
+    timeout: false,
   },
 
   /**
@@ -26,7 +27,20 @@ Page({
         })
         this.setData({ visible: true })
     })
+  }, 
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    // delay 2 seconds to show loading
+    var view = this
+    setTimeout(function () {
+      view.setData({ timeout: true })
+    }, 2000);
   },
+
+  // 手动点击登录
   clickLogin: function() {
     api.autoAuth().then(() => {
       console.log("go to main page")

@@ -9,8 +9,8 @@
   </button>
 </view>
 
-<view class='login-view' wx:if="{{!visible}}">
-  <view style='text-align: center;'>
-    <text class='fade-title'>登录中...</text>
+<view class='login-view' wx:if="{{!visible && timeout}}">
+  <view style='text-align: center'>
+    <view class="lds-ripple"><view></view><view></view></view>
   </view>
 </view>
