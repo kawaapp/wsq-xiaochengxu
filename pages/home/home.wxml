@@ -109,7 +109,9 @@
 
         <!-- Image列表 -->
         <block wx:if="{{item.images && item.images.length > 0}}">
-          <img-grid images="{{item.images}}"> </img-grid> 
+          <view style='margin: 8rpx 0rpx'>
+            <img-grid images="{{item.images}}"> </img-grid> 
+          </view>
         </block>
         
         <!-- 地理位置 -->

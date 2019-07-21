@@ -21,7 +21,7 @@ page{
   background-color: #ffffff;
   margin-bottom: 18.72rpx;
   position: relative;
-  padding: 2.5vw;
+  padding: 18rpx 24rpx;
 }
 
 .line {

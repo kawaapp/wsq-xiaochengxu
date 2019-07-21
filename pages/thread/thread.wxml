@@ -1,6 +1,6 @@
 <!--pages/post/posts.wxml-->
 
-<view class="card" style='padding: 18rpx'>
+<view class="card">
   <view class="horizontal">
     <image class='avatar-large' style='margin-right: 18rpx;'
       src="{{item.post.author.avatar?item.post.author.avatar: theme+'/user_icon.png'}}" 
@@ -23,7 +23,9 @@
     
     <!-- images -->
     <view wx:if="{{item.post.images}}">
+      <view style='margin: 12rpx 0rpx'>
         <img-grid images="{{item.post.images}}"> </img-grid> 
+      </view>
     </view> 
 
     <!-- 地理位置 -->
