@@ -7,8 +7,8 @@
         <image mode='aspectFill' 
           style='width: 100%;height: 100%;' 
           src="{{images[0]}}"
-          catchtap='clickImage'
-          data-idx='{{0}}'>
+          lazy-load='true'
+          catchtap='clickImage' data-idx='{{0}}'>
         </image>
       </view>
     </view>
@@ -18,8 +18,8 @@
       <image mode="widthFix" 
         style='width: 100%;'
         src="{{images[0]}}"
-        catchtap='clickImage'
-        data-idx='{{0}}'>
+        lazy-load='true'
+        catchtap='clickImage' data-idx='{{0}}'>
       </image>
     </view>
   </block>
@@ -33,6 +33,7 @@
           <image mode='aspectFill' 
             style='width: 100%; height: 100%;' 
             src="{{path}}"
+            lazy-load='true'
             catchtap='clickImage' data-idx='{{index}}'>
           </image>
         </view>
@@ -48,6 +49,7 @@
           <image mode='aspectFill' 
             style='width: 100%; height: 100%;' 
             src="{{path}}"
+            lazy-load='true'
             catchtap='clickImage' data-idx='{{index}}'>
           </image>
         </view>
