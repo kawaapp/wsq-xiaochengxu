@@ -5,6 +5,9 @@ var view = undefined
 function setup(v) {
   view = v
 }
+function onUnload() {
+  view = undefined
+}
 
 function onLoad(options) {
   if (options && options.uid) {
@@ -125,6 +128,7 @@ function decorateList(posts) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,

@@ -25,6 +25,10 @@ Page({
     ctr.setup(this)
     ctr.onLoad(options)
   },
+  
+  onUnload: function() {
+    ctr.onUnload()
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

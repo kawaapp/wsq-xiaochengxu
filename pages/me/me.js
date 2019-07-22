@@ -34,6 +34,10 @@ Page({
     ctr.setup(this)
     ctr.onLoad(options)
   },
+
+  onUnload: function() {
+    ctr.onUnload()
+  },
   // 从其它页面返回数据
   onResult: function (data) {
     ctr.onResult(data)

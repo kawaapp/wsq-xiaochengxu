@@ -8,6 +8,9 @@ var view = undefined
 function setup(_view) {
   view = _view
 }
+function onUnload() {
+  view = undefined
+}
 
 function onLoad(options) {
   var theme = view.data.theme
@@ -53,5 +56,6 @@ function onReachBottom() {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onReachBottom: onReachBottom,
 }

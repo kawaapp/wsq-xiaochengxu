@@ -7,6 +7,10 @@ function setup(v) {
   view = v
 }
 
+function onUnload() {
+  view = undefined
+}
+
 function onLoad(options) {
   var topic = app.globalData.topics
   view.setData({ topic: { items: topic, selected: -1}})
@@ -223,6 +227,7 @@ function onDeleteLocation(e) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onClickImage: onClickImage,
   onDeleteImage: onDeleteImage,
   onChooseImage: onChooseImage,

@@ -6,6 +6,10 @@ function setup(_view) {
   view = _view
 }
 
+function onUnload() {
+  view = undefined
+}
+
 function onLoad(options) {
   api.getMessageList('favor').then(resp => {
     var unpacked = unpackMsgContent(resp.data)
@@ -105,6 +109,7 @@ function unpackMsgContent(msgs) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,

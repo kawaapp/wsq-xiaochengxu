@@ -27,6 +27,9 @@ Page({
     ctr.setup(this)
     ctr.onLoad(options)
   },
+  onUnload: function () {
+    ctr.onUnload()
+  },
 
   bindTitle: function(e) {
     this.setData({title: e.detail.value})

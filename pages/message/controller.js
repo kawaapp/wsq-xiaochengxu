@@ -7,6 +7,9 @@ var view = undefined
 function setup(_view) {
   view = _view
 }
+function onUnload() {
+  view = undefined
+}
 
 function refreshMessage() {
   // refresh system notification
@@ -63,6 +66,7 @@ function onClickItem(e) {
 
 module.exports = {
   setup: setup,
+  onUnload: onUnload,
   refreshMessage: refreshMessage,
   onClickItem: onClickItem,
 }

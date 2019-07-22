@@ -7,6 +7,10 @@ function setup(_view) {
   view = _view
 }
 
+function onUnload() {
+  view = undefined
+}
+
 function onLoad(options) {
   const user = app.globalData.userInfo
   if (user) {
@@ -147,6 +151,7 @@ function updateGrade(updater) {
 module.exports =  {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   bindUserInfo: bindUserInfo,
   getPhoneNumber: getPhoneNumber,
   onResult: onResult,

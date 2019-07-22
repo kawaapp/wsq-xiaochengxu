@@ -40,6 +40,9 @@ Page({
     ctr.setup(this)
     ctr.onLoad(options)
   },
+  onUnload: function() {
+    ctr.onUnload()
+  },
   onPullDownRefresh: function(e) {
     ctr.onPullDownRefresh(e)
   },

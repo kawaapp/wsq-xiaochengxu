@@ -9,6 +9,9 @@ var view = undefined
 function setup(_view) {
   view = _view
 }
+function onUnload() {
+  view = undefined
+}
 
 function onLoad(options) {
   wx.setNavigationBarColor({
@@ -238,6 +241,7 @@ function onClickSign(e) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onReachBottom: onReachBottom,
   onClickSign: onClickSign,
 }

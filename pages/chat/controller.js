@@ -12,6 +12,10 @@ function onLoad(options) {
   initData(options.uid);
 }
 
+function onUnload() {
+  view = undefined
+}
+
 function initData(uid) {
   var other = util.getRequest("user")
   if (other) {
@@ -138,6 +142,7 @@ function massage1(item) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onClickRefresh: onClickRefresh,
   onPullDown: onPullDown,
   onSendMessage: onSendMessage, 

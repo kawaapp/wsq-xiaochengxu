@@ -7,6 +7,10 @@ function setup(_view) {
   view = _view
 }
 
+function onUnload() {
+  view = undefined
+}
+
 function onLoad(options) {
   if (options.shared) {
     view.setData({ shared: options.shared })
@@ -552,6 +556,7 @@ function onClickShare(res) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickMenu: onClickMenu,
