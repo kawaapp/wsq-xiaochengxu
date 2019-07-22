@@ -97,10 +97,26 @@ function onReachBottom() {
 function onClickItem(e) {
   var idx = e.currentTarget.dataset.idx
   var favor = view.data.favors[idx]
-  // 跳转到帖子，并设置为已读
-  wx.navigateTo({
-    url: '/pages/thread/thread?pid=' + favor.entity_id,
-  })
+
+  var goto = pid => {
+    wx.navigateTo({
+      url: '/pages/thread/thread?pid=' + pid,
+    })
+  }
+
+  // 如果赞的是帖子，直接跳转
+  if (favor.entity_type == 0) {
+    goto(favor.entity_id)
+  } 
+
+  // 如果赞的是评论，先从评论取得帖子再跳转
+  if (favor.entity_type == 1) {
+    api.getComment(favor.entity_id).then( resp => {
+      goto(resp.data.post_id)
+    }).catch( err => {
+      console.log(err)
+    })
+  }
 }
 
 

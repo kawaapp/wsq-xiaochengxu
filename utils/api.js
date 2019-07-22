@@ -293,6 +293,13 @@ function getCommentList(pid, since, limit) {
   })
 }
 
+function getComment(id) {
+  return req({
+    url: `${Host}/api/posts/comments/${id}`,
+    method: 'GET'
+  })
+}
+
 function createComment(data) {
   return req({
     url: `${Host}/api/posts/comments`,
@@ -524,6 +531,7 @@ module.exports = {
 
   // comment
   getCommentList: getCommentList,
+  getComment: getComment,
   createComment: createComment,
   updateComment: updateComment,
   deleteComment: deleteComment,
