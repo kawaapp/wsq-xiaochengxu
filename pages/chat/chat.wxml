@@ -4,15 +4,16 @@
 <!-- 对话列表 -->
 <scroll-view
     class='list'
-    style="height:{{pageHeight}}px;"
+    style="height:100vh;"
     scroll-y="true"
     scroll-top="{{scrollTopVal}}"
-    bindtap="resetInputStatus">
+    bindtap="resetInputStatus"
+    bindscrolltoupper="onPullDown">
 
-    <view wx:if='{{!loader.more}}' style='text-align:center;'>
-      <text class="fade-title">— 没有更多数据了 —</text>
-    </view>
+    <!-- 加载状态 -->
+    <loading loader="{{loader}}" />
 
+    <!-- 对话列表 -->
     <block wx:for="{{chatItems}}" wx:key="{{index}}">
         <template is="chat-item" data="{{length:chatItems.length,index:index,item:item}}"/>
     </block>

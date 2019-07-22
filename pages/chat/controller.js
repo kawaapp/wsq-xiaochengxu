@@ -8,7 +8,6 @@ function setup(_view) {
 }
 
 function onLoad(options) {
-  console.log("option:", options)
   initData(options.uid);
 }
 
@@ -17,11 +16,12 @@ function onUnload() {
 }
 
 function initData(uid) {
+  // get user
   var other = util.getRequest("user")
   if (other) {
     view.data.other = other
-  } 
-
+  }
+  
   // fetch messages from user
   api.getChatMsgListFrom(uid).then(resp => {
     var items = massage(resp.data)
@@ -98,10 +98,10 @@ function massage(items) {
   return items
 }
 
+// 下拉刷新
 function onPullDown() {
   var loader = view.data.loader
-  if (!loader.more) {
-    wx.stopPullDownRefresh()
+  if (loader.ing || !loader.more) {
     return
   }
 
@@ -110,15 +110,19 @@ function onPullDown() {
   if (chatItems.length > 0) {
     since = chatItems[0].id
   }
+  loader.ing = true
+  view.setData({loader: loader})
   api.getChatMsgListFrom(view.data.other.id, since, limit).then( resp => {
-    wx.stopPullDownRefresh()
+    loader.ing = false
     var items = massage(resp.data)
     view.shiftMessage(items)
     if (!items || items.length < limit) {
-      view.setData({loader: {more: false}})
+      loader.more = false
     }
+    view.setData({ loader: loader})
   }).catch( err => {
-    wx.stopPullDownRefresh()
+    loader.ing = false
+    view.setData({ loader: loader })
     console.log("pull msg err,", err)
   })
 }

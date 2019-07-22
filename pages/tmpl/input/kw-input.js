@@ -48,6 +48,6 @@ Component({
 
       // clear input
       this.setData({ textMessage: ""})
-    }
+    }, 
   }
 })

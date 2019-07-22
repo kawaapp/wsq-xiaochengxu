@@ -5,6 +5,12 @@ page {
     background-color: #EFEFEF;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .list {
   width: 100%;
   display: flex;

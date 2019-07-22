@@ -3,10 +3,12 @@
   <input class="text" 
     value='{{textMessage}}'
     bindinput='bindInput'
+    bindconfirm="sendComment" 
     placeholder-class="input_null" 
     fixed="{{true}}"
     maxlength="140" 
     show-confirm-bar="{{true}}" 
+    confirm-type="send"
     cursor-spacing="32rpx" 
     focus="{{reply.focus}}"
     placeholder="回复 {{hint}}">
