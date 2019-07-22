@@ -18,7 +18,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {  
+  onLoad: function(options) {
     if (options.man) {
       // 如果是重定向过来的，需要手动点击登录.
       // 自动登录会因为页面没有初始化完毕而导致错误.
