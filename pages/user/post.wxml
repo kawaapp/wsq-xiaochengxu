@@ -13,7 +13,7 @@
     <view style='margin-bottom:6rpx;'/>
     <!-- 图片 和 文字-->
     <view style='margin-left:90rpx;' bindtap='topicClick' data-item="{{item}}">
-      <text class='title'>{{item.content}}</text>
+      <text class='content'>{{item.content}}</text>
       <view wx:if="{{item.images}}" style='margin-right:90rpx;'>
           <img-grid images="{{item.images}}"> </img-grid> 
       </view> 

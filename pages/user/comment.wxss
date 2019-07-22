@@ -1,4 +1,7 @@
 /* pages/me/list/comment.wxss */
-
-
+.my-comment {
+  margin: 12rpx 0 16rpx 0;
+  font-size: 30rpx;
+  line-height: 38rpx;
+}
 

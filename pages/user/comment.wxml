@@ -1,14 +1,16 @@
 <view style='margin-bottom:18rpx;'/>
 <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card" style='padding: 18rpx;' bindtap='clickItem' data-idx='{{index}}'>
-    <text class='title'>我: {{ item.content }}</text>
+    <view class='my-comment'>
+      我: {{ item.content }}
+    </view>
     <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin-right: 18rpx;'
         src="{{item.replier.avatar?item.replier.avatar: theme+'/user_icon.png'}}" 
         />
       <view>
         <view class='title'>@{{item.replier.nickname?item.replier.nickname:'匿名'}}</view>
-        <view class='subtitle single-line' style='width:580rpx'>
+        <view class='fade-title single-line' style='width:580rpx'>
           {{item.subject}}
         </view>
       </view>
