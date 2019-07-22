@@ -10,9 +10,11 @@
     <view class="v-right" style='margin-left: auto;'>
       <!-- sign and share button -->
       <view class='horizontal' style='margin-bottom: 14rpx;'>
-        <button class='btn-clear btn-home' bindtap='clickSignin'> 
-          <image src="/res/default/signin.png"/>{{signed? '已签到': '签到'}}
-        </button>
+        <block wx:if="{{meta.app_signin}}">
+          <button class='btn-clear btn-home' bindtap='clickSignin'> 
+            <image src="/res/default/signin.png"/>{{signed? '已签到': '签到'}}
+          </button>
+        </block>
 
         <!-- <view style='width:24rpx;'></view>
         

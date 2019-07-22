@@ -124,7 +124,7 @@ Page({
   // 点击头像
   clickAvatar: function(e) {
     var idx = e.currentTarget.dataset.idx
-    var post = this.data.posts[idx]
+    var post = getTabData(this).posts[idx]
     util.sendRequest('user', {
       idx: idx,
       data: post.author
