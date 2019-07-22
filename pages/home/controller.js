@@ -25,10 +25,7 @@ function getTabData() {
 }
 
 function showTabData() {
-  var index = view.data.tab.current
-  var data = view.data.tabData[index]
-  var key = 'tabData[' + index + ']'
-  view.setData({ [key]: data })
+  view.setData({ tabData: view.data.tabData})
 }
 
 function onUnload() {
