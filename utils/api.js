@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.siftapi.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.siftapi.com"
 //const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
@@ -47,23 +47,30 @@ function req(options = {}) {
         if (r.statusCode == 200) {
           res(r);
         } else if (r.statusCode == 401) {
-          autoAuth()
+          // 给调用端返回一个空集，形成完整的调用链
+          res({data: []})
+          // 拦截并处理错误
+          loginExpired()
         } else {
-          rej({ 
-            code: r.statusCode, 
-            err: r.data
-          })
+          rej({ code: r.statusCode, err: r.data })
         }
       },
       fail(err) {
-        rej({
-          code: -1,
-          err: err
-        });
+        rej({ code: -1, err: err });
       },
       complete
     });
   });
+}
+
+// 重定向到登录页面
+function loginExpired() {
+  wx.reLaunch({
+    url: '/pages/login/login?man=true',
+  })
+  wx.showToast({
+    title: '会话过期', icon: 'none'
+  })
 }
 
 /**

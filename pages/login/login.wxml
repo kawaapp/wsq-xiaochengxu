@@ -5,7 +5,7 @@
     class="login-button-normal" 
     hover-class="login-button-hover"
   >
-   重试登录
+   重新登录
   </button>
 </view>
 
