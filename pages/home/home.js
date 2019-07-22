@@ -137,7 +137,7 @@ Page({
   // 点击帖子
   topicClick: function(e) {
     var idx = e.currentTarget.dataset.idx
-    var post = this.data.posts[idx]
+    var post = getTabData(this).posts[idx]
     util.sendRequest('post', {
       idx: idx,
       post: post
@@ -150,7 +150,7 @@ Page({
   // 点击评论
   commentClick: function(e) {
     var idx = e.currentTarget.dataset.idx
-    var post = this.data.posts[idx]
+    var post = getTabData(this).posts[idx]
     util.sendRequest('post', {
       idx: idx,
       post: post
@@ -208,4 +208,9 @@ function applyTheme(theme) {
     color: "#b5b5b5",
     selectedColor: theme.TabSelectedColor || theme.MainColor,
   })
+}
+
+function getTabData(view) {
+  var index = view.data.tab.current
+  return view.data.tabData[index]
 }

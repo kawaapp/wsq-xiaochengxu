@@ -19,6 +19,18 @@ function setup(_view) {
   }
 }
 
+function getTabData() {
+  var tabData = view.data.tabData
+  return tabData[view.data.tab.current]
+}
+
+function showTabData() {
+  var index = view.data.tab.current
+  var data = view.data.tabData[index]
+  var key = 'tabData[' + index + ']'
+  view.setData({ [key]: data })
+}
+
 function onUnload() {
   view = undefined
 }
@@ -164,8 +176,7 @@ function refreshList(tabIndex, topic) {
   data.loader.ing = true
   data.loader.more = true
   data.posts = []
-  
-  view.setData({tabData: tabData})
+  showTabData()
 
   console.log("load data for tab:" + tabIndex, "filter:" + fitler)
   api.getPostList(0, limit, fitler, topic).then(resp => {
@@ -176,11 +187,11 @@ function refreshList(tabIndex, topic) {
       }
       data.posts = decoratePosts(resp.data)
     }
-    view.setData({ tabData: tabData })
+    showTabData()
     wx.stopPullDownRefresh()
   }).catch(err => {
     data.loader.ing = false
-    view.setData({ tabData: tabData })
+    showTabData()
     wx.stopPullDownRefresh()
     wx.showToast({
       title: '加载失败:' + err.code, icon: 'none'
@@ -199,7 +210,8 @@ function onResult(data) {
 // 下拉事件是全局的，如果页面正在刷新，无论哪个页面都应该
 // 直接停掉下拉刷新
 function onPullDownRefresh() {
-  if (view.data.loader.ing) {
+  var data = getTabData()
+  if (data.loader.ing) {
     wx.stopPullDownRefresh()
     return
   }
@@ -212,7 +224,8 @@ function onPullDownRefresh() {
 }
 
 function onReachBottom() {
-  if (view.data.loader.ing || !view.data.loader.more) {
+  var data = getTabData()
+  if (data.loader.ing || !data.loader.more) {
     return
   }
   var tabData = view.data.tabData
@@ -232,7 +245,7 @@ function onReachBottom() {
     sinceId = posts[posts.length - 1].id
   }
   data.loader.ing = true
-  view.setData({tabData: tabData})
+  showTabData()
 
   api.getPostList(sinceId, limit, filter, topic).then((resp) => {
     data.loader.ing = false
@@ -243,10 +256,10 @@ function onReachBottom() {
       var styled = decoratePosts(resp.data)
       data.posts = posts.concat(styled)
     }
-    view.setData({ tabData: tabData })
+    showTabData()
   }).catch((err) => {
     data.loader.ing = false
-    view.setData({ tabData: tabData })
+    showTabData()
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none'
     })
@@ -259,8 +272,9 @@ function listLoadMore(tabIndex, topic) {
 
 function onClickFavor(e) {
   var idx = e.currentTarget.dataset.idx
-  var item = view.data.posts[idx]
-  var key = 'posts[' + idx + '].stats'
+  var item = getTabData().posts[idx]
+  var index = view.data.tab.current
+  var key = 'tabData['+ index + '].posts[' + idx + '].stats'
 
   if (!item.stats) {
     item.stats = { favored: false, favors: 0, comments: 0 }
@@ -288,8 +302,9 @@ function onClickFavor(e) {
 }
 
 function onClickMenu(e) {
+  var data = getTabData()
   var idx = e.currentTarget.dataset.idx
-  var item = view.data.posts[idx]
+  var item = data.posts[idx]
   var menu = {
     items: ["举报"],
     actions: [function () {
@@ -383,7 +398,7 @@ function decoratePost(post) {
 }
 
 function deletePost(idx) {
-  var posts = view.data.posts
+  var posts = getTabData().posts
   var post = posts[idx]
   api.deletePost(post.id).then(resp => {
     posts.splice(idx, 1)
@@ -428,7 +443,7 @@ function onClickShare(res) {
 
 function onClickLocation(e) {
   var idx = e.currentTarget.dataset.idx
-  var item = view.data.posts[idx]
+  var item = getTabData().posts[idx]
   var location = item.location
   if (location) {
     wx.openLocation({
