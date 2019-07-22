@@ -8,8 +8,8 @@
         />
       <view>
         <view class='title'>@{{item.replier.nickname?item.replier.nickname:'匿名'}}</view>
-        <view style='width:560rpx;'>
-          <text class='subtitle single-line'>{{item.subject}}</text>
+        <view class='subtitle single-line' style='width:580rpx'>
+          {{item.subject}}
         </view>
       </view>
     </view>
