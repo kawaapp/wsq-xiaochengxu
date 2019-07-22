@@ -125,7 +125,7 @@
   <view class='right center'>
     <image bindtap='clickFavor' 
       src="{{theme.images+(item.post.stats.favored>0?'/liked.png':'/like.png')}}"/>
-    <button open-type='share' class='share'>
+    <button open-type='share' class='btn-clear share'>
       <image src="{{theme.images}}/share.png"/>
     </button>
   </view>

@@ -9,17 +9,18 @@
     </image>
     <view class="v-right" style='margin-left: auto;'>
       <!-- sign and share button -->
-      <view class='horizontal' style='margin-bottom: 8rpx;'>
-        <button class='button' bindtap='clickSignin'> 
-        <image src="/res/default/signin.png"/>{{signed? '已签到': '签到'}}</button>
+      <view class='horizontal' style='margin-bottom: 14rpx;'>
+        <button class='btn-clear btn-home' bindtap='clickSignin'> 
+          <image src="/res/default/signin.png"/>{{signed? '已签到': '签到'}}
+        </button>
 
-        <view style='width:24rpx;'></view>
+        <!-- <view style='width:24rpx;'></view>
         
         <button class='button' bindtap='clickShare'>
-        <image src="/res/default/share_to.png"/>分享</button>
+        <image src="/res/default/share_to.png"/>分享</button> -->
       </view>
       <view class='app-name'>{{meta.app_name}}</view>
-      <view class='subtitle' style='color: #ffffff; font-weight: 800;'>
+      <view class='subtitle' style='color: #ffffff11; font-weight: 800;'>
         <text space="ensp">总浏览 {{meta.app_pv}} 用户数 {{meta.app_users}}</text>
       </view>
     </view>

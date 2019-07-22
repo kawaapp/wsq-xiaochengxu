@@ -17,25 +17,19 @@
   font-weight:600;
 }
 
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn-home {
   background-color: transparent;
   border: 2rpx solid white;
-  border-radius: 8rpx;
-  font-size: 28rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
   color: white;
-  padding: 8rpx 18rpx;
-  line-height: 28rpx;
-}
-.button::after{
-  border: 0;
+  padding: 8rpx 10rpx;
+  line-height: 24rpx;
 }
 
-.button image {
-  width: 30rpx;  
-  height: 28rpx; 
+.btn-home image {
+  width: 26rpx;  
+  height: 24rpx; 
   margin-right: 8rpx;
 }
 
