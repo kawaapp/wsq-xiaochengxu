@@ -61,9 +61,10 @@
 
 .grade {
   color: white;
-  font-size: 20rpx;
+  font-size: 18rpx;
   padding: 2rpx 8rpx;
   margin-left: 12rpx;
-  vertical-align: 8%;
+  vertical-align: middle;
   font-weight: bold;
+  border-radius: 4rpx;
 }
