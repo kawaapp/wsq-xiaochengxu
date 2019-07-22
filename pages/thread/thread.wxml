@@ -3,7 +3,7 @@
 <view class="card">
   <view class="horizontal">
     <image class='avatar-large' style='margin-right: 18rpx;'
-      src="{{item.post.author.avatar?item.post.author.avatar: theme+'/user_icon.png'}}" 
+      src="{{item.post.author.avatar?item.post.author.avatar: theme.images+'/user_icon.png'}}" 
       />
     <view>
       <view class='title b5'>{{item.post.author.nickname}}</view>

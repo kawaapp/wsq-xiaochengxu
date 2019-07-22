@@ -5,30 +5,22 @@ const app = getApp()
 
 var view = undefined
 
-// 当前的TAB页面数据
-var tabData = []
-
 // Home Controller 
 function setup(_view) {
   view = _view
-  
+  var tabData = _view.data.tabData
+
   var i = 0, n = view.data.tab.items.length
   for (; i < n; i++) {
     tabData.push({ loader: {
-      ing: view.data.loader.ing,
-      more: view.data.loader.more,
+      ing: false,
+      more: true,
     }, posts: []})
   }
-
-  // bind tab-data to view
-  bindTabData(view.data.tab.current)
 }
 
-function bindTabData(idx) {
-  console.log('bindTabData:', idx, tabData[idx])
-  var data = tabData[idx]
-  view.setData({posts: data.posts})
-  view.setData({loader: data.loader})
+function onUnload() {
+  view = undefined
 }
 
 // First Load
@@ -159,6 +151,7 @@ function onTabChanged(idx) {
 }
 
 function refreshList(tabIndex, topic) {
+  var tabData = view.data.tabData
   var data = tabData[tabIndex]
   if (data.loader.ing) {
     return
@@ -171,28 +164,28 @@ function refreshList(tabIndex, topic) {
   data.loader.ing = true
   data.loader.more = true
   data.posts = []
-  bindTabData(tabIndex)
+  
+  view.setData({tabData: tabData})
+
   console.log("load data for tab:" + tabIndex, "filter:" + fitler)
   api.getPostList(0, limit, fitler, topic).then(resp => {
-    if (resp.data && resp.data.length < limit) {
-      data.loader.more = false
-    }
-    data.posts = decoratePosts(resp.data)
     data.loader.ing = false
-    if (view.data.tab.current == tabIndex) {
-      bindTabData(tabIndex)
+    if (resp.data) {
+      if (resp.data.length < limit) {
+        data.loader.more = false
+      }
+      data.posts = decoratePosts(resp.data)
     }
+    view.setData({ tabData: tabData })
     wx.stopPullDownRefresh()
   }).catch(err => {
     data.loader.ing = false
-    if (view.data.tab.current == tabIndex) {
-      bindTabData(tabIndex)
-    }
+    view.setData({ tabData: tabData })
     wx.stopPullDownRefresh()
     wx.showToast({
       title: '加载失败:' + err.code, icon: 'none'
     })
-    console.log("topic", err)
+    console.log("refresh list:", err)
   })
 }
 
@@ -222,6 +215,7 @@ function onReachBottom() {
   if (view.data.loader.ing || !view.data.loader.more) {
     return
   }
+  var tabData = view.data.tabData
   var tabIndex = view.data.tab.current
   var filter = ""
   if (tabIndex == 1) {
@@ -233,30 +227,26 @@ function onReachBottom() {
   }
   var data = tabData[tabIndex]
   var posts = data.posts
-  var sinceId = 0
-  var limit = 20
+  var sinceId = 0, limit = 20
   if (posts && posts.length > 0) {
     sinceId = posts[posts.length - 1].id
   }
-  var current = view.data.tab.current
+  data.loader.ing = true
+  view.setData({tabData: tabData})
+
   api.getPostList(sinceId, limit, filter, topic).then((resp) => {
     data.loader.ing = false
     if (resp.data) {
       if (resp.data.length < 20) {
-        console.log("no more data..." + sinceId)
         data.loader.more = false
       }
       var styled = decoratePosts(resp.data)
       data.posts = posts.concat(styled)
-      if (current == view.data.tab.current) {
-        bindTabData(current)
-      }
     }
+    view.setData({ tabData: tabData })
   }).catch((err) => {
     data.loader.ing = false
-    if (current == view.data.tab.current) {
-      bindTabData(current)
-    }
+    view.setData({ tabData: tabData })
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none'
     })
@@ -476,6 +466,7 @@ function onClickSignin(e) {
 module.exports = {
   setup: setup,
   onLoad: onLoad,
+  onUnload: onUnload,
   onTabChanged: onTabChanged,
   onResult: onResult,
   onPullDownRefresh: onPullDownRefresh,

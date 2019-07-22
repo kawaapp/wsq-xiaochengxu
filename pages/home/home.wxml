@@ -79,7 +79,7 @@
 </view>
 
 <!-- 列表 -->
-<view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
+<view wx:for="{{tabData[tab.current].posts}}" wx:for-item="item" wx:key="{{item.id}}">
   <view class="card">
     
     <!-- Content Area -->
@@ -135,7 +135,7 @@
   <view style='margin-bottom:9.36rpx;'/>
 </view>
 
-<loading loader="{{loader}}"/>
+<loading loader="{{tabData[tab.current].loader}}"/>
 
 <view>
   <image catchtap='newTopic' class='new-topic' src="{{theme.images}}/write.png"></image>

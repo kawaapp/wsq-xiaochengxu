@@ -31,12 +31,6 @@ Page({
       title: "",
       link: "",
     },
-    tops: [],
-    posts: [],
-    loader: {
-      ing: false, // 是否正在加载
-      more: true, // 是否有更多数据
-    },
     menu: {
       show: false,
     },
@@ -44,14 +38,13 @@ Page({
       app_cover: "",
       app_logo: "",
       app_name: "卡哇微社区",
-      pv: "",
-      users: ""
     },
     tab: {
       current: 0, //预设默认选中的栏目
       scrollLeft: 0, //tab滚动条距离左侧距离
       items: ["全部", "精华"],
     },
+    tabData:[],
     topic: {
       items: [],
       selected: -1,
@@ -72,6 +65,11 @@ Page({
     ctr.setup(this)
     ctr.onLoad(opt)
   },
+
+  onUnload: function() {
+    ctr.onUnload()
+  },
+
   // 从其它页面返回数据
   onResult: function(data) {
     ctr.onResult(data)
