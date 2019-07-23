@@ -173,6 +173,10 @@ function onClickMenu(e) {
 // 删除帖子
 function deletePost(item) {
   api.deletePost(item.id).then(resp => {
+    // req refresh
+    util.setResult({ ok: true })
+    
+    // goto home
     gotoHome()
   })
 }

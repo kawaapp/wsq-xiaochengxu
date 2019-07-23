@@ -399,7 +399,7 @@ function deletePost(idx) {
   var post = posts[idx]
   api.deletePost(post.id).then(resp => {
     posts.splice(idx, 1)
-    view.setData({ posts: posts })
+    showTabData()
     wx.showToast({
       title: '删除成功',
     })
