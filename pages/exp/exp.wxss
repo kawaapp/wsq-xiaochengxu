@@ -102,20 +102,18 @@ page {
   margin-right: 32rpx;
 }
 
-.ranks .item .avatar {
-  width: 64rpx;
-  height: 64rpx;
-  margin-right: 12rpx;
+.ranks .item .circle {
+  margin-right: 24rpx;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  border: 1px solid transparent;
 }
 
-.ranks .item .name {
-  font-size: 32rpx;
+.ranks .item .level {
+  margin-right:12rpx;
+  color: #444; 
+  font-weight:bold;
+  font-size: 30rpx;
 }
-
-.ranks .item .times {
-  font-size: 32rpx;
-  margin-left: auto;
-}
-
-
 

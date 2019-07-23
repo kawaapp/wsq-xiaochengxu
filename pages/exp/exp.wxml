@@ -36,17 +36,24 @@
   </view>
 
   <!-- 等级列表 -->
-  <view class='ranks'>
+  <view class='ranks' style='margin-top: 16rpx;'>
     <view class='exp-title'>等级说明</view>
     <view class='list'>
       <view>
       </view>
-      <view class='item' wx:for="{{grades}}" wx:for-item="item" wx:key="{{index}}">
-        <view style='margin-right:12rpx;'>Lv{{item.level}}</view>
-        <view>{{item.show_name}}</view>
-        <view style='margin-left:auto;'>{{ ' >= ' + item.need_exp}}</view>
+      <view wx:for="{{grades}}" wx:for-item="item" wx:key="{{index}}">
+        <view class='item'>
+          <view class='circle' style='border-color:{{theme.bgColor}}'></view>
+          <view class='level'>Lv{{item.level}}</view>
+          <view>{{item.show_name}}</view>
+          <view style='margin-left:auto;margin-right: 8rpx;'>{{ ' ' + item.need_exp + ' '}}</view>
+          <view style='color:#444'> 点经验</view>
+        </view>
+        <view class='line'/>
       </view>
     </view>
   </view>
 
-  <!-- -->
+
+  <!-- Empty view for bottom -->
+  <view style='height: 120rpx;'></view>
