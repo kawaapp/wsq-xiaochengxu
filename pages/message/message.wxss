@@ -1,4 +1,5 @@
 /* pages/message/message.wxss */
+
 .arrow_right {
   width: 56rpx; 
   height: 56rpx;

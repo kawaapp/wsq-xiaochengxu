@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "赞",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#fff"
 }
