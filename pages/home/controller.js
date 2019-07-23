@@ -94,15 +94,11 @@ function onLoad(opt) {
   })
 
   // 签到状态
-  var data = app.globalData
-  if (data.signed == undefined) {
-    api.getSignToday().then( resp => {
-      data.signed = resp.data.ok
-      view.setData({signed: data.signed })
-    }).catch( err => {
-      console.log(err)
-    })
-  }
+  api.getSignToday().then(resp => {
+    view.setData({ signed: resp.data.ok })
+  }).catch(err => {
+    console.log(err)
+  })
 
   // 等级列表
   // TODO 或者放在 我的 界面更新.
