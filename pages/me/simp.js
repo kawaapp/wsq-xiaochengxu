@@ -38,6 +38,10 @@ Page({
         console.log("授权成功")
         app.globalData.userInfo = resp.data
         view.setData({ user: resp.data })
+
+        wx.showToast({
+          title: '昵称绑定成功',
+        })
       })
 
       // save in localStorage, and refresh when lauch

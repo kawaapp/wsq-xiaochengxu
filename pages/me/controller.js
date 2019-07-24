@@ -11,8 +11,14 @@ function onUnload() {
   view = undefined
 }
 
+function onShow() {
+  const user = app.globalData.userInfo
+  if (user) {
+    view.setData({ user: user })
+  }
+}
+
 function onLoad(options) {
-  console.log("switch tab ..... ", options)
   const user = app.globalData.userInfo
   if (user) {
     view.setData({ user: user })
@@ -156,4 +162,5 @@ module.exports =  {
   bindUserInfo: bindUserInfo,
   getPhoneNumber: getPhoneNumber,
   onResult: onResult,
+  onShow: onShow,
 }

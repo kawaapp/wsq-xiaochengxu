@@ -1,4 +1,8 @@
 /* pages/me/bind.wxss */
+page {
+    background-color:#fff;
+}
+
 .vertical {
   display: flex;
   flex-flow: column;

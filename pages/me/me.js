@@ -38,6 +38,9 @@ Page({
   onUnload: function() {
     ctr.onUnload()
   },
+  onShow: function () {
+    ctr.onShow()
+  },
   // 从其它页面返回数据
   onResult: function (data) {
     ctr.onResult(data)

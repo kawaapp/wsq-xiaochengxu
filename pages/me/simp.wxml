@@ -8,7 +8,7 @@
   </view>
 
   <view class='fade-title' style='text-align: center; width: 80%; margin-top: 24rpx;'>
-  在社区中，执行发帖/评论/签到/私信等操作时，需要绑定用户昵称才能进行。 
+  在社区中，执行发帖/评论/签到/私信等操作时，需要绑定微信昵称才能进行。 
   </view>
 
   <button class='btn' 
@@ -21,5 +21,5 @@
   style='width: 80%; margin-top: 24rpx;'
   hover-class='next-hover'
   bindtap='clickCancel'
-  >取消</button>
+  >{{user.nickname? '完成': '取消'}}</button>
 </view>
