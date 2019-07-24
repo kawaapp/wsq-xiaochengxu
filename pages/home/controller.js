@@ -40,11 +40,18 @@ function onLoad(opt) {
       meta: data
     })
     app.globalData.meta = data
+
+    // 公告
     var pub = {
       title: data.app_pubtitle,
       link: data.app_publink,
     }
     view.setData({ speaker: pub })
+
+    // PageTitle
+    wx.setNavigationBarTitle({
+      title: data.app_name,
+    })
   })
 
   // 加载置顶列表

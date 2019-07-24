@@ -38,12 +38,13 @@
         "pagePath": "pages/me/me",
         "text": "我的"
       }
-    ]
+    ],
+    "color": "#b5b5b5",
+    "selectedColor": "#b5b5b5"
   },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "克洛洛社区",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#eee"
   },
