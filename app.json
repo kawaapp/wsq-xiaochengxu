@@ -5,6 +5,7 @@
     "pages/message/message",
     "pages/me/me",
     "pages/me/bind",
+    "pages/me/simp",
     "pages/thread/thread",
     "pages/writer/writer",
     "pages/message/list/favor",

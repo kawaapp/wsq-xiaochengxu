@@ -1,5 +1,6 @@
 import api from '../../utils/api.js'
 import util from '../../utils/util.js'
+import biz from '../../utils/biz.js'
 const app = getApp()
 
 var view = undefined
@@ -131,21 +132,6 @@ function onReachBottom(e) {
   })
 }
 
-function replyHook() {
-  if (!(app.globalData.userInfo && app.globalData.userInfo.nickname)) {
-    wx.switchTab({
-      url: '/pages/me/me',
-    })
-    setTimeout(function () {
-      wx.showToast({
-        title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
-      })
-    }, 500);
-    return true
-  }
-  return false
-}
-
 // ------- 针对帖子的动作 ---------
 
 // 点击帖子菜单
@@ -225,7 +211,7 @@ function onClikcFavorPost(e) {
 
 // 对帖子评论
 function onClickReplyPost(e) {
-  if (replyHook()) {
+  if (!biz.isUserHasName()){
     return
   }
   view.setData({ reply: { focus: true } })
@@ -274,8 +260,7 @@ function unfavorComent(idx, comment) {
 
 // 对评论进行回复菜单
 function onClickListComment(e) {
-  console.log('comment on comment click!!')
-  if (replyHook()) {
+  if (!biz.isUserHasName()){
     return
   }
 
@@ -299,14 +284,14 @@ function onClickListCommentAction(e) {
   var index = array[0], sub = array[1]
 
   var actionDelete = function() {
-    if (replyHook()) {
+    if (!biz.isUserHasName()) {
       return;
     }
     deleteComment(index, sub)
   }
 
   var actionReply = function() {
-    if (replyHook()) { 
+    if (!biz.isUserHasName()) { 
       return; 
     }
     // commennt on comment

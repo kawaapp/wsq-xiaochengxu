@@ -12,6 +12,7 @@ function onUnload() {
 }
 
 function onLoad(options) {
+  console.log("switch tab ..... ", options)
   const user = app.globalData.userInfo
   if (user) {
     view.setData({ user: user })

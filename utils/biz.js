@@ -73,22 +73,26 @@ function getMetaData(fn) {
   })
 }
 
+// 签到/私信/发帖/评论是写操作，需要用户绑定昵称
 function isUserHasName(warning) {
   if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
     return true
   }
-  wx.switchTab({
-    url: '/pages/me/me',
-  })
-  setTimeout(function () {
-    wx.showToast({
-      title: warning, icon: 'none', duration: 2000
+
+  if (app.globalData.meta && app.globalData.meta.user_mode == 2) {
+    wx.navigateTo({
+      url: '/pages/me/bind',
     })
-  }, 300);
+  } else {
+    wx.navigateTo({
+      url: `/pages/me/simp`,
+    })
+  }
 }
 
 module.exports = {
   getPhoneNumber: getPhoneNumber,
   getGrade: getGrade,
   getMetaData: getMetaData,
+  isUserHasName: isUserHasName,
 }

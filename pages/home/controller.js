@@ -133,7 +133,7 @@ function getTitle(item) {
 }
 
 function onClickNewPost(e) {
-  if (!biz.isUserHasName('需要先绑定微信昵称才能发帖')) {
+  if (!biz.isUserHasName()) {
     return
   }
   wx.navigateTo({
@@ -438,7 +438,7 @@ function onClickLocation(e) {
 }
 
 function onClickSignin(e) {
-  if (!biz.isUserHasName('需要绑定微信昵称，才能签到')) {
+  if (!biz.isUserHasName()) {
     return
   }
   if (view.data.signed) {

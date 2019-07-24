@@ -23,7 +23,7 @@ Page({
   },
 
   clickSendMessage: function(e) {
-    if (!biz.isUserHasName('需要绑定微信昵称，才能发私信')) {
+    if (!biz.isUserHasName('')) {
       return
     }
     var user = this.data.user

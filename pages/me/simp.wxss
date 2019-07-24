@@ -1,0 +1,5 @@
+@import "./bind.wxss";
+
+page {
+    background-color:#fff;
+}
