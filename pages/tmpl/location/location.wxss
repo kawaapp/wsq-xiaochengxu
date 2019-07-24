@@ -7,7 +7,7 @@
   align-items:center;
 }
 
-.location image {
+.location .image {
   width: 32rpx; 
   height: 32rpx; 
   margin-right: 6rpx; 
