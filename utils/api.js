@@ -47,6 +47,7 @@ function req(options = {}) {
         if (r.statusCode == 200) {
           res(r);
         } else if (r.statusCode == 401) {
+          console.log("invalid token: 401")
           // 给调用端返回一个空集，形成完整的调用链
           res({data: []})
           // 拦截并处理错误
@@ -63,7 +64,8 @@ function req(options = {}) {
   });
 }
 
-// 重定向到登录页面
+// 重定向到登录页面, 这个方法实际上会被触发多次
+// 目前测试看，多次调用并不会产生问题...
 function loginExpired() {
   wx.reLaunch({
     url: '/pages/login/login?man=true',
@@ -71,6 +73,10 @@ function loginExpired() {
   wx.showToast({
     title: '会话过期', icon: 'none'
   })
+  // 删除旧的 token
+  try {
+    wx.removeStorageSync('token')
+  } catch (e) { }
 }
 
 /**
