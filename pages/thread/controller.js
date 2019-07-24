@@ -85,7 +85,7 @@ function fetch(options) {
 
 function initGlobal() {
   // user
-  if (!app.globalData.userInfo) {
+  if (!app.globalData.userInfo.nickname) {
     api.getSelf().then((resp) => {
       app.globalData.userInfo = resp.data
       // refresh local storage
@@ -94,7 +94,7 @@ function initGlobal() {
   }
 
   // meta
-  if (!app.globalData.meta) {
+  if (!app.globalData.meta.app_name) {
     biz.getMetaData(data => {
       app.globalData.meta = data
     })
