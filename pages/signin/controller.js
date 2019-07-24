@@ -51,7 +51,7 @@ function onLoad(options) {
   // get ranking list
   api.getSignUserList(pager.index, pager.limit).then( resp => {
     view.setData({
-      ranks: resp.data
+      ranks: massage(resp.data)
     })
   }).catch(err => {
     console.log(err)
@@ -199,7 +199,7 @@ function onReachBottom() {
     }
     pager.index += 1
     view.setData({ loader: loader })
-    view.setData({ ranks: ranks.concat(resp.data) })
+    view.setData({ ranks: ranks.concat(massage(resp.data)) })
 
     console.log("get users:", resp.data)
   }).catch(err => {
@@ -236,6 +236,21 @@ function onClickSign(e) {
     console.log(err)
     wx.showToast({ title: '签到失败:'+err.code, icon: "none" })
   })
+}
+
+// show users who has a name
+function massage(items) {
+  if (!items) {
+    return []
+  }
+  var users = []
+  var n = items.length
+  for (var i = 0; i < n; i++) {
+    if (items[i].nickname) {
+      users.push(items[i])
+    }
+  }
+  return users
 }
 
 module.exports = {
