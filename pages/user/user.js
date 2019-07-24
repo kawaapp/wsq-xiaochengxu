@@ -1,5 +1,6 @@
 import api from '../../utils/api.js'
 import util from '../../utils/util.js'
+import biz from '../../utils/biz.js'
 
 // pages/user/user.js
 Page({
@@ -22,6 +23,9 @@ Page({
   },
 
   clickSendMessage: function(e) {
+    if (!biz.isUserHasName('需要绑定微信昵称，才能发私信')) {
+      return
+    }
     var user = this.data.user
     util.sendRequest('user', user)
     wx.navigateTo({

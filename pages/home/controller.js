@@ -133,20 +133,12 @@ function getTitle(item) {
 }
 
 function onClickNewPost(e) {
-  if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
-    wx.navigateTo({
-      url: '/pages/writer/writer',
-    })
-  } else {
-    wx.switchTab({
-      url: '/pages/me/me',
-    })
-    setTimeout(function () {
-      wx.showToast({
-        title: '需要先绑定微信昵称才能发帖', icon: 'none', duration: 2000
-      })
-    }, 300); 
+  if (!biz.isUserHasName('需要先绑定微信昵称才能发帖')) {
+    return
   }
+  wx.navigateTo({
+    url: '/pages/writer/writer',
+  })
 }
 
 // 切换 TAB
@@ -446,6 +438,9 @@ function onClickLocation(e) {
 }
 
 function onClickSignin(e) {
+  if (!biz.isUserHasName('需要绑定微信昵称，才能签到')) {
+    return
+  }
   if (view.data.signed) {
     wx.navigateTo({
       url: '/pages/signin/signin',

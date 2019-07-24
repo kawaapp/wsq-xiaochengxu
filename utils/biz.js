@@ -1,4 +1,5 @@
 const api = require('api.js')
+const app = getApp()
 
 function getPhoneNumber(ecrypted, iv) {
   return new Promise((res, rej) => {
@@ -70,6 +71,20 @@ function getMetaData(fn) {
       fn(data)
     }
   })
+}
+
+function isUserHasName(warning) {
+  if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
+    return true
+  }
+  wx.switchTab({
+    url: '/pages/me/me',
+  })
+  setTimeout(function () {
+    wx.showToast({
+      title: warning, icon: 'none', duration: 2000
+    })
+  }, 300);
 }
 
 module.exports = {

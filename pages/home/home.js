@@ -125,13 +125,19 @@ Page({
   clickAvatar: function(e) {
     var idx = e.currentTarget.dataset.idx
     var post = getTabData(this).posts[idx]
-    util.sendRequest('user', {
-      idx: idx,
-      data: post.author
-    })
-    wx.navigateTo({
-      url: '/pages/user/user',
-    })
+    if (post.author) {
+      util.sendRequest('user', {
+        idx: idx,
+        data: post.author
+      })
+      wx.navigateTo({
+        url: '/pages/user/user',
+      })
+    } else {
+      wx.showToast({
+        title: '用户不存在', icon: 'none'
+      })
+    }
   },
 
   // 点击帖子
