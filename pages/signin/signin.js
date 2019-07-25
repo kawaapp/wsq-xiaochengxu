@@ -10,6 +10,7 @@ Page({
    */
   data: {
     theme: {
+      images: kawa.Theme.Image,
       signColor: util.lightenColor(kawa.Theme.MainColor, 20),
     },
     user: {

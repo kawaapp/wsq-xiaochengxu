@@ -1,6 +1,7 @@
 import api from '../../utils/api.js'
 import util from '../../utils/util.js'
 import biz from '../../utils/biz.js'
+const kawa = require('../../kawa.js')
 
 // pages/user/user.js
 Page({
@@ -9,6 +10,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    theme: {
+      images: kawa.Theme.Image
+    },
     user: {},
   },
 

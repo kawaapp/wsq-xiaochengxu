@@ -4,7 +4,7 @@
   <view class='nickname'>{{user.nickname}}</view>
   <view class='ts'>已加入 {{user.days}} 天</view>
   <view class='msg' bindtap='clickSendMessage'>
-    <image src="/res/default/nav_msg.png"/>
+    <image src="{{theme.images}}/nav_msg.png"/>
     <text>发消息</text>
   </view>
 </view>
