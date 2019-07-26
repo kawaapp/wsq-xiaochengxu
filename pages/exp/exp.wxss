@@ -28,19 +28,6 @@ page {
   font-size: 32rpx;
 }
 
-.user .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 0 20rpx 0 60rpx;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-}
-
-.user .grade {
-  color: white;
-  font-size: 48;
-  font-weight: 800;
-}
 
 .user-card {
   position: absolute;
@@ -57,6 +44,7 @@ page {
 .user-card .avatar {
   width: 128rpx;
   height: 128rpx;
+  border-radius: 50%;
 }
 
 .user-card .title {
