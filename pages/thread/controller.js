@@ -58,7 +58,7 @@ function fetch(options) {
     // request comments
     api.getCommentList(item.post.id).then(resp => {
       view.setData({
-        comments: formatTimes(resp.data)
+        comments: massage(resp.data)
       })
       console.log("get comment data:", resp.data)
     }).catch(err => {
@@ -109,7 +109,7 @@ function onPullDownRefresh(e) {
   api.getCommentList(pid).then(resp => {
     wx.stopPullDownRefresh()
     if (resp.data) {
-      view.setData({ comments: resp.data })
+      view.setData({ comments: massage(resp.data)})
     }
   }).catch(err => {
     wx.stopPullDownRefresh()
@@ -141,7 +141,7 @@ function onReachBottom(e) {
     }
     view.setData({loader: loader})
     view.setData({
-      comments: comments.concat(resp.data)
+      comments: comments.concat(massage(resp.data))
     })
   }).catch(err => {
       loader.ing = false
@@ -504,7 +504,7 @@ function replyToComment(text, idx, subIndex) {
 }
 
 
-function formatTimes(comments) {
+function massage(comments) {
   var i = 0, n = comments.length
   for (; i < n; i++) {
     var utc = new Date(comments[i].created_at * 1000)
