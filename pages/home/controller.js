@@ -429,7 +429,8 @@ function onClickShare(res) {
   var meta = app.globalData.meta
   return {
     title: meta.app_name,
-    path: '/pages/login/login?q=home'
+    path: '/pages/login/login?q=home',
+    imageUrl: meta.app_shareimg,
   }
 }
 

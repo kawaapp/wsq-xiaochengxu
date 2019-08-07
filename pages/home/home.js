@@ -183,7 +183,7 @@ Page({
 
   // 点击分享
   onShareAppMessage: function (res) {
-    ctr.onClickShare(res)
+    return ctr.onClickShare(res)
   },
 
   // 点击位置标签

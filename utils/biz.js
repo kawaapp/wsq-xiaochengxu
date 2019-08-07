@@ -59,6 +59,7 @@ function getMetaData(fn) {
       user_mode: 0,
       app_exp_limit: 0,
       app_signin: resp.data.app_signin,
+      app_shareimg: resp.data.app_shareimg,
     }
     if (resp.data.user_mode) {
       data.user_mode = parseInt(resp.data.user_mode, 10)
