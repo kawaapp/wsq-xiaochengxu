@@ -103,8 +103,7 @@
       <view>
         <!-- Text -->
         <view>
-          <text wx:for="{{item.styled}}" wx:for-item="text" wx:key="{{index}}"
-            class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+          <fulltext text="{{item.content}}" limit="{{70}}" ></fulltext>
         </view>
 
         <!-- Image列表 -->

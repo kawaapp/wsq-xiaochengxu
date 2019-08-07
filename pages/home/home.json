@@ -4,6 +4,7 @@
   "usingComponents": {
     "img-grid": "../tmpl/img-grid/img-grid",
     "location": "../tmpl/location/location",
-    "loading": "../tmpl/loading/loading"
+    "loading": "../tmpl/loading/loading",
+    "fulltext": "../tmpl/fulltext/fulltext"
   }
 }

@@ -14,9 +14,7 @@
   <view style='margin-top:18rpx;'>
     <!-- Text -->
     <view>
-      <text wx:for="{{item.post.styled}}" wx:for-item="text" wx:key="{{index}}"
-        selectable='true'
-        class="{{text.tag?'highlight':''}}">{{text.text}} </text>
+      <fulltext text="{{item.post.content}}" limit="{{2000}}" selectable="{{true}}"></fulltext>
     </view>
     
     <!-- images -->

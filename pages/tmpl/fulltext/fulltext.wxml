@@ -1,0 +1,7 @@
+<!--pages/tmpl/fulltext/fulltext.wxml-->
+<text class="{{text.tag?'highlight':''}}" selectable='{{selectable}}'
+    wx:for="{{showList}}" 
+    wx:for-item="text"
+    wx:key="{{index}}">{{text.text}}</text>
+<text wx:if="{{showAll}}">...</text>            
+<text wx:if="{{showAll}}" class='highlight'> 全文</text>

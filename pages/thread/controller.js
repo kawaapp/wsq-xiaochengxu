@@ -41,9 +41,6 @@ function fetch(options) {
     if (!item.post.images && item.post.media) {
       item.post.images = JSON.parse(item.post.media.path)
     }
-    if (!item.post.styled) {
-      item.post.styled = util.decorateText(item.post.content)
-    }
     if (item.post.location) {
       try {
         item.post.location = JSON.parse(item.post.location)
