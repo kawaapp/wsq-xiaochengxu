@@ -36,6 +36,45 @@ function onDeleteImage(e) {
   view.setData({images: images})
 }
 
+function onChooseMedia() {
+  var menu = {
+    items: ["照片", "视频"],
+    actions: [onChooseImage, onChooseVideo],
+  }
+  wx.showActionSheet({
+    itemList: menu.items,
+    success: function (res) {
+      var fn = menu.actions[res.tapIndex]
+      fn()
+    },
+    fail: function (res) {
+      console.log(res.errMsg)
+    }
+  })
+}
+
+function onClickVideo() {
+  console.log("click video..")
+}
+
+function onChooseVideo() {
+  wx.chooseVideo({
+    sourceType: ['album', 'camera'],
+    maxDuration: 60,
+    camera: 'back',
+    success(res) {
+      res.src = res.tempFilePath
+      res.cover = res.thumbTempFilePath
+      console.log("get cover:",res)
+      view.setData({ video: res })
+    }
+  })
+}
+
+function onClickDeleteVideo() {
+  view.setData({video: {}})
+}
+
 function onChooseImage(e) {
   var left = 9 - view.data.images.length
   wx.chooseImage({
@@ -56,8 +95,21 @@ function addNewImage(images) {
   view.setData({images: array})
 }
 
+function hasContent() {
+  if (!util.isWhiteSpace(view.data.content)) {
+    return true
+  }
+  if (view.data.images.length > 0) {
+    return true
+  }
+  if (view.data.video.src) {
+    return true
+  }
+  return false
+}
+
 function onClickSubmit() {
-  if (util.isWhiteSpace(view.data.content) && (view.data.images.length == 0)) {
+  if (!hasContent()) {
     return
   }
 
@@ -83,6 +135,8 @@ function onClickSubmit() {
   var handler = undefined
   if (view.data.images.length > 0) {
     handler = uploadImages(data, view.data.images)
+  } else if (view.data.video.src) {
+    handler = uploadVideo(data, view.data.video)
   } else {
     handler = uploadText(data)
   }
@@ -188,6 +242,41 @@ function uploadFile(file) {
   })
 }
 
+// 上传视频
+function uploadVideo(data, video) {
+  var handler = new Promise((res, rej) => {
+    wx.uploadFile({
+      url: 'https://kawaapp.com/x/api/videos',
+      filePath: video.src,
+      name: 'file',
+      success: function (resp) {
+        if (resp.statusCode == 200) {
+          res(resp.data)
+        } else {
+          rej({ code: resp.statusCode, msg: resp.data })
+        }
+      },
+      fail: function (resp) {
+        rej({ code: -1, msg: resp })
+      }
+    })
+  })
+  return new Promise((res, rej) => {
+    handler.then(video => {
+      data.media = {
+        path: video, type: 3,  // 1: image 2: audio 3: video
+      }
+      api.createPost(data).then((resp) => {
+        res(resp)
+      }).catch(err => {
+        rej(err)
+      })
+    }).catch( err => {
+      rej(err)
+    })
+  })
+}
+
 
 function onClickTag(e) {
   var idx = e.target.dataset.idx;
@@ -230,6 +319,9 @@ module.exports = {
   onUnload: onUnload,
   onClickImage: onClickImage,
   onDeleteImage: onDeleteImage,
+  onChooseMedia: onChooseMedia,
+  onClickVideo: onClickVideo,
+  onClickDeleteVideo: onClickDeleteVideo,
   onChooseImage: onChooseImage,
   onClickSubmit: onClickSubmit,
   onClickTag: onClickTag,

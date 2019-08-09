@@ -112,6 +112,11 @@
             <img-grid images="{{item.images}}"> </img-grid> 
           </view>
         </block>
+
+        <!-- 视频 -->
+        <block wx:if="{{item.video}}">
+          <kw-video video="{{item.video}}" />
+        </block>
         
         <!-- 地理位置 -->
         <block wx:if="{{item.location && item.location.name}}">

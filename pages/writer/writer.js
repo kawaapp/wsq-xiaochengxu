@@ -17,6 +17,7 @@ Page({
     content: "",
     location: "",
     images: [],
+    video:undefined,
     topic: {
       items: [],
       selected: -1,
@@ -40,15 +41,12 @@ Page({
   writerPublish: function() {
     ctr.onClickSubmit()
   },
-  chooseImage: function(e) {
-    ctr.onChooseImage(e)
-  },
-  clickImage: function(e) {
-    ctr.onClickImage(e)
-  },
-  clickDelete: function(e) {
-    ctr.onDeleteImage(e)
-  },
+  chooseMedia: ctr.onChooseMedia,
+  clickVideo: ctr.onClickVideo,
+  chooseImage: ctr.onChooseImage,
+  clickImage: ctr.onClickImage,
+  clickDelete: ctr.onDeleteImage,
+  clickDeleteVideo: ctr.onClickDeleteVideo,
   writerCancel: function() {
     wx.navigateBack({
       delta: 1

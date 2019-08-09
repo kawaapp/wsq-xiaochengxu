@@ -378,7 +378,11 @@ function decoratePost(post) {
   post.time = util.formatTime(new Date(utcTime))
   post.agoTime = util.agoTime(utcTime)
   if (post.media) {
-    post.images = JSON.parse(post.media.path)
+    if (post.media.type == 1) {
+      post.images = JSON.parse(post.media.path)
+    } else if (post.media.type == 3) {
+      post.video = JSON.parse(post.media.path)
+    }
   }
   if (post.location) {
     try {

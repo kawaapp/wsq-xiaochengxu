@@ -8,8 +8,31 @@
       auto-height='{{true}}' 
       />
   </view>
+
+  <!-- Add Menu -->
+  <view class="add" wx:if='{{images.length <= 0 && !video.src}}' >
+      <image bindtap='chooseMedia' src="{{theme.images}}/plus.png" ></image>
+  </view>
+
+  <!-- video player -->
+  <view wx:if="{{video.src}}">
+    <view class='del'>
+      <image
+        src="{{theme.images}}/del.png" 
+        data-idx="{{index}}"
+        bindtap='clickDeleteVideo' 
+        >
+      </image>
+    </view>
+    <video class='video' 
+      src="{{video.src}}" 
+      object-fit="cover" 
+      show-fullscreen-btn="{{false}}">
+    </video>
+  </view>
+
   <!-- image list -->
-  <view class='image-list'>
+  <view class='image-list' wx:if="{{images.length > 0}}">
     <view class="thumb" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
       <view class='del'>
         <image
