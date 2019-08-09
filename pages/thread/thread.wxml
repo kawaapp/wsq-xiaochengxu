@@ -14,7 +14,7 @@
   <view style='margin-top:18rpx;'>
     <!-- Text -->
     <view>
-      <fulltext text="{{item.post.content}}" limit="{{2000}}" selectable="{{true}}"></fulltext>
+      <kw-text text="{{item.post.content}}" limit="{{2000}}" selectable="{{true}}"></kw-text>
     </view>
     
     <!-- images -->
@@ -23,6 +23,11 @@
         <img-grid fill="{{true}}" images="{{item.post.images}}"> </img-grid> 
       </view>
     </view> 
+
+    <!-- 视频 -->
+    <block wx:if="{{item.post.video}}">
+      <kw-video video="{{item.post.video}}" />
+    </block>
 
     <!-- 地理位置 -->
     <block wx:if="{{item.post.location && item.post.location.name}}">

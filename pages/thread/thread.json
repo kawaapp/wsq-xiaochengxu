@@ -7,6 +7,7 @@
     "location": "../tmpl/location/location",
     "loading": "../tmpl/loading/loading",
     "kw-input": "../tmpl/input/kw-input",
-    "fulltext": "../tmpl/fulltext/fulltext"
+    "kw-text": "../tmpl/text/kw-text",
+    "kw-video": "../tmpl/video/kw-video"
   }
 }

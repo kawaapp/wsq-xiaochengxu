@@ -103,7 +103,7 @@
       <view>
         <!-- Text -->
         <view>
-          <fulltext text="{{item.content}}" limit="{{70}}" ></fulltext>
+          <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
         </view>
 
         <!-- Image列表 -->
