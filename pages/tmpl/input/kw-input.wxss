@@ -34,7 +34,7 @@
     z-index: 1001;
 }
 
-.submit button {
+.submit .button {
   height: 100%;
   font-size: 32rpx;
   padding-left: 0px;
@@ -42,8 +42,4 @@
   color: #66CC00;
 
 }
-.submit button::after{ border: none; }
-
-.release .submit-disable {
-  color:#C9C9C9;
-}
+.submit .button::after{ border: none; }

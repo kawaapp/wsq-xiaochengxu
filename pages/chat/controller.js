@@ -36,6 +36,12 @@ function initData(uid) {
 
 // 发送消息
 function onSendMessage(e) {
+  if (util.isWhiteSpace(e.detail.value)) {
+    wx.showToast({
+      title: '发送内容不能为空', icon: 'none'
+    })
+    return
+  }
   var from_id = app.globalData.userInfo.id
   var to_id = view.data.other.id
   var data = {

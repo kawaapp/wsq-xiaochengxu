@@ -15,10 +15,8 @@ Component({
    */
   data: {
     reply: {
-      hint: "",
       text: "",
-      enable: true,
-      focus: true,
+      enable: false,
     },
     textMessage: "",
   },
@@ -47,7 +45,9 @@ Component({
       this.triggerEvent('sendComment', myEventDetail, myEventOption)
 
       // clear input
-      this.setData({ textMessage: ""})
+      this.setData({
+        textMessage: "", reply: { text: "", enable: false}
+      })
     }, 
   }
 })

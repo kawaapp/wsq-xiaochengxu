@@ -1,5 +1,5 @@
 <!--pages/tmpl/input/input.wxml-->
-<view class="release" wx:if="{{reply.focus}}" catchtap='dumy'>
+<view class="release" catchtap='dumy'>
   <input class="text" 
     value='{{textMessage}}'
     bindinput='bindInput'
@@ -10,13 +10,14 @@
     show-confirm-bar="{{true}}" 
     confirm-type="send"
     cursor-spacing="32rpx" 
-    focus="{{reply.focus}}"
+    focus="{{true}}"
     placeholder="回复 {{hint}}">
   </input>
 
   <view class="submit">
-    <button 
-      class="{{reply.enable?'':'submit-disable'}}" 
+    <button disabled="{{!reply.enable}}"
+      class="button" 
+      style="{{reply.enable? '':'color:#ccc'}}" 
       catchtap='sendComment'>发送</button>
   </view>
 </view>

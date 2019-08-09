@@ -1,6 +1,6 @@
 <!--pages/post/posts.wxml-->
 
-<view class="card">
+<view class="card" style='z-index:1'>
   <view class="horizontal">
     <image class='avatar-large' style='margin-right: 18rpx;'
       src="{{item.post.author.avatar?item.post.author.avatar: theme.images+'/user_icon.png'}}" 
