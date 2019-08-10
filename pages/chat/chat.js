@@ -61,6 +61,7 @@ Page({
 
   // refresh
   showMessage(items) {
+    showTime(items)
     this.setData({
       chatItems: items,
       scrollTopVal: items.length * 999,
@@ -69,6 +70,11 @@ Page({
 
   // append
   appendMessage(data) {
+    var prev = undefined
+    if (this.data.chatItems) {
+      prev = this.data.chatItems.slice(-1)
+    }
+    showTime([data], prev)
     this.data.chatItems.push(data)
     this.setData({
       chatItems: this.data.chatItems,
@@ -79,6 +85,7 @@ Page({
   // load more
   shiftMessage(items) {
     if (items && items.length > 0) {
+      showTime(items)
       var data = items.concat(this.data.chatItems)
       this.setData({
         chatItems: data,
@@ -96,3 +103,17 @@ Page({
     console.log("invoke reset innput..")
   },
 });
+
+function showTime(items, prev) {
+  if (!prev) {
+    prev = { created_at: 1<<32 }
+  }
+  var n = items ? items.length : 0
+  for (var i = 0; i < n; i++) {
+    if ((items[i].created_at - prev.created_at) >= _5M) {
+      items[i].showTime = true
+    }
+    prev = items[i]
+  }
+}
+const _5M = 5 * 60; // 5 分钟

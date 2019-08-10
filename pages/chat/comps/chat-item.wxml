@@ -2,7 +2,7 @@
     <view style="width: 100%;display: flex;flex-direction: column;align-items: center">
         <text 
           wx:if="{{item.showTime}}" 
-          class="chat-list-time-style">{{item.time}}
+          class="time-style">{{item.time}}
         </text>
         <view 
             style="width: 100%;display: flex;flex-direction: {{item.isMy?'row-reverse':'row'}};margin-bottom: {{index===length-1?150:20}}rpx;margin-top: 20rpx;">
