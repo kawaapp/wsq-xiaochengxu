@@ -114,7 +114,11 @@ function decorateList(posts) {
     var utcTime = posts[i].created_at * 1000
     posts[i].time = util.formatTime(new Date(utcTime))
     if (posts[i].media) {
-      posts[i].images = JSON.parse(posts[i].media.path)
+      if (posts[i].media.type === 1) {
+        posts[i].images = JSON.parse(posts[i].media.path)
+      } else if (posts[i].media.type === 3) {
+        posts[i].video = JSON.parse(posts[i].media.path)
+      }
     }
     if (posts[i].location) {
       try {

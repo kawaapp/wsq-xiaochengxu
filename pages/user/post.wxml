@@ -13,10 +13,22 @@
     <view style='margin-bottom:6rpx;'/>
     <!-- 图片 和 文字-->
     <view style='margin-left:90rpx;' bindtap='topicClick' data-item="{{item}}">
-      <text class='content'>{{item.content}}</text>
+
+      <!-- Text -->
+      <view>
+        <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
+      </view>
+
+      <!-- Image -->
       <view wx:if="{{item.images}}" style='margin-right:90rpx;'>
           <img-grid images="{{item.images}}"> </img-grid> 
       </view> 
+
+       <!-- 视频 -->
+      <block wx:if="{{item.video}}">
+        <kw-video video="{{item.video}}" />
+      </block>
+
       <!-- 地理位置 -->
       <block wx:if="{{item.location && item.location.name}}">
         <location location="{{item.location}}" />

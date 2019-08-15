@@ -5,6 +5,8 @@
   "usingComponents": {
     "img-grid": "../tmpl/img-grid/img-grid",
     "location": "../tmpl/location/location",
-    "loading": "../tmpl/loading/loading"
+    "loading": "../tmpl/loading/loading",
+    "kw-video": "../tmpl/video/kw-video",
+    "kw-text": "../tmpl/text/kw-text"
   }
 }
