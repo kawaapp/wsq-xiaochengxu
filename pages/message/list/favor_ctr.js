@@ -101,6 +101,9 @@ function unpackMsgContent(msgs) {
     } else {
       msgs[i].subject = msgs[i].content
     }
+    if (msgs[i].subject && msgs[i].subject.length > 35) {
+      msgs[i].subject = msgs[i].subject.substring(0, 35) + '...'
+    }
     msgs[i].time = util.formatTime(new Date(msgs[i].created_at * 1000))
   }
   return msgs
