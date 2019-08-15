@@ -36,7 +36,19 @@ function onDeleteImage(e) {
   view.setData({images: images})
 }
 
+function videoSupport() {
+  if (app.globalData.meta && app.globalData.meta.app_video) {
+    return true
+  }
+  return false
+}
+
 function onChooseMedia() {
+  if (!videoSupport()) {
+    onChooseImage()
+    return
+  }
+
   var menu = {
     items: ["照片", "视频"],
     actions: [onChooseImage, onChooseVideo],
