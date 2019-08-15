@@ -70,10 +70,7 @@ Page({
 
   // append
   appendMessage(data) {
-    var prev = undefined
-    if (this.data.chatItems) {
-      prev = this.data.chatItems.slice(-1)
-    }
+    var prev = tailItem(this.data.chatItems)
     showTime([data], prev)
     this.data.chatItems.push(data)
     this.setData({
@@ -106,7 +103,7 @@ Page({
 
 function showTime(items, prev) {
   if (!prev) {
-    prev = { created_at: 1<<32 }
+    prev = { created_at: 0 }
   }
   var n = items ? items.length : 0
   for (var i = 0; i < n; i++) {
@@ -117,3 +114,10 @@ function showTime(items, prev) {
   }
 }
 const _5M = 5 * 60; // 5 分钟
+
+function tailItem(array) {
+  if (array && array.length > 0) {
+    return array[array.length-1]
+  }
+  return undefined;
+}

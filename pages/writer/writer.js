@@ -17,7 +17,7 @@ Page({
     content: "",
     location: "",
     images: [],
-    video:undefined,
+    video:{},
     topic: {
       items: [],
       selected: -1,
