@@ -23,7 +23,6 @@ Component({
 
   ready() {
     this.initData();
-    this.subscribePosition();
   },
 
   /**
@@ -31,10 +30,6 @@ Component({
    */
   methods: {
     initData() {
-      var videoContext = wx.createVideoContext('item-video', this);
-      this.setData({
-        videoContext,
-      });
     },
 
     subscribePosition() {
@@ -57,13 +52,11 @@ Component({
     },
     play() {
       this.setData({ showCover: false}, () => {
-        this.data.videoContext.play();
+        this.subscribePosition()
       })
     },
     pause() {
-      this.setData({ showCover: true}, () => {
-        this.data.videoContext.pause();
-      })
+      this.setData({ showCover: true})
     },
   }
 })

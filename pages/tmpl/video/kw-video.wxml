@@ -4,11 +4,11 @@
     <image class='play' src="{{theme}}/video_play.png"> </image>
     <image class='snapshot' src="{{video.cover}}" mode='aspectFill' lazy-load='true'></image>
   </view>
-  <video id="item-video"
+  <video id="item-video" wx:if="{{!showCover}}"
     class='video' src="{{video.video}}" 
     object-fit="cover" 
     controls="true"
-    autoplay='{{false}}'
+    autoplay='{{true}}'
     show-center-play-btn="{{false}}"
     bindended="handleVideoEnded"
     ></video>
