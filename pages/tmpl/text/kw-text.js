@@ -49,22 +49,23 @@ function getShowList(text, limit) {
 }
 
 // "123 #456# 789" => {{text:'123'}, {tag:true, text:'#456#'}, {text:'789'}}
+// 算法: 以 ‘#’ 分割字符串，偶数段为普通文本，奇数段为 ‘#’ 环绕的文本
+// 如果该段为最后一段说名只包围了左边,放弃.
 function decorateText(text) {
   var styled = []
-  var tags = hashtag(text)
-
-  if (tags && tags.length > 0) {
-    for (var i = 0; i < tags.length; i++) {
-      var array = text.split(tags[i])
-      if (array[0]) {
-        styled.push({ tag: false, text: array[0] })
-      }
-      styled.push({ tag: true, text: tags[i] })
-      text = array[1]
-    }
-  }
   if (text) {
-    styled.push({ tag: false, text: text })
+    var array = text.split('#')
+    for(var i = 0; i < array.length; i++) {
+      if (i%2 == 0) {
+        if (array[i]) {
+          styled.push({ text: array[i] })
+        }
+      } else if (i < array.length-1) {
+        styled.push({tag:true, text: '#' + array[i] + '#'})
+      } else {
+        styled.push({text: '#' + array[i]})
+      }
+    }
   }
   return styled
 }
@@ -75,4 +76,8 @@ function hashtag(text) {
     return text.match(regex)
   }
   return null
+}
+
+module.exports = {
+  decorateText: decorateText,
 }
