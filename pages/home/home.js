@@ -185,11 +185,6 @@ Page({
   onShareAppMessage: function (res) {
     return ctr.onClickShare(res)
   },
-
-  // 点击位置标签
-  clickLocation: function(e) {
-    ctr.onClickLocation(e)
-  },
 })
 
 function applyTheme(theme) {

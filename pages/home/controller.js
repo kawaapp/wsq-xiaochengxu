@@ -437,17 +437,6 @@ function onClickShare(res) {
   }
 }
 
-function onClickLocation(e) {
-  var idx = e.currentTarget.dataset.idx
-  var item = getTabData().posts[idx]
-  var location = item.location
-  if (location) {
-    wx.openLocation({
-      latitude: location.lat, longitude: location.lng, name: location.name,
-    })
-  }
-}
-
 function onClickSignin(e) {
   if (!biz.isUserHasName()) {
     return
@@ -490,6 +479,5 @@ module.exports = {
   onClickNewPost: onClickNewPost,
   onClickTopic: onClickTopic,
   onClickShare: onClickShare,
-  onClickLocation: onClickLocation,
   onClickSignin: onClickSignin,
 }

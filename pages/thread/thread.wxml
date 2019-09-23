@@ -4,6 +4,7 @@
   <view class="horizontal">
     <image class='avatar-large' style='margin-right: 18rpx;'
       src="{{item.post.author.avatar?item.post.author.avatar: theme.images+'/user_icon.png'}}" 
+      bindtap="clickPostAvatar"
       />
     <view>
       <view class='title b5'>{{item.post.author.nickname}}</view>
@@ -50,6 +51,8 @@
     <view class="comment">
       <image class="avatar-large" style='margin-right:18rpx;'
         src="{{item.author.avatar?item.author.avatar: theme.images+'/user_icon.png'}}" 
+        bindtap="clickCommentAvatar"
+        data-idx="{{index}}"
         />
       <view style='width:100%;' data-idx="{{index}}-{{sub}}" bindtap='clickListCommentAction'>
         <!-- Reply user name and content-->
