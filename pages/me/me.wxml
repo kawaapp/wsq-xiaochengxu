@@ -17,6 +17,11 @@
         bindgetphonenumber="getPhoneNumber"
         class='btn-clear subtitle'>{{user.phone? user.phone: '绑定手机号'}}</button>
     </view>
+    
+    <view wx:if="{{user.nickname}}" class="setting" bindtap="clickEdit" > 
+      <image class="arrow-right" src="{{theme.images}}/arrow_right.png"></image>
+    </view>
+
     <view hidden='{{user.nickname}}' style='margin-left:auto;'>
       <button wx:if="{{metadata.user_mode < 2}}"
       class='btn' 

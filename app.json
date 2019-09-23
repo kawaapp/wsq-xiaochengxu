@@ -17,7 +17,8 @@
     "pages/user/user",
     "pages/chat/chat",
     "pages/exp/exp",
-    "pages/signin/signin"
+    "pages/signin/signin",
+    "pages/me/edit"
   ],
   "permission": {
     "scope.userLocation": {

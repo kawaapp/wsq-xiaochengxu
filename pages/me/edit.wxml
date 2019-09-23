@@ -1,0 +1,78 @@
+<!--pages/me/edit.wxml-->
+<view style="height: 18rpx;"></view>
+<view class="card">
+  <!-- 头像 -->
+  <view class="horizontal" bindtap="clickAvatar">
+    <view>头像</view>
+    <view class="flow-right">
+      <image class="avatar" src="{{user.avatar? user.avatar: placeholder}}" />
+      <image class="arrow" src="{{theme.images}}/arrow_right.png" />
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="horizontal" bindtap="clickNickname">
+    <view>昵称</view>
+    <view class="flow-right">
+      <view class="content" >{{user.nickname? user.nickname: '未填写'}}</view>
+      <image class="arrow" src="{{theme.images}}/arrow_right.png" />
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="horizontal" bindtap="clickEmail">
+    <view>邮箱</view>
+    <view class="flow-right">
+      <view class="content" >{{user.email? user.email: '未填写' }}</view>
+      <image class="arrow" src="{{theme.images}}/arrow_right.png" />
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="horizontal" bindtap="clickPhone">
+    <view>手机号</view>
+    <view class="flow-right">
+      <view class="flow-right content" >{{user.phone? user.phone: '未填写'}}</view>
+      <image class="arrow" src="{{theme.images}}/arrow_right.png" />
+    </view>
+  </view>
+</view>
+<view class="card horizontal"> 
+  <button class="btn-clear" style="width:100%" 
+    open-type="getUserInfo" 
+    bindgetuserinfo="bindUserInfo">
+    <view>同步微信头像和昵称</view>
+    <view class="flow-right">
+      <image class="arrow " src="{{theme.images}}/arrow_right.png" />
+    </view>
+  </button>
+</view>
+
+<!-- input dialog -->
+<view class="mask" hidden="{{!dialog.show}}" bindtap="dummy" >
+  <view class="dialog">
+    <view class="-title">{{dialog.title}}</view>
+    <view class="input">
+      <input
+        value='{{dialog.initial}}'
+        bindinput='bindInput'
+        bindconfirm="sendComment" 
+        placeholder-class="input_null" 
+        fixed="{{true}}"
+        maxlength="140" 
+        show-confirm-bar="{{true}}" 
+        confirm-type="send"
+        cursor-spacing="32rpx" 
+        focus="{{true}}">
+      </input>
+    </view>
+    <view class="horizontal" style="width: 100%">
+      <view class="btn-wrapper">
+        <button bindtap="clickCancel" 
+        class="btn-cancel" hover-class="btn-cancel-hover">取消</button>
+      </view>
+      <view class="btn-wrapper">
+        <button bindtap="clickSubmit"
+          class="btn-submit" hover-class="btn-submit-hover"
+          style="background:{{theme.color}}">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

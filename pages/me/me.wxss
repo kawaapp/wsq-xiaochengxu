@@ -15,6 +15,17 @@
   max-width: 72rpx;
 }
 
+.setting {
+  margin-left: auto;
+  padding: 6rpx 0px 6rpx 18rpx;
+}
+
+.setting image {
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align: middle;
+}
+
 .arrow-right {
   width: 46rpx;
   height: 46rpx;

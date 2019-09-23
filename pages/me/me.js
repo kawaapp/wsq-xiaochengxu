@@ -77,4 +77,10 @@ Page({
       url: '/pages/exp/exp',
     })
   },
+
+  clickEdit: function(e) {
+    wx.navigateTo({
+      url: '/pages/me/edit',
+    })
+  }
 })
