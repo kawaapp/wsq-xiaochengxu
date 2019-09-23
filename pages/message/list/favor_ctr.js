@@ -109,6 +109,26 @@ function unpackMsgContent(msgs) {
   return msgs
 }
 
+
+function onClickAllRead() {
+  api.setAllMessageRead('favor').then(resp => {
+    // mark all as read
+    var array = view.data.messages
+    array.map(m => {
+      m.status = 1
+    })
+    view.setData({ messages: array })
+    wx.showToast({
+      title: '已全部已读', icon: 'success'
+    })
+  }).catch(err => {
+    console.log(err)
+    wx.showToast({
+      title: '标记失败', icon: 'none'
+    })
+  })
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -116,4 +136,5 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
+  onClickAllRead: onClickAllRead,
 }

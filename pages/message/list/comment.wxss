@@ -1,4 +1,5 @@
 /* pages/message/list/comment.wxss */
+@import "./shared.wxss";
 
 page {
     background-color:#fff;

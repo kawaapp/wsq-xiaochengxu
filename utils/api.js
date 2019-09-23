@@ -434,9 +434,9 @@ function setMessageRead(id) {
   })
 }
 
-function setAllMessageRead() {
+function setAllMessageRead(which) {
   return req({
-    url: `${Host}/api/messages/read`,
+    url: `${Host}/api/messages/read?type=${which}`,
     method: 'PUT'
   })
 }

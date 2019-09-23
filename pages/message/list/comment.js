@@ -15,7 +15,8 @@ Page({
     loader: {
       ing: false,
       more: true,
-    }
+    },
+    unread: 0,
   },
 
   /**
@@ -45,6 +46,10 @@ Page({
   },
   clickItem: function (e) {
     ctr.onClickItem(e)
+  },
+
+  clickAllRead: function(e) {
+    ctr.onClickAllRead(e)
   }
 })
 

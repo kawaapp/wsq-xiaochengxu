@@ -30,8 +30,9 @@ function onPullDownRefresh() {
     if (unpacked && unpacked.length < 20) {
       loader.more = false
     }
+    var unread = getUnread(resp.data)
     view.setData({ loader: loader })
-    view.setData({ messages: unpacked })
+    view.setData({ messages: unpacked, unread: unread })
     console.log(resp)
   }).catch(err => {
     wx.stopPullDownRefresh()
@@ -104,6 +105,35 @@ function unpackMsgContent(msgs) {
   return msgs
 }
 
+function getUnread(msgs) {
+  var counter = 0
+  msgs && msgs.map(m => {
+    if (!m.status) {
+      counter += 1
+    }
+  })
+  return counter
+}
+
+function onClickAllRead() {
+  api.setAllMessageRead('comment').then( resp => {
+    // mark all as read
+    var array = view.data.messages
+    array.map( m => {
+      m.status = 1
+    })
+    view.setData({messages: array})
+    wx.showToast({
+      title: '已全部已读', icon: 'success'
+    })
+  }).catch( err => {
+    console.log(err)
+    wx.showToast({
+      title: '标记失败', icon: 'none'
+    })
+  })
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -111,4 +141,5 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
+  onClickAllRead: onClickAllRead,
 }

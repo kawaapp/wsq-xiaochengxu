@@ -1,4 +1,6 @@
 /* pages/message/list/favor.wxss */
+@import "./shared.wxss";
+
 page {
     background-color:#fff;
 }

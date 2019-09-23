@@ -1,6 +1,16 @@
+<view class="horizontal top-bar">
+  <view class="-title">消息列表</view>
+  <view catchtap="clickAllRead" class="-action">全部已读 </view>
+  <image src="{{theme.images+'/msg_done.png'}}" />
+</view>
+
+<view style='padding-top: 80rpx;'>
+</view>
+
+<!-- 消息列表 -->
 <view wx:for="{{messages}}" wx:for-item="item" wx:key="{{item.id}}">
   <view wx:if="{{index != 0}}" class='thin-line'/>
-  <view class="{{item.status? '': 'unread'}}" style='padding:28rpx 0 18rpx 0;'
+  <view class="{{item.status? 'bg': 'bg unread'}}" style='padding:28rpx 0 18rpx 0;'
         bindtap='clickItem' data-idx="{{index}}">
     <view class="h-top"  style='padding:0rpx 28rpx;'>
       <image class='avatar-large' style='margin: 0px 18rpx 0rpx 8rpx;'

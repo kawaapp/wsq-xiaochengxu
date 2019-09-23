@@ -45,6 +45,10 @@ Page({
   },
   clickItem: function(e) {
     ctr.onClickItem(e)
+  },
+  
+  clickAllRead: function (e) {
+    ctr.onClickAllRead(e)
   }
 })
 

@@ -1,0 +1,36 @@
+
+.bg {
+  background-color: transparent;
+  transition: background-color 1s;
+}
+
+.top-bar {
+  background: white;
+  position: fixed;
+  top: 0;right: 0;left: 0;
+  height: 80rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 0 28rpx;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.top-bar .-title {
+  padding-top: 8rpx;
+  color: gray;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.top-bar .-action {
+  padding-top: 8rpx;
+  color:#555;
+  margin-left: auto;
+  margin-right: 8rpx;
+}
+
+.top-bar image {
+  width: 48rpx;
+  height: 48rpx;
+}
