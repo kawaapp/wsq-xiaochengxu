@@ -161,10 +161,7 @@ function onClickMenu(e) {
   var menu = {
     items: ["举报"],
     actions: [function () { 
-      wx.showToast({
-        title: '举报成功',
-        icon: 'success',
-      })
+      report(item)
     }],
   }
   var user = app.globalData.userInfo
@@ -175,6 +172,28 @@ function onClickMenu(e) {
     })
   }
   showActionSheet(menu.items, menu.actions)
+}
+
+function report(post) {
+  var digest = {
+    text: post.content,
+    images: post.images,
+  }
+  var data = {
+    entity_id: post.id,
+    entity_ty: 0,
+    content: JSON.stringify(digest)
+  }
+
+  api.createReport(data).then(resp => {
+    wx.showToast({
+      title: '举报成功',
+    })
+  }).catch(err => {
+    wx.showToast({
+      title: '举报失败：网络错误', icon: 'none',
+    })
+  })
 }
 
 // 删除帖子
