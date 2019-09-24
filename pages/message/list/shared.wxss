@@ -31,6 +31,6 @@
 }
 
 .top-bar image {
-  width: 48rpx;
-  height: 48rpx;
+  width: 38rpx;
+  height: 38rpx;
 }

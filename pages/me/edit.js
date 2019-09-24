@@ -149,6 +149,7 @@ function updateUser(view, data, type) {
 function updateAvatar(view, path) {
   uploadFile(path).then( data => {
     console.log("update file success:" + data)
+    data += '?x-oss-process=image/resize,w_250'
     return api.updateUser({avatar: data})
   }).then( resp => {
     view.setData({ user: resp.data})

@@ -3,6 +3,12 @@ const util = require('../../utils/util.js')
 const biz = require('../../utils/biz.js')
 const app = getApp()
 
+const ratio = app.globalData.ratio
+const resize = {
+  logo: `?x-oss-process=image/resize,w_${144 * ratio}`,
+  cover: `?x-oss-process=image/resize,w_${750 * ratio}`,
+}
+
 var view = undefined
 
 // Home Controller 
@@ -36,6 +42,10 @@ function onUnload() {
 function onLoad(opt) {
   // 加载社区信息
   biz.getMetaData(data => {
+    // resize logo and cover
+    data.app_logo += resize.logo
+    data.app_cover += resize.cover
+
     view.setData({
       meta: data
     })
