@@ -109,6 +109,44 @@ function onLoad(opt) {
 
   // 等级列表
   // TODO 或者放在 我的 界面更新.
+
+  // 消息
+  fetchMessage()
+}
+
+// get message 
+function fetchMessage() {
+  var uid = app.globalData.userInfo.id
+  var checkUneadChat = (uid, items) => {
+    console.log("get items:" + uid, items)
+    var check = false
+    items.map(item => {
+      if (item.from.id != uid && item.status === 0) {
+        console.log("get checked item:", item)
+        check = true
+      }
+    })
+    return check
+  }
+
+  // 先点赞评论消息后聊天
+  api.getMessageCount().then((resp) => {
+    var count = resp.data.favors + resp.data.comments
+    if (count > 0) {
+      wx.setTabBarBadge({ index: 1, text: '' + count })
+    }
+    if (count == 0) {
+      return api.getChatUserList()
+    }
+  }). then(resp => {
+    if (uid && resp.data) {
+      if (checkUneadChat(uid, resp.data)) {
+        wx.showTabBarRedDot({ index: 1 })
+      }
+    }
+  }).catch(err => {
+    console.log(err)
+  })
 }
 
 // show topic
