@@ -128,7 +128,7 @@ function massage(items) {
     massage1(item)
   })
   items.sort((a, b) => {
-    return a.created_at > b.created_at
+    return a.created_at - b.created_at
   })
   return items
 }
