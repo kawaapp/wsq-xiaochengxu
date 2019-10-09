@@ -18,6 +18,10 @@ function onLoad(options) {
   }).catch(err => {
     console.log(err)
   })
+
+  setTimeout(()=> {
+    setAllRead()
+  }, 1000)
 }
 
 function onPullDownRefresh() {
@@ -110,7 +114,7 @@ function unpackMsgContent(msgs) {
 }
 
 
-function onClickAllRead() {
+function setAllRead() {
   api.setAllMessageRead('favor').then(resp => {
     // mark all as read
     var array = view.data.messages
@@ -118,14 +122,8 @@ function onClickAllRead() {
       m.status = 1
     })
     view.setData({ messages: array })
-    wx.showToast({
-      title: '已全部已读', icon: 'success'
-    })
   }).catch(err => {
     console.log(err)
-    wx.showToast({
-      title: '标记失败', icon: 'none'
-    })
   })
 }
 
@@ -136,5 +134,4 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
-  onClickAllRead: onClickAllRead,
 }

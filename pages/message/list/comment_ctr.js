@@ -15,6 +15,10 @@ function onLoad(opt) {
     var unpacked = unpackMsgContent(resp.data)
     view.setData({ messages: unpacked })
   })
+
+  setTimeout(()=> {
+    setAllRead()
+  }, 1000)
 }
 
 function onPullDownRefresh() {
@@ -74,17 +78,9 @@ function onReachBottom() {
 function onClickItem(e) {
   var idx = e.currentTarget.dataset.idx
   var msg = view.data.messages[idx]
-  var key = 'messages[' + idx + '].status'
   // 跳转到帖子，并设置为已读
   wx.navigateTo({
     url: '/pages/thread/thread?pid=' + msg.post_id,
-  })
-  api.setMessageRead(msg.id).then(resp => {
-    view.setData({
-      [key]: 1,
-    })
-  }).catch(err => {
-    console.log(err)
   })
 }
 
@@ -115,7 +111,7 @@ function getUnread(msgs) {
   return counter
 }
 
-function onClickAllRead() {
+function setAllRead() {
   api.setAllMessageRead('comment').then( resp => {
     // mark all as read
     var array = view.data.messages
@@ -123,14 +119,8 @@ function onClickAllRead() {
       m.status = 1
     })
     view.setData({messages: array})
-    wx.showToast({
-      title: '已全部已读', icon: 'success'
-    })
   }).catch( err => {
     console.log(err)
-    wx.showToast({
-      title: '标记失败', icon: 'none'
-    })
   })
 }
 
@@ -141,5 +131,4 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
-  onClickAllRead: onClickAllRead,
 }

@@ -1,12 +1,3 @@
-<view class="horizontal top-bar">
-  <view class="-title">消息列表</view>
-  <view catchtap="clickAllRead" class="-action">全部已读 </view>
-  <image src="{{theme.images+'/msg_done.png'}}" />
-</view>
-
-<view style='padding-top: 80rpx;'>
-</view>
-
 <!-- 消息列表 -->
 <view wx:for="{{messages}}" wx:for-item="item" wx:key="{{item.id}}">
   <view wx:if="{{index != 0}}" class='thin-line'/>
