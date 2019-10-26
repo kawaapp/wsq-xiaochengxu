@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
+const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-const Host = "https://wsq.kawaapp.com"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -241,6 +241,12 @@ function getUserFavorList(uid, since, limit) {
   })
 }
 
+function getUserFavoriteList(uid, page, size) {
+  return req({
+    url: `${Host}/api/users/${uid}/favorites?page=${page}&size=${size}`,
+    method: 'GET'
+  })
+}
 
 // get post list, fitler: top,val,adz, topic
 function getPostList(since, limit, filter, topic) {
@@ -499,6 +505,21 @@ function getUserListExp(page, size) {
   })
 }
 
+// 收藏接口
+function createFavorite(pid) {
+  return req({
+    url: `${Host}/api/posts/${pid}/favorites`,
+    method: 'POST'
+  })
+}
+
+function deleteFavorite(pid) {
+  return req({
+    url: `${Host}/api/posts/${pid}/favorites`,
+    method: 'DELETE'
+  })
+}
+
 // 举报接口
 function createReport(data) {
   return req({
@@ -524,6 +545,7 @@ module.exports = {
   getUserPostList: getUserPostList,
   getUserCommentList: getUserCommentList,
   getUserFavorList: getUserFavorList,
+  getUserFavoriteList: getUserFavoriteList,
 
   // meta
   getMetaData: getMetaData,
@@ -583,6 +605,10 @@ module.exports = {
   getGradeList: getGradeList,
   getExpKindList: getExpKindList,
   getUserListExp: getUserListExp,
+
+  // favorite
+  createFavorite: createFavorite,
+  deleteFavorite: deleteFavorite,
   
   // actions
   decrypt: decrypt,

@@ -70,6 +70,16 @@
   </view>
 </view>
 
+<view class="card">
+  <view class='horizontal' bindtap='favoriteClick'>
+    <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+      src='{{theme.images}}/my_like.png'></image>
+    <text class='title'>我的收藏</text>
+    <image class='arrow-right' style='margin-left:auto;'
+      src='{{theme.images}}/arrow_right.png'></image>
+  </view>
+</view>
+
 <!-- 版权信息 -->
 <view class='info'>
   <text

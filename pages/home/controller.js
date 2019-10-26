@@ -351,6 +351,19 @@ function onClickMenu(e) {
       report(item)
     }],
   }
+
+  if (item.stats && item.stats.favorite) {
+    menu.items.push("取消收藏")
+    menu.actions.push(function () {
+      onClickFavorite(idx)
+    })
+  } else {
+    menu.items.push("收藏")
+    menu.actions.push(function () {
+      onClickFavorite(idx)
+    })
+  }
+
   var user = app.globalData.userInfo
   if (user && item.author && user.id == item.author.id) {
     menu.items.push("删除")
@@ -458,6 +471,38 @@ function deletePost(idx) {
   })
 }
 
+function onClickFavorite(idx) {
+  var item = getTabData().posts[idx]
+  var index = view.data.tab.current
+
+  if (item.stats.favorite) {
+    console.log("delete favorite")
+    api.deleteFavorite(item.id).then(resp => {
+      item.stats.favorite = false
+      wx.showToast({
+        title: '取消成功', icon: 'none'
+      })
+    }).catch( err => {
+      wx.showToast({
+        title: '取消失败', icon: 'none'
+      })
+      console.log(err)
+    })
+  } else {
+    api.createFavorite(item.id).then((resp) => {
+      item.stats.favorite = true
+      wx.showToast({
+        title: '收藏成功', icon: 'none'
+      })
+      console.log("favorite succ:", resp.statusCode)
+    }).catch(err => {
+      wx.showToast({
+        title: '收藏失败', icon: 'none'
+      })
+      console.log("favor err:", err)
+    })
+  }
+}
 
 function onClickImageList(e) {
   var index = e.currentTarget.dataset.idx

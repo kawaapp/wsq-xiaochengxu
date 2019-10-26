@@ -164,6 +164,19 @@ function onClickMenu(e) {
       report(item)
     }],
   }
+
+  if (item.stats && item.stats.favorite) {
+    menu.items.push("取消收藏")
+    menu.actions.push(function () {
+      onClickFavorite(item)
+    })
+  } else {
+    menu.items.push("收藏")
+    menu.actions.push(function () {
+      onClickFavorite(item)
+    })
+  }
+
   var user = app.globalData.userInfo
   if (user && user.id == item.author.id) {
     menu.items.push("删除")
@@ -174,6 +187,7 @@ function onClickMenu(e) {
   showActionSheet(menu.items, menu.actions)
 }
 
+// 举报
 function report(post) {
   var digest = {
     text: post.content,
@@ -194,6 +208,36 @@ function report(post) {
       title: '举报失败：网络错误', icon: 'none',
     })
   })
+}
+// 收藏
+function onClickFavorite(item) {
+  if (item.stats.favorite) {
+    console.log("delete favorite")
+    api.deleteFavorite(item.id).then(resp => {
+      item.stats.favorite = false
+      wx.showToast({
+        title: '取消成功', icon: 'none'
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '取消失败', icon: 'none'
+      })
+      console.log(err)
+    })
+  } else {
+    api.createFavorite(item.id).then((resp) => {
+      item.stats.favorite = true
+      wx.showToast({
+        title: '收藏成功', icon: 'none'
+      })
+      console.log("favorite succ:", resp.statusCode)
+    }).catch(err => {
+      wx.showToast({
+        title: '收藏失败', icon: 'none'
+      })
+      console.log("favor err:", err)
+    })
+  }
 }
 
 // 删除帖子

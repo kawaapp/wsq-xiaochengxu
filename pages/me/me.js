@@ -66,6 +66,13 @@ Page({
       url: '/pages/user/favor',
     })
   },
+
+  favoriteClick: function(e) {
+    wx.navigateTo({
+      url: '/pages/user/favorite',
+    })
+  },
+
   clickBindProfile: function(e) {
     wx.navigateTo({
       url: '/pages/me/bind',
