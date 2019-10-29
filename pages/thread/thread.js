@@ -110,7 +110,7 @@ function gotoUserPage(user) {
       data: user,
     })
     wx.navigateTo({
-      url: '/pages/user/user',
+      url: '/pages/user/user/user',
     })
   } else {
     wx.showToast({

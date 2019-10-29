@@ -10,16 +10,18 @@
     "pages/writer/writer",
     "pages/message/list/favor",
     "pages/message/list/comment",
-    "pages/user/post",
-    "pages/user/comment",
-    "pages/user/favor",
+
+    "pages/user/post/post",
+    "pages/user/cmmt/comment",
+    "pages/user/favor/favor",
+    "pages/user/favorite/favorite",
+    "pages/user/user/user",
+
     "pages/webview/webview",
-    "pages/user/user",
     "pages/chat/chat",
     "pages/exp/exp",
     "pages/signin/signin",
-    "pages/me/edit",
-    "pages/user/favorite"
+    "pages/me/edit"
   ],
   "permission": {
     "scope.userLocation": {

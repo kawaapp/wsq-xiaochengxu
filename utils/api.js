@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-const Host = "http://127.0.0.1:1323"
+//const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-//const Host = "https://wsq.kawaapp.com"
+const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -98,6 +98,14 @@ function autoAuth() {
     const value = wx.getStorageSync('token')
     if (value && !util.jwtExpire(value)) {
       g.token = value
+      
+      const app = getApp()
+      if (app) {
+        app.setToken(value)
+      }
+      //console.log("get app", app)
+      //app.setToken(value)
+      
       res(value)
       return
     }
@@ -199,6 +207,13 @@ function getSignList() {
 function getSignUserList(page, size) {
   return req({
     url: `${Host}/api/signs/users?page=${page}&size=${size}`,
+    method: 'GET'
+  })
+}
+
+function getUserList(sort, page, size) {
+  return req({
+    url: `${Host}/api/users?sort=${sort}&page=${page}&size=${size}`,
     method: 'GET'
   })
 }
@@ -542,6 +557,7 @@ module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
   getSelf: self,
+  getUserList: getUserList,
   getUserPostList: getUserPostList,
   getUserCommentList: getUserCommentList,
   getUserFavorList: getUserFavorList,

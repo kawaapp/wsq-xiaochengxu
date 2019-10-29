@@ -73,7 +73,7 @@
 <view class="card">
   <view class='horizontal' bindtap='favoriteClick'>
     <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
-      src='{{theme.images}}/my_like.png'></image>
+      src='{{theme.images}}/my_favor.png'></image>
     <text class='title'>我的收藏</text>
     <image class='arrow-right' style='margin-left:auto;'
       src='{{theme.images}}/arrow_right.png'></image>

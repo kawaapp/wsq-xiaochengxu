@@ -53,23 +53,23 @@ Page({
   },
   postClick: function(e) {
     wx.navigateTo({
-      url: '/pages/user/post',
+      url: '/pages/user/post/post',
     })
   },
   commentClick: function(e) {
     wx.navigateTo({
-      url: '/pages/user/comment',
+      url: '/pages/user/cmmt/comment',
     })
   },
   favorClick: function(e) {
     wx.navigateTo({
-      url: '/pages/user/favor',
+      url: '/pages/user/favor/favor',
     })
   },
 
   favoriteClick: function(e) {
     wx.navigateTo({
-      url: '/pages/user/favorite',
+      url: '/pages/user/favorite/favorite',
     })
   },
 
