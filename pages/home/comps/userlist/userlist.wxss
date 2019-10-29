@@ -1,0 +1,56 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item .ranking {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.item .index {
+  width: 72rpx;
+  text-align: center;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.item .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 16rpx;
+  margin-left: 24rpx;
+  border-radius: 50%;
+}
+
+.item .name {
+  font-size: 32rpx;
+}
+
+.item .times {
+  font-size: 64rpx;
+  margin-left: auto;
+  font-weight: 600;
+  color:#777;
+}
+
+.item .unit {
+  font-size:28rpx; 
+  color:#999; 
+  margin-left: 14rpx;
+}
+
+.card {
+  background-color: #ffffff;
+  margin-bottom: 18.72rpx;
+  position: relative;
+  padding: 18rpx 24rpx;
+}
+
+.line {
+  height: 1px;
+  background-color: #f8f8f8;
+  margin: 18.72rpx 0;
+}
