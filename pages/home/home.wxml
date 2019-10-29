@@ -69,80 +69,18 @@
 <!-- 线 -->
 <view style='margin-bottom:1rpx; background-color: #fefefe;'/>
 
-<!-- 话题标签 -->
-<view class='card' wx:if="{{topic.items && topic.items.length>0  && tab.current == 0}}">
-  <view class='tag-list'>
-    <view class='tag'
-      bindtap='clickTopic'
-      data-idx="{{index}}"
-      style="{{index == topic.selected? 'color:' +theme.tabColor+ ';border-color:'+theme.tabColor:''}}"
-      wx:for="{{topic.items}}" wx:for-item="item" wx:key="{{item}}"> {{item.text}} </view>
-  </view>
-  <view style='margin-bottom:9.36rpx; background-color: #fefefe;'/>
-</view>
-
 <!-- 列表 -->
-<view wx:for="{{tabData[tab.current].posts}}" wx:for-item="item" wx:key="{{item.id}}">
-  <view class="card">
-    
-    <!-- Content Area -->
-    <view bindtap='topicClick' data-idx="{{index}}">
-      <view class="horizontal">
-        <image catchtap='clickAvatar' data-idx="{{index}}"
-          class='avatar-large' 
-          style='margin: 10rpx 18rpx 10rpx 0px;'
-          src="{{item.author.avatar?item.author.avatar:theme.images+'/user_icon.png'}}" 
-          />
-        <view>
-          <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
-          <view class='subtitle'>{{item.agoTime}}</view>
-        </view>
-        <image class='menu' src="{{theme.images}}/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
-      </view>
-      <view style='margin-bottom:9.36rpx;'/>
-      <view>
-        <!-- Text -->
-        <view>
-          <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
-        </view>
+<block wx:if="{{tab.current==0}}">
+  <postlist class="tabpage" filter="" tags="{{tags}}" />
+</block>
 
-        <!-- Image列表 -->
-        <block wx:if="{{item.images && item.images.length > 0}}">
-          <view style='margin: 8rpx 0rpx'>
-            <img-grid images="{{item.images}}"> </img-grid> 
-          </view>
-        </block>
+<block wx:elif="{{tab.current==1}}">
+  <postlist class="tabpage" filter="val" />
+</block>
 
-        <!-- 视频 -->
-        <block wx:if="{{item.video}}">
-          <kw-video video="{{item.video}}" />
-        </block>
-        
-        <!-- 地理位置 -->
-        <block wx:if="{{item.location && item.location.name}}">
-          <location location="{{item.location}}"/>
-        </block>
-      </view>
-    </view>
-
-    <!-- Comment and Favor bar -->
-    <view class='line'></view>
-    <view class='flow-right'>
-      <view class='fade-title' style='margin-right:auto;'>{{item.time}}</view>
-      <view class='comment' bindtap='commentClick' data-idx="{{index}}">
-        <image src='{{theme.images}}/comment.png'></image>
-        <text>{{item.stats.comments? item.stats.comments: "评论" }}</text>
-      </view>
-      <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
-        <image src="{{theme.images}}{{item.stats.favored? '/liked.png' : '/like.png'}}"></image>
-        <text style="{{item.stats.favored? ('color:'+theme.favroColor+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
-      </view>
-    </view>
-  </view>
-  <view style='margin-bottom:9.36rpx;'/>
-</view>
-
-<loading loader="{{tabData[tab.current].loader}}"/>
+<block wx:else>
+  <userlist class="tabpage" />
+</block>
 
 <view>
   <image catchtap='newTopic' class='new-topic' src="{{theme.images}}/write.png"></image>

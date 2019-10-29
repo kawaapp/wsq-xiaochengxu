@@ -3,22 +3,6 @@ const ctr = require('./controller.js')
 const util = require('../../utils/util.js')
 const kawa = require('../../kawa.js')
 
-// topics:[
-// {
-//   author: {
-//     name: '小虾米',
-//     avatar: '',
-//     ts: 1548571746979,
-//   },
-//   stats: {
-//     favored: 0,
-//     favors: 1,
-//     comment: 1
-//   },
-//   text: '小虾米 啦啦啦',
-//   styledText: ['123', '#hashtag#', 'abc']
-//   imgs: [],
-// },....]
 Page({
   data: {
     theme: {
@@ -42,13 +26,9 @@ Page({
     tab: {
       current: 0, //预设默认选中的栏目
       scrollLeft: 0, //tab滚动条距离左侧距离
-      items: ["全部", "精华"],
+      items: ["全部", "精华", "活跃"],
     },
-    tabData:[],
-    topic: {
-      items: [],
-      selected: -1,
-    },
+    tags: [],
     signed: false,
   },
   clickTab: function(e) {
@@ -57,7 +37,6 @@ Page({
     if (tab.current != idx) {
       tab.current = idx
       this.setData({ tab: tab })
-      ctr.onTabChanged(idx)
     }
   },
   onLoad: function (opt) {
@@ -78,13 +57,19 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    ctr.onPullDownRefresh()
+    var comp = this.selectComponent(".tabpage")
+    if (comp) {
+      comp.onPullDownRefresh()
+    }
   },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    ctr.onReachBottom()
+    var comp = this.selectComponent(".tabpage")
+    if (comp) {
+      comp.onReachBottom()
+    }
   },
 
   // 签到
@@ -99,86 +84,12 @@ Page({
 
   // 点击公告
   clickSpeaker: function(e) {
-    var url = this.data.speaker.link
-    if (url) {
-      wx.navigateTo({
-        url: '/pages/webview/webview?q=' + encodeURI(url),
-      })
-    }
+    ctr.onClickSpeaker(e)
   },
 
   // 点击置顶帖
   clickTopList: function(e) {
-    var idx = e.currentTarget.dataset.idx
-    var post = this.data.tops[idx]
-    util.sendRequest('post', {
-      idx: idx,
-      post: post,
-      viewonly: true,
-    })
-    wx.navigateTo({
-      url: '/pages/thread/thread',
-    })
-  },
-
-  // 点击头像
-  clickAvatar: function(e) {
-    var idx = e.currentTarget.dataset.idx
-    var post = getTabData(this).posts[idx]
-    if (post.author) {
-      util.sendRequest('user', {
-        idx: idx,
-        data: post.author
-      })
-      wx.navigateTo({
-        url: '/pages/user/user',
-      })
-    } else {
-      wx.showToast({
-        title: '用户不存在', icon: 'none'
-      })
-    }
-  },
-
-  // 点击帖子
-  topicClick: function(e) {
-    var idx = e.currentTarget.dataset.idx
-    var post = getTabData(this).posts[idx]
-    util.sendRequest('post', {
-      idx: idx,
-      post: post
-    })
-    wx.navigateTo({
-      url: '/pages/thread/thread',
-    })
-  },
-
-  // 点击评论
-  commentClick: function(e) {
-    var idx = e.currentTarget.dataset.idx
-    var post = getTabData(this).posts[idx]
-    util.sendRequest('post', {
-      idx: idx,
-      post: post
-    })
-    wx.navigateTo({
-      url: '/pages/thread/thread',
-    })
-  },
-
-  // 点击点赞
-  favorClick: function(e) {
-    ctr.onClickFavor(e)
-  },
-
-  // 点击菜单
-  clickMenu: function(e) {
-    ctr.onClickMenu(e)
-  },
-
-  // 点击话题标签
-  clickTopic: function(e) {
-    ctr.onClickTopic(e)
+    ctr.onClickTopList(e)
   },
 
   // 点击分享

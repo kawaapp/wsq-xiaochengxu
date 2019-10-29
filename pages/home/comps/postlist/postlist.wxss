@@ -1,0 +1,46 @@
+@import "../../../../app.wxss";
+
+.tag-list {
+  margin-left: -14rpx; 
+  margin-right: -14rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  font-size: 32rpx;
+  color: gray;
+  padding: 4rpx 12rpx;
+  margin: 6rpx 12rpx;
+  word-break: keep-all;
+}
+
+.menu {
+  margin-left: auto;
+  width: 56rpx;
+  height: 56rpx;
+  align-self: flex-start;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  margin-right: 16rpx;
+}
+
+.comment image{
+  height: 48rpx;
+  width: 48rpx;
+  margin-left: 9.36rpx;
+}
+
+.comment text {
+  text-align: center;
+  width: 86rpx;
+  font-size: 32rpx;
+  color: #888888;
+  word-break: keep-all;
+}
+

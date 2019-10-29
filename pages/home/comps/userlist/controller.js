@@ -87,7 +87,10 @@ function onClickItem(e) {
   var idx = e.currentTarget.dataset.idx
   var user = view.data.users[idx]
 
-  util.sendRequest("user", user)
+  util.sendRequest('user', {
+    idx: idx,
+    data: user
+  })
   wx.navigateTo({
     url: '/pages/user/user',
   })

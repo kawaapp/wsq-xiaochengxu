@@ -6,6 +6,8 @@
     "location": "../tmpl/location/location",
     "loading": "../tmpl/loading/loading",
     "kw-text": "../tmpl/text/kw-text",
-    "kw-video": "../tmpl/video/kw-video"
+    "kw-video": "../tmpl/video/kw-video",
+    "userlist": "./comps/userlist/userlist",
+    "postlist": "./comps/postlist/postlist"
   }
 }

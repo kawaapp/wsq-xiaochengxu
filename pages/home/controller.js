@@ -24,9 +24,12 @@ function onUnload() {
 function onLoad(opt) {
   var meta = app.globalData.meta
   // resize logo and cover
-  meta.app_logo += resize.logo
-  meta.app_cover += resize.cover
-
+  if (meta.app_logo) {
+    meta.app_logo += resize.logo
+  }
+  if (meta.app_cover) {
+    meta.app_cover += resize.cover
+  }
   view.setData({ meta: meta })
 
   // 公告
@@ -35,6 +38,10 @@ function onLoad(opt) {
     link: meta.app_publink,
   }
   view.setData({ speaker: pub })
+
+  // 话题
+  view.setData({ tags: app.globalData.tags})
+  //view.setData({ tags: ["新需求", "问题反馈"] })
 
   // PageTitle
   wx.setNavigationBarTitle({
@@ -64,16 +71,6 @@ function fetchTopList() {
   })
 }
 
-// show topic
-function showTopic(items) {
-  if (!items || items.length == 0) {
-    return
-  }
-  var topics = items.slice(0)
-  topics.unshift({text: "全部话题"})
-  view.setData({ topic: { items: topics, selected: -1}})
-}
-
 function getSelectedTopic() {
   var topic = view.data.topic
   if (topic.selected > 0 && topic.selected < topic.items.length) {
@@ -99,16 +96,6 @@ function onClickNewPost(e) {
   wx.navigateTo({
     url: '/pages/writer/writer',
   })
-}
-
-// 切换 TAB
-function onTabChanged(idx) {
-  console.log("on tab changed:", idx)
-  refreshList(idx)
-}
-
-function listLoadMore(tabIndex, topic) {
-
 }
 
 function onClickShare(res) {
@@ -156,24 +143,35 @@ function onResult(data) {
   console.log('home, on result data:' + data)
 }
 
-function onPullDownRefresh() {
-
+function onClickSpeaker() {
+  var url = this.data.speaker.link
+  if (url) {
+    wx.navigateTo({
+      url: '/pages/webview/webview?q=' + encodeURI(url),
+    })
+  }
 }
 
-function onReachBottom() {
-
+function onClickTopList() {
+  var idx = e.currentTarget.dataset.idx
+  var post = this.data.tops[idx]
+  util.sendRequest('post', {
+    idx: idx,
+    post: post,
+    viewonly: true,
+  })
+  wx.navigateTo({
+    url: '/pages/thread/thread',
+  })
 }
-
-
 
 module.exports = {
   setup: setup,
   onLoad: onLoad,
   onUnload: onUnload,
-  onTabChanged: onTabChanged,
   onResult: onResult,
-  onPullDownRefresh: onPullDownRefresh,
-  onReachBottom: onReachBottom,
   onClickNewPost: onClickNewPost,
   onClickShare: onClickShare,
+  onClickSpeaker: onClickSpeaker,
+  onClickTopList: onClickTopList,
 }
