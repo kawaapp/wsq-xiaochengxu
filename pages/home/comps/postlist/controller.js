@@ -10,7 +10,6 @@ var view = undefined
 // Home Controller 
 function setup(_view) {
   view = _view
-  console.log("set view:", view.data.tags)
 }
 
 function onUnload() {
@@ -19,13 +18,6 @@ function onUnload() {
 
 // First Load
 function onLoad(opt) {
-  // show tags
-  var tags = view.data.tags.slice()
-  if (tags.length > 0) {
-    tags.unshift({ text: "全部话题" })
-    view.setData({ tags: tags })
-  }
-
   // fetch post
   var filter = view.data.filter
   fetchPostList(filter, "")
@@ -345,12 +337,14 @@ function onClickFavorite(idx) {
 function onClickTopic(e) {
   // 高亮选项
   var idx = e.target.dataset.idx;
-  var topic = view.data.topic
-  topic.selected = idx
-  view.setData({ topic: topic })
+  view.setData({ tagSelected: idx })
 
+  var tag = ""
+  if (idx > 0) {
+    tag = view.data.tagArray[idx].text
+  }
   // 刷新列表
-  // refreshList(0, getSelectedTopic())
+  fetchPostList(view.data.filter, tag)
 }
 
 module.exports = {

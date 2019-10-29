@@ -40,8 +40,17 @@ Component({
       favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
     },
     tagSelected: -1,
+    tagArray: [],
     loader: {
       ing: false, more: true,
+    }
+  },
+
+  observers: {
+    'tags': function (tags) {
+      var tags = tags.slice()
+      tags.unshift({ text: "全部话题" })
+      this.setData({ tagArray: tags })
     }
   },
 
@@ -63,7 +72,7 @@ Component({
     },
 
     // 点击帖子
-    topicClick: function (e) {
+    clickItem: function (e) {
       ctr.onClickItem(e)
     },
 
@@ -83,7 +92,7 @@ Component({
     },
 
     // 点击话题标签
-    clickTopic: function (e) {
+    clickTag: function (e) {
       ctr.onClickTopic(e)
     },
   }
