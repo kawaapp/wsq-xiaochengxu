@@ -31,18 +31,22 @@ function refreshMessage() {
 
 function massage(items) {
   var uid = app.globalData.userInfo.id
+  var users = []
   items.map( item => {
     var utcTime = item.created_at * 1000
     item.date = util.msgTime(new Date(utcTime))
-    if (item.from.id == uid) {
+    if (item.from_id == uid) {
       item.other = item.to
       item.unread = false
     } else {
       item.other = item.from
       item.unread = item.status == 0
     }
+    if (item.other) {
+      users.push(item)
+    }
   })
-  return items
+  return users
 }
 
 function onClickItem(e) {

@@ -153,7 +153,7 @@ function onResult(data) {
 }
 
 function onClickSpeaker() {
-  var url = this.data.speaker.link
+  var url = view.data.speaker.link
   if (url) {
     wx.navigateTo({
       url: '/pages/webview/webview?q=' + encodeURI(url),
@@ -161,9 +161,9 @@ function onClickSpeaker() {
   }
 }
 
-function onClickTopList() {
+function onClickTopList(e) {
   var idx = e.currentTarget.dataset.idx
-  var post = this.data.tops[idx]
+  var post = view.data.tops[idx]
   util.sendRequest('post', {
     idx: idx,
     post: post,
