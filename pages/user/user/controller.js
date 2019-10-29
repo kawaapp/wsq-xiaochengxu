@@ -101,12 +101,11 @@ function decorateList(posts) {
 }
 
 
-
 function onClickSend() {
   if (!biz.isUserHasName('')) {
     return
   }
-  var user = this.data.user
+  var user = view.data.user
   util.sendRequest('user', user)
   wx.navigateTo({
     url: '/pages/chat/chat?uid=' + user.id,

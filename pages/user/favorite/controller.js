@@ -104,7 +104,7 @@ function onClickItem(e) {
       url: '/pages/thread/thread?pid=' + pid,
     })
   }
-  goto(posts.id)
+  goto(post.id)
 }
 
 

@@ -45,7 +45,7 @@ function fetchPostList(filter, topic) {
     return
   }
 
-  view.setData({loader: { ing: true, more: false} })
+  view.setData({loader: { ing: true, more: true} })
   view.setData({posts: [] })
 
   api.getPostList(0, PAGE_SIZE, filter, topic).then(resp => {

@@ -61,7 +61,7 @@ function fetchUserList() {
   }
 
   view.setData({
-    loader: { ing: true, more: view.data.loader.more}
+    loader: { ing: true, more: true}
   })
 
   api.getUserList("active", 1, PAGE_SIZE).then(resp => {
@@ -92,7 +92,7 @@ function onClickItem(e) {
     data: user
   })
   wx.navigateTo({
-    url: '/pages/user/user',
+    url: '/pages/user/user/user',
   })
 }
 

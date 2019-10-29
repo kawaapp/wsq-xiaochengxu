@@ -26,7 +26,6 @@ function onLoad(options) {
   // 如果是分享的链接，需要先登录，并初始化一些全局变量
   api.autoAuth().then(() => {
     fetch(options)
-    initGlobal()
   }).catch((err) => {
     wx.showToast({
       title: '帖子打开失败:' + err.code, icon: 'none', duration: 2000,
@@ -80,24 +79,6 @@ function fetch(options) {
       wx.showToast({
         title: '加载失败:'+err.code, icon: 'none'
       })
-    })
-  }
-}
-
-function initGlobal() {
-  // user
-  if (!app.globalData.userInfo.nickname) {
-    api.getSelf().then((resp) => {
-      app.globalData.userInfo = resp.data
-      // refresh local storage
-      wx.setStorage({ key: 'user', data: resp.data })
-    })
-  }
-
-  // meta
-  if (!app.globalData.meta.app_name) {
-    biz.getMetaData(data => {
-      app.globalData.meta = data
     })
   }
 }

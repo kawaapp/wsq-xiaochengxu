@@ -22,38 +22,47 @@ function onUnload() {
 
 // First Load
 function onLoad(opt) {
-  var meta = app.globalData.meta
-  // resize logo and cover
-  if (meta.app_logo) {
-    meta.app_logo += resize.logo
-  }
-  if (meta.app_cover) {
-    meta.app_cover += resize.cover
-  }
-  view.setData({ meta: meta })
-
-  // 公告
-  var pub = {
-    title: meta.app_pubtitle,
-    link: meta.app_publink,
-  }
-  view.setData({ speaker: pub })
-
-  // 话题
-  view.setData({ tags: app.globalData.tags})
-  //view.setData({ tags: ["新需求", "问题反馈"] })
-
-  // PageTitle
-  wx.setNavigationBarTitle({
-    title: meta.app_name || '',
-  })
-
-  // 签到
-  var signed = app.globalData.signed
-  view.setData({ signed: signed || false })
+  // 基本信息
+  render(app)
 
   // 加载置顶列表
   fetchTopList()
+}
+
+function render(app) {
+  // meta
+  app.onChange("meta", (meta) => {
+    // resize logo and cover
+    if (meta.app_logo) {
+      meta.app_logo += resize.logo
+    }
+    if (meta.app_cover) {
+      meta.app_cover += resize.cover
+    }
+    view.setData({ meta: meta })
+
+    // 公告
+    var pub = {
+      title: meta.app_pubtitle,
+      link: meta.app_publink,
+    }
+    view.setData({ speaker: pub })
+
+    // PageTitle
+    wx.setNavigationBarTitle({
+      title: meta.app_name || '',
+    })
+  })
+
+  // 话题
+  app.onChange("tags", (tags) => {
+    view.setData({ tags: tags })
+  })
+
+  // 签到
+  app.onChange("signed", (signed) => {
+    view.setData({ signed: signed || false })
+  })
 }
 
 function fetchTopList() {
@@ -174,4 +183,5 @@ module.exports = {
   onClickShare: onClickShare,
   onClickSpeaker: onClickSpeaker,
   onClickTopList: onClickTopList,
+  onClickSignin: onClickSignin,
 }
