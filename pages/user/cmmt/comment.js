@@ -1,6 +1,7 @@
-const ctr = require('./favorite_ctr.js')
-const kawa = require('../../kawa.js')
+const ctr = require('./controller.js')
+const kawa = require('../../../kawa.js')
 
+// pages/me/list/comment.js
 Page({
 
   /**
@@ -8,16 +9,14 @@ Page({
    */
   data: {
     theme: kawa.Theme.Image,
-    posts: [],
+    comments: [],
     user: {
       uid: 0,
     },
     loader: {
       ing: false,
       more: true,
-    },
-    page: 1,
-    size: 20,
+    }
   },
 
   /**
@@ -45,4 +44,8 @@ Page({
   onReachBottom: function () {
     ctr.onReachBottom()
   },
+  // 列表点击
+  clickItem: function (e) {
+    ctr.onClickItem(e)
+  }, 
 })

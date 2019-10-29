@@ -132,7 +132,7 @@ function onClickAvatar(e) {
       data: post.author
     })
     wx.navigateTo({
-      url: '/pages/user/user',
+      url: '/pages/user/user/user',
     })
   } else {
     wx.showToast({

@@ -1,4 +1,4 @@
-const api = require('../../utils/api.js')
+const api = require('../../../utils/api.js')
 
 var view = undefined
 function setup(v) {
@@ -14,19 +14,19 @@ function onLoad(options) {
   }
   var loader = view.data.loader
   loader.ing = true
-  view.setData({ loader: loader })
+  view.setData({loader: loader})
 
-  api.getUserFavoriteList(view.data.user.uid, 1, 20).then(resp => {
+  api.getUserFavorList(view.data.user.uid).then(resp => {
     loader.ing = false
     if (resp.data && resp.data.length < 20) {
       loader.more = false
     }
     view.setData({ loader: loader })
-    view.setData({ posts: resp.data })
-  }).catch(err => {
+    view.setData({ favors: resp.data })
+  }).catch( err => {
     console.log(err)
     wx.showToast({
-      title: '加载失败:' + err.code, icon: 'none'
+      title: '加载失败:'+err.code, icon: 'none'
     })
     loader.ing = false
     view.setData({ loader: loader })
@@ -41,23 +41,22 @@ function onPullDownRefresh() {
   var loader = view.data.loader
   loader.ing = true
   view.setData({ loader: loader })
-  view.setData({ page: 1, size: 20})
 
-  api.getUserFavoriteList(view.data.user.uid, 1, 20).then(resp => {
+  api.getUserFavorList(view.data.user.uid).then(resp => {
     loader.ing = false
     if (resp.data && resp.data.length < 20) {
       loader.more = false
     }
     view.setData({ loader: loader })
-    view.setData({ posts: resp.data })
+    view.setData({ favors: resp.data })
     wx.stopPullDownRefresh()
     wx.showToast({
       title: '刷新成功', icon: 'success',
     })
-  }).catch(err => {
+  }).catch( err => {
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '刷新失败:' + err.code, icon: 'none',
+      title: '刷新失败:'+err.code, icon: 'none',
     })
     loader.ing = false
     view.setData({ loader: loader })
@@ -68,43 +67,56 @@ function onReachBottom() {
   if (view.data.loader.ing || !view.data.loader.more) {
     return
   }
-  var posts = view.data.posts
-  var page = view.data.page + 1
-  var size = view.data.size
-
+  var favors = view.data.favors
+  var since = 0
+  var limit = 20
+  if (favors && favors.length > 0) {
+    since = favors[favors.length - 1].id
+  }
   var loader = view.data.loader
   loader.ing = true
-  view.setData({ loader: loader })
-  view.setData({ page: page, size: size})
-
-  api.getUserFavoriteList(view.data.user.uid, page, size).then(resp => {
+  view.setData({loader: loader})
+  api.getUserFavorList(view.data.user.uid, since, limit).then(resp => {
     loader.ing = false
-    if (resp.data.length < size) {
+    if (resp.data.length < limit) {
       loader.more = false
     }
     if (resp.data) {
-      view.setData({ posts: posts.concat(resp.data) })
+      view.setData({ favors: favors.concat(resp.data) })
     }
-    view.setData({ loader: loader })
-  }).catch(err => {
+    view.setData({loader: loader})
+  }).catch( err=> {
     loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({loader: loader})
     wx.showToast({
-      title: '加载失败:' + err.code, icon: 'none',
+      title: '加载失败:'+err.code, icon: 'none',
     })
   })
 }
 
 function onClickItem(e) {
   var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
+  var favor = view.data.favors[idx]
 
   var goto = pid => {
     wx.navigateTo({
       url: '/pages/thread/thread?pid=' + pid,
     })
   }
-  goto(posts.id)
+
+  // 如果赞的是帖子，直接跳转
+  if (favor.entity_type == 0) {
+    goto(favor.entity_id)
+  } 
+
+  // 如果赞的是评论，先从评论取得帖子再跳转
+  if (favor.entity_type == 1) {
+    api.getComment(favor.entity_id).then( resp => {
+      goto(resp.data.post_id)
+    }).catch( err => {
+      console.log(err)
+    })
+  }
 }
 
 

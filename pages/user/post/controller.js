@@ -1,5 +1,5 @@
-const api = require('../../utils/api.js')
-const util = require('../../utils/util.js')
+const api = require('../../../utils/api.js')
+const util = require('../../../utils/util.js')
 
 var view = undefined
 function setup(v) {

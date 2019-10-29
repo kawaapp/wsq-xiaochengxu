@@ -1,5 +1,5 @@
-const ctr = require('./favor_ctr.js')
-const kawa = require('../../kawa.js')
+const ctr = require('./controller.js')
+const kawa = require('../../../kawa.js')
 
 // pages/me/list/favor.js
 Page({

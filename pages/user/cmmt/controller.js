@@ -1,4 +1,4 @@
-const api = require('../../utils/api.js')
+const api = require('../../../utils/api.js')
 
 var view = undefined
 function setup(_view) {
