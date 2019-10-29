@@ -1,10 +1,60 @@
-<!--pages/user/user.wxml-->
-<view class='vertical' style='padding-top: 25vh;'>
-  <image class='avatar' src="{{user.avatar}}"/>
-  <view class='nickname'>{{user.nickname}}</view>
-  <view class='ts'>已加入 {{user.days}} 天</view>
-  <view class='msg' bindtap='clickSendMessage'>
-    <image src="{{theme.images}}/nav_msg.png"/>
-    <text>发消息</text>
+<!-- 用户信息 -->
+<view class="card">
+  <view class='vertical' style='padding: 16rpx 0 24rpx 0;'>
+    <image class='avatar' src="{{user.avatar}}"/>
+    <view class='nickname'>{{user.nickname}}</view>
+    <view class='ts'>已加入 {{user.days}} 天</view>
+    <view class='msg' bindtap='clickSendMessage'>
+      <image src="{{theme.images}}/nav_msg.png"/>
+      <text>发消息</text>
+    </view>
   </view>
 </view>
+
+<!-- 帖子列表 -->
+<view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
+  <view class="card">
+    <!-- Content Area -->
+    <view bindtap='clickItem' data-idx="{{index}}">
+      <view class="horizontal">
+        <image data-idx="{{index}}"
+          class='avatar' 
+          style='margin: 10rpx 18rpx 10rpx 0px;'
+          src="{{item.author.avatar?item.author.avatar:theme.images+'/user_icon.png'}}" 
+          />
+        <view>
+          <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
+          <view class='subtitle'>{{item.time}}</view>
+        </view>
+      </view>
+      <view style='margin-bottom:9.36rpx;'/>
+      <view>
+        <!-- Text -->
+        <view>
+          <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
+        </view>
+
+        <!-- Image列表 -->
+        <block wx:if="{{item.images && item.images.length > 0}}">
+          <view style='margin: 8rpx 0rpx'>
+            <img-grid images="{{item.images}}"> </img-grid> 
+          </view>
+        </block>
+
+        <!-- 视频 -->
+        <block wx:if="{{item.video}}">
+          <kw-video video="{{item.video}}" />
+        </block>
+        
+        <!-- 地理位置 -->
+        <block wx:if="{{item.location && item.location.name}}">
+          <location location="{{item.location}}"/>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view style='margin-bottom:9.36rpx;'/>
+</view>
+
+<!-- 加载提示 -->
+<loading loader="{{loader}}"/>

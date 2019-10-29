@@ -1,12 +1,13 @@
 /* pages/user/user.wxss */
 page {
-    background-color:#fff;
+    background-color:#eee;
 }
 
 .vertical {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #fff;
 }
 
 .vertical .avatar {
@@ -40,4 +41,10 @@ page {
   width: 48rpx;
   margin-right: 8rpx;
   margin-top: -2rpx;
+}
+
+.avatar {
+  width: 82rpx; 
+  height: 82rpx;
+  border-radius: 50%;
 }

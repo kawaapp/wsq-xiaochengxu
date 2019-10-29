@@ -12,6 +12,10 @@ Page({
       images: kawa.Theme.Image
     },
     user: {},
+    posts: [],
+    loader: {
+      ing: false, more: true
+    }
   },
 
   /**
@@ -30,11 +34,11 @@ Page({
     ctr.onClickSend(e)
   },
 
-  onPullDownRefresh: function(e) {
-    ctr.onPullDownRefresh()
-  },
-
   onReachBottom: function(e) {
     ctr.onReachBottom()
+  },
+
+  clickItem: function(e) {
+    ctr.onClickItem(e)
   }
 })
