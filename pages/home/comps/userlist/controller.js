@@ -43,7 +43,7 @@ function onReachBottom() {
   api.getUserList("active", page, PAGE_SIZE).then(resp => {
     var loader = {
       ing: false,
-      more: resp.data && resp.data === PAGE_SIZE
+      more: resp.data && resp.data.length === PAGE_SIZE
     }
     view.setData({ loader: loader })
     view.setData({ users: users.concat(resp.data)})
@@ -65,16 +65,21 @@ function fetchUserList() {
   })
 
   api.getUserList("active", 1, PAGE_SIZE).then(resp => {
+    wx.stopPullDownRefresh()
     var loader = {
       ing: false,
-      more: resp.data && resp.data === PAGE_SIZE
+      more: resp.data && resp.data.length === PAGE_SIZE
     }
     view.setData({ loader: loader })
     view.setData({ users: resp.data })
   }).catch(err => {
+    wx.stopPullDownRefresh()
     console.log(err)
     view.setData({
       loader: { ing: false, more: view.data.loader.more }
+    })
+    wx.showToast({
+      title: '刷新失败', icon: 'none'
     })
   })
 }
