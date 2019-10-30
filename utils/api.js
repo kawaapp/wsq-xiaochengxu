@@ -103,8 +103,6 @@ function autoAuth() {
       if (app) {
         app.setToken(value)
       }
-      //console.log("get app", app)
-      //app.setToken(value)
       
       res(value)
       return
@@ -129,6 +127,10 @@ function autoAuth() {
             if (resp.statusCode == 200) {
               //success, save token
               g.token = resp.data.access_token
+              const app = getApp()
+              if (app) {
+                app.setToken(value)
+              }
               console.log("get token", resp.data)
               res(g.token)
               wx.setStorage({
