@@ -34,23 +34,24 @@ function onLoad(options) {
 }
 
 function onPullDownRefresh() {
-  if (view.loader.ing) {
+  if (view.data.loader.ing) {
     return
   }
 
-  var loader = view.data.loader
-  loader.ing = true
+  var loader = {
+    ing: true, more: true
+  }
   view.setData({ loader: loader })
   view.setData({ page: 1, size: 20})
 
   api.getUserFavoriteList(view.data.user.uid, 1, 20).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
+    wx.stopPullDownRefresh()
+    var loader = {
+      ing: false,
+      more: resp.data && resp.data.length === 20
     }
     view.setData({ loader: loader })
     view.setData({ posts: resp.data })
-    wx.stopPullDownRefresh()
     wx.showToast({
       title: '刷新成功', icon: 'success',
     })
@@ -59,8 +60,10 @@ function onPullDownRefresh() {
     wx.showToast({
       title: '刷新失败:' + err.code, icon: 'none',
     })
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loader: {
+      ing: false,
+      more: view.data.loader.more
+    }})
   })
 }
 
