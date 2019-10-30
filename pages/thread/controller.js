@@ -23,7 +23,7 @@ function onLoad(options) {
     return
   } 
   
-  // 如果是分享的链接，需要先登录，并初始化一些全局变量
+  // 如果是分享的链接，需要先登录
   api.autoAuth().then(() => {
     fetch(options)
   }).catch((err) => {

@@ -33,10 +33,10 @@ function render(app) {
   // meta
   app.onChange("meta", (meta) => {
     // resize logo and cover
-    if (meta.app_logo) {
+    if (meta.app_logo && !meta.app_logo.includes("x-oss")) {
       meta.app_logo += resize.logo
     }
-    if (meta.app_cover) {
+    if (meta.app_cover && !meta.app_cover.includes("x-oss")) {
       meta.app_cover += resize.cover
     }
     view.setData({ meta: meta })
@@ -71,6 +71,7 @@ function render(app) {
     } else if (m.chat) {
       wx.showTabBarRedDot({ index: 1 })
     }
+    app.globalData.messages = {}
   })
 }
 
