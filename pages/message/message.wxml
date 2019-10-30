@@ -42,7 +42,7 @@
       <image class='avatar' style='margin: 9rpx 16rpx 9rpx 7rpx;'
         src="{{item.other.avatar?item.other.avatar: theme.images+'/user_icon.png'}}" 
         />
-      <view>
+      <view class="body">
         <view class='title'>{{item.other.nickname?item.other.nickname:'用户已删除'}}</view>
         <view class='subtitle single-line'>{{item.content}}</view>
       </view>

@@ -18,6 +18,10 @@
   border-radius: 50%;
 }
 
+.body {
+  max-width: 500rpx;
+}
+
 .red-tag {
   border-radius: .8em;
   background: #FF4444;
@@ -25,10 +29,6 @@
   text-align: center;
   min-width: 1.6em;
   font-size: 1em;
-}
-
-.title {
-  font-size: 32rpx;
 }
 
 .circle {
