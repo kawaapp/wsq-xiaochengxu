@@ -63,6 +63,15 @@ function render(app) {
   app.onChange("signed", (signed) => {
     view.setData({ signed: signed || false })
   })
+
+  // 未读消息
+  app.onChange("messages", (m) => {
+    if (m.notification) {
+      wx.setTabBarBadge({ index: 1, text: '' + m.notification })
+    } else if (m.chat) {
+      wx.showTabBarRedDot({ index: 1 })
+    }
+  })
 }
 
 function fetchTopList() {
@@ -146,10 +155,9 @@ function onClickSignin(e) {
 }
 
 function onResult(data) {
-  // if (data && data.ok && view.data.tab.current == 0) {
-  //   refreshList(0, getSelectedTopic())
-  // }
-  console.log('home, on result data:' + data)
+  if (data && data.ok && view.data.tab.current == 0) {
+    view.onPullDownRefresh()
+  }
 }
 
 function onClickSpeaker() {
