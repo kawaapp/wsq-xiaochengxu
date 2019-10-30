@@ -64,7 +64,7 @@ function fetchMorePost() {
   var loader = view.data.loader
   loader.ing = true
   view.setData({ loader: loader })
-  api.getUserPostList(view.data.user.uid, since, limit).then(resp => {
+  api.getUserPostList(view.data.user.id, since, limit).then(resp => {
     loader.ing = false
     if (resp.data.length < limit) {
       loader.more = false
