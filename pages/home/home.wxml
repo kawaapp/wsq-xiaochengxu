@@ -82,6 +82,6 @@
   <userlist class="tabpage" />
 </block>
 
-<view>
+<view hidden="{{meta && meta.app_admin_only}}">
   <image catchtap='newTopic' class='new-topic' src="{{theme.images}}/write.png"></image>
 </view>
