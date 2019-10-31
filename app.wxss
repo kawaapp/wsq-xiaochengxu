@@ -114,6 +114,22 @@ page{
   border: 0;
 }
 
+
+.admin-tag {
+  width: 30rpx;
+  height: 30rpx;
+  padding: 0 4rpx;
+  vertical-align: middle;
+  border-radius: 4rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: white;
+  background-color: #2daa58;
+  margin-right: 16rpx;
+  position: relative;
+  top: -2rpx;
+}
+
 .p-1 {
   padding: 8rpx;
 }
