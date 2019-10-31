@@ -12,12 +12,8 @@ function onUnload() {
 }
 
 function onLoad(options) {
-  var topic = app.globalData.topics
+  var topic = app.globalData.tags
   view.setData({ topic: { items: topic, selected: -1}})
-}
-
-function refreshTopics() {
-
 }
 
 function onClickImage(e) {
