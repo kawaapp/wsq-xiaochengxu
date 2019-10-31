@@ -23,6 +23,7 @@ Page({
       app_logo: "",
       app_name: "卡哇微社区",
     },
+    hideNewButton: false,
     tab: {
       current: 0, //预设默认选中的栏目
       scrollLeft: 0, //tab滚动条距离左侧距离

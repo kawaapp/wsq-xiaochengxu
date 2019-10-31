@@ -52,6 +52,9 @@ function render(app) {
     wx.setNavigationBarTitle({
       title: meta.app_name || '',
     })
+
+    // 检查
+    checkAdminPostOnly()
   })
 
   // 话题
@@ -73,6 +76,18 @@ function render(app) {
     }
     app.globalData.messages = {}
   })
+
+  // 当前用户
+  app.onChange("userInfo", () => {
+    checkAdminPostOnly()
+  })
+}
+
+function checkAdminPostOnly() {
+  const { meta, userInfo } = app.globalData
+  if (meta && meta.app_admin_only && userInfo && !userInfo.admin ) {
+    view.setData({ hideNewButton: true})
+  }
 }
 
 function fetchTopList() {
