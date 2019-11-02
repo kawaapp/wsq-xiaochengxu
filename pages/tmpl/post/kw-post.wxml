@@ -1,0 +1,29 @@
+<!--pages/tmpl/post/kw-post.wxml-->
+<view>
+  <!-- Text -->
+  <view>
+    <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
+  </view>
+
+  <!-- Image列表 -->
+  <block wx:if="{{item.images && item.images.length > 0}}">
+    <view style='margin: 8rpx 0rpx'>
+      <img-grid images="{{item.images}}"> </img-grid> 
+    </view>
+  </block>
+
+  <!-- 视频 -->
+  <block wx:if="{{item.video}}">
+    <kw-video video="{{item.video}}" />
+  </block>
+
+  <!-- 链接 -->
+  <block wx:if="{{item.link}}">
+    <kw-link link="{{item.link}}" />
+  </block>
+
+  <!-- 地理位置 -->
+  <block wx:if="{{item.location && item.location.name}}">
+    <location location="{{item.location}}"/>
+  </block>
+</view>

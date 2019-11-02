@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "img-grid": "../../../tmpl/img-grid/img-grid",
+    "location": "../../../tmpl/location/location",
+    "kw-text": "../../../tmpl/text/kw-text",
+    "kw-video": "../../../tmpl/video/kw-video",
+    "kw-link": "../../../tmpl/link/kw-link"
+  }
+}
