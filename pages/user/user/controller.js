@@ -82,20 +82,7 @@ function fetchMorePost() {
 function decorateList(posts) {
   var i = 0, n = posts.length
   for (; i < n; i++) {
-    var utcTime = posts[i].created_at * 1000
-    posts[i].time = util.formatTime(new Date(utcTime))
-    if (posts[i].media) {
-      if (posts[i].media.type === 1) {
-        posts[i].images = JSON.parse(posts[i].media.path)
-      } else if (posts[i].media.type === 3) {
-        posts[i].video = JSON.parse(posts[i].media.path)
-      }
-    }
-    if (posts[i].location) {
-      try {
-        posts[i].location = JSON.parse(posts[i].location)
-      } catch (err) { }
-    }
+    posts[i] = biz.parsePost(posts[i])
   }
   return posts
 }

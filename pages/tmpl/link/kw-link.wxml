@@ -1,0 +1,4 @@
+<view class="link" catchtap="openlink">
+  <image src="{{link.logo}}"/>
+  <text>{{link.title}} </text>
+</view>

@@ -1,0 +1,19 @@
+/* pages/tmpl/link/kw-link.wxss */
+.link {
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  padding: 8rpx;
+}
+
+.link image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 8rpx;
+}
+
+.link text {
+  color: #333;
+  font-size: 30rpx;
+  line-height: 32rpx;
+}

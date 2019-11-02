@@ -260,30 +260,12 @@ function massage(posts) {
     }
 
     if (!hide) {
-      result.push(decorate(post))
+      result.push(biz.parsePost(post))
     }
   }
   return result
 }
 
-function decorate(post) {
-  var utcTime = post.created_at * 1000
-  post.time = util.formatTime(new Date(utcTime))
-  post.agoTime = util.agoTime(utcTime)
-  if (post.media) {
-    if (post.media.type == 1) {
-      post.images = JSON.parse(post.media.path)
-    } else if (post.media.type == 3) {
-      post.video = JSON.parse(post.media.path)
-    }
-  }
-  if (post.location) {
-    try {
-      post.location = JSON.parse(post.location)
-    } catch (err) { }
-  }
-  return post
-}
 
 function deletePost(idx) {
   var posts = view.data.posts

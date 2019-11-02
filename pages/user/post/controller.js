@@ -1,5 +1,6 @@
 const api = require('../../../utils/api.js')
 const util = require('../../../utils/util.js')
+const biz = require('../../../utils/biz.js')
 
 var view = undefined
 function setup(v) {
@@ -26,7 +27,7 @@ function onLoad(options) {
       loader.more = false
     }
     console.log("user get posts:", resp)
-    var posts = decorateList(resp.data)
+    var posts = massage(resp.data)
     view.setData({ posts: resp.data })
     view.setData({ loader: loader })
   }).catch( err => {
@@ -55,7 +56,7 @@ function onPullDownRefresh() {
     if (resp.data && resp.data.length < 20) {
       loader.more = false
     }
-    var data = decorateList(resp.data)
+    var data = massage(resp.data)
     view.setData({ posts: data })
     view.setData({ loader: loader })
     wx.stopPullDownRefresh()
@@ -89,7 +90,7 @@ function onReachBottom() {
     if (resp.data.length < limit) {
       loader.more = false
     }
-    var data = decorateList(resp.data)
+    var data = massage(resp.data)
     view.setData({ loader: loader })
     view.setData({ posts: posts.concat(data) })
   }).catch( err=> {
@@ -108,23 +109,10 @@ function onClickItem(e) {
   })
 }
 
-function decorateList(posts) {
+function massage(posts) {
   var i = 0, n = posts.length
   for (; i < n; i++) {
-    var utcTime = posts[i].created_at * 1000
-    posts[i].time = util.formatTime(new Date(utcTime))
-    if (posts[i].media) {
-      if (posts[i].media.type === 1) {
-        posts[i].images = JSON.parse(posts[i].media.path)
-      } else if (posts[i].media.type === 3) {
-        posts[i].video = JSON.parse(posts[i].media.path)
-      }
-    }
-    if (posts[i].location) {
-      try {
-        posts[i].location = JSON.parse(posts[i].location)
-      } catch (err) { }
-    }
+    posts[i] = biz.parsePost(posts[i])
   }
   return posts
 }

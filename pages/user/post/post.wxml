@@ -29,6 +29,11 @@
         <kw-video video="{{item.video}}" />
       </block>
 
+      <!-- Link  -->
+      <block wx:if="{{item.link}}">
+        <kw-link link="{{item.link}}" />
+      </block>
+      
       <!-- 地理位置 -->
       <block wx:if="{{item.location && item.location.name}}">
         <location location="{{item.location}}" />

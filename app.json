@@ -10,13 +10,11 @@
     "pages/writer/writer",
     "pages/message/list/favor",
     "pages/message/list/comment",
-
     "pages/user/post/post",
     "pages/user/cmmt/comment",
     "pages/user/favor/favor",
     "pages/user/favorite/favorite",
     "pages/user/user/user",
-
     "pages/webview/webview",
     "pages/chat/chat",
     "pages/exp/exp",

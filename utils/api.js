@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
+const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-const Host = "https://wsq.kawaapp.com"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -555,6 +555,15 @@ function decrypt(data) {
   })
 }
 
+// 链接预览
+function linkPreview(url) {
+  return req({
+    url: `${Host}/api/actions/link_preview`,
+    method: 'POST',
+    data: { url: url }
+  })
+}
+
 module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
@@ -630,4 +639,5 @@ module.exports = {
   
   // actions
   decrypt: decrypt,
+  linkPreview: linkPreview,
 }
