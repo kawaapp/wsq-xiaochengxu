@@ -9,13 +9,8 @@
       />
   </view>
 
-  <!-- Add Menu -->
-  <view class="add" wx:if='{{images.length <= 0 && !video.src}}' >
-      <image bindtap='chooseMedia' src="{{theme.images}}/plus.png" ></image>
-  </view>
-
   <!-- video player -->
-  <view wx:if="{{video.src}}">
+  <view wx:if="{{video.src}}" class="video box">
     <view class='del'>
       <image
         src="{{theme.images}}/del.png" 
@@ -24,7 +19,7 @@
         >
       </image>
     </view>
-    <video class='video' 
+    <video
       src="{{video.src}}" 
       object-fit="cover" 
       show-fullscreen-btn="{{false}}">
@@ -33,7 +28,7 @@
 
   <!-- image list -->
   <view class='image-list' wx:if="{{images.length > 0}}">
-    <view class="thumb" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
+    <view class="thumb box" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
       <view class='del'>
         <image
           src="{{theme.images}}/del.png" 
@@ -53,6 +48,28 @@
       <image bindtap='chooseImage' src="{{theme.images}}/plus.png" ></image>
     </view>
   </view>
+
+  <!-- link preview-->
+  <view wx:if="{{link.url}}" class="box">
+    <view class='del'>
+      <image
+        src="{{theme.images}}/del.png" 
+        bindtap='clickDeleteLink' />
+    </view>
+    <view class="link">
+      <image src="{{link.logo}}"/>
+      <text>{{link.title}} </text>
+    </view>
+  </view>
+
+  <!-- Menu bar -->
+  <view class='line'></view>
+  <view class="bar">
+    <image src="{{theme.images}}/photo.png" bindtap="chooseImage" />
+    <image src="{{theme.images}}/video.png" bindtap="chooseVideo" />
+    <image src="{{theme.images}}/link.png"  bindtap="chooseLink" />
+  </view>
+
   <!-- 选择位置 -->
   <view>
     <view class='line'></view>
@@ -88,3 +105,12 @@
   class='btn-cancel' 
   hover-class='btn-cancel-hover'
   bindtap='writerCancel'>取消</button>
+
+<!-- 链接编辑对话框 --->
+<linkdialog 
+  show="{{showDialog}}" 
+  title="输入链接地址" 
+  placeholder="请以http开头.." 
+  bind:onRequestClose="onRequestClose" 
+  bind:onSubmit="onDialogSubmit"
+  />

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "发帖"
+  "navigationBarTitleText": "发帖",
+  "usingComponents": {
+    "linkdialog": "./comps/link/linkeditor"
+  }
 }

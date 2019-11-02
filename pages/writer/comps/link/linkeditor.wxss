@@ -1,0 +1,78 @@
+/* pages/writer/comps/link/linkeditor.wxss */
+/* pages/me/edit.wxss */
+.-title {
+  font-size: 28rpx;
+  color: gray;
+  padding: 24rpx 28rpx;
+}
+
+.mask {
+  position: fixed; 
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.dialog {
+  position: fixed;
+  top: 30vh; left: 48rpx; right: 48rpx;
+  z-index: 999;
+  background: white;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx 0rpx;
+}
+
+.dialog .input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 32rpx 32rpx;
+  font-size: 28rpx;
+  color: #555;
+}
+
+.dialog .input input {
+  padding: 12rpx 24rpx;
+  background: #f8f8f8;
+}
+
+
+.dialog .-title {
+  padding: 12rpx 0;
+  font-size: 32rpx;
+}
+
+
+.horizontal {
+  display: flex;
+  align-items: center;
+}
+
+.btn-wrapper {
+  width: 50%;
+  padding: 16rpx 32rpx;
+  font-size: 32rpx;
+}
+
+.btn-cancel {
+  width: 100%;
+  background-color: #f8f8f8;
+  color:gray;
+  font-size: 32rpx;
+}
+
+.btn-cancel-hover {
+ opacity: .6;
+}
+
+.btn-submit {
+  font-size: 32rpx;
+  width: 100%;
+  color: white;
+}
+
+.btn-submit-hover {
+  opacity: .6;
+}

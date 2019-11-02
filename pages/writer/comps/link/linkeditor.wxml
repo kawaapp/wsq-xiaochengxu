@@ -1,0 +1,34 @@
+<!--pages/writer/comps/link/linkeditor.wxml-->
+
+<!-- input dialog -->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog">
+    <view class="-title">{{title}}</view>
+    <view class="input">
+      <input
+        value='{{initial}}'
+        placeholder="{{placeholder}}"
+        bindinput='bindInput'
+        bindconfirm="clickSubmit" 
+        placeholder-class="input_null" 
+        fixed="{{true}}"
+        maxlength="500" 
+        show-confirm-bar="{{true}}" 
+        confirm-type="send"
+        cursor-spacing="32rpx" 
+        focus="{{true}}">
+      </input>
+    </view>
+    <view class="horizontal" style="width: 100%">
+      <view class="btn-wrapper">
+        <button catchtap="clickCancel" 
+        class="btn-cancel" hover-class="btn-cancel-hover">取消</button>
+      </view>
+      <view class="btn-wrapper">
+        <button catchtap="clickSubmit"
+          class="btn-submit" hover-class="btn-submit-hover"
+          style="background:{{theme.color}}">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

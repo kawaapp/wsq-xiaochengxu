@@ -39,30 +39,12 @@ function videoSupport() {
   return false
 }
 
-function onChooseMedia() {
-  if (!videoSupport()) {
-    onChooseImage()
-    return
-  }
-
-  var menu = {
-    items: ["照片", "视频"],
-    actions: [onChooseImage, onChooseVideo],
-  }
-  wx.showActionSheet({
-    itemList: menu.items,
-    success: function (res) {
-      var fn = menu.actions[res.tapIndex]
-      fn()
-    },
-    fail: function (res) {
-      console.log(res.errMsg)
-    }
-  })
-}
-
 function onClickVideo() {
   console.log("click video..")
+}
+
+function onChooseLink() {
+  view.setData({ showDialog: true})
 }
 
 function onChooseVideo() {
@@ -78,6 +60,7 @@ function onChooseVideo() {
     }
   })
 }
+
 
 function onClickDeleteVideo() {
   view.setData({video: {}})
@@ -113,6 +96,9 @@ function hasContent() {
   if (view.data.video.src) {
     return true
   }
+  if (view.data.link.url) {
+    return true
+  }
   return false
 }
 
@@ -145,6 +131,8 @@ function onClickSubmit() {
     handler = uploadImages(data, view.data.images)
   } else if (view.data.video.src) {
     handler = uploadVideo(data, view.data.video)
+  } else if (view.data.link.url) {
+    handler = uploadLink(data, view.data.link)
   } else {
     handler = uploadText(data)
   }
@@ -285,6 +273,20 @@ function uploadVideo(data, video) {
   })
 }
 
+// 上传链接 
+function uploadLink(data, link) {
+  return new Promise((res, rej) => {
+    var jsonStr = JSON.stringify(link)
+    data.media = {
+      path: jsonStr, type: 4,  // 1: image 2: audio 3: video 4: link
+    }
+    api.createPost(data).then((resp) => {
+      res(resp)
+    }).catch(err => {
+      rej(err)
+    })
+  })
+}
 
 function onClickTag(e) {
   var idx = e.target.dataset.idx;
@@ -321,18 +323,59 @@ function onDeleteLocation(e) {
   view.setData({location: {}})
 }
 
+function onSubmitLink(e) {
+  var url = e.detail.value
+  if (util.isWhiteSpace(url)) {
+    wx.showToast({
+      title: '输入不能为空', icon: 'none',
+    })
+    return
+  }
+  if (!(url.startsWith("http") || url.startsWith("HTTP"))) {
+    wx.showToast({
+      title: '链接需以http开头', icon: 'none'
+    })
+    return
+  }
+  // 提交链接...
+  api.linkPreview(url).then( resp => {
+    console.log("get url preview:", resp)
+    view.setData({ link: resp.data})
+  }).catch( err => {
+    console.log(err)
+    wx.showToast({ title: "链接解析失败", icon: "none" })
+  })
+  view.setData({ showDialog: false })
+}
+
+function onDeleteLink(e) {
+  view.setData({ link: {}})
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
   onUnload: onUnload,
+  
+  // image
+  onChooseImage: onChooseImage,
   onClickImage: onClickImage,
   onDeleteImage: onDeleteImage,
-  onChooseMedia: onChooseMedia,
+
+  // video
+  onChooseVideo: onChooseVideo,
   onClickVideo: onClickVideo,
   onClickDeleteVideo: onClickDeleteVideo,
-  onChooseImage: onChooseImage,
-  onClickSubmit: onClickSubmit,
-  onClickTag: onClickTag,
+
+  // link
+  onChooseLink: onChooseLink,
+  onDeleteLink: onDeleteLink,
+  onSubmitLink: onSubmitLink,
+
+  // location
   onClickLocation: onClickLocation,
   onDeleteLocation: onDeleteLocation,
+
+  onClickSubmit: onClickSubmit,
+  onClickTag: onClickTag,
 }
