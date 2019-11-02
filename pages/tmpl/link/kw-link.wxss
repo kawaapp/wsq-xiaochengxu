@@ -7,8 +7,9 @@
 }
 
 .link image {
-  width: 100rpx;
-  height: 100rpx;
+  min-width: 90rpx;
+  width: 90rpx;
+  height: 90rpx;
   margin-right: 8rpx;
 }
 
