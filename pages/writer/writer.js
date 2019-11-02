@@ -18,11 +18,7 @@ Page({
     location: "",
     images: [],
     video:{},
-    link: {
-      logo: "http://www.xinhuanet.com/favicon.ico",
-      title: "习近平致信祝贺中国科学院建院70周年",
-      url: "12"
-    },
+    link: {},
     topic: {
       items: [],
       selected: -1,

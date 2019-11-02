@@ -38,10 +38,13 @@ function fetch(options) {
     var utc = item.post.created_at * 1000
     item.post.agoTime = util.agoTime(utc)
     if (item.post.media) {
-      if (item.post.media.type === 1) {
-        item.post.images = JSON.parse(item.post.media.path)
-      } else if (item.post.media.type === 3) {
-        item.post.video = JSON.parse(item.post.media.path)
+      var media = item.post.media
+      if (media.type === 1) {
+        item.post.images = JSON.parse(media.path)
+      } else if (media.type === 3) {
+        item.post.video = JSON.parse(media.path)
+      } else if (media.type === 4) {
+        item.post.link = JSON.parse(media.path)
       }
     }
     if (item.post.location) {

@@ -22,12 +22,14 @@
   border-radius: 50%;
   background: rgba(0, 0, 0, .3);
   z-index: 1000;
-  padding: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .box .del image {
-  width: 100%;
-  height: 100%;
+  width: 32rpx;
+  height: 32rpx;
 }
 
 .bar {
@@ -35,7 +37,16 @@
   align-items: center;
 }
 
+.bar .item {
+  margin: 0px 16rpx;
+  padding: 0px;
+}
+.bar .item:hover {
+  background: #eee
+}
+
 .bar image {
+  vertical-align: middle;
   width: 56rpx;
   height: 56rpx;
   padding: 8rpx 8rpx;
@@ -144,12 +155,13 @@
   background: #f8f8f8;
   display: flex;
   align-items: center;
-  padding: 8rpx;
+  padding: 12rpx;
 }
 
 .link image {
-  width: 100rpx;
-  height: 100rpx;
+  min-width: 90rpx;
+  width: 90rpx;
+  height: 90rpx;
   margin-right: 8rpx;
 }
 

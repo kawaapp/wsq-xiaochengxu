@@ -8,6 +8,7 @@
     "loading": "../tmpl/loading/loading",
     "kw-input": "../tmpl/input/kw-input",
     "kw-text": "../tmpl/text/kw-text",
-    "kw-video": "../tmpl/video/kw-video"
+    "kw-video": "../tmpl/video/kw-video",
+    "kw-link": "../tmpl/link/kw-link"
   }
 }

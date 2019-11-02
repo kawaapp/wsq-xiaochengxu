@@ -1,4 +1,5 @@
 const api = require('../../../utils/api.js')
+const biz = require('../../../utils/biz.js')
 
 var view = undefined
 function setup(v) {
@@ -22,7 +23,7 @@ function onLoad(options) {
       loader.more = false
     }
     view.setData({ loader: loader })
-    view.setData({ posts: resp.data })
+    view.setData({ posts: massage(resp.data) })
   }).catch(err => {
     console.log(err)
     wx.showToast({
@@ -51,7 +52,7 @@ function onPullDownRefresh() {
       more: resp.data && resp.data.length === 20
     }
     view.setData({ loader: loader })
-    view.setData({ posts: resp.data })
+    view.setData({ posts: massage(resp.data) })
     wx.showToast({
       title: '刷新成功', icon: 'success',
     })
@@ -86,7 +87,8 @@ function onReachBottom() {
       loader.more = false
     }
     if (resp.data) {
-      view.setData({ posts: posts.concat(resp.data) })
+      const decorated = massage(resp.data)
+      view.setData({ posts: posts.concat(decorated) })
     }
     view.setData({ loader: loader })
   }).catch(err => {
@@ -110,6 +112,12 @@ function onClickItem(e) {
   goto(post.id)
 }
 
+function massage(items) {
+  return items.map( item => {
+    item.content = biz.postContent(item)
+    return item
+  })
+}
 
 module.exports = {
   setup: setup,

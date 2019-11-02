@@ -71,9 +71,35 @@ function parsePost(post) {
   return post
 }
 
+// 获取帖子摘要
+function postContent(post) {
+  var digest = ""
+  if (post.content) {
+    digest = post.content
+  } else if (post.media) {
+    if (post.media.type == 1){
+      digest = "[图片]"
+    } else if (post.media.type == 2) {
+      digest = "[音频]"
+    } else if (post.media.type == 3) {
+      digest = "[视频]"
+    } else if (post.media.type == 4) {
+      digest = "[链接]" + (getLinkTitle(post.media) || '')
+    }
+  }
+  return digest
+}
+
+function getLinkTitle(media) {
+  try {
+    return JSON.parse(media.path).title
+  } catch(err){}
+}
+
 module.exports = {
   getPhoneNumber: getPhoneNumber,
   getGrade: getGrade,
   isUserHasName: isUserHasName,
   parsePost: parsePost,
+  postContent: postContent,
 }

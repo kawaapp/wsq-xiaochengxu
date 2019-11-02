@@ -65,9 +65,17 @@
   <!-- Menu bar -->
   <view class='line'></view>
   <view class="bar">
-    <image src="{{theme.images}}/photo.png" bindtap="chooseImage" />
-    <image src="{{theme.images}}/video.png" bindtap="chooseVideo" />
-    <image src="{{theme.images}}/link.png"  bindtap="chooseLink" />
+    <view class="item">
+      <image src="{{theme.images}}/photo.png" bindtap="chooseImage" />
+    </view>
+    
+    <view class="item">
+      <image src="{{theme.images}}/video.png" bindtap="chooseVideo" />
+    </view>
+
+    <view class="item">
+      <image src="{{theme.images}}/link.png"  bindtap="chooseLink" />
+    </view>
   </view>
 
   <!-- 选择位置 -->
