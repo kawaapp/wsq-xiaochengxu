@@ -46,25 +46,13 @@ function onLoad(options) {
 
   // 只有用户绑定了昵称，并且开启了经验系统才更新用户等级
   if (user.nickname && meta.app_exp_limit) {
-    console.log("更新用户等级..." + meta.app_exp_limit)
-    var updater = function(grades) {
-      var i = biz.getGrade(grades, user.exp_count)
-      if (i != undefined) {
-        view.setData({
-          expLabel: 'LV' + grades[i].level + ' ' + grades[i].show_name,
-        })
-      }
+    const grades = app.globalData.grades
+    var i = biz.getGrade(grades, user.exp_count)
+    if (i != undefined) {
+      view.setData({
+        expLabel: 'LV' + grades[i].level + ' ' + grades[i].show_name,
+      })
     }
-    try {
-      const grades = wx.getStorageSync('grades')
-      if (grades) {
-        app.globalData.grades = grades
-        updater(grades)
-      }
-    } catch (e) {
-      // Do something when catch error
-    }
-    updateGrade(updater)
   }
 }
 
@@ -131,28 +119,6 @@ function getPhoneNumber(e) {
   } else {
     wx.showToast({title: '绑定手机号失败:0', icon: 'none'})
   }
-}
-
-// 更新等级定义
-function updateGrade(updater) {
-  api.getGradeList().then(resp => {
-    app.globalData.grades = resp.data
-
-    // 更新 UI
-    if (updater) {
-      updater(resp.data)
-    }
-
-    // 保存到本地
-    wx.setStorage({
-      key: 'grades',
-      data: resp.data,
-    })
-
-    console.log("get grades:", resp.data)
-  }).catch(err => {
-    console.log(err)
-  })
 }
 
 module.exports =  {

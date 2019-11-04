@@ -168,8 +168,20 @@ function fetchMessage(app) {
   })
 }
 
+// 更新等级定义
 function fetchGradeData(app) {
-  
+  try {
+    const value = wx.getStorageSync('grades')
+    if (value) {
+      setAppData(app, "grades", value)
+    }
+  } catch (e) { }
+
+  api.getGradeList().then(resp => {
+    setAppData(app, "grades", resp.data)
+  }).catch(err => {
+    console.log(err)
+  })
 }
 
 // 持久化关键信息
@@ -180,4 +192,6 @@ function save(app) {
   wx.setStorage({ key: 'user', data: app.globalData.userInfo })
   // tags
   wx.setStorage({ key: 'tags', data: app.globalData.tags })
+  // grades
+  wx.setStorage({ key: 'grades', data: app.globalData.grades })
 }
