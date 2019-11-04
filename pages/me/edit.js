@@ -1,5 +1,7 @@
 const kawa = require('../../kawa.js')
 const api = require('../../utils/api.js')
+const util = require('../../utils/util.js')
+
 const app = getApp()
 
 // pages/me/edit.js
@@ -51,6 +53,14 @@ Page({
     var value = this.data.dialog.value
     var type = this.data.dialog.type
     var data = {}
+
+    if (type === 'nickname' && util.isWhiteSpace(value)) {
+      wx.showToast({
+        title: '用户名不能为空', icon: 'none'
+      })
+      return
+    }
+
     if (type === 'nickname') {
       data.nickname = value
     } else if (type === 'email') {
