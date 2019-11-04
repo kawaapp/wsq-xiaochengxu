@@ -36,7 +36,8 @@ Component({
   data: {
     theme: {
       images: kawa.Theme.Image,
-      labelColor: kawa.Theme.MainColor,
+      adminColor: kawa.Theme.MainColor,
+      levelColor: util.lightenColor(kawa.Theme.MainColor, 30),
       mainColor: kawa.Theme.MainColor,
       tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
       favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,

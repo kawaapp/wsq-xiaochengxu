@@ -12,7 +12,7 @@ Page({
     theme: {
       images: kawa.Theme.Image,
       color: kawa.Theme.MainColor,
-      gradeColor: util.lightenColor(kawa.Theme.MainColor, -20),
+      gradeColor: util.lightenColor(kawa.Theme.MainColor, 0),
     },
     user: {
       avatar: '',

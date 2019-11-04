@@ -5,8 +5,8 @@
       src="{{user.avatar?user.avatar: theme.images+'/user_icon.png'}}">
     </image>
     <view style='margin-left:18rpx;'>
-      <view class='title' style='font-size:30rpx;' >
-        <text>{{user.nickname?user.nickname:'路人'}}</text>
+      <view>
+        <text style='font-size:30rpx;'>{{user.nickname?user.nickname:'路人'}}</text>
         <text wx:if="{{expLabel && user.nickname}}" 
           class='grade' 
           style='background-color:{{theme.gradeColor}}'

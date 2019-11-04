@@ -13,6 +13,8 @@ Page({
       images: kawa.Theme.Image,
       favorColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
       color: kawa.Theme.MainColor,
+      adminColor: kawa.Theme.MainColor,
+      levelColor: util.lightenColor(kawa.Theme.MainColor, 30),
     },
     item: {
       idx: null,

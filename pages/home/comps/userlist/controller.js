@@ -46,7 +46,7 @@ function onReachBottom() {
       more: resp.data && resp.data.length === PAGE_SIZE
     }
     view.setData({ loader: loader })
-    view.setData({ users: users.concat(resp.data)})
+    view.setData({ users: users.concat(massage(resp.data))})
   }).catch(err => {
     console.log(err)
     view.setData({
@@ -71,7 +71,7 @@ function fetchUserList() {
       more: resp.data && resp.data.length === PAGE_SIZE
     }
     view.setData({ loader: loader })
-    view.setData({ users: resp.data })
+    view.setData({ users: massage(resp.data) })
   }).catch(err => {
     wx.stopPullDownRefresh()
     console.log(err)
@@ -98,6 +98,12 @@ function onClickItem(e) {
   })
   wx.navigateTo({
     url: '/pages/user/user/user',
+  })
+}
+
+function massage(users) {
+  return users.map( user => {
+    return biz.parseUser(user)
   })
 }
 

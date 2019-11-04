@@ -52,6 +52,9 @@ function fetch(options) {
         item.post.location = JSON.parse(item.post.location)
       } catch(err){}
     }
+    if (item.post.author) {
+      item.post.author = biz.parseUser(item.post.author)
+    }
 
     // set post data
     view.setData({

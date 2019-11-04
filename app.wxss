@@ -115,9 +115,8 @@ page{
 }
 
 .user-label {
-  padding: 2rpx 4rpx;
+  padding: 0rpx 4rpx;
   vertical-align: middle;
-  border-radius: 4rpx;
   text-align: center;
   font-size: 22rpx;
   color: white;
@@ -125,8 +124,7 @@ page{
   margin-right: 16rpx;
   position: relative;
   top: -2rpx;
-
-  opacity: .7;
+  border-radius: 2rpx;
 }
 
 .p-1 {

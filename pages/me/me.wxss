@@ -71,11 +71,12 @@
 } 
 
 .grade {
+  padding: 0rpx 8rpx;
   color: white;
-  font-size: 18rpx;
-  padding: 2rpx 8rpx;
+  text-align: center;
+  font-size: 22rpx;
   margin-left: 12rpx;
-  vertical-align: middle;
-  font-weight: bold;
-  border-radius: 4rpx;
+  border-radius: 2rpx;
+  position: relative;
+  top: -2rpx;
 }

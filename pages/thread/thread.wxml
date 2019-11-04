@@ -7,7 +7,16 @@
       bindtap="clickPostAvatar"
       />
     <view>
-      <view class='title b5'>{{item.post.author.nickname}}</view>
+      <view class='title b5'>{{item.post.author.nickname}}
+      <text wx:if="{{item.post.author.admin_label}}" 
+          class="user-label"
+          style="background:{{theme.adminColor}}; opacity: .9"
+        >管理员</text>
+      <text wx:if="{{item.post.author.level_label}}" 
+          class="user-label" 
+          style="background:{{theme.levelColor}}; opacity: .8"
+        >{{item.post.author.level_label}}</text> 
+      </view>
       <view class='subtitle'>{{item.post.agoTime}}</view>
     </view>
     <image class='menu' src="{{theme.images}}/menu.png" catchtap='clickMenu' data-idx='{{index}}' />

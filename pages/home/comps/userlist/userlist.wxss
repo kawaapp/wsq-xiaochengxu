@@ -55,3 +55,16 @@
   background-color: #f8f8f8;
   margin: 18.72rpx 0;
 }
+
+.user-label {
+  padding: 0px 4rpx;
+  line-height: 28rpx;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 22rpx;
+  color: white;
+  position: relative;
+  top: -2rpx;
+  margin-left: 16rpx;
+  border-radius: 2rpx;
+}

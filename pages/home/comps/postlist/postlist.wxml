@@ -26,11 +26,11 @@
           <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}
           <text wx:if="{{item.author.admin_label}}" 
             class="user-label"
-            style="background:{{theme.labelColor}}; opacity: .8"
+            style="background:{{theme.adminColor}}; opacity: .9"
           >管理员</text>
           <text wx:if="{{item.author.level_label}}" 
             class="user-label" 
-            style="background:{{theme.labelColor}}"
+            style="background:{{theme.levelColor}}; opacity: .8"
           >{{item.author.level_label}}</text>
           </view>
           <view class='subtitle'>{{item.agoTime}}</view>

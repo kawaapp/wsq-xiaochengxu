@@ -7,6 +7,14 @@
     <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
     <image class='avatar' src="{{item.avatar}}"></image>
     <text class='name' >{{item.nickname}}</text>
+     <text wx:if="{{item.admin_label}}" 
+        class="user-label"
+        style="background:{{theme.adminColor}}; opacity: .9"
+      >管理员</text>
+      <text wx:if="{{item.level_label}}" 
+        class="user-label"
+        style="background:{{theme.levelColor}}; opacity: .8"
+      >{{item.level_label}}</text>
     <view style='width: 12rpx;'> </view>
   </view>
   </view>

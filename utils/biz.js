@@ -74,7 +74,7 @@ function parsePost(post) {
 
 function parseUser(user) {
   if (!user) {
-    return
+    return {}
   }
   var meta = app.globalData.meta
   if (meta.user_label_admin && user.admin) {
@@ -87,7 +87,7 @@ function parseUser(user) {
       user.level_label = 'LV.' + grades[i].level
     }
   }
-  console.log("parse user:", user)
+  return user
 }
 
 // 获取帖子摘要
@@ -120,5 +120,6 @@ module.exports = {
   getGrade: getGrade,
   isUserHasName: isUserHasName,
   parsePost: parsePost,
+  parseUser: parseUser,
   postContent: postContent,
 }

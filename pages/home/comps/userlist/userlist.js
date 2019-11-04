@@ -1,5 +1,7 @@
 const ctr = require('./controller.js')
 const kawa = require('../../../../kawa.js')
+const util = require('../../../../utils/util.js')
+
 
 // pages/home/comps/userlist.js
 Component({
@@ -29,6 +31,8 @@ Component({
   data: {
     theme: {
       images: kawa.Theme.Image,
+      levelColor: util.lightenColor(kawa.Theme.MainColor, 30),
+      adminColor: kawa.Theme.MainColor,
     }, 
     loader: {
       ing: false,
