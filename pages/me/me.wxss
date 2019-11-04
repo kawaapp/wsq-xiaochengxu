@@ -79,4 +79,5 @@
   border-radius: 2rpx;
   position: relative;
   top: -2rpx;
+  font-weight: bold;
 }
