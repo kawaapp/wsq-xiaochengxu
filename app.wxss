@@ -114,20 +114,19 @@ page{
   border: 0;
 }
 
-
-.admin-tag {
-  width: 30rpx;
-  height: 30rpx;
-  padding: 0 4rpx;
+.user-label {
+  padding: 2rpx 4rpx;
   vertical-align: middle;
   border-radius: 4rpx;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 22rpx;
   color: white;
-  background-color: #2daa58;
+  background-color: #A7B1B3;
   margin-right: 16rpx;
   position: relative;
   top: -2rpx;
+
+  opacity: .7;
 }
 
 .p-1 {

@@ -1,5 +1,6 @@
 const ctr = require('./controller.js')
 const kawa = require('../../../../kawa.js')
+const util = require('../../../../utils/util.js')
 
 // pages/home/comps/postlist/postlist.js
 Component({
@@ -35,6 +36,7 @@ Component({
   data: {
     theme: {
       images: kawa.Theme.Image,
+      labelColor: kawa.Theme.MainColor,
       mainColor: kawa.Theme.MainColor,
       tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
       favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,

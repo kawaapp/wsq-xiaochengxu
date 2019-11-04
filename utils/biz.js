@@ -68,7 +68,26 @@ function parsePost(post) {
   var utcTime = post.created_at * 1000
   post.time = util.formatTime(new Date(utcTime))
   post.agoTime = util.agoTime(utcTime)
+  parseUser(post.author)
   return post
+}
+
+function parseUser(user) {
+  if (!user) {
+    return
+  }
+  var meta = app.globalData.meta
+  if (meta.user_label_admin && user.admin) {
+    user.admin_label = true
+  }
+  var grades = app.globalData.grades
+  if (meta.user_label_level && !user.admin && grades) {
+    var i = getGrade(grades, user.exp_count)
+    if (i != undefined) {
+      user.level_label = 'LV.' + grades[i].level
+    }
+  }
+  console.log("parse user:", user)
 }
 
 // 获取帖子摘要
