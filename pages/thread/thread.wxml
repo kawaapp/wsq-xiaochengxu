@@ -48,6 +48,18 @@
       <location location="{{item.post.location}}"/>
     </block>
   </view>
+  <view class="share-to">
+    <view class="tips">- 没有更多了，分享一下吧 -</view>
+    <view style="display:flex;">
+      <button open-type='share' class='btn-clear .btn'>
+      分享好友<image src="{{theme.images}}/wechat.png"/>
+      </button>
+      <view style="width:24rpx;" />
+      <button bindtap="sharePoster" class='btn-clear .btn'>
+      分享海报<image src="{{theme.images}}/wx_moment.png"/>
+      </button>
+    </view>
+  </view>
 </view>
 <view style='margin-bottom:9rpx;'/>
 

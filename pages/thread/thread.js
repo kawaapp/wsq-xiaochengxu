@@ -104,6 +104,10 @@ Page({
       gotoUserPage(comment.author)
     }
   },
+
+  sharePoster: function(e) {
+      console.log("share poster...")
+  }
 })
 
 function gotoUserPage(user) {

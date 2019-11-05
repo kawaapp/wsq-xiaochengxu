@@ -123,3 +123,31 @@
   word-break: keep-all;
   font-size: 32rpx;
 }
+
+.share-to {
+  margin: 54rpx auto 24rpx auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-to .tips {
+  color: #999;
+  font-size: 28rpx;
+  margin-bottom: 18rpx;
+}
+
+.share-to image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-left: 12rpx;
+}
+
+.share-to .btn {
+  background: white;
+  box-shadow:0px 0px 8rpx #ddd;
+  border-radius: 38rpx;
+  font-size: 30rpx;
+  padding: 8rpx 24rpx;
+}
