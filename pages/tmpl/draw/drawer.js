@@ -61,6 +61,9 @@ Component({
         }
       }, 100)
     },
-  
+
+    sizeChanged(width, height) {
+      this.triggerEvent('sizeChanged', { width: width, height: height})
+    }
   }
 })

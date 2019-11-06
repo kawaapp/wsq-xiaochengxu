@@ -61,12 +61,11 @@ function startPainting() {
   // 1. layout
   layout(view.data.painting)
 
-  console.log("get view group:", view.data.painting)
-
   // reset canvas size
   const { mWidth, mHeight } = view.data.painting
   view.setData({ width: mWidth, height: mHeight})
-
+  view.sizeChanged(mWidth, mHeight)
+  
   // 2. drawing!
   draw(view.data.painting)
   

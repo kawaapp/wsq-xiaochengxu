@@ -11,6 +11,8 @@ Page({
     painting: {},
     filePath: "",
     cursor: {},
+    width: 0,
+    height: 0,
   },
 
   /**
@@ -30,6 +32,11 @@ Page({
     wx.hideLoading()
     console.log("get paiting:", e)
     this.setData({ filePath: e.detail.tempFilePath })
+  },
+
+  onSizeChanged: function(e) {
+    console.log("get width, height:", e)
+    this.setData({ width: e.detail.width, height: e.detail.height})
   },
 
   saveImage: function(e) {

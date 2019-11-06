@@ -1,5 +1,9 @@
 <!--pages/poster/poster.wxml-->
-<drawer painting="{{painting}}" bind:getImage="eventGetImage" bind:onCursorChanged="onCursorChanged"/>
+<drawer painting="{{painting}}" 
+  bind:getImage="eventGetImage" 
+  bind:onCursorChanged="onCursorChanged"
+  bind:sizeChanged="onSizeChanged"
+/>
 <view class="body">
   <view class="{{filePath? 'hide': ''}}">
   </view>
