@@ -1,0 +1,46 @@
+/* pages/poster/poster.wxss */
+.body {
+  height: 100vh;
+  background: rgba(0, 0, 0, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.body image {
+  width: 80%;
+  height: 80%;
+  max-width: 80vw;
+  max-height: 100vh;
+  z-index: 999;
+}
+
+.body view {
+  position: absolute;
+  background: #f8f8f8;
+  width: 80%;
+  height: 80%;
+  max-width: 80vw;
+  max-height: 100vh;
+  transition: all 1s;
+}
+
+.body .hide {
+  height: 0px;
+  width: 120px;
+  opacity: 0;
+}
+
+.footer {
+  z-index: 999;
+  position: fixed;
+  bottom: 0px; left: 0px; right: 0px;
+  background: white;
+  
+  text-align: center;
+  padding: 4rpx 8rpx;
+}
+
+.footer .-title {
+  font-size: 36rpx;
+}

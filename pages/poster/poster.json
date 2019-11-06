@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "drawer": "../tmpl/draw/drawer"
+  }
+}

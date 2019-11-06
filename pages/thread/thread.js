@@ -106,7 +106,8 @@ Page({
   },
 
   sharePoster: function(e) {
-      console.log("share poster...")
+    util.sendRequest('post', this.data.item.post)
+    wx.navigateTo({ url: '/pages/poster/poster'})
   }
 })
 

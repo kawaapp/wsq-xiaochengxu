@@ -19,7 +19,8 @@
     "pages/chat/chat",
     "pages/exp/exp",
     "pages/signin/signin",
-    "pages/me/edit"
+    "pages/me/edit",
+    "pages/poster/poster"
   ],
   "permission": {
     "scope.userLocation": {
