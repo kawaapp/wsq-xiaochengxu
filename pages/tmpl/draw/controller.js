@@ -1,6 +1,7 @@
 
 var view = undefined
 var cursor = {top: 0, left: 0}
+var size = {width: 0, height: 0}
 
 function setup(_view) {
   view = _view
@@ -59,6 +60,10 @@ function getImageInfo(url) {
 // 开始绘制, 经典的两遍布局
 function startPainting() {
   console.log("start layout...")
+  // reset 
+  cursor = { top: 0, left: 0 }
+  size = { width: 0, height: 0 }
+  
   // 1. layout
   layout(view.data.painting)
 
@@ -284,6 +289,11 @@ function layout(group) {
   if (group.height) {
     group.mHeight = group.height
   }
+
+  // sync canvas size
+  size.width = Math.max(size.width, group.mWidth)
+  size.height = Math.max(size.height, group.mHeight)
+  view.sizeChanged(size.width, size.height)
 }
 
 function measureRect(rect) {

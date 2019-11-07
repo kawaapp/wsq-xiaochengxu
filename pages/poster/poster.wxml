@@ -5,7 +5,7 @@
   bind:sizeChanged="onSizeChanged"
 />
 <view class="body">
-  <view class="{{filePath? 'hide': ''}}">
+  <view class="{{filePath? 'hide': ''}}" style="width:{{width}}px;height:{{height}}px;">
   </view>
   <image wx:if="{{filePath}}" src="{{filePath}}" mode='aspectFit' />
 </view>

@@ -12,7 +12,7 @@ Page({
     painting: {},
     filePath: "",
     cursor: {},
-    width: 0,
+    width: 375,
     height: 0,
   },
 
