@@ -4,6 +4,7 @@ var cursor = {top: 0, left: 0}
 
 function setup(_view) {
   view = _view
+  cursor = { top: 0, left: 0 }
 }
 
 function start() {

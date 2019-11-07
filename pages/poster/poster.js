@@ -41,7 +41,13 @@ Page({
   eventGetImage: function(e) {
     wx.hideLoading()
     console.log("get paiting:", e)
-    this.setData({ filePath: e.detail.tempFilePath })
+    if (e.detail.errMsg == 'canvasdrawer:ok') {
+      this.setData({ filePath: e.detail.tempFilePath })
+    } else {
+      wx.showToast({
+        title: '渲染失败', icon: 'none'
+      })
+    }
   },
 
   onSizeChanged: function(e) {
