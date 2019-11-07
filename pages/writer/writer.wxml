@@ -69,7 +69,7 @@
       <image src="{{theme.images}}/photo.png" bindtap="chooseImage" />
     </view>
     
-    <view class="item">
+    <view class="item" wx:if="{{showVideo}}">
       <image src="{{theme.images}}/video.png" bindtap="chooseVideo" />
     </view>
 

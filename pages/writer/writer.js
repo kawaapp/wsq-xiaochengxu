@@ -25,6 +25,7 @@ Page({
     },
     showAdd: false,
     showDialog: false,
+    showVideo: false,
   },
   onLoad(options) {
     ctr.setup(this)

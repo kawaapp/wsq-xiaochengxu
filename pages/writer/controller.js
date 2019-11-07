@@ -14,6 +14,7 @@ function onUnload() {
 function onLoad(options) {
   var topic = app.globalData.tags
   view.setData({ topic: { items: topic, selected: -1}})
+  view.setData({ showVideo: videoSupport()})
 }
 
 function clearInput(keep) {
