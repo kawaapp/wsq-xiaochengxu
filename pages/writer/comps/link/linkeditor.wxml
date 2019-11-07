@@ -18,7 +18,7 @@
         cursor-spacing="32rpx" 
         focus="{{true}}">
       </input>
-      <view class="note">注意：仅支持设置业务域名的链接地址
+      <view class="note">注意：仅支持关联公众号文章地址
       </view>
     </view>
     <view class="horizontal" style="width: 100%">
