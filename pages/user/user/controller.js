@@ -2,6 +2,7 @@ import api from '../../../utils/api.js'
 import util from '../../../utils/util.js'
 import biz from '../../../utils/biz.js'
 
+const app = getApp()
 const PAGE_SIZE = 20
 
 var view = undefined
@@ -38,7 +39,7 @@ function fetchPostList(uid) {
       ing: false,
       more: resp.data && resp.data.length === PAGE_SIZE
     }
-    var posts = decorateList(resp.data)
+    var posts = massage(resp.data)
     view.setData({ posts: resp.data })
     view.setData({ loader: loader })
   }).catch(err => {
@@ -69,7 +70,7 @@ function fetchMorePost() {
     if (resp.data.length < limit) {
       loader.more = false
     }
-    var data = decorateList(resp.data)
+    var data = massage(resp.data)
     view.setData({ loader: loader })
     view.setData({ posts: posts.concat(data) })
   }).catch(err => {
@@ -79,12 +80,30 @@ function fetchMorePost() {
   })
 }
 
-function decorateList(posts) {
-  var i = 0, n = posts.length
-  for (; i < n; i++) {
-    posts[i] = biz.parsePost(posts[i])
+function massage(posts) {
+  var result = []
+  var author = app.globalData.userInfo
+
+  for (var i = 0; i < posts.length; i++) {
+    var post = posts[i]
+    var hide = (post.status >> 2) & 1
+
+    // 如是本人的帖子则不隐藏
+    if (post.author && author && post.author.id == author.id) {
+      hide = false
+    }
+
+    // 如果是需要审核的帖子，即使本人也不显示直到已审核
+    // 因为微信审核人员会傻缺的以为你没有审核系统...
+    if ((post.status >> 3) & 1) {
+      hide = true
+    }
+
+    if (!hide) {
+      result.push(biz.parsePost(post))
+    }
   }
-  return posts
+  return result
 }
 
 
