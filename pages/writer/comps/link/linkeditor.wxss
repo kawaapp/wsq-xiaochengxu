@@ -44,6 +44,12 @@
   font-size: 32rpx;
 }
 
+.dialog .note {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: gray;
+}
+
 
 .horizontal {
   display: flex;
