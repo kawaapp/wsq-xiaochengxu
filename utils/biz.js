@@ -69,7 +69,33 @@ function parsePost(post) {
   post.time = util.formatTime(new Date(utcTime))
   post.agoTime = util.agoTime(utcTime)
   parseUser(post.author)
+  parseMedia(post)
+  parseLocation(post)
   return post
+}
+
+function parseMedia(post) {
+  var media = post.media
+  if (media) {
+    try {
+      if (media.type == 1) {
+        post.images = JSON.parse(media.path)
+      } else if (media.type == 3) {
+        post.video = JSON.parse(media.path)
+      } else if (media.type == 4) {
+        post.link = JSON.parse(media.path)
+      }
+    } catch (err) { }
+  }
+}
+
+function parseLocation(post) {
+  var location = post.location
+  if (location) {
+    try {
+      post.location = JSON.parse(location)
+    } catch (err) { }
+  }
 }
 
 function parseUser(user) {

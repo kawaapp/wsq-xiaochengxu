@@ -6,24 +6,24 @@
   </view>
 
   <!-- Image列表 -->
-  <block wx:if="{{media.images && media.images.length > 0}}">
+  <block wx:if="{{item.images && item.images.length > 0}}">
     <view style='margin: 8rpx 0rpx'>
-      <img-grid images="{{media.images}}"> </img-grid> 
+      <img-grid images="{{item.images}}"> </img-grid> 
     </view>
   </block>
 
   <!-- 视频 -->
-  <block wx:if="{{media.video}}">
-    <kw-video video="{{media.video}}" />
+  <block wx:if="{{item.video}}">
+    <kw-video video="{{item.video}}" />
   </block>
 
   <!-- 链接 -->
-  <block wx:if="{{media.link}}">
-    <kw-link link="{{media.link}}" />
+  <block wx:if="{{item.link}}">
+    <kw-link link="{{item.link}}" />
   </block>
 
   <!-- 地理位置 -->
-  <block wx:if="{{location && location.name}}">
-    <location location="{{location}}"/>
+  <block wx:if="{{item.location && item.location.name}}">
+    <location location="{{item.location}}"/>
   </block>
 </view>
