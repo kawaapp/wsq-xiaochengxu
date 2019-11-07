@@ -1,4 +1,5 @@
 import util from '../../utils/util.js'
+import api from '../../utils/api.js'
 const app = getApp()
 
 // pages/poster/poster.js
@@ -19,9 +20,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var p = util.getRequest("post")
-    console.log("get post", p)
-    this.setData({ painting: getDrawJson(this, p) })
+    var meta = app.globalData.meta
+    if (meta.app_qrcode) {
+      startRending(this)
+    } else {
+      api.createQrCode().then(resp => {
+        console.log("get qr code:", resp)
+        meta.app_qrcode = resp.data
+        startRending(this)
+      }).catch(err => {
+        console.log("get qrcode error:", err)
+      })
+    }
 
     wx.showLoading({
       title: '正在渲染..',
@@ -53,6 +63,12 @@ Page({
     })
   }
 })
+
+function startRending(view) {
+  var p = util.getRequest("post")
+  console.log("get post", p)
+  view.setData({ painting: getDrawJson(view, p) })
+}
 
 function getDrawJson(view, p) {
   var meta = app.globalData.meta
@@ -136,7 +152,7 @@ function getDrawJson(view, p) {
     })
   }
 
-  if (p.images) {
+  if (p.images && p.images.length > 0) {
     json.views.push({
       type: 'image',
       url: p.images[0],
@@ -155,7 +171,7 @@ function getDrawJson(view, p) {
     views:[
       {
         type: 'image',
-        url: "https://images.kawaapp.com/img_bjgji6sdbfdqfm68t510.jpg",
+        url: meta.app_qrcode,
         marginLeft: 120,
         marginTop: 60,
         width: 128,
