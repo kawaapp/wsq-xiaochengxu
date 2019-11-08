@@ -178,7 +178,7 @@ function drawText(params) {
     let lineNum = 1
     for (let i = 0; i < content.length; i++) {
       fillText += [content[i]]
-      if (view.ctx.measureText(fillText).width > width) {
+      if (content[i] == '\n' || view.ctx.measureText(fillText).width > width) {
         if (lineNum === MaxLineNumber) {
           if (i !== content.length) {
             fillText = fillText.substring(0, fillText.length - 1) + '...'
@@ -338,7 +338,7 @@ function measureText(text) {
 
   for (let i = 0; i < content.length; i++) {
     fillText += [content[i]]
-    if (view.ctx.measureText(fillText).width > width) {
+    if (content[i] == '\n' || view.ctx.measureText(fillText).width > width) {
       fillText = ''
       fillTop += lineHeight
       lineNum++
