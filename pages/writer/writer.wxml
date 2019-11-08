@@ -118,7 +118,7 @@
 <linkdialog 
   show="{{showDialog}}" 
   title="输入链接地址" 
-  placeholder="请以http开头.." 
+  placeholder="请以http/https开头.." 
   bind:onRequestClose="onRequestClose" 
   bind:onSubmit="onDialogSubmit"
   />
