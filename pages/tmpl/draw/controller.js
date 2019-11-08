@@ -51,7 +51,12 @@ function getImageInfo(url) {
         })
       },
       fail: (error) => {
-        resolve({ url: "" })
+        resolve({
+          localUrl: '/res/placeholder.png',
+          url: url,
+          width: 32,
+          height: 32,
+        })
       },
     })
   })

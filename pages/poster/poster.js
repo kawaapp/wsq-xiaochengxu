@@ -109,7 +109,7 @@ function getDrawJson(view, p) {
         views : [
           {
             type: 'image',
-            url: (p.author && p.author.avatar) || '/res/circle_mask.png',
+            url: (p.author && p.author.avatar),
             width: 48,
             circle: true,
             marginLeft: 12,
