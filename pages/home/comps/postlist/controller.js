@@ -1,6 +1,7 @@
 const api = require('../../../../utils/api.js')
 const util = require('../../../../utils/util.js')
 const biz = require('../../../../utils/biz.js')
+const meu = require('../../../../utils/meu.js')
 
 const app = getApp()
 const PAGE_SIZE = 20
@@ -178,33 +179,21 @@ function onClickComment(e) {
 function onClickMenu(e) {
   var idx = e.currentTarget.dataset.idx
   var item = view.data.posts[idx]
-  var menu = {
-    items: ["举报"],
-    actions: [function () {
-      report(item)
-    }],
-  }
-
-  if (item.stats && item.stats.favorite) {
-    menu.items.push("取消收藏")
-    menu.actions.push(function () {
-      onClickFavorite(idx)
-    })
-  } else {
-    menu.items.push("收藏")
-    menu.actions.push(function () {
-      onClickFavorite(idx)
-    })
-  }
+  var menu = meu.create(item)
 
   var user = app.globalData.userInfo
-  if (user && item.author && user.id == item.author.id) {
+  var isAuthor = user && item.author && user.id == item.author.id
+  var isAdmin = user && user.admin
+
+  // 添加删除菜单
+  if (isAuthor || isAdmin) {
     menu.items.push("删除")
-    menu.actions.push(function () {
+    menu.actions.push(function() {
       deletePost(idx)
     })
   }
 
+  // show menu
   wx.showActionSheet({
     itemList: menu.items,
     success: function (res) {
@@ -215,28 +204,6 @@ function onClickMenu(e) {
     fail: function (res) {
       console.log(res.errMsg)
     }
-  })
-}
-
-function report(post) {
-  var digest = {
-    text: post.content,
-    images: post.images,
-  }
-  var data = {
-    entity_id: post.id,
-    entity_ty: 0,
-    content: JSON.stringify(digest)
-  }
-
-  api.createReport(data).then(resp => {
-    wx.showToast({
-      title: '举报成功',
-    })
-  }).catch(err => {
-    wx.showToast({
-      title: '举报失败：网络错误', icon: 'none',
-    })
   })
 }
 
@@ -257,6 +224,11 @@ function massage(posts) {
     // 因为微信审核人员会傻缺的以为你没有审核系统...
     if ((post.status >> 3) & 1) {
       hide = true
+    }
+
+    // 如果是管理员则总显示
+    if (author && author.admin) {
+      hide = false
     }
 
     if (!hide) {
@@ -283,37 +255,6 @@ function deletePost(idx) {
       title: '删除失败:' + err.code, icon: 'none'
     })
   })
-}
-
-function onClickFavorite(idx) {
-  var item = view.data.posts[idx]
-  if (item.stats.favorite) {
-    console.log("delete favorite")
-    api.deleteFavorite(item.id).then(resp => {
-      item.stats.favorite = false
-      wx.showToast({
-        title: '取消成功', icon: 'none'
-      })
-    }).catch(err => {
-      wx.showToast({
-        title: '取消失败', icon: 'none'
-      })
-      console.log(err)
-    })
-  } else {
-    api.createFavorite(item.id).then((resp) => {
-      item.stats.favorite = true
-      wx.showToast({
-        title: '收藏成功', icon: 'none'
-      })
-      console.log("favorite succ:", resp.statusCode)
-    }).catch(err => {
-      wx.showToast({
-        title: '收藏失败', icon: 'none'
-      })
-      console.log("favor err:", err)
-    })
-  }
 }
 
 function onClickTopic(e) {

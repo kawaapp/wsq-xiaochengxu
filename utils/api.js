@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
+const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-const Host = "https://wsq.kawaapp.com"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -86,6 +86,14 @@ function loginExpired() {
  */
 function isHttpSuccess(status) {
   return status >= 200 && status < 300 || status === 304;
+}
+
+// JSON 转 Query
+function jsonQueryString(params) {
+  if (!params) {
+    return ""
+  }
+  return Object.keys(params).map(key => key + '=' + (params[key] !== undefined ? params[key] : '')).join('&');
 }
 
 // login
@@ -304,6 +312,31 @@ function updatePost(id, data) {
     method: 'PUT',
     data: data
   })
+}
+
+// set post status
+function setPostStatus(data) {
+  return req({
+    url: `${Host}/api/posts/:id/st?` + jsonQueryString(data),
+    method: 'PUT',
+  })
+}
+
+// 隐藏
+function hidePost(v) {
+  return setPostStatus({'hid': v})
+}
+// 置顶
+function pinPost(v) {
+  return setPostStatus({'top': v})
+}
+// 加精
+function valPost(v) {
+  return setPostStatus({ 'val': v })
+}
+// 审核
+function auditPost() {
+  return setPostStatus({ 'aud': 1 })
 }
 
 // delete post
@@ -590,6 +623,10 @@ module.exports = {
   getPost: getPost,
   createPost: createPost,
   deletePost: deletePost,
+  hidePost: hidePost,
+  pinPost: pinPost,
+  valPost: valPost,
+
 
 
   // comment
