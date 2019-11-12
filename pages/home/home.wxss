@@ -72,7 +72,7 @@
 .tab-item {
   margin: 0 32rpx;
   font-size: 32rpx;
-  opacity: .6;
+  opacity: .4;
   font-weight: 500;
   display: flex;
   flex-direction: column;

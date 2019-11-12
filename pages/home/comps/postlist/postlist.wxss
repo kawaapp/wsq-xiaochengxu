@@ -13,6 +13,7 @@
   font-size: 32rpx;
   color: gray;
   padding: 4rpx 12rpx;
+  line-height: 42rpx;
   margin: 6rpx 12rpx;
   word-break: keep-all;
 }
