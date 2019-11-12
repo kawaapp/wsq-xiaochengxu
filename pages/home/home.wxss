@@ -59,11 +59,11 @@
 }
 
 .tab-h {
-  height: 100rpx;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 16rpx;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
-  line-height: 80rpx;
   background: #fff;
   font-size: 16px;
   white-space: nowrap;
@@ -72,22 +72,23 @@
 .tab-item {
   margin: 0 32rpx;
   font-size: 32rpx;
-  display: inline-block;
-  opacity: .7;
+  opacity: .6;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .tab-item.active {
-  position: relative;
   opacity: 1;
 }
 
 .tab-item .indicator {
   display: none;
-  height: 8rpx;
-  width: 52rpx;
-  position: absolute;
-  bottom: 4rpx;
-  left: 7rpx;
-  border-radius: 16rpx;
+  height: 4rpx;
+  width: 36rpx;
+  border-radius: 2rpx;
+  margin-top: 8rpx;
 }
 
 .tab-item.active .indicator {
