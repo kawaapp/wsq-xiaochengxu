@@ -121,7 +121,7 @@
           <!-- date -->
           <view class='subtitle' style='margin-right:auto;'>{{item.time}}</view>
 
-          <!-- Commennt -->
+          <!-- Comment -->
           <view class='img-text' style='margin-right:18rpx'
                 catchtap='clickListComment' 
                 data-idx="{{index}}">
@@ -129,10 +129,9 @@
           </view>
 
           <!-- Favor -->
-          <view class='img-text' catchtap='clickListFavor' data-idx="{{index}}">
-            <image src="{{theme.images+(item.stats.favored>0?'/liked.png':'/like.png')}}"></image>
-            <text style="{{item.stats.favored?'color:'+theme.favorColor+';':''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
-          </view>
+          <view catchtap="clickListFavor" data-idx="{{index}}">
+            <kw-like favored="{{item.stats.favored}}" favors="{{item.stats.favors}}" />  
+          </view>        
         </view>
       </view>
     </view>

@@ -26,23 +26,3 @@
   align-self: flex-start;
 }
 
-.comment {
-  display: flex;
-  align-items: center;
-  margin-right: 16rpx;
-}
-
-.comment image{
-  height: 48rpx;
-  width: 48rpx;
-  margin-left: 9.36rpx;
-}
-
-.comment text {
-  text-align: center;
-  width: 86rpx;
-  font-size: 32rpx;
-  color: #888888;
-  word-break: keep-all;
-}
-

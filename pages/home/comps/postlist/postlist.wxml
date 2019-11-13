@@ -45,18 +45,15 @@
         <kw-post item="{{item}}" />
       </view>
     </view>
-
-    <!-- Comment and Favor bar -->
     <view class='line'></view>
+    <!-- Comment and Favor bar -->
     <view class='flow-right'>
       <view class='fade-title' style='margin-right:auto;'>{{item.time}}</view>
       <view class='comment' bindtap='commentClick' data-idx="{{index}}">
-        <image src='{{theme.images}}/comment.png'></image>
-        <text>{{item.stats.comments? item.stats.comments: "评论" }}</text>
+        <comment comments="{{item.stats.comments}}" />
       </view>
-      <view class='img-text' bindtap='favorClick' data-idx="{{index}}">
-        <image src="{{theme.images}}{{item.stats.favored? '/liked.png' : '/like.png'}}"></image>
-        <text style="{{item.stats.favored? ('color:'+theme.favroColor+';'):''}}">{{item.stats.favors? item.stats.favors: "赞" }}</text>
+      <view bindtap='favorClick' data-idx="{{index}}">
+        <kw-like favored="{{item.stats.favored}}" favors="{{item.stats.favors}}" />
       </view>
     </view>
   </view>
