@@ -17,5 +17,5 @@ const theme_cyan = {
 
 module.exports = {
   AppKey: "J3PDS76SH6JASQHX2QAY5VQ3QINXIYLEMVIREFADB7Z2BHCWC3VA====",
-  Theme: theme_default,
+  Theme: theme_blue,
 }

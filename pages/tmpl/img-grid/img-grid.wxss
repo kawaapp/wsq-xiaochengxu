@@ -43,4 +43,7 @@
   bottom: 0;
 }
 
+.inner image {
+  border-radius: 6rpx;
+}
 
