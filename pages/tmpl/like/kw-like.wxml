@@ -1,0 +1,4 @@
+<view class='img-text' catchtap='onClick'>
+  <image src="{{theme.images+(favored>0 ? '/liked.png':'/like.png')}}"></image>
+  <text style="{{favored?'color:'+theme.favorColor+';':''}}">{{favors? favors: "赞" }}</text>
+</view>
