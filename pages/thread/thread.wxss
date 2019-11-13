@@ -39,6 +39,15 @@
   font-size: 30rpx;
 }
 
+.img {
+  width: 100%;
+  border-radius: 6rpx;
+}
+
+.video {
+  width: 100%;
+  border-radius: 6rpx;
+}
 
 .input_null{
     color: #C9C9C9;

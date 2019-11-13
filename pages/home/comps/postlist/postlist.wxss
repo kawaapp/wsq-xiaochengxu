@@ -19,9 +19,10 @@
 }
 
 .menu {
+  opacity: .7;
   margin-left: auto;
-  width: 56rpx;
-  height: 56rpx;
+  width: 48rpx;
+  height: 48rpx;
   align-self: flex-start;
 }
 

@@ -28,17 +28,23 @@
     </view>
     
     <!-- images -->
-    <view wx:if="{{item.post.images}}">
-      <view style='margin: 12rpx 0rpx'>
-        <img-grid fill="{{true}}" images="{{item.post.images}}"> </img-grid> 
+    <block wx:if="{{item.post.images}}">
+      <view wx:for="{{item.post.images}}" wx:for-item="path" wx:key="{{path}}" >
+        <image src="{{path}}" mode='widthFix' class="img"/>
       </view>
-    </view> 
+    </block> 
 
     <!-- 视频 -->
     <block wx:if="{{item.post.video}}">
-      <kw-video video="{{item.post.video}}" />
+      <video
+        class='video' src="{{item.post.video.video}}" 
+        object-fit="cover" 
+        controls="true"
+        autoplay='{{true}}'
+        show-center-play-btn="{{false}}" />
     </block>
 
+    <!-- 链接 -->
     <block wx:if="{{item.post.link}}">
       <kw-link link="{{item.post.link}}" />
     </block>
