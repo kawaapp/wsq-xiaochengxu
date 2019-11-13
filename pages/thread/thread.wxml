@@ -64,7 +64,7 @@
 <view style='margin-bottom:9rpx;'/>
 
 <view class="card">
-  <view>
+  <view style="font-weight:500">
     <text style='margin-right:18rpx;'>评论 {{item.post.stats.comments}}</text>
     <text style='margin: auto;'>赞 {{item.post.stats.favors}}</text>
   </view>
