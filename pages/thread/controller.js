@@ -377,8 +377,8 @@ function deleteComment(index, sub) {
 
 // 发送评论，针对帖子、回复、回复的回复
 function onClickSendComment(e) {
-  var text = e.detail.value
-  if (util.isWhiteSpace(text)) {
+  const {text, image} = view.data.reply
+  if (util.isWhiteSpace(text) && !image) {
     wx.showToast({
       title: '评论不能为空', icon: 'none',
     })
@@ -403,8 +403,29 @@ function replyToPost(replyText) {
     reply_id: post.author.id
   }
 
+  var handler = undefined
+
+  // upload image if exist 
+  var file = view.data.reply.image
+  if (file) {
+    handler = api.uploadFile(file).then( url => {
+      console.log("upload file success", url)
+      var m = {
+        type: 1,
+        path: `["${url}"]`
+      }
+      return api.createMedia(m)
+    }).then( resp => {
+      console.log("create media success", resp.data)
+      data.media_id = resp.data.id
+      return api.createComment(data)
+    })
+  } else {
+    handler = api.createComment(data)
+  }
+
   // send comment
-  api.createComment(data).then(resp => {
+  handler.then(resp => {
     formatTime(resp.data)
     var comments = view.data.comments
     comments.unshift(resp.data)
@@ -494,8 +515,7 @@ function replyToComment(text, idx, subIndex) {
 function massage(comments) {
   var i = 0, n = comments.length
   for (; i < n; i++) {
-    var utc = new Date(comments[i].created_at * 1000)
-    comments[i].time = util.formatTime(utc)
+    formatTime(comments[i])
     var reply_list = comments[i].reply_list
     comments[i].reply_list = decorateReplyList(reply_list)
   }
@@ -517,6 +537,12 @@ function decorateReplyList(list) {
 function formatTime(item) {
   var utc = new Date(item.created_at * 1000)
   item.time = util.formatTime(utc)
+  if (item.media) {
+    try {
+      var images = JSON.parse(item.media.path)
+      item.image = images[0]
+    } catch(err){}
+  }
 }
 
 function showActionSheet(menus, actions) {

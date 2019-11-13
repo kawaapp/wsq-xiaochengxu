@@ -30,6 +30,7 @@ Page({
       subindex: -1,
       hint: "",
       text: "",
+      image: "",
       enable: true,
       focus: false
     },
@@ -108,7 +109,27 @@ Page({
   sharePoster: function(e) {
     util.sendRequest('post', this.data.item.post)
     wx.navigateTo({ url: '/pages/poster/poster'})
-  }
+  },
+
+  chooseImage: function(e) {
+    chooseImage(this)
+  },
+
+  deleteImage: function(e) {
+    deleteImage(this)
+  },
+
+  bindInput: function(e) {
+    var reply = this.data.reply
+    reply.text = e.detail.value
+    if (e.detail.value && !reply.enable) {
+      reply.enable = true
+      this.setData({ reply: reply })
+    } else if (!e.detail.value && reply.enable) {
+      reply.enable = false
+      this.setData({ reply: reply })
+    }
+  },
 })
 
 function gotoUserPage(user) {
@@ -124,4 +145,26 @@ function gotoUserPage(user) {
       title: '用户不存在', icon: 'none'
     })
   }
+}
+
+function chooseImage(view) {
+  wx.chooseImage({
+    count: 1,
+    sizeType: ['compressed'],
+    sourceType: ['album', 'camera'],
+    success: function (res) {
+      if (res.tempFilePaths.length > 0) {
+        var reply = view.data.reply
+        reply.image = res.tempFilePaths[0]
+        view.setData({ reply: reply })
+        console.log("choose images:", res)
+      }
+    },
+  })
+}
+
+function deleteImage(view) {
+  var reply = view.data.reply
+  reply.image = ''
+  view.setData({reply: reply})
 }

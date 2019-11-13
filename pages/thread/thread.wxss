@@ -23,6 +23,11 @@
   color: #333;
 }
 
+.comment .image {
+  width: 50vw;
+  margin-top: 12px;
+}
+
 .reply {
   padding: 14rpx 20rpx; 
   margin-top: 8rpx;
@@ -90,6 +95,69 @@
   justify-content: center; 
   align-items: center;
   width: 180rpx;
+}
+
+.input {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  z-index: 1000;
+  background: #F7F8F7;
+  padding: 12rpx 30rpx;
+}
+
+.input .hint {
+  font-size: 22rpx;
+  color: #959595;
+}
+
+.input .hint text {
+  font-size: 24rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.input input {
+  margin: 12rpx 0rpx;
+  width: 650rpx;
+  /* 使用padding与预期留白不一致，故使用border */
+  border-width: 15rpx 20rpx;
+  border-style: solid;
+  border-color:  #ffffff;
+  font-size: 30rpx;
+  background-color: #ffffff;
+  border-radius: 6rpx;
+}
+
+.input .send {
+  margin-top: 6rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.input .send image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 32rpx;
+}
+
+.input .send .del {
+  background: #ccc;
+  border-radius: 50%;
+  padding: 6rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.input .send button {
+  margin-left: auto;
+  background: #1890FF;
+  color: white;
+  font-size: 28rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
 }
 
 .share {

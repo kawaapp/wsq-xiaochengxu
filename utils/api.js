@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
+const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-const Host = "https://wsq.kawaapp.com"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -570,6 +570,15 @@ function deleteFavorite(pid) {
   })
 }
 
+// 创建媒体
+function createMedia(data) {
+  return req({
+    url: `${Host}/api/medias`,
+    method: 'POST',
+    data: data,
+  })
+}
+
 // 举报接口
 function createReport(data) {
   return req({
@@ -602,6 +611,27 @@ function createQrCode() {
   return req({
     url: `${Host}/api/actions/create_qrcode`,
     method: 'POST'
+  })
+}
+
+// 上传图片
+function uploadFile(file) {
+  return new Promise((res, rej) => {
+    wx.uploadFile({
+      url: 'https://kawaapp.com/x/api/images',
+      filePath: file,
+      name: 'file',
+      success: function (resp) {
+        if (resp.statusCode == 200) {
+          res(resp.data)
+        } else {
+          rej({ code: resp.statusCode, msg: resp.data })
+        }
+      },
+      fail: function (resp) {
+        rej({ code: -1, msg: resp })
+      }
+    })
   })
 }
 
@@ -681,9 +711,15 @@ module.exports = {
   // favorite
   createFavorite: createFavorite,
   deleteFavorite: deleteFavorite,
+
+  // media
+  createMedia: createMedia,
   
   // actions
   decrypt: decrypt,
   linkPreview: linkPreview,
   createQrCode: createQrCode,
+
+  // upload
+  uploadFile: uploadFile,
 }

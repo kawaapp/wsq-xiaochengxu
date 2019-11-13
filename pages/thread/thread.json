@@ -5,7 +5,6 @@
   "usingComponents": {
     "location": "../tmpl/location/location",
     "loading": "../tmpl/loading/loading",
-    "kw-input": "../tmpl/input/kw-input",
     "kw-text": "../tmpl/text/kw-text",
     "kw-link": "../tmpl/link/kw-link"
   }
