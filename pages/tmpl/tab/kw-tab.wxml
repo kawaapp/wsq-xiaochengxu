@@ -1,0 +1,8 @@
+<view class="tab-h">
+    <view wx:for="{{items}}" wx:key="{{index}}"
+      style="{{current == index ? ('color:'+theme.tabColor+';' ):''}} "
+      class="tab-item {{current == index ?'active':''}}">
+      <view data-idx="{{index}}" bindtap="clickTab">{{item}}</view>
+      <view class='indicator' style='background: {{theme.tabColor}}'></view>
+    </view>
+</view>

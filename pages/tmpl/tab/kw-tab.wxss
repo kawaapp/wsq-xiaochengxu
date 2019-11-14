@@ -1,0 +1,36 @@
+.tab-h {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 16rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.tab-item {
+  margin: 0 32rpx;
+  font-size: 32rpx;
+  opacity: .4;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab-item.active {
+  opacity: 1;
+}
+
+.tab-item .indicator {
+  display: none;
+  height: 4rpx;
+  width: 36rpx;
+  border-radius: 2rpx;
+  margin-top: 8rpx;
+}
+
+.tab-item.active .indicator {
+  display: block;
+}
