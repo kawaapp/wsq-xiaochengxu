@@ -273,6 +273,36 @@ function getUserFavoriteList(uid, page, size) {
   })
 }
 
+// 关注关系
+function follow(uid) {
+  return req({
+    url: `${Host}/api/users/followings`,
+    method: 'POST',
+    data: {user_id: uid}
+  })
+}
+
+function unfollow(uid) {
+  return req({
+    url: `${Host}/api/users/followings/${uid}`,
+    method: 'DELETE'
+  })
+}
+
+function getFollowingList(uid) {
+  return req({
+    url: `${Host}/api/users/${uid || 0}/followings`,
+    method: 'GET'
+  })
+}
+
+function getFollowerList(uid) {
+  return req({
+    url: `${Host}/api/users/${uid || 0}/followers`,
+    method: 'GET'
+  })
+}
+
 // get post list, fitler: top,val,adz, topic
 function getPostList(since, limit, filter, topic) {
   if (!topic) {
@@ -644,6 +674,12 @@ module.exports = {
   getUserCommentList: getUserCommentList,
   getUserFavorList: getUserFavorList,
   getUserFavoriteList: getUserFavoriteList,
+
+  // follow
+  follow: follow,
+  unfollow: unfollow,
+  getFollowingList: getFollowingList,
+  getFollowerList: getFollowerList,
 
   // meta
   getMetaData: getMetaData,
