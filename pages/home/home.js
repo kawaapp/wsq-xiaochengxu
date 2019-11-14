@@ -26,7 +26,6 @@ Page({
     hideNewButton: false,
     tab: {
       current: 0, //预设默认选中的栏目
-      scrollLeft: 0, //tab滚动条距离左侧距离
       items: ["全部", "精华", "活跃"],
     },
     tags: [],

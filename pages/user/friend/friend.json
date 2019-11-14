@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "kw-tab": "../../../tmpl/tab/kw-tab"
+  }
+}

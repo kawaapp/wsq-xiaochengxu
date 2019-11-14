@@ -296,16 +296,16 @@ function isFollowing(uid) {
   })
 }
 
-function getFollowingList(uid) {
+function getFollowingList(uid, page, size) {
   return req({
-    url: `${Host}/api/users/${uid || 0}/followings`,
+    url: `${Host}/api/users/${uid || 0}/followings?page=${page || 0}&size=${size || 20}`,
     method: 'GET'
   })
 }
 
-function getFollowerList(uid) {
+function getFollowerList(uid, page, size) {
   return req({
-    url: `${Host}/api/users/${uid || 0}/followers`,
+    url: `${Host}/api/users/${uid || 0}/followers?page=${page || 0}&size=${size || 20}`,
     method: 'GET'
   })
 }

@@ -73,6 +73,12 @@ Page({
     })
   },
 
+  followClick: function(e) {
+    wx.navigateTo({
+      url: '/pages/user/friend/friend',
+    })
+  },
+
   clickBindProfile: function(e) {
     wx.navigateTo({
       url: '/pages/me/bind',

@@ -15,6 +15,7 @@
     "pages/user/favor/favor",
     "pages/user/favorite/favorite",
     "pages/user/user/user",
+    "pages/user/friend/friend",
     "pages/webview/webview",
     "pages/chat/chat",
     "pages/exp/exp",

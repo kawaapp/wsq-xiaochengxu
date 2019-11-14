@@ -1,0 +1,15 @@
+.user {
+  background: white;
+  padding: 16rpx 16rpx;
+  display: flex;
+  align-items: center;
+}
+
+.user .button {
+  margin-left: auto;
+  background: #f8f8f8;
+  font-size: 28rpx;
+  color: #333;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+}
