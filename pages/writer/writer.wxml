@@ -13,7 +13,7 @@
   <view wx:if="{{video.src}}" class="video box">
     <view class='del'>
       <image
-        src="{{theme.images}}/del.png" 
+        src="/res/del.png" 
         data-idx="{{index}}"
         bindtap='clickDeleteVideo' 
         >
@@ -31,7 +31,7 @@
     <view class="thumb box" wx:for="{{images}}" wx:for-item="item" wx:key="{{item}}">
       <view class='del'>
         <image
-          src="{{theme.images}}/del.png" 
+          src="/res/del.png" 
           data-idx="{{index}}"
           bindtap='clickDelete' 
           >
@@ -53,7 +53,7 @@
   <view wx:if="{{link.url}}" class="box">
     <view class='del'>
       <image
-        src="{{theme.images}}/del.png" 
+        src="/res/del.png" 
         bindtap='clickDeleteLink' />
     </view>
     <view class="link">
@@ -66,15 +66,15 @@
   <view class='line'></view>
   <view class="bar">
     <view class="item">
-      <image src="{{theme.images}}/photo.png" bindtap="chooseImage" />
+      <image src="/res/photo.png" bindtap="chooseImage" />
     </view>
     
     <view class="item" wx:if="{{showVideo}}">
-      <image src="{{theme.images}}/video.png" bindtap="chooseVideo" />
+      <image src="/res/video.png" bindtap="chooseVideo" />
     </view>
 
     <view class="item">
-      <image src="{{theme.images}}/link.png"  bindtap="chooseLink" />
+      <image src="/res/link.png"  bindtap="chooseLink" />
     </view>
   </view>
 

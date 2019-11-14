@@ -25,5 +25,5 @@
 
 <!-- 刷新 -->
 <view>
-  <image catchtap='clickRefresh' class='refresh' src="{{theme.images}}/refresh.png"></image>
+  <image catchtap='clickRefresh' class='refresh' src="/res/refresh.png"></image>
 </view>

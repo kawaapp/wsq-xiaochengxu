@@ -26,6 +26,7 @@
 .comment .image {
   width: 50vw;
   margin-top: 12px;
+  border-radius: 6rpx;
 }
 
 .reply {

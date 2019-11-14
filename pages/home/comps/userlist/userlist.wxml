@@ -3,7 +3,7 @@
   <view wx:for="{{users}}" wx:for-item="item" wx:key="{{index}}">
   <view wx:if="{{index !== 0}}"  class='line' style='margin-left:72rpx;'></view>
   <view class='item' bindtap="clickItem" data-idx="{{index}}" >
-    <image wx:if="{{index<3}}" class='ranking' src="{{theme.images}}/rank_{{index+1}}.png" />
+    <image wx:if="{{index<3}}" class='ranking' src="/res/rank_{{index+1}}.png" />
     <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
     <image class='avatar' src="{{item.avatar}}"></image>
     <text class='name' >{{item.nickname}}</text>
