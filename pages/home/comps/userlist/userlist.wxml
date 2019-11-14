@@ -21,4 +21,4 @@
 </view>
 
 <!-- 加载状态 -->
-<loading loader="{{loader}}"/>
+<loading loading="{{loading}}" hasmore="hasmore" />

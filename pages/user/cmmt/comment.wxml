@@ -19,4 +19,4 @@
   <view style='margin-bottom:9.36rpx;'/>
 </view>
 
-<loading loader="{{loader}}"/>
+<loading loading="{{loading}}" hasmore="{{hasmore}}"/>

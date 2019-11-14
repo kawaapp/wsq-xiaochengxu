@@ -2,5 +2,8 @@
   "navigationBarTitleText": "评论",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
-  "backgroundColor": "#fff"
+  "backgroundColor": "#fff",
+  "usingComponents": {
+    "loading": "../../tmpl/loading/loading"
+  }
 }

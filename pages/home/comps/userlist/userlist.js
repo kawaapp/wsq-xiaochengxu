@@ -34,10 +34,8 @@ Component({
       levelColor: util.lightenColor(kawa.Theme.MainColor, 30),
       adminColor: kawa.Theme.MainColor,
     }, 
-    loader: {
-      ing: false,
-      more: true,
-    }, 
+    loading: false,
+    hasmore: true,
     users: [],
     page: 1,
     size: 20,

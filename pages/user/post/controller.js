@@ -16,49 +16,36 @@ function onLoad(options) {
   }
 
   // show loading
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({loader: loader})
+  view.setData({loading: true})
 
   // fetch data 
   api.getUserPostList(view.data.user.uid).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
-    }
     console.log("user get posts:", resp)
     var posts = massage(resp.data)
     view.setData({ posts: resp.data })
-    view.setData({ loader: loader })
+    view.setData({ loading: false, hasmore: resp.data && resp.data.length == 20 })
   }).catch( err => {
     console.log(err)
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none'
     })
-    loader.ing = false
-    view.setData({loader: loader})
+    view.setData({loading: false})
   })
 }
 
 function onPullDownRefresh() {
-  if (view.data.loader.ing) {
+  if (view.data.loading) {
     return
   }
 
   // show loading
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({ loader: loader })
+  view.setData({ loading: true })
 
   // fetch data
   api.getUserPostList(view.data.user.uid).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
-    }
     var data = massage(resp.data)
     view.setData({ posts: data })
-    view.setData({ loader: loader })
+    view.setData({ loading: false, hasmore: resp.data && resp.data.length === 20 })
     wx.stopPullDownRefresh()
     wx.showToast({
       title: '刷新成功',
@@ -67,13 +54,12 @@ function onPullDownRefresh() {
   }).catch( err => {
     wx.stopPullDownRefresh()
     wx.showToast({ title: '刷新失败:'+err.code, icon: 'none'})
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
   })
 }
 
 function onReachBottom() {
-  if (view.data.loader.ing || !view.data.loader.more) {
+  if (view.data.loading || !view.data.hasmore) {
     return
   }
   var posts = view.data.posts
@@ -82,20 +68,13 @@ function onReachBottom() {
   if (posts && posts.length > 0) {
     since = posts[posts.length - 1].id
   }
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({loader: loader})
+  view.setData({loading: true})
   api.getUserPostList(view.data.user.uid, since, limit).then(resp => {
-    loader.ing = false
-    if (resp.data.length < limit) {
-      loader.more = false
-    }
     var data = massage(resp.data)
-    view.setData({ loader: loader })
+    view.setData({ loading: false, hasmore: resp.data && resp.data.length == limit })
     view.setData({ posts: posts.concat(data) })
   }).catch( err=> {
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
     wx.showToast({ title: '刷新失败:'+err.code, icon: 'none'})
   })
 }

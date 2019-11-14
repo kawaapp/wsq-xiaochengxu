@@ -183,29 +183,21 @@ function formatNumber(n) {
 
 function onReachBottom() {
   console.log("on reach bottom..")
-  if (view.data.loader.ing || !view.data.loader.more) {
+  if (view.data.loading || !view.data.hasmore) {
     return
   }
   var ranks = view.data.ranks
   var pager = view.data.pager
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({ loader: loader })
+  view.setData({ loading: true })
 
   api.getSignUserList(pager.index+1, pager.size).then(resp => {
-    loader.ing = false
-    if (resp.data.length < pager.size) {
-      loader.more = false
-    }
     pager.index += 1
-    view.setData({ loader: loader })
+    view.setData({ loading: false, hasmore: resp.data && resp.data.length == pager.size  })
     view.setData({ ranks: ranks.concat(massage(resp.data)) })
-
     console.log("get users:", resp.data)
   }).catch(err => {
     console.log(err)
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none',
     })

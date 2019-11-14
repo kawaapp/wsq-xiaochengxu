@@ -26,7 +26,7 @@ function onLoad(opt) {
 
 // 下拉刷新
 function onPullDownRefresh() {
-  if (view.data.loader.ing) {
+  if (view.data.loading) {
     return
   }
   var filter = view.data.filter
@@ -34,29 +34,22 @@ function onPullDownRefresh() {
 }
 
 function fetchPostList(filter, topic) {
-  if (view.data.loader.ing) {
+  if (view.data.loading) {
     return
   }
 
-  view.setData({loader: { ing: true, more: true} })
+  view.setData({loading: true, hasmore: true })
   view.setData({posts: [] })
 
   api.getPostList(0, PAGE_SIZE, filter, topic).then(resp => {
     wx.stopPullDownRefresh()
     console.log("get post list:", resp)
-    var loader = {
-      ing: false,
-      more: resp.data && resp.data.length === PAGE_SIZE
-    }
-    view.setData({ loader })
+    var hasmore = resp.data && resp.data.length === PAGE_SIZE
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ posts: massage(resp.data)})
   }).catch(err => {
     wx.stopPullDownRefresh()
-    var loader = {
-      ing: false,
-      more: view.data.loader.more
-    }
-    view.setData({ loader })
+    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:' + err.code, icon: 'none'
     })
@@ -65,8 +58,8 @@ function fetchPostList(filter, topic) {
 }
 
 function onReachBottom() {
-  var loader = view.data.loader
-  if (loader.ing || !loader.more) {
+  var { loading, hasmore } = view.data
+  if (loading || !hasmore) {
     return
   }
 
@@ -79,25 +72,15 @@ function onReachBottom() {
     sinceId = posts[posts.length - 1].id
   }
 
-  view.setData({loader: { 
-      ing: true,
-      more: loader.more,
-  }})
-
+  view.setData({loading: true})
   api.getPostList(sinceId, limit, filter, topic).then((resp) => {
-    var loader = {
-      ing: false,
-      more: resp.data && resp.data.length === limit
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length === limit
+    view.setData({ loading: false, hasmore: hasmore })
     var styled = massage(resp.data)
     view.setData({ posts: posts.concat(styled)})
   }).catch((err) => {
     console.log(err)
-    view.setData({
-      ing: false,
-      more: loader.more
-    })
+    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:' + err.code, icon: 'none'
     })

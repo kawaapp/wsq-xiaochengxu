@@ -44,9 +44,8 @@ Component({
     },
     tagSelected: -1,
     tagArray: [],
-    loader: {
-      ing: false, more: true,
-    }
+    loading: false,
+    hasmore: true,
   },
 
   observers: {

@@ -14,9 +14,8 @@ Page({
     },
     user: {},
     posts: [],
-    loader: {
-      ing: false, more: true
-    },
+    loading: false,
+    hasmore: true,
     follow: false,
   },
 

@@ -145,7 +145,7 @@
 </view>
 
 <!-- 列表加载状态 -->
-<loading loader="{{loader}}"/>
+<loading loading="{{loading}}" hasmore="{{hasmore}}"/>
 
 
 <!--Empty view -->

@@ -12,39 +12,28 @@ function onLoad(options) {
   if (options && options.uid) {
     view.data.user.uid = options.uid
   }
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({loader: loader})
+
+  view.setData({loading: true})
   api.getUserCommentList(view.data.user.uid).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length == 20
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ comments: resp.data })
     console.log("get comment:", resp.data)
   }).catch( err => {
-    console.log(err)
-    loader.ing = false
-    view.setData({ loader: loader })
+    console.log(err)    
+    view.setData({ loading: false })
   })
 }
 
 function onPullDownRefresh() {
-  if (view.data.loader.ing) {
+  if (view.data.loading) {
     return
   }
 
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({ loader: loader })
-
+  view.setData({ loading: true })
   api.getUserCommentList(view.data.user.uid).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length == 20
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ comments: resp.data })
     wx.stopPullDownRefresh()
     wx.showToast({
@@ -52,8 +41,7 @@ function onPullDownRefresh() {
       icon: 'success',
     })
   }).catch( err => {
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
     wx.stopPullDownRefresh()
     wx.showToast({
       title: '刷新失败:'+err.code, icon: 'none',
@@ -62,7 +50,7 @@ function onPullDownRefresh() {
 }
 
 function onReachBottom() {
-  if (view.data.loader.ing || !view.data.loader.more) {
+  if (view.data.loadng || !view.data.hasmore) {
     return
   }
   var comments = view.data.comments
@@ -71,19 +59,13 @@ function onReachBottom() {
   if (comments && comments.length > 0) {
     since = comments[comments.length - 1].id
   }
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({ loader: loader})
+  view.setData({ loading: true})
   api.getUserCommentList(view.data.user.uid, since, limit).then(resp => {
-    loader.ing = false
-    if (resp.data.length < limit) {
-      loader.more = false
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length == limit
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ comments: comments.concat(resp.data) })
   }).catch(err => {
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none',
     })

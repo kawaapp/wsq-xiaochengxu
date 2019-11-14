@@ -57,4 +57,4 @@
 
 
 <!-- 加载提示 -->
-<loading loader="{{loader}}"/>
+<loading loading="{{loading}}" hasmore="{{hasmore}}"/>

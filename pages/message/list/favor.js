@@ -12,10 +12,8 @@ Page({
       images: kawa.Theme.Image,
     },
     messages: [],
-    loader: {
-      ing: false,
-      more: true,
-    }
+    loading: false,
+    hasmore: true,
   },
 
   /**

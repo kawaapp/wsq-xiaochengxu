@@ -27,10 +27,8 @@ Page({
     },
     ranks: [
     ],
-    loader: {
-      ing: false,
-      more: true,
-    },
+    loading: false,
+    hasmore: true,
     pager: {
       index: 1,
       size: 20,

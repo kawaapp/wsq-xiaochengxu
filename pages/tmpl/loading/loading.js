@@ -4,10 +4,14 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    loader: {
-      type: Object,
-      value: {},
-    }
+    loading: {
+      type: Boolean,
+      value: false,
+    },
+    hasmore: {
+      type: Boolean,
+      value: true,
+    },
   },
 
   /**

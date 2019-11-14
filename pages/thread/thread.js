@@ -21,10 +21,8 @@ Page({
       post: {},
     },
     comments: [],
-    loader: {
-      ing: false,
-      more: true,
-    },
+    loading: false,
+    hasmore: true,
     reply: {
       index: -1,
       subindex: -1,

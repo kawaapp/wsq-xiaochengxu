@@ -29,10 +29,8 @@ Page({
     reply: {
       enable: false,
     },
-    loader: {
-      ing: false,
-      more: true,
-    },
+    loading: false,
+    hasmore: true,
     scrollTopVal: 10000,
   },
 

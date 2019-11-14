@@ -12,10 +12,8 @@ Page({
     user: {
       uid: 0,
     },
-    loader: {
-      ing: false,
-      more: true,
-    },
+    loading: false,
+    hasmore: true,
     page: 1,
     size: 20,
   },

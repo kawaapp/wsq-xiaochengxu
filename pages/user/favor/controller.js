@@ -12,42 +12,28 @@ function onLoad(options) {
   if (options && options.uid) {
     view.data.user.uid = options.uid
   }
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({loader: loader})
-
+  view.setData({loading: true})
   api.getUserFavorList(view.data.user.uid).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length == 20
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ favors: resp.data })
   }).catch( err => {
     console.log(err)
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none'
     })
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
   })
 }
 
 function onPullDownRefresh() {
-  if (view.loader.ing) {
+  if (view.data.loading) {
     return
   }
-
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({ loader: loader })
-
+  view.setData({ loading: true })
   api.getUserFavorList(view.data.user.uid).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < 20) {
-      loader.more = false
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length === 20
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ favors: resp.data })
     wx.stopPullDownRefresh()
     wx.showToast({
@@ -58,13 +44,12 @@ function onPullDownRefresh() {
     wx.showToast({
       title: '刷新失败:'+err.code, icon: 'none',
     })
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false})
   })
 }
 
 function onReachBottom() {
-  if (view.data.loader.ing || !view.data.loader.more) {
+  if (view.data.loading || !view.data.hasmore) {
     return
   }
   var favors = view.data.favors
@@ -73,21 +58,15 @@ function onReachBottom() {
   if (favors && favors.length > 0) {
     since = favors[favors.length - 1].id
   }
-  var loader = view.data.loader
-  loader.ing = true
-  view.setData({loader: loader})
+  view.setData({loading: true})
   api.getUserFavorList(view.data.user.uid, since, limit).then(resp => {
-    loader.ing = false
-    if (resp.data.length < limit) {
-      loader.more = false
-    }
+    var hasmore = resp.data && resp.data.length == limit
     if (resp.data) {
       view.setData({ favors: favors.concat(resp.data) })
     }
-    view.setData({loader: loader})
+    view.setData({loading: false, hasmore: hasmore})
   }).catch( err=> {
-    loader.ing = false
-    view.setData({loader: loader})
+    view.setData({loading: false})
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none',
     })

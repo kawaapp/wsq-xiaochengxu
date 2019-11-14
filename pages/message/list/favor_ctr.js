@@ -25,24 +25,20 @@ function onLoad(options) {
 }
 
 function onPullDownRefresh() {
-  if (view.data.loader.ing) {
+  if (view.data.loading) {
     return
   }
 
-  view.setData({loader:{ing: true}})
+  view.setData({loading: true })
   api.getMessageList('favor').then(resp => {
     wx.stopPullDownRefresh()
-    var loader = { ing: false, more: true }
     var unpacked = unpackMsgContent(resp.data)
-    if (unpacked && unpacked.length < 20) {
-      loader.more = false
-    }
-    view.setData({ loader: loader })
+    view.setData({ loading: false, hasmore: resp.data && resp.data.length == 20 })
     view.setData({ messages: unpacked })
   }).catch(err => {
     wx.stopPullDownRefresh()
     console.log(err)
-    view.setData({ loader: { ing: false } })
+    view.setData({ loading: false })
     wx.showToast({
       title: '刷新失败:'+err.code, icon: 'none'
     })
@@ -50,7 +46,7 @@ function onPullDownRefresh() {
 }
 
 function onReachBottom() {
-  if (view.data.loader.ing || !view.data.loader.more) {
+  if (view.data.loading || !view.data.hasmore) {
     return
   }
   var messages = view.data.messages
@@ -59,18 +55,14 @@ function onReachBottom() {
   if (messages && messages.length > 0) {
     since = messages[messages.length - 1].id
   }
-  view.setData({ loader: { ing: true } })
+  view.setData({ loading: true })
   api.getMessageList('favor', since, limit).then(resp => {
-    var loader = { ing: false, more: true }
-    if (resp.data.length < limit) {
-      loader.more = false
-    }
     var unpacked = unpackMsgContent(resp.data)
-    view.setData({ loader: loader })
+    view.setData({ loading: false, hasmore: resp.data.length == limit })
     view.setData({ messages: messages.concat(unpacked) })
   }).catch( err => {
     console.log(err)
-    view.setData({ loader: { ing: false } })
+    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none'
     })

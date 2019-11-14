@@ -15,9 +15,8 @@ Page({
     followings: [],
     pageNumber: 1,
     pageSize: 20,
-    loader: {
-      ing: false, more: true,
-    }
+    loading: false,
+    hasmore: true,
   },
 
   /**
@@ -111,53 +110,53 @@ Page({
 
 function fetchFollowerList(view) {
   view.setData({ pageNumber: 1})
-  view.setData({ loader: {ing: true, more: true}})
+  view.setData({ loading: true, hasmore: true})
   api.getFollowerList(0, 1, PAGE_SIZE).then( resp => {
     console.log("get follower..", resp)
     var hasmore = resp.data && resp.data === PAGE_SIZE
-    view.setData({ loader: {ing: false, more: hasmore}})
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ followers: resp.data })
   }).catch( err => {
     console.log(err)
-    view.setData({ loader: { ing: true, more: true } })
+    view.setData({ loading: true })
   })
 }
 
 function fetchMoreFollower(view) {
   const page = view.data.pageNumber + 1
-  view.setData({ loader: { ing: true, more: view.data.loader.more } })
+  view.setData({ loading: true })
   api.getFollowerList(0, page, PAGE_SIZE).then( resp => {
     var hasmore = resp.data && resp.data === PAGE_SIZE
-    view.setData({ loader: { ing: false, more: hasmore } })
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ followers: view.data.followers.concat(resp.data)})
   }).catch( err => {
     console.log(err)
-    view.setData({ loader: { ing: false, more: view.data.loader.more} })
+    view.setData({ loading: false })
   })
 }
 
 function fetchFollowingList(view) {
   view.setData({ pageNumber: 1 })
-  view.setData({ loader: { ing: true, more: true } })
+  view.setData({ loading: true, hasmore: true })
   api.getFollowingList(0, 1, PAGE_SIZE).then( resp => {
     var hasmore = resp.data && resp.data === PAGE_SIZE
-    view.setData({ loader: { ing: false, more: hasmore } })
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ followings: resp.data})
   }).catch( err => {
     console.log(err)
-    view.setData({ loader: { ing: false, more: true } })
+    view.setData({ loading: false })
   })
 }
 
 function fetchMoreFollowing(view) {
   const page = view.data.pageNumber + 1
-  view.setData({ loader: { ing: true, more: view.data.loader.more } })
+  view.setData({ loading: true })
   api.getFollowingList(0, page, PAGE_SIZE).then(resp => {
     var hasmore = resp.data && resp.data === PAGE_SIZE
-    view.setData({ loader: { ing: false, more: hasmore } })
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ followings: view.data.followings.concat(resp.data)})
   }).catch( err => {
     console.log(err)
-    view.setData({ loader: { ing: false, more: view.data.loader.more } })
+    view.setData({ loading: false })
   })
 }

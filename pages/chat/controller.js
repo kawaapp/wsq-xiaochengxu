@@ -27,7 +27,7 @@ function initData(uid) {
     var items = massage(resp.data)
     view.showMessage(items)
     if (!items || items.length < 20) {
-      view.setData({ loader: { more: false } })
+      view.setData({ hasmore: false })
     }
   }).catch(err => {
     console.log(err)
@@ -96,8 +96,8 @@ function deltaAppend(data) {
 
 // 下拉刷新
 function onPullDown() {
-  var loader = view.data.loader
-  if (loader.ing || !loader.more) {
+  const { loading, hasmore } = view.data
+  if (loading || !hasmore) {
     return
   }
 
@@ -106,19 +106,14 @@ function onPullDown() {
   if (chatItems.length > 0) {
     since = chatItems[0].id
   }
-  loader.ing = true
-  view.setData({loader: loader})
+  view.setData({loading: true})
   api.getChatMsgListFrom(view.data.other.id, since, limit).then( resp => {
-    loader.ing = false
     var items = massage(resp.data)
     view.shiftMessage(items)
-    if (!items || items.length < limit) {
-      loader.more = false
-    }
-    view.setData({ loader: loader})
+    var hasmore = items && items.length == limit
+    view.setData({ loading: false, hasmore: hasmore})
   }).catch( err => {
-    loader.ing = false
-    view.setData({ loader: loader })
+    view.setData({ loading: false })
     console.log("pull msg err,", err)
   })
 }

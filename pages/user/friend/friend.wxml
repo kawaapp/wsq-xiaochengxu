@@ -11,4 +11,4 @@
 </view>
 
 <!-- loader -->
-<loading loader="{{loader}}" />
+<loading loading="{{loading}}" hasmore="{{hasmore}}" />

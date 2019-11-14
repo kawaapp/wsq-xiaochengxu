@@ -111,7 +111,7 @@ function onPullDownRefresh(e) {
 }
 
 function onReachBottom(e) {
-  if (view.data.loader.ing || !view.data.more) {
+  if (view.data.loading || !view.data.hasmore) {
     return
   }
   var sinceId = 0
@@ -120,22 +120,17 @@ function onReachBottom(e) {
   if (comments.length > 0) {
     sinceId = comments[comments.length - 1]
   }
-  var loader = view.data.loader
   var pid = view.data.item.post.id
-  loader.ing = true
-  view.setData({loader: loader})
+
+  view.setData({loading: true})
   api.getCommentList(pid, sinceId, limit).then(resp => {
-    loader.ing = false
-    if (resp.data && resp.data.length < limit) {
-      loader.more = false
-    }
-    view.setData({loader: loader})
+    var hasmore= resp.data && resp.data.length == limit
+    view.setData({ loading: false, hasmore: hasmore})
     view.setData({
       comments: comments.concat(massage(resp.data))
     })
   }).catch(err => {
-      loader.ing = false
-      view.setData({loader: loader})
+      view.setData({loading: false})
       wx.showToast({
         title: '加载失败:'+err.code, icon: 'success'
       })

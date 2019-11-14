@@ -26,58 +26,42 @@ function onPullDownRefresh() {
 }
 
 function onReachBottom() {
-  var loader = view.data.loader
-  if (loader.ing || !loader.more) {
+  var { loading, hasmore } = view.data.loader
+  if (loading || !hasmore) {
     return
   }
 
   var page = view.data.page + 1
   view.setData({page: page})
-  view.setData({ loader: {
-    ing: true,
-    more: loader.more,
-  }})
+  view.setData({ loading: true })
 
   var users = view.data.users
 
   api.getUserList("active", page, PAGE_SIZE).then(resp => {
-    var loader = {
-      ing: false,
-      more: resp.data && resp.data.length === PAGE_SIZE
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length === PAGE_SIZE
+    view.setData({ loading: false, hasmore: hasmore})
     view.setData({ users: users.concat(massage(resp.data))})
   }).catch(err => {
     console.log(err)
-    view.setData({
-      loader: { ing: false, more: view.data.loader.more }
-    })
+    view.setData({loading: false})
   })
 }
 
 function fetchUserList() {
-  if (view.data.loader.ing) {
+  if (view.data.loading) {
     return
   }
 
-  view.setData({
-    loader: { ing: true, more: true}
-  })
-
+  view.setData({loading: true, hasmore: true })
   api.getUserList("active", 1, PAGE_SIZE).then(resp => {
     wx.stopPullDownRefresh()
-    var loader = {
-      ing: false,
-      more: resp.data && resp.data.length === PAGE_SIZE
-    }
-    view.setData({ loader: loader })
+    var hasmore = resp.data && resp.data.length === PAGE_SIZE
+    view.setData({ loading: false, hasmore: hasmore })
     view.setData({ users: massage(resp.data) })
   }).catch(err => {
     wx.stopPullDownRefresh()
     console.log(err)
-    view.setData({
-      loader: { ing: false, more: view.data.loader.more }
-    })
+    view.setData({ loading: false })
     wx.showToast({
       title: '刷新失败', icon: 'none'
     })

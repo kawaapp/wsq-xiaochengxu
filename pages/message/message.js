@@ -15,7 +15,9 @@ Page({
       favors: 0,
       comments: 0,
     },
-    chats:[]
+    chats:[],
+    loading: false,
+    hasmore: true,
   },
 
   onLoad: function(options) {
