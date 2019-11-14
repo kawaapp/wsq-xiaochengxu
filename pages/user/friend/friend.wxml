@@ -3,7 +3,7 @@
 
 <!-- 用户列表 -->
 <view>
-  <view class="user" wx:for="{{tabCurrent == 0? followers: followings}}" wx:key="{{item.id}}">
+  <view class="user" wx:for="{{tabCurrent == 0? followings: followers}}" wx:key="{{item.id}}">
     <image class="avatar-large" src="{{item.avatar}}" style="margin-right:12rpx;" />
     <text class="title b5">{{item.nickname}}</text>
     <view class="button" bindtap="clickUnfollow" data-idx="{{index}}">已关注</view>
@@ -11,3 +11,4 @@
 </view>
 
 <!-- loader -->
+<loading loader="{{loader}}" />
