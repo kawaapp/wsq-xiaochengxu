@@ -19,12 +19,24 @@ function onLoad(options) {
   user.days = util.getDaysFromNow(user.created_at)
   view.setData({ user: user })
 
+  // follow state
+  fetchFollow(user.id)
+
   // fetch post
   fetchPostList(user.id)
 }
 
 function onReachBottom() {
   fetchMorePost()
+}
+
+function fetchFollow(uid) {
+  api.isFollowing(uid).then( resp => {
+    console.log(resp)
+    view.setData({ follow: true})
+  }).catch( err => {
+    console.log(err)
+  })
 }
 
 function fetchPostList(uid) {
@@ -130,6 +142,36 @@ function onClickItem(e) {
   })
 }
 
+function onClickFollow(e) {
+  var { user } = view.data
+  console.log("get user:", user)
+  if (view.data.follow) {
+    api.unfollow(user.id).then( resp => {
+      view.setData({ follow: false})
+      wx.showToast({
+        title: '取消成功', icon: 'success'
+      })
+    }).catch(err => {
+      console.log(err)
+      wx.showToast({
+        title: '取消失败:' + err.code,
+      })
+    })
+  } else {
+    api.follow(user.id).then( resp => {
+      view.setData({ follow: true})
+      wx.showToast({
+        title: '关注成功', icon: 'success'
+      })
+    }).catch(err => {
+      console.log(err)
+      wx.showToast({
+        title: '关注失败:' + err.code,
+      })
+    })
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -137,4 +179,5 @@ module.exports = {
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
   onClickSend: onClickSend,
+  onClickFollow: onClickFollow,
 }

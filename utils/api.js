@@ -289,6 +289,13 @@ function unfollow(uid) {
   })
 }
 
+function isFollowing(uid) {
+  return req({
+    url: `${Host}/api/users/followings/${uid || 0}`,
+    method: 'GET'
+  })
+}
+
 function getFollowingList(uid) {
   return req({
     url: `${Host}/api/users/${uid || 0}/followings`,
@@ -676,6 +683,7 @@ module.exports = {
   getUserFavoriteList: getUserFavoriteList,
 
   // follow
+  isFollowing: isFollowing,
   follow: follow,
   unfollow: unfollow,
   getFollowingList: getFollowingList,

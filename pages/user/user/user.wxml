@@ -4,9 +4,16 @@
     <image class='avatar' src="{{user.avatar}}"/>
     <view class='nickname'>{{user.nickname}}</view>
     <view class='ts'>已加入 {{user.days}} 天</view>
-    <view class='msg' bindtap='clickSendMessage'>
-      <image src="{{theme.images}}/nav_msg.png"/>
-      <text>发消息</text>
+
+    <view class="horizontal" style="margin-top: 48rpx;">
+      <view class="gray-bg" style="color:{{theme.color}};" bindtap="clickFollow">
+        {{follow? '已关注':'+ 关注'  }}
+      </view>
+      <view style="width:24rpx;" />
+      <view class='msg gray-bg' bindtap='clickSendMessage'>
+        <image src="{{theme.images}}/nav_msg.png"/>
+        <text>发消息</text>
+      </view>
     </view>
   </view>
 </view>

@@ -28,10 +28,9 @@ page {
   color: #444;
 }
 
-.vertical .msg {
+.msg {
   font-size: 32rpx;
   color: #333;
-  margin-top: 48rpx;
   display: flex;
   align-items: center;
 }
@@ -47,4 +46,12 @@ page {
   width: 82rpx; 
   height: 82rpx;
   border-radius: 50%;
+}
+
+.gray-bg {
+  background: #f8f8f8;
+  font-size: 28rpx;
+  color: #333;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
 }

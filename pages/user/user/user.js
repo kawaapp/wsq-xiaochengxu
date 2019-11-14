@@ -9,13 +9,15 @@ Page({
    */
   data: {
     theme: {
-      images: kawa.Theme.Image
+      images: kawa.Theme.Image,
+      color: kawa.Theme.MainColor,
     },
     user: {},
     posts: [],
     loader: {
       ing: false, more: true
-    }
+    },
+    follow: false,
   },
 
   /**
@@ -40,5 +42,9 @@ Page({
 
   clickItem: function(e) {
     ctr.onClickItem(e)
+  },
+
+  clickFollow: function(e) {
+    ctr.onClickFollow(e)
   }
 })
