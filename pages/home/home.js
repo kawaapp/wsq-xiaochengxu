@@ -32,8 +32,8 @@ Page({
     tags: [],
     signed: false,
   },
-  clickTab: function(e) {
-    var idx = e.target.dataset.idx;
+  onTabChanged: function(e) {
+    var idx = e.detail;
     var tab = this.data.tab
     if (tab.current != idx) {
       tab.current = idx

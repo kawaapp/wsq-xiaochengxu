@@ -2,12 +2,8 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "img-grid": "../tmpl/img-grid/img-grid",
-    "location": "../tmpl/location/location",
-    "loading": "../tmpl/loading/loading",
-    "kw-text": "../tmpl/text/kw-text",
-    "kw-video": "../tmpl/video/kw-video",
     "userlist": "./comps/userlist/userlist",
-    "postlist": "./comps/postlist/postlist"
+    "postlist": "./comps/postlist/postlist",
+    "kw-tab": "../../tmpl/tab/kw-tab"
   }
 }

@@ -53,14 +53,7 @@
 </view>
 
 <!-- 顶部TAB -->
-<view class="tab-h">
-    <view wx:for="{{tab.items}}" wx:key="{{index}}"
-      style="{{tab.current == index ? ('color:'+theme.tabColor+';' ):''}} "
-      class="tab-item {{tab.current == index ?'active':''}}">
-      <view data-idx="{{index}}" bindtap="clickTab">{{item}}</view>
-      <view class='indicator' style='background: {{theme.tabColor}}'></view>
-    </view>
-</view>
+<kw-tab bind:onTabChanged="onTabChanged" items="{{tab.items}}" />
 
 <!-- 线 -->
 <view style='margin-bottom:1rpx; background-color: #fefefe;'/>
