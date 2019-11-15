@@ -196,7 +196,7 @@
     <view class="send">
       <image catchtap="chooseImage" src="{{reply.image? reply.image: '/res/photo.png'}}" />
       <image class="del" catchtap="deleteImage" wx:if="{{reply.image}}" src="/res/del.png" />
-      <button catchtap="sendComment" class="btn-clear">回复</button>
+      <button catchtap="sendComment" class="btn-clear" style="background:{{theme.color}}">回复</button>
     </view>
   </view>
 </block>

@@ -68,6 +68,7 @@ function fetch(options) {
       view.setData({
         comments: massage(resp.data)
       })
+      view.setData({ hasmore: resp.data && resp.data.length == 20})
       console.log("get comment data:", resp.data)
     }).catch(err => {
       console.log('thread:', err)
@@ -100,6 +101,9 @@ function onPullDownRefresh(e) {
     wx.stopPullDownRefresh()
     if (resp.data) {
       view.setData({ comments: massage(resp.data)})
+      view.setData({ 
+        hasmore: resp.data.length == 20 
+      })
     }
   }).catch(err => {
     wx.stopPullDownRefresh()
@@ -118,10 +122,10 @@ function onReachBottom(e) {
   var limit = 20
   var comments = view.data.comments
   if (comments.length > 0) {
-    sinceId = comments[comments.length - 1]
+    sinceId = comments[comments.length - 1].id
   }
   var pid = view.data.item.post.id
-
+  console.log("get since id:" + sinceId)
   view.setData({loading: true})
   api.getCommentList(pid, sinceId, limit).then(resp => {
     var hasmore= resp.data && resp.data.length == limit
