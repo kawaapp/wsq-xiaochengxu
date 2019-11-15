@@ -146,6 +146,9 @@ function gotoUserPage(user) {
 }
 
 function chooseImage(view) {
+  if (view.data.reply.hint) {
+    return
+  }
   wx.chooseImage({
     count: 1,
     sizeType: ['compressed'],
