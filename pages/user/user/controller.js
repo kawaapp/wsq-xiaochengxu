@@ -47,7 +47,7 @@ function fetchPostList(uid) {
     console.log("user get posts:", resp)
     var posts = massage(resp.data)
     view.setData({ posts: resp.data })
-    view.setData({ loading: resp.data && resp.data.length === PAGE_SIZE })
+    view.setData({ loading: false, hasmore: resp.data && resp.data.length === PAGE_SIZE })
   }).catch(err => {
     console.log(err)
     wx.showToast({

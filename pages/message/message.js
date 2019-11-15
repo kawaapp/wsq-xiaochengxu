@@ -28,7 +28,7 @@ Page({
     const id = setInterval(function() {
       var counter = view.data.refreshCounter + 1
       view.setData({ refreshCounter: counter })
-      if (counter > 5) {
+      if (counter > 10) {
         ctr.refreshMessage()
       }
     }, 6000);
