@@ -11,7 +11,7 @@
     bindscrolltoupper="onPullDown">
 
     <!-- 加载状态 -->
-    <loading loading="{{loading}}" hasmore="{{hasmore}}" />
+    <kw-loading loading="{{loading}}" hasmore="{{hasmore}}" />
 
     <!-- 对话列表 -->
     <block wx:for="{{chatItems}}" wx:key="{{index}}">

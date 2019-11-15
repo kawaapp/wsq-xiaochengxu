@@ -42,5 +42,5 @@
   </view>
 
 <!-- 加载提示 -->
-<loading loading="{{loading}}" hasmore="{{hasmore}}" />
+<kw-loading loading="{{loading}}" hasmore="{{hasmore}}" />
 <view style='height:9.36rpx;'/>

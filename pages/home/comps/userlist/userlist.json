@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "loading": "../../../tmpl/loading/loading"
+    "kw-loading": "../../../tmpl/loading/loading"
   }
 }

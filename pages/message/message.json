@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "消息",
   "usingComponents": {
-    "loading": "../tmpl/loading/loading"
+    "kw-loading": "../tmpl/loading/loading"
   }
 }

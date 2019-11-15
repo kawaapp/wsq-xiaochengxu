@@ -16,4 +16,4 @@
   </view>
   <view style='margin-bottom:9.36rpx;'/>
 </view>
-<loading loading="{{loading}}" hasmore="{{hasmore}}"/>
+<kw-loading loading="{{loading}}" hasmore="{{hasmore}}"/>

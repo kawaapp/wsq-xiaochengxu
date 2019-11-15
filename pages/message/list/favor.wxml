@@ -19,5 +19,5 @@
   </view>
 </view>
 
-<loading loading="{{loading}}" hasmore="hasmore" />
+<kw-loading loading="{{loading}}" hasmore="hasmore" />
 <view style='height:9.36rpx;'/>

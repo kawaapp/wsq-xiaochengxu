@@ -3,7 +3,7 @@
   "enablePullDownRefresh": false,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "loading": "../../../tmpl/loading/loading",
+    "kw-loading": "../../../tmpl/loading/loading",
     "kw-post": "../../../tmpl/post/kw-post"
   }
 }

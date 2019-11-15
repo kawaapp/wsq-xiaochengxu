@@ -145,7 +145,7 @@
 </view>
 
 <!-- 列表加载状态 -->
-<loading loading="{{loading}}" hasmore="{{hasmore}}"/>
+<kw-loading loading="{{loading}}" hasmore="{{hasmore}}"/>
 
 
 <!--Empty view -->

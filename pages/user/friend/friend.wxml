@@ -20,4 +20,4 @@
 </view>
 
 <!-- loader -->
-<loading loading="{{loading}}" hasmore="{{hasmore}}" />
+<kw-loading loading="{{loading}}" hasmore="{{hasmore}}" />

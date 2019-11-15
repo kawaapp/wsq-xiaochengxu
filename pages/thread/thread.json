@@ -4,7 +4,7 @@
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "location": "../tmpl/location/location",
-    "loading": "../tmpl/loading/loading",
+    "kw-loading": "../tmpl/loading/loading",
     "kw-text": "../tmpl/text/kw-text",
     "kw-link": "../tmpl/link/kw-link",
     "kw-like": "../tmpl/like/kw-like"
