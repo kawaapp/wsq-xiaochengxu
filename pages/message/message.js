@@ -18,13 +18,25 @@ Page({
     chats:[],
     loading: false,
     hasmore: true,
+    timer: 0,
+    refreshCounter: 1,
   },
 
   onLoad: function(options) {
     ctr.setup(this)
+    const view = this
+    const id = setInterval(function() {
+      var counter = view.data.refreshCounter + 1
+      view.setData({ refreshCounter: counter })
+      if (counter > 5) {
+        ctr.refreshMessage()
+      }
+    }, 6000);
+    this.setData({ timer: id}) 
   },
 
   onUnload: function () {
+    clearInterval(this.data.timer)
     ctr.onUnload()
   },
 
@@ -34,7 +46,9 @@ Page({
   onShow: function () {
     wx.removeTabBarBadge({index: 1})
     wx.hideTabBarRedDot({index: 1})
-    ctr.refreshMessage()
+    if (this.data.refreshCounter > 0) {
+      ctr.refreshMessage()
+    }
   },
 
   /**
@@ -48,7 +62,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    ctr.onReachBottom()
   },
 
   // 点击点赞消息按钮

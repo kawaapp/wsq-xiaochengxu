@@ -2,6 +2,7 @@ const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
 
 const app = getApp()
+const PAGE_SIZE = 20
 
 var view = undefined
 function setup(_view) {
@@ -12,6 +13,8 @@ function onUnload() {
 }
 
 function refreshMessage() {
+  view.setData({ refreshCounter: 0})
+  
   // refresh system notification
   api.getMessageCount().then((resp) => {
     view.setData({ count: resp.data })
@@ -21,10 +24,33 @@ function refreshMessage() {
   })
 
   // refresh chat message
-  api.getChatUserList().then( resp => {
+  api.getChatUserList(0, PAGE_SIZE).then( resp => {
     console.log("get chat user:", resp)
+    wx.stopPullDownRefresh()
     view.setData({ chats: massage(resp.data)})
+    view.setData({ hasmore: resp.data && resp.data.length == PAGE_SIZE })
   }).catch( err => {
+    wx.stopPullDownRefresh()
+    console.log(err)
+  })
+}
+
+function onReachBottom() {
+  if (view.data.loading || !view.data.hasmore) {
+    return
+  }
+  var since = 0
+  if (view.data.chats.length > 0) {
+    since = view.data.chats[view.data.chats.length-1].id
+  }
+  api.getChatUserList(since, PAGE_SIZE).then(resp => {
+    view.setData({
+      chats: view.data.chats.concat(massage(resp.data))
+    })
+    view.setData({ 
+      hasmore: resp.data && resp.data.length == PAGE_SIZE 
+    })
+  }).catch(err => {
     console.log(err)
   })
 }
@@ -72,5 +98,6 @@ module.exports = {
   setup: setup,
   onUnload: onUnload,
   refreshMessage: refreshMessage,
+  onReachBottom: onReachBottom,
   onClickItem: onClickItem,
 }
