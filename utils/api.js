@@ -352,28 +352,28 @@ function updatePost(id, data) {
 }
 
 // set post status
-function setPostStatus(data) {
+function setPostStatus(id, data) {
   return req({
-    url: `${Host}/api/posts/:id/st?` + jsonQueryString(data),
+    url: `${Host}/api/posts/${id}/st?` + jsonQueryString(data),
     method: 'PUT',
   })
 }
 
 // 隐藏
-function hidePost(v) {
-  return setPostStatus({'hid': v})
+function hidePost(id, v) {
+  return setPostStatus(id, {'hid': v})
 }
 // 置顶
-function pinPost(v) {
-  return setPostStatus({'top': v})
+function pinPost(id, v) {
+  return setPostStatus(id, {'top': v})
 }
 // 加精
-function valPost(v) {
-  return setPostStatus({ 'val': v })
+function valPost(id, v) {
+  return setPostStatus(id, { 'val': v })
 }
 // 审核
-function auditPost() {
-  return setPostStatus({ 'aud': 1 })
+function auditPost(id) {
+  return setPostStatus(id,{ 'aud': 1 })
 }
 
 // delete post
@@ -535,9 +535,9 @@ function setAllMessageRead(which) {
 }
 
 // 私信接口
-function getChatUserList() {
+function getChatUserList(since, limit) {
   return req({
-    url: `${Host}/api/chat/users`,
+    url: `${Host}/api/chat/users?since_id=${since || 0}&limit=${limit || 20}`,
     method: 'GET'
   })
 }

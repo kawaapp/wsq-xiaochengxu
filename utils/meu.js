@@ -102,7 +102,7 @@ function favorite(item) {
 // 置顶
 function pinPost(post) {
   var status = oppo_value(post.status, 0)
-  api.pinPost(status).then(() => {
+  api.pinPost(post.id, status).then(() => {
     post.status = bit_toggle(post.status, 0)
     wx.showToast({ title: '操作成功', icon: 'none' })
   }).catch(err => {
@@ -112,7 +112,7 @@ function pinPost(post) {
 // 加精
 function valPost(post) {
   var status = oppo_value(post.status, 1)
-  api.valPost(status).then(() => {
+  api.valPost(post.id, status).then(() => {
     post.status = bit_toggle(post.status, 1)
     wx.showToast({ title: '操作成功', icon: 'none' })
   }).catch(err => {
@@ -122,7 +122,7 @@ function valPost(post) {
 // 隐藏
 function hidePost(post) {
   var status = oppo_value(post.status, 2)
-  api.hidePost(status).then(() => {
+  api.hidePost(post.id, status).then(() => {
     post.status = bit_toggle(post.status, 2)
     wx.showToast({ title: '操作成功', icon: 'none' })
   }).catch(err => {
@@ -132,7 +132,7 @@ function hidePost(post) {
 
 // 审核通过
 function auditPost(post) {
-  api.auditPost().then(()=> {
+  api.auditPost(post.id).then(()=> {
     post.status = bit_clear(post.status, 3)
     wx.showToast({ title: '审核通过', icon: 'none' })
   }).catch(err => {
