@@ -23,14 +23,15 @@ Page({
       type: '',
       value: '',
       show: false,
-    }
+    },
+    user_mode: 0,
   },
 
   
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
-    var user = app.globalData.userInfo
-    this.setData({user: user})
+    const { userInfo, meta } = app.globalData
+    this.setData({ user: userInfo, user_mode: meta.user_mode })
   },
 
   // 页面销毁时执行
@@ -103,13 +104,43 @@ Page({
     } })
   },
 
-  clickPhone: function(e) {
-    this.setData({ dialog: { 
-        show: true, 
-        type: 'phone', 
+  clickPhone: function (e) {
+    this.setData({ dialog: {
+        show: true,
+        type: 'phone',
         title: '修改手机号',
-        initial: this.data.user.phone,    
-    }})
+        initial: this.data.user.phone,
+      }
+    })
+  },
+
+  getPhoneNumber: function(e) {
+    var view = this
+    var ecrypted = e.detail.encryptedData
+    var iv = e.detail.iv
+    if (ecrypted && iv) {
+      biz.getPhoneNumber(ecrypted, iv).then(data => {
+        if (!data.purePhoneNumber) {
+          wx.showToast({ title: '会话过期，请重试', icon: 'none' })
+          return
+        }
+        var user = app.globalData.userInfo
+        user.phone = data.purePhoneNumber
+        view.setData({ user: user })
+        api.updateUser(user).then(resp => {
+          console.log('update user.phone success')
+        })
+      }).catch(err => {
+        if (err.code && err.code == 2) {
+          wx.showToast({ title: '手机号解密失败', icon: 'none' })
+        } else {
+          wx.showToast({ title: '绑定手机号失败', icon: 'none' })
+        }
+        console.log(err)
+      })
+    } else {
+      wx.showToast({ title: '绑定手机号失败:0', icon: 'none' })
+    }
   },
 
   bindUserInfo: function(e) {

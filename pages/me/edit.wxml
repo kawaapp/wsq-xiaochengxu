@@ -26,7 +26,18 @@
     </view>
   </view>
   <view class="line"></view>
-  <view class="horizontal" bindtap="clickPhone">
+  <view class="horizontal" wx:if="{{user_mode==2}}">
+    <button class="btn-clear" style="width:100%" 
+        open-type="getPhoneNumber"
+        bindgetphonenumber="getPhoneNumber">
+    <view>手机号</view>
+    <view class="flow-right">
+      <view class="flow-right content" >{{user.phone? user.phone: '未填写'}}</view>
+      <image class="arrow" src="{{theme.images}}/arrow_right.png" />
+    </view>
+    </button>
+  </view>
+  <view class="horizontal" wx:if="{{user_mode!=2}}" bindtap="clickPhone">
     <view>手机号</view>
     <view class="flow-right">
       <view class="flow-right content" >{{user.phone? user.phone: '未填写'}}</view>
