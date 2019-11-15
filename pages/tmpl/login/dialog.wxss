@@ -1,0 +1,99 @@
+
+.-title {
+  font-size: 28rpx;
+  color: gray;
+  padding: 24rpx 28rpx;
+}
+
+.mask {
+  position: fixed; 
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
+  z-index: 1999;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.dialog {
+  position: fixed;
+  top: 10vh; left: 96rpx; right: 96rpx;
+  z-index: 999;
+  background: white;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 86rpx 64rpx 64rpx 64rpx;
+}
+
+.close {
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+  width:42rpx; 
+  height:42rpx;
+}
+
+.dialog .-title {
+  padding: 12rpx 0;
+  font-size: 32rpx;
+}
+
+.dialog .note {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: gray;
+}
+
+.input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+
+.circle {
+  margin-right: 16rpx;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: 1px solid gainsboro;
+}
+
+.name {
+  color: #666;
+  font-weight: 500;
+  margin-right: 12rpx;
+}
+
+.btn {
+  position: relative;
+  margin-left: 32rpx;
+  text-align: center;
+}
+
+.underline {
+  width: 100%;
+  height: 1px;
+  background: #1890FF;
+  opacity: 1;
+  position: absolute;
+  z-index: 0;
+  bottom: 7rpx;
+}
+
+.btn-cancel {
+  background-color: #f8f8f8;
+  color:white;
+  font-size: 32rpx;
+}
+
+.btn-cancel-hover {
+ opacity: .6;
+}
+
+.btn-submit {
+  font-size: 32rpx;
+  color: white;
+}
+
+.btn-submit-hover {
+  opacity: .6;
+}

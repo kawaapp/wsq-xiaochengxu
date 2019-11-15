@@ -1,0 +1,28 @@
+<!--pages/tmpl/login/dialog.wxml-->
+
+<!-- input dialog -->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog">
+    <image src="/res/del.png" class="close" />
+    <view class="-title">提示</view>
+    <view class="note">为了保证您的数据不丢失，请先使用微信授权登录</view>
+
+    <view class="input" style="margin-top:64rpx;">
+      <view class="circle"/>
+      <view class="name">手机:</view>
+      <view class="btn"><text>点击授权</text><view class="underline"/></view>
+    </view>
+    <view class="input" style="margin-top:16rpx;">
+      <view class="circle"/>
+      <view class="name">昵称:</view>
+      <view class="btn"><text>点击授权</text><view class="underline"/> </view>
+    </view>
+   
+    <button  style="margin-top:128rpx;width:256rpx; background:{{color}}; opacity:.3"
+      catchtap="clickCancel"
+      class="btn-cancel" 
+      hover-class="btn-cancel-hover">
+      完成
+    </button>
+  </view>
+</view>
