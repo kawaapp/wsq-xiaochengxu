@@ -1,4 +1,5 @@
 const api = require('../../../utils/api.js')
+const util = require('../../../utils/util.js')
 const app = getApp()
 const PAGE_SIZE = 20
 
@@ -63,15 +64,15 @@ Page({
   clickUnfollow: function(e) {
     var idx = e.currentTarget.dataset.idx
     var user = this.data.followings[idx]
-
+    var view = this
     // do cancel
     var cancel = function() {
       api.unfollow(user.id).then( resp => {
         wx.showToast({
           title: '取消成功',
         })
-        var data = view.data.followers.splice(idx, 1)
-        view.setData({ followers: data})
+        var data = view.data.followings.splice(idx, 1)
+        view.setData({ followings: data})
       }).catch( err => {
         console.log(err)
         wx.showToast({
@@ -104,6 +105,18 @@ Page({
       wx.showToast({
         title: '关注失败:' + err.code, icon: 'none'
       })
+    })
+  },
+
+  clickItem: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    var user = [this.data.followings, this.data.followers][this.data.tabCurrent][idx]
+    util.sendRequest('user', {
+      idx: idx,
+      data: user
+    })
+    wx.navigateTo({
+      url: '/pages/user/user/user',
     })
   }
 })

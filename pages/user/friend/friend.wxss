@@ -3,6 +3,7 @@
   padding: 16rpx 16rpx;
   display: flex;
   align-items: center;
+  border-bottom: 1rpx solid #f8f8f8;
 }
 
 .user .button {
@@ -13,3 +14,24 @@
   padding: 8rpx 24rpx;
   border-radius: 30rpx;
 }
+
+.timearrow {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.timearrow text {
+  font-size: 28rpx;
+  color: gray;
+  margin-right: 12rpx;
+}
+
+.timearrow image {
+  width: 42rpx;
+  height: 42rpx;
+  opacity: .7;
+}
+
+
+

@@ -3,10 +3,19 @@
 
 <!-- 用户列表 -->
 <view>
-  <view class="user" wx:for="{{tabCurrent == 0? followings: followers}}" wx:key="{{item.id}}">
+  <view bindtap="clickItem" data-idx="{{index}}" class="user" 
+    wx:for="{{tabCurrent == 0? followings: followers}}" wx:key="{{item.id}}">
     <image class="avatar-large" src="{{item.avatar}}" style="margin-right:12rpx;" />
     <text class="title b5">{{item.nickname}}</text>
-    <view class="button" bindtap="clickUnfollow" data-idx="{{index}}">已关注</view>
+
+    <block wx:if="{{tabCurrent == 0}}">
+      <view class="button" catchtap="clickUnfollow" data-idx="{{index}}">已关注</view>
+    </block>
+    <block wx:else>
+      <view class="timearrow">
+        <text>2019-11-13</text> <image src="/res/arrow_right.png" />
+      </view>
+    </block>
   </view>
 </view>
 
