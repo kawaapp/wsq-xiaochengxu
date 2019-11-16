@@ -48,9 +48,9 @@ function getGrade(grades, exp) {
 
 // 签到/私信/发帖/评论是写操作，需要用户绑定昵称
 function isUserHasName(view) {
-  // if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
-  //   return true
-  // }
+  if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
+    return true
+  }
   var comp = view.selectComponent(".login")
   if (comp) {
     comp.show()

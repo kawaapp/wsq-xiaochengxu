@@ -12,7 +12,7 @@
     </view>
     <view style='margin-bottom:6rpx;'/>
     <!-- 图片 和 文字-->
-    <view style='margin-left:90rpx;' bindtap='topicClick' data-item="{{item}}">
+    <view style='margin:0px 90rpx;' bindtap='topicClick' data-item="{{item}}">
       <kw-post item="{{item}}" />
     </view>
   </view>
