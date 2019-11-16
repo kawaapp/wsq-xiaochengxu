@@ -26,19 +26,18 @@ function onPullDownRefresh() {
 }
 
 function onReachBottom() {
-  var { loading, hasmore } = view.data.loader
+  var { loading, hasmore } = view.data
   if (loading || !hasmore) {
     return
   }
 
   var page = view.data.page + 1
-  view.setData({page: page})
   view.setData({ loading: true })
-
   var users = view.data.users
 
   api.getUserList("active", page, PAGE_SIZE).then(resp => {
     var hasmore = resp.data && resp.data.length === PAGE_SIZE
+    view.setData({ page: page })
     view.setData({ loading: false, hasmore: hasmore})
     view.setData({ users: users.concat(massage(resp.data))})
   }).catch(err => {
@@ -52,7 +51,7 @@ function fetchUserList() {
     return
   }
 
-  view.setData({loading: true, hasmore: true })
+  view.setData({loading: true, hasmore: true, page: 1 })
   api.getUserList("active", 1, PAGE_SIZE).then(resp => {
     wx.stopPullDownRefresh()
     var hasmore = resp.data && resp.data.length === PAGE_SIZE
