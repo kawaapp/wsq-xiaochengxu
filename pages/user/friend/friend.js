@@ -71,8 +71,8 @@ Page({
         wx.showToast({
           title: '取消成功',
         })
-        var data = view.data.followings.splice(idx, 1)
-        view.setData({ followings: data})
+        view.data.followings.splice(idx, 1)
+        view.setData({ followings: view.data.followings})
       }).catch( err => {
         console.log(err)
         wx.showToast({
