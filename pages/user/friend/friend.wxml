@@ -20,4 +20,5 @@
 </view>
 
 <!-- loader -->
+<view style="margin-top:32rpx;" />
 <kw-loading loading="{{loading}}" hasmore="{{hasmore}}" />
