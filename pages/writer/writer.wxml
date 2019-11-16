@@ -45,7 +45,7 @@
       </image>
     </view>
     <view class="add" wx:if='{{images.length < 9}}' >
-      <image bindtap='chooseImage' src="{{theme.images}}/plus.png" ></image>
+      <image bindtap='chooseImage' src="/res/plus.png" ></image>
     </view>
   </view>
 

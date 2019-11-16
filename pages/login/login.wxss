@@ -9,14 +9,13 @@ page {
 }
  
 .login-button-normal {
-  background-color: #f8f8f8;
-  color:gray;
+  color:white;
   font-size: 32rpx;
+  opacity: 1;
 }
 
 .login-button-hover {
-  background-color: lightgray;
-  color:gray;
+  opacity: .7
 }
 
 .lds-ripple {

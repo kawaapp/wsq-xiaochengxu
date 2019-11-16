@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <!-- <text>自动登录中...</text> -->
 <view class='login-view' wx:if="{{visible}}">
-  <button bindtap='clickLogin' 
+  <button bindtap='clickLogin' style="background:{{theme.color}}"
     class="login-button-normal" 
     hover-class="login-button-hover"
   >

@@ -11,7 +11,7 @@
       </view>
       <view style="width:24rpx;" />
       <view class='msg gray-bg' bindtap='clickSendMessage'>
-        <image src="{{theme.images}}/nav_msg.png"/>
+        <image src="/res/nav_msg.png"/>
         <text>发消息</text>
       </view>
     </view>
