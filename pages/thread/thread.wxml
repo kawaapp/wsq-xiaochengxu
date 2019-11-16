@@ -177,7 +177,7 @@
 </view>
 
 <block wx:if="{{reply.focus}}">
-  <view class="input">
+  <view class="input" catchtap="dummy">
     <view class="hint">回复 <text>{{reply.hint? reply.hint: '作者'}}</text>
     </view>
     <input
@@ -197,7 +197,10 @@
       <image style="{{reply.hint?'opacity:.3':''}}" catchtap="chooseImage" 
       src="{{reply.image? reply.image: '/res/photo.png'}}" />
       <image class="del" catchtap="deleteImage" wx:if="{{reply.image}}" src="/res/del.png" />
-      <button catchtap="sendComment" class="btn-clear" style="background:{{theme.color}}">回复</button>
+      <button catchtap="sendComment" class="btn-clear" 
+        style="color:{{theme.color}};{{(reply.text || reply.image)? '':'opacity: .3' }}">
+        回复   
+      </button>
     </view>
   </view>
 </block>
