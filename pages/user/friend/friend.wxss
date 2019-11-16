@@ -1,6 +1,6 @@
 .user {
   background: white;
-  padding: 16rpx 16rpx;
+  padding: 24rpx 16rpx;
   display: flex;
   align-items: center;
   border-bottom: 1rpx solid #f8f8f8;

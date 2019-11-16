@@ -140,7 +140,7 @@ function fetchMoreFollower(view) {
   view.setData({ loading: true })
   api.getFollowerList(0, page, PAGE_SIZE).then( resp => {
     var hasmore = resp.data && resp.data === PAGE_SIZE
-    view.setData({ loading: false, hasmore: hasmore })
+    view.setData({ loading: false, hasmore: hasmore, pageNumber: page })
     view.setData({ followers: view.data.followers.concat(resp.data)})
   }).catch( err => {
     console.log(err)
@@ -166,7 +166,7 @@ function fetchMoreFollowing(view) {
   view.setData({ loading: true })
   api.getFollowingList(0, page, PAGE_SIZE).then(resp => {
     var hasmore = resp.data && resp.data === PAGE_SIZE
-    view.setData({ loading: false, hasmore: hasmore })
+    view.setData({ loading: false, hasmore: hasmore, pageNumber: page })
     view.setData({ followings: view.data.followings.concat(resp.data)})
   }).catch( err => {
     console.log(err)
