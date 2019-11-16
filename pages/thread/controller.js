@@ -141,6 +141,15 @@ function onReachBottom(e) {
   })
 }
 
+function onClickImage(e) {
+  var index = e.target.dataset.idx
+  var images = view.data.item.post.images
+  wx.previewImage({
+    urls: images,
+    current: images[index],
+  })
+}
+
 // ------- 针对帖子的动作 ---------
 
 // 点击帖子菜单
@@ -580,6 +589,7 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
+  onClickImage: onClickImage,
   onClickMenu: onClickMenu,
   onClickReplyPost: onClickReplyPost,
   onClickListComment: onClickListComment,

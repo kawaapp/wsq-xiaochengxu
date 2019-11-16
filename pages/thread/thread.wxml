@@ -30,7 +30,7 @@
     <!-- images -->
     <block wx:if="{{item.post.images}}">
       <view wx:for="{{item.post.images}}" wx:for-item="path" wx:key="{{path}}" >
-        <image src="{{path}}" mode='widthFix' class="img"/>
+        <image bindtap="clickImage" data-idx="{{index}}" src="{{path}}" mode='widthFix' class="img"/>
       </view>
     </block> 
 

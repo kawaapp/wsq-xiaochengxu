@@ -57,6 +57,9 @@ Page({
   clickMenu: function (e) {
     ctr.onClickMenu(e)
   },
+  clickImage: function(e) {
+    ctr.onClickImage(e)
+  },
   clickMask: function(e) {
     this.setData({
       reply: {
