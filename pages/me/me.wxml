@@ -2,11 +2,26 @@
 <view class='card' style='margin: 18rpx 0 18rpx 0;'>
   <view class='horizontal'>
     <image class='avatar' 
-      src="{{user.avatar?user.avatar: theme.images+'/user_icon.png'}}">
+      src="{{user.avatar?user.avatar:'/res/placeholder.png'}}">
     </image>
     <view style='margin-left:18rpx;'>
       <view>
-        <text style='font-size:30rpx;'>{{user.nickname?user.nickname:'路人'}}</text>
+        <text wx:if="{{user.nickname}}" style='font-size:30rpx;'>{{user.nickname}}</text>
+        <view hidden='{{user.nickname}}'>
+          <button wx:if="{{metadata.user_mode < 2}}"
+          class='btn-clear btn' 
+          hover-class='btn-hover'
+          style='color: {{theme.color}};'
+          open-type="getUserInfo" 
+          bindgetuserinfo="bindUserInfo"
+          >点击登录</button>
+          <button wx:if="{{metadata.user_mode == 2}}"
+          class='btn-clear btn' 
+          hover-class='btn-hover'
+          style='color: {{theme.color}};'
+          bindtap='clickBindProfile'
+          >点击登录</button>
+        </view>
         <text wx:if="{{expLabel && user.nickname}}" 
           class='grade' 
           style='background-color:{{theme.gradeColor}}'
@@ -17,25 +32,8 @@
         bindgetphonenumber="getPhoneNumber"
         class='btn-clear subtitle'>{{user.phone? user.phone: '绑定手机号'}}</button>
     </view>
-    
     <view wx:if="{{user.nickname}}" class="setting" bindtap="clickEdit" > 
       <image class="arrow-right" src="{{theme.images}}/arrow_right.png"></image>
-    </view>
-
-    <view hidden='{{user.nickname}}' style='margin-left:auto;'>
-      <button wx:if="{{metadata.user_mode < 2}}"
-      class='btn' 
-      hover-class='btn-hover'
-      style='background-color: {{theme.color}};'
-      open-type="getUserInfo" 
-      bindgetuserinfo="bindUserInfo"
-      >登录</button>
-      <button wx:if="{{metadata.user_mode == 2}}"
-      class='btn' 
-      hover-class='btn-hover'
-      style='background-color: {{theme.color}};'
-      bindtap='clickBindProfile'
-      >登录</button>
     </view>
   </view>
 </view>

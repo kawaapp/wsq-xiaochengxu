@@ -1,11 +1,12 @@
 /* pages/me/me.wxss */
 
 .avatar {
-  width: 112rpx;
-  height: 112rpx;
-  max-height: 112rpx;
-  max-width: 112rpx;
-  border-radius: 56rpx;
+  margin: 8rpx 0px;
+  width: 96rpx;
+  height: 96rpx;
+  max-height: 96rpx;
+  max-width: 96rpx;
+  border-radius: 50%;
 }
 
 .icon-small {
@@ -34,8 +35,9 @@
 }
 
 .btn {
-  color: #fff;
-  font-size: 28rpx;
+  background: transparent;
+  color: #1890FF;
+  font-size: 32rpx;
 }
 
 .btn-hover {

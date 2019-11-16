@@ -19,7 +19,7 @@ Component({
   data: {
     color: kawa.Theme.MainColor,
     show: false,
-    mode: app.globalData.meta.user_mode,
+    mode: 0,
     user: {},
     btnEnable: false,
   },
@@ -29,7 +29,8 @@ Component({
    */
   methods: {
     show: function() {
-      this.setData({ show: true })
+      const { user_mode } = app.globalData.meta
+      this.setData({ show: true, mode: user_mode})
     },
 
     clickClose: function(e) {
@@ -115,7 +116,7 @@ function finish(view) {
   }
 
   // update user 
-  api.updateUser(data).then((resp) => {
+  api.updateUser(user).then((resp) => {
     // update global cache
     app.globalData.userInfo = resp.data
 
