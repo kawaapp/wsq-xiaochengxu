@@ -198,6 +198,10 @@ function onClickTopList(e) {
   })
 }
 
+function onPullDownRefresh() {
+  fetchTopList()
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -208,4 +212,5 @@ module.exports = {
   onClickSpeaker: onClickSpeaker,
   onClickTopList: onClickTopList,
   onClickSignin: onClickSignin,
+  onPullDownRefresh: onPullDownRefresh, 
 }

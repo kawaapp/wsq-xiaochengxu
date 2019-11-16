@@ -61,6 +61,7 @@ Page({
     if (comp) {
       comp.onPullDownRefresh()
     }
+    ctr.onPullDownRefresh()
   },
   /**
    * 页面上拉触底事件的处理函数
