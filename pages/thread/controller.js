@@ -217,7 +217,7 @@ function onClikcFavorPost(e) {
 
 // 对帖子评论
 function onClickReplyPost(e) {
-  if (!biz.isUserHasName()){
+  if (!biz.isUserHasName(view)){
     return
   }
   view.setData({ reply: { focus: true } })
@@ -266,7 +266,7 @@ function unfavorComent(idx, comment) {
 
 // 对评论进行回复菜单
 function onClickListComment(e) {
-  if (!biz.isUserHasName()){
+  if (!biz.isUserHasName(view)){
     return
   }
 
@@ -290,14 +290,14 @@ function onClickListCommentAction(e) {
   var index = array[0], sub = array[1]
 
   var actionDelete = function() {
-    if (!biz.isUserHasName()) {
+    if (!biz.isUserHasName(view)) {
       return;
     }
     deleteComment(index, sub)
   }
 
   var actionReply = function() {
-    if (!biz.isUserHasName()) { 
+    if (!biz.isUserHasName(view)) { 
       return; 
     }
     // commennt on comment

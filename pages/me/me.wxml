@@ -29,13 +29,13 @@
       style='background-color: {{theme.color}};'
       open-type="getUserInfo" 
       bindgetuserinfo="bindUserInfo"
-      >绑定昵称</button>
+      >登录</button>
       <button wx:if="{{metadata.user_mode == 2}}"
       class='btn' 
       hover-class='btn-hover'
       style='background-color: {{theme.color}};'
       bindtap='clickBindProfile'
-      >绑定资料</button>
+      >登录</button>
     </view>
   </view>
 </view>
@@ -95,3 +95,6 @@
   >{{copyright}}</text>
   <text wx:if="{{support}}">卡哇微社区(kawaapp.com) 提供技术支持</text>
 </view>
+
+<!-- login dialog -->
+<kw-login class="login" />

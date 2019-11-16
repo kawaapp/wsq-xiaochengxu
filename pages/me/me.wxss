@@ -35,7 +35,7 @@
 
 .btn {
   color: #fff;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .btn-hover {

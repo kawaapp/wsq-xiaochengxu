@@ -1,3 +1,4 @@
+@import '/app.wxss';
 
 .-title {
   font-size: 28rpx;
@@ -79,21 +80,14 @@
   bottom: 7rpx;
 }
 
-.btn-cancel {
+.btn-submit {
   background-color: #f8f8f8;
   color:white;
   font-size: 32rpx;
-}
-
-.btn-cancel-hover {
- opacity: .6;
-}
-
-.btn-submit {
-  font-size: 32rpx;
-  color: white;
+  margin-top:128rpx;
+  width:256rpx;
 }
 
 .btn-submit-hover {
-  opacity: .6;
+ opacity: .6;
 }

@@ -35,14 +35,6 @@ function onLoad(options) {
   if (meta && (meta.app_support === 'false')) {
     view.setData({ support: false })
   }
-  // update 
-  api.getSelf().then((resp) => {
-    app.globalData.userInfo = resp.data
-    view.setData({ user: resp.data })
-    console.log("get user data:", resp.data)
-  }).catch( err => {
-    console.log(err)
-  })
 
   // 只有用户绑定了昵称，并且开启了经验系统才更新用户等级
   if (user.nickname && meta.app_exp_limit) {

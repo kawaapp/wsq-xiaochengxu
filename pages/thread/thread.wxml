@@ -208,3 +208,6 @@
     <view style='text-align:center; line-height: 100rpx'>首页</view>
   </view>
 </block>
+
+<!-- 登录对话框 -->
+<kw-login class="login" />

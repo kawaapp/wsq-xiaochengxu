@@ -124,7 +124,7 @@ function getTitle(item) {
 }
 
 function onClickNewPost(e) {
-  if (!biz.isUserHasName()) {
+  if (!biz.isUserHasName(view)) {
     return
   }
   wx.navigateTo({
@@ -142,7 +142,7 @@ function onClickShare(res) {
 }
 
 function onClickSignin(e) {
-  if (!biz.isUserHasName()) {
+  if (!biz.isUserHasName(view)) {
     return
   }
   if (view.data.signed) {

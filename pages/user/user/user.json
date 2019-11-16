@@ -4,6 +4,7 @@
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "kw-loading": "../../../tmpl/loading/loading",
-    "kw-post": "../../../tmpl/post/kw-post"
+    "kw-post": "../../../tmpl/post/kw-post",
+    "kw-login": "../../../tmpl/login/dialog"
   }
 }

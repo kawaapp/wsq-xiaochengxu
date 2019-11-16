@@ -80,9 +80,12 @@ Page({
   },
 
   clickBindProfile: function(e) {
-    wx.navigateTo({
-      url: '/pages/me/bind',
-    })
+    var comp = this.selectComponent(".login")
+    if (comp) {
+      comp.show()
+    } else {
+      console.log("fatal:can't find login dialog")
+    }
   },
 
   clickExp: function(e) {

@@ -106,7 +106,7 @@ function massage(posts) {
 
 
 function onClickSend() {
-  if (!biz.isUserHasName('')) {
+  if (!biz.isUserHasName(view)) {
     return
   }
   var user = view.data.user
@@ -129,6 +129,10 @@ function onClickItem(e) {
 }
 
 function onClickFollow(e) {
+  if(!biz.isUserHasName(view)) {
+    return
+  }
+
   var { user } = view.data
   console.log("get user:", user)
   if (view.data.follow) {

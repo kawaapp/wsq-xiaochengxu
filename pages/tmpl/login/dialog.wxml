@@ -3,25 +3,35 @@
 <!-- input dialog -->
 <view class="mask" hidden="{{!show}}" bindtap="dummy" >
   <view class="dialog">
-    <image src="/res/del.png" class="close" />
+    <image catchtap="clickClose" src="/res/del.png" class="close" />
     <view class="-title">提示</view>
-    <view class="note">为了保证您的数据不丢失，请先使用微信授权登录</view>
+    <view class="note">在社区中发言时，需要绑定微信昵称{{mode==2?'和手机号':''}}才能进行。</view>
 
     <view class="input" style="margin-top:64rpx;">
       <view class="circle"/>
-      <view class="name">手机:</view>
-      <view class="btn"><text>点击授权</text><view class="underline"/></view>
-    </view>
-    <view class="input" style="margin-top:16rpx;">
-      <view class="circle"/>
       <view class="name">昵称:</view>
-      <view class="btn"><text>点击授权</text><view class="underline"/> </view>
+      <button class="btn-clear" open-type="getUserInfo" bindgetuserinfo="bindUserInfo">
+        {{user.nickname}}
+        <view class="btn" wx:if="{{!user.nickname}}" >
+          <text>一键获取</text><view class="underline"/> 
+        </view>
+      </button>
     </view>
-   
-    <button  style="margin-top:128rpx;width:256rpx; background:{{color}}; opacity:.3"
-      catchtap="clickCancel"
-      class="btn-cancel" 
-      hover-class="btn-cancel-hover">
+    <view wx:if="{{mode==2}}" class="input" style="margin-top:16rpx;">
+      <view class="circle"/>
+      <view class="name">手机:</view>
+      <button class="btn-clear" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" >
+        {{user.phone}}
+        <view class="btn" wx:if="{{!user.phone}}">
+          <text>一键获取</text><view class="underline"/>
+        </view>
+      </button>
+    </view>
+    
+    <button  style="background:{{color}};{{btnEnable? '':'opacity:.3'}}"
+      catchtap="clickFinish"
+      class="btn-submit" 
+      hover-class="btn-submit-hover">
       完成
     </button>
   </view>

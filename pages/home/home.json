@@ -4,6 +4,7 @@
   "usingComponents": {
     "userlist": "./comps/userlist/userlist",
     "postlist": "./comps/postlist/postlist",
-    "kw-tab": "../../tmpl/tab/kw-tab"
+    "kw-tab": "../../tmpl/tab/kw-tab",
+    "kw-login": "../../tmpl/login/dialog"
   }
 }

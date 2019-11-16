@@ -74,3 +74,5 @@
 <view hidden="{{hideNewButton}}">
   <image catchtap='newTopic' class='new-topic' src="{{theme.images}}/write.png"></image>
 </view>
+
+<kw-login class="login" />

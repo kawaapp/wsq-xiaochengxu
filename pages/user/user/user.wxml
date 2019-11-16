@@ -45,3 +45,6 @@
 
 <!-- 加载提示 -->
 <kw-loading loading="{{loading}}" hasmore="{{hasmore}}"/>
+
+<!-- login -->
+<kw-login class="login" />
