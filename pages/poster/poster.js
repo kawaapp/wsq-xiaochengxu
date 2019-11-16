@@ -90,15 +90,16 @@ function getDrawJson(view, p) {
         width: 375,
         height: 50,
         views: [
-          {
-            type: 'text',
-            content: app_name,
-            fontSize: 22,
-            color: '#666',
-            textAlign: 'center',
-            marginTop: 14,
-            marginLeft: 187,
-          }
+          // hide poster title
+          // {
+          //   type: 'text',
+          //   content: app_name,
+          //   fontSize: 22,
+          //   color: '#ddd',
+          //   textAlign: 'center',
+          //   marginTop: 14,
+          //   marginLeft: 187,
+          // }
         ]
       },
       {
