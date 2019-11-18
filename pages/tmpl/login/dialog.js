@@ -120,6 +120,9 @@ function finish(view) {
     // update global cache
     app.globalData.userInfo = resp.data
 
+    // callback
+    view.triggerEvent('onOk', resp.data)
+
     // close dialog
     requestClose(view)
   }).catch(err => {

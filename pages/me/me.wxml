@@ -95,4 +95,4 @@
 </view>
 
 <!-- login dialog -->
-<kw-login class="login" />
+<kw-login class="login" bind:onOk="onOk" />

@@ -98,5 +98,10 @@ Page({
     wx.navigateTo({
       url: '/pages/me/edit',
     })
+  },
+
+  onOk: function(e) {
+    const user = e.detail
+    this.setData({ user: user })
   }
 })
