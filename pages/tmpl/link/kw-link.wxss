@@ -1,5 +1,6 @@
 /* pages/tmpl/link/kw-link.wxss */
 .link {
+  box-sizing: border-box;
   background: #f8f8f8;
   display: flex;
   align-items: center;

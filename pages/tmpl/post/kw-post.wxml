@@ -8,7 +8,7 @@
   <!-- Rich Text -->
   <view wx:if="{{item.rich}}">
     <view class="rich">
-      <image src="/res/link.png"/>
+      <image src="/res/richtext.png"/>
       <text>{{item.title}} </text>
     </view>
   </view>
