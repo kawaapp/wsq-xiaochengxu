@@ -2,6 +2,7 @@ import api from '../../utils/api.js'
 import util from '../../utils/util.js'
 import biz from '../../utils/biz.js'
 import meu from '../../utils/meu.js'
+import h2j from '../../utils/h2j/parser.js'
 
 const app = getApp()
 
@@ -49,6 +50,14 @@ function fetch(options) {
         item.post.link = JSON.parse(media.path)
       }
     }
+
+    // parse rich text
+    if (item.post.title && item.post.content[0] == '<') {
+      item.post.rich = true
+      const json = h2j.getRichTextJson(item.post.content)
+      item.post.nodes = json.children
+    }
+
     if (item.post.location) {
       try {
         item.post.location = JSON.parse(item.post.location)

@@ -1,8 +1,16 @@
 <!--pages/tmpl/post/kw-post.wxml-->
 <view>
   <!-- Text -->
-  <view>
+  <view wx:if="{{!item.rich}}">
     <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
+  </view>
+
+  <!-- Rich Text -->
+  <view wx:if="{{item.rich}}">
+    <view class="rich">
+      <image src="/res/link.png"/>
+      <text>{{item.title}} </text>
+    </view>
   </view>
 
   <!-- Image列表 -->

@@ -113,6 +113,9 @@ function getSelectedTopic() {
 }
 
 function getTitle(item) {
+  if (item.title) {
+    return item.title
+  }
   if (!item || !item.content) {
     return ""
   }

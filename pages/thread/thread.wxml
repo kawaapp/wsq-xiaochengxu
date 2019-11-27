@@ -23,8 +23,14 @@
   </view>
   <view style='margin-top:18rpx;'>
     <!-- Text -->
-    <view>
+    <view wx:if="{{!item.post.rich}}">
       <kw-text text="{{item.post.content}}" limit="{{2000}}" selectable="{{true}}"></kw-text>
+    </view>
+
+    <!-- Rich Text -->
+    <view wx:if="{{item.post.rich}}">
+      <view class="h1">{{item.post.title}}</view>
+      <rich-text nodes="{{item.post.nodes}}" />
     </view>
     
     <!-- images -->

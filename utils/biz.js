@@ -1,5 +1,7 @@
 const util = require('util.js')
 const api = require('api.js')
+const h2j = require('h2j/parser.js')
+
 const app = getApp()
 
 function getPhoneNumber(ecrypted, iv) {
@@ -64,6 +66,7 @@ function parsePost(post) {
   var utcTime = post.created_at * 1000
   post.time = util.formatTime(new Date(utcTime))
   post.agoTime = util.agoTime(utcTime)
+  parseRichText(post)
   parseUser(post.author)
   parseMedia(post)
   parseLocation(post)
@@ -112,10 +115,18 @@ function parseUser(user) {
   return user
 }
 
+function parseRichText(post) {
+  if (post.title && post.content[0] == '<') {
+    post.rich = true
+  }
+}
+
 // 获取帖子摘要
 function postContent(post) {
   var digest = ""
-  if (post.content) {
+  if (post.title) {
+    digest = "[长图文]" + post.title
+  } else if (post.content) {
     digest = post.content
   } else if (post.media) {
     if (post.media.type == 1){
@@ -126,7 +137,7 @@ function postContent(post) {
       digest = "[视频]"
     } else if (post.media.type == 4) {
       digest = "[链接]" + (getLinkTitle(post.media) || '')
-    }
+    } 
   }
   return digest
 }
