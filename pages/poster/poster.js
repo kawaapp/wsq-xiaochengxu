@@ -143,7 +143,7 @@ function getDrawJson(view, p) {
       },
     ]
   }
-  if (p.content) {
+  if (p.content && !p.rich) {
     json.views.push({
       type: 'text',
       content: p.content,
@@ -157,6 +157,38 @@ function getDrawJson(view, p) {
       marginTop: 28,
       marginLeft: 12,
     })
+  }
+
+  if (p.nodes && p.rich) {
+    // render title
+    json.views.push({
+      type: 'text',
+      content: p.title,
+      fontSize: 22,
+      breakWord: true,
+      MaxLineNumber: 1000,
+      width: 340,
+      lineHeight: 28,
+      color: '#333',
+      textAlign: 'left',
+      marginTop: 28,
+      marginLeft: 12,
+    })
+
+    // render feature image
+    var array = []
+    p.nodes.map(node => {
+      getImage(array, node)
+    })
+    if (array.length) {
+      json.views.push({
+        type: 'image',
+        url: array[0],
+        marginTop: 30,
+        marginLeft: 16,
+        width: 340,
+      })
+    }
   }
 
   if (p.images && p.images.length > 0) {
@@ -195,4 +227,16 @@ function getDrawJson(view, p) {
     ]
   })
   return json
+}
+
+function getImage(array, div) {
+  if (!div) {
+    return
+  }
+  if (div.name == 'img') {
+    array.push(div.attrs.src)
+  }
+  div.children && div.children.map( n => {
+    getImage(array, n)
+  })
 }
