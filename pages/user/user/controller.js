@@ -46,7 +46,7 @@ function fetchPostList(uid) {
   api.getUserPostList(uid).then(resp => {
     console.log("user get posts:", resp)
     var posts = massage(resp.data)
-    view.setData({ posts: resp.data })
+    view.setData({ posts: posts })
     view.setData({ loading: false, hasmore: resp.data && resp.data.length === PAGE_SIZE })
   }).catch(err => {
     console.log(err)
