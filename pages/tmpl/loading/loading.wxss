@@ -3,3 +3,34 @@
   font-size: 28rpx;
   color: #888888;
 }
+
+.loading {
+    margin: 0px auto;
+    width: 240rpx;
+    padding: 12rpx 0px;
+    display: flex;
+    justify-items: center;
+}
+
+.loading image {
+  width: 48rpx;
+  height: 48rpx;
+  -webkit-animation:rotating 1s linear infinite;
+  animation:rotating 1s linear infinite;
+}
+
+.loading text {
+  line-height: 48rpx;
+  color: gray;
+  margin-left: 18rpx;
+  font-size: 32rpx;
+}
+
+@-webkit-keyframes rotating {
+    0%   { -webkit-transform: rotate(0deg);}
+    100% { -webkit-transform: rotate(360deg);}
+}
+@keyframes rotating {
+    0%   { -webkit-transform: rotate(0deg);}
+    100% { -webkit-transform: rotate(360deg);}
+}
