@@ -9,10 +9,12 @@
 }
 
 .link image {
+  box-sizing: border-box;
   min-width: 80rpx;
   width: 80rpx;
   height: 80rpx;
   margin-right: 8rpx;
+  padding: 14rpx;
 }
 
 .link text {
