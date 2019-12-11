@@ -27,3 +27,9 @@ page {
 .author {
   margin-right: 32rpx;
 }
+
+.footer {
+  margin: 32rpx 0rpx;
+  font-size: 28rpx;
+  color: dodgerblue;
+}

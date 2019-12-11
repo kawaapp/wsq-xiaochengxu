@@ -6,6 +6,7 @@
     <text class="date">{{date}}</text>
   </view>
   <rich-text nodes="{{nodes}}" />
+  <view class="footer" bindtap="clickCopy" >复制原文地址</view>
 </view>
 <block hidden="{{rich}}">
   <web-view wx:if="{{!rich}}" src="{{link}}"></web-view>

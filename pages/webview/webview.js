@@ -23,13 +23,28 @@ Page({
   onLoad: function (options) {
     const link = decodeURI(options.q)
     if (link.startsWith("https://kawaapp.com")) {
-      this.setData({ rich: true})
+      this.setData({ rich: true, link})
       getArticle(this, link)
     } else {
       this.setData({ rich: false})
       this.setData({ link: decodeURI(options.q) })
     }
   },
+
+  clickCopy: function(e) {
+    console.log("click cooc")
+    const link = this.data.link
+    wx.setClipboardData({
+      data: link,
+      success: function (res) {
+        wx.showToast({ title: '已经复制到剪切板', icon: 'none' })
+      }, 
+      fail: function (err) {
+        console.log("copy err:", err)
+        wx.showToast({ title: '复制失败:' + err, icon: 'none'})
+      }
+    })
+  }
 })
 
 // eg: https://kawaapp.com/w/33G5ZCK7YUHO/articles/1517283126
