@@ -21,7 +21,7 @@ page {
   font-size: 28rpx;
   color: gray;
   margin-top: 18rpx;
-  margin-bottom: 32rpx;
+  margin-bottom: 42rpx;
 }
 
 .author {
