@@ -8,8 +8,9 @@
   <!-- Rich Text -->
   <view wx:if="{{item.rich}}">
     <view class="rich">
-      <image src="/res/link.png"/>
-      <text>{{item.title}} </text>
+      <view>{{item.title}}</view>
+      <text>{{item.excerpt}}... </text>
+      <text style="color:dodgerblue"> 全文</text>
     </view>
   </view>
 

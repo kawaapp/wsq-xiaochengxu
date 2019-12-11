@@ -119,6 +119,34 @@ function parseRichText(post) {
   if (post.title && post.content[0] == '<') {
     post.rich = true
   }
+  if (post.rich) {
+    const json = h2j.getRichTextJson(post.content)
+    var excerpt = "", MAX = 70
+    var getText = (node) => {
+      if (!node) {
+        return
+      }
+      if (node.type == 'text') {
+        var size = excerpt.length + node.text.length
+        if (size < MAX) {
+          excerpt += node.text
+        } else {
+          excerpt += node.text.substring(0, MAX - excerpt.length)
+          return true
+        }
+      }
+      if (node.children) {
+        var i = 0, n = node.children.length
+        for (; i < n; i++){
+          if (getText(node.children[i])) {
+            return true
+          }
+        }
+      }
+    }
+    getText(json)
+    post.excerpt = excerpt
+  }
 }
 
 // 获取帖子摘要
