@@ -1,1 +1,24 @@
 /* pages/webview/webview.wxss */
+page {
+    background-color:#fff;
+}
+
+.article {
+  padding: 24rpx;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 42rpx;
+}
+
+.meta {
+  font-size: 28rpx;
+  color: gray;
+  margin-top: 18rpx;
+  margin-bottom: 32rpx;
+}
+
+.author {
+  margin-right: 32rpx;
+}

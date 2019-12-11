@@ -672,6 +672,25 @@ function uploadFile(file) {
   })
 }
 
+// 获取文章
+function getArticle(appKey, id) {
+  const url = `https://wsq.kawaapp.com/api/articles/${id}`
+  const header = { 'AppKey': appKey }
+  const method = 'GET'
+  return new Promise((res, rej) => {
+    wx.request({ url, header, method,
+      success(r) {
+        if (r.statusCode == 200) {
+          res(r);
+        }
+      },
+      fail(err) {
+        rej({ code: -1, err: err });
+      },
+    });
+  });
+}
+
 module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
@@ -766,4 +785,7 @@ module.exports = {
 
   // upload
   uploadFile: uploadFile,
+
+  // article
+  getArticle: getArticle,
 }
