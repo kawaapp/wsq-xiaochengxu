@@ -163,6 +163,8 @@
   width: 90rpx;
   height: 90rpx;
   margin-right: 8rpx;
+  box-sizing: border-box;
+  padding: 14rpx;
 }
 
 .link text {
