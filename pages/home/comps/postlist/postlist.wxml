@@ -12,7 +12,10 @@
 
 <!-- 帖子列表 -->
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
-  <view class="card">
+  <view class="card" wx:if="{{item.ad}}">
+    <kw-adver type="banner" adid="adunit-78ed8c5c50cde896" />
+  </view>
+  <view class="card" wx:if="{{!item.ad}}" >
     
     <!-- Content Area -->
     <view bindtap='clickItem' data-idx="{{index}}">

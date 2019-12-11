@@ -1,0 +1,5 @@
+<!--pages/tmpl/adver/adunit.wxml-->
+
+<block wx:if="{{type == 'banner'}}">
+  <ad unit-id="{{adid}}" ad-intervals="30" />
+</block>

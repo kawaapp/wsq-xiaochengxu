@@ -75,6 +75,9 @@
 </view>
 <view style='margin-bottom:9rpx;'/>
 
+<kw-adver type="banner" adid="adunit-45d7521eb6a7133f" />
+<!-- <kw-adver type="inter" adid="adunit-a3d3001e01f55297" /> -->
+
 <view class="card">
   <view style="font-weight:500">
     <text style='margin-right:18rpx;'>评论 {{item.post.stats.comments}}</text>

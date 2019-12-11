@@ -191,6 +191,11 @@ function onClickMenu(e) {
 }
 
 function massage(posts) {
+  // insert banner ad at [4, 14]
+  var adIndex = -1
+  if (!view.data.posts || view.data.posts.length == 0) {
+      adIndex = Math.floor(Math.random() * 10) + 4
+  }
   var result = []
   var author = app.globalData.userInfo
 
@@ -216,6 +221,9 @@ function massage(posts) {
 
     if (!hide) {
       result.push(biz.parsePost(post))
+    }
+    if ( i == adIndex) {
+        result.push({ad: true})
     }
   }
   return result

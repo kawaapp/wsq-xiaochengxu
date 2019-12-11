@@ -3,6 +3,35 @@ const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
 const util = require('../../utils/util.js')
 
+
+var interstitialAd = null
+function showInterstitialAd(view) {
+  if (wx.createInterstitialAd) {
+    interstitialAd = wx.createInterstitialAd({
+      adUnitId: "adunit-a3d3001e01f55297"
+    })
+
+    interstitialAd.onLoad((e) => { 
+      console.log("ad onload...", e)
+    })
+    interstitialAd.onError((err) => { 
+      console.log("ad erro...", err)
+    })
+    interstitialAd.onClose((e) => { 
+      console.log("ad close...", e)
+    })
+  }
+
+  setTimeout( () => {
+    // 在适合的场景显示插屏广告
+    if (interstitialAd) {
+      interstitialAd.show().catch((err) => {
+        console.error(err)
+      })
+    }
+  }, 1000)
+}
+
 Page({
 
   /**
@@ -41,6 +70,8 @@ Page({
   onLoad: function (options) {
     ctr.setup(this)
     ctr.onLoad(options)
+
+    showInterstitialAd(this)
   },
   onUnload: function() {
     ctr.onUnload()
