@@ -18,6 +18,10 @@ Component({
     images: {
       type: Object,
       value: [],
+    },
+    mr: {
+      type: String,
+      value: '0px'
     }
   },
 

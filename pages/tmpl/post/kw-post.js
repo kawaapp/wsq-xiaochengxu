@@ -7,6 +7,10 @@ Component({
     item: {
       type: Object,
       value: {}
+    },
+    mr: {
+      type: String,
+      value: "0rpx"
     }
   },
 

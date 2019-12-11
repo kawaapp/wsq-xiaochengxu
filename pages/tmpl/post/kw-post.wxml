@@ -17,7 +17,7 @@
   <!-- Image列表 -->
   <block wx:if="{{item.images && item.images.length > 0}}">
     <view style='margin: 8rpx 0rpx'>
-      <img-grid images="{{item.images}}"> </img-grid> 
+      <img-grid images="{{item.images}}" mr="{{mr}}"> </img-grid> 
     </view>
   </block>
 

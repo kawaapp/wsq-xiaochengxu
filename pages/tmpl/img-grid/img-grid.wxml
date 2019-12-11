@@ -31,7 +31,7 @@
 
 <!-- 多图 -->
 <block wx:else>
-  <view class='grid'>
+  <view class='grid' style="margin-right:{{mr}}">
     <view class="cell3" wx:for="{{images}}" wx:for-item="path" wx:key="{{path}}">
         <view class='inner'>
           <image mode='aspectFill' 
