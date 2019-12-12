@@ -2,13 +2,13 @@
 const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
 const util = require('../../utils/util.js')
-
+const app = getApp()
 
 var interstitialAd = null
 function showInterstitialAd(view) {
   if (wx.createInterstitialAd) {
     interstitialAd = wx.createInterstitialAd({
-      adUnitId: "adunit-a3d3001e01f55297"
+      adUnitId: app.globalData.wxad && app.globalData.wxad.detail_inters
     })
 
     interstitialAd.onLoad((e) => { 
@@ -23,13 +23,21 @@ function showInterstitialAd(view) {
   }
 
   setTimeout( () => {
+    const wxad = app.globalData.wxad
     // 在适合的场景显示插屏广告
-    if (interstitialAd) {
+    if (interstitialAd && wxad && wxad.detail_inters_on) {
       interstitialAd.show().catch((err) => {
         console.error(err)
       })
     }
   }, 1000)
+}
+
+function showBannerAd(view) {
+  const wxad = app.globalData.wxad
+  if (wxad && wxad.detail_banner_on) {
+    view.setData({ detail_banner: wxad.detail_banner })
+  }
 }
 
 Page({

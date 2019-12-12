@@ -190,12 +190,24 @@ function onClickMenu(e) {
   })
 }
 
-function massage(posts) {
-  // insert banner ad at [4, 14]
-  var adIndex = -1
-  if (!view.data.posts || view.data.posts.length == 0) {
-      adIndex = Math.floor(Math.random() * 10) + 4
+function getAdIndex() {
+  const wxad = app.globalData.wxad
+  // 没有打开广告
+  if (!wxad || !wxad.home_feed_on) {
+    return -1
   }
+  // 只有第一屏才展示
+  if (view.data.posts && view.data.posts.length != 0) {
+    return -1
+  }
+  view.setData({ adid: wxad.home_feed })
+  // insert banner ad at [4, 16]
+  return Math.floor(Math.random() * 16) + 4
+}
+
+function massage(posts) {
+  // insert banner ad at [4, 16]
+  var adIndex = getAdIndex()
   var result = []
   var author = app.globalData.userInfo
 

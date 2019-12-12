@@ -33,6 +33,7 @@ App({
       chat: 0,
       notification: 0,
     },
+    wxad: {},
     callbacks: {},
   },
 
@@ -76,6 +77,7 @@ function fetchAppData(app) {
     const value = wx.getStorageSync('meta')
     if (value) {
       setAppData(app, "meta", value)
+      setWxAd(app, meta)
     }
   } catch (e) {}
 
@@ -92,7 +94,19 @@ function fetchAppData(app) {
       data.app_exp_limit = 0
     }
     setAppData(app, "meta", data)
+    setWxAd(app, data)
   })
+}
+
+// 原生广告信息
+function setWxAd(app, meta) {
+  if (!meta || !meta.app_wxad) {
+    return
+  }
+  try {
+      const ad = JSON.parse(meta.app_wxad)
+      setAppData(app, "wxad", ad)
+  } catch(err){}
 }
 
 // 用户信息
