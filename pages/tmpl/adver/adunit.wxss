@@ -3,10 +3,12 @@
   margin-bottom: 18.72rpx;
 }
 
+.banner swiper {
+  height: 192rpx;
+}
+
 .banner .item {
   width: 100%;
-  height: 112rpx;
-  max-height: 112rpx;
 }
 
 .banner .img {

@@ -654,7 +654,7 @@ function createQrCode() {
 // 获取自定义广告
 function getAdunitList(t) {
   return req({
-    url: `${Host}/api/adunits?p=mp&t=${t}`,
+    url: `${Host}/api/adunits?p=mp&status=0&t=${t}`,
     method: 'GET'
   })
 }
