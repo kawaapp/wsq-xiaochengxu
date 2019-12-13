@@ -40,6 +40,17 @@ Component({
   methods: {
     clickClose : function(e) {
       onClickClose(this) 
+    },
+
+    clickAd: function(e) {
+      if (this.data.subtype == 'inters') {
+        this.setData({ inters_open: false })
+        jump(this.data.inters_units)
+      } 
+      if (this.data.subtype == 'banner') {
+        const adunit = e.currentTarget.dataset.idx
+        jump(adunit)
+      }
     }
   }
 })
@@ -81,6 +92,24 @@ function setupBanner(view, data) {
 
 function onClickClose(view) {
   view.setData({ inters_open: false })
+}
+
+function jump(adunit) {
+  try {
+    const link = JSON.parse(adunit.link)
+    if (!link.value) {
+      return
+    }
+    if (link.type == 'mp') {
+      wx.navigateToMiniProgram({
+        appId: link.value,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/webview/webview?q=' + encodeURI(link.value),
+      })
+    }
+  } catch(e) {}
 }
 
 const setupFunc = {

@@ -6,8 +6,8 @@
     <swiper indicator-dots="{{indicator}}" autoplay="{{autoplay}}" interval="{{interval}}">
         <block wx:for="{{banner_units}}" wx:key="*this">
           <swiper-item>
-            <view class="item">
-              <image class="img" mode='widthFix' src="{{item.image}}"  />
+            <view class="item" bindtap="clickAd" data-idx='{{item}}'>
+              <image class="img" mode='widthFix' src="{{item.image}}"/>
             </view>
           </swiper-item>
         </block>
@@ -18,6 +18,6 @@
 <cover-view wx:if="{{subtype == 'inters' && !native && inters_open}}" class="inters">
   <cover-view class="box">
     <cover-image bindtap="clickClose" class="close" src="/res/del.png" />
-    <cover-image class="image" mode='widthFix'  src="{{inters_units.image}}" />
+    <cover-image class="image" mode='widthFix'  src="{{inters_units.image}}" bindtap="clickAd" />
   </cover-view>
 </cover-view>
