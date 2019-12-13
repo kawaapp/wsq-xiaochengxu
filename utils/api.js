@@ -651,6 +651,14 @@ function createQrCode() {
   })
 }
 
+// 获取自定义广告
+function getAdunitList(t) {
+  return req({
+    url: `${Host}/api/adunits?p=mp&t=${t}`,
+    method: 'GET'
+  })
+}
+
 // 上传图片
 function uploadFile(file) {
   return new Promise((res, rej) => {
@@ -788,4 +796,7 @@ module.exports = {
 
   // article
   getArticle: getArticle,
+
+  // ad-unit
+  getAdunitList: getAdunitList,
 }
