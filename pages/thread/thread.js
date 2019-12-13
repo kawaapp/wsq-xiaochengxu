@@ -26,9 +26,9 @@ function showInterstitialAd(view) {
     const wxad = app.globalData.wxad
     // 在适合的场景显示插屏广告
     if (interstitialAd && wxad && wxad.detail_inters_on) {
-      interstitialAd.show().catch((err) => {
-        console.error(err)
-      })
+      // interstitialAd.show().catch((err) => {
+      //   console.error(err)
+      // })
     }
   }, 1000)
 }
@@ -79,7 +79,7 @@ Page({
     ctr.setup(this)
     ctr.onLoad(options)
 
-    showInterstitialAd(this)
+    // showInterstitialAd(this)
   },
   onUnload: function() {
     ctr.onUnload()

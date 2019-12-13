@@ -43,7 +43,6 @@ function fetchPostList(filter, topic) {
 
   api.getPostList(0, PAGE_SIZE, filter, topic).then(resp => {
     wx.stopPullDownRefresh()
-    console.log("get post list:", resp)
     var hasmore = resp.data && resp.data.length === PAGE_SIZE
     view.setData({ loading: false, hasmore: hasmore })
     view.setData({ posts: massage(resp.data)})
@@ -190,17 +189,12 @@ function onClickMenu(e) {
   })
 }
 
+// 总是产生一个Feed广告位置，由 Ad 组件自身决定是否显示
 function getAdIndex() {
-  const wxad = app.globalData.wxad
-  // 没有打开广告
-  if (!wxad || !wxad.home_feed_on) {
-    return -1
-  }
   // 只有第一屏才展示
   if (view.data.posts && view.data.posts.length != 0) {
     return -1
   }
-  view.setData({ adid: wxad.home_feed })
   // insert banner ad at [4, 16]
   return Math.floor(Math.random() * 16) + 4
 }

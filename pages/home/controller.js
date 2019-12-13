@@ -100,7 +100,6 @@ function fetchTopList() {
       view.setData({
         tops: items,
       })
-      console.log("get top-list:", items)
     }
   })
 }

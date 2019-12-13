@@ -62,7 +62,6 @@ function setAppData(app, key, data) {
 }
 
 function initGlobal(app) {
-  console.log("init global:", app)
   fetchAppData(app)
   fetchUserData(app)
   fetchTags(app)

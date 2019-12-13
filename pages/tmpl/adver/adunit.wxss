@@ -1,1 +1,42 @@
-/* pages/tmpl/adver/adunit.wxss */
+/* Banner */
+.banner {
+  margin-bottom: 18.72rpx;
+}
+
+.banner .item {
+  width: 100%;
+  height: 112rpx;
+  max-height: 112rpx;
+}
+
+.banner .img {
+  width: 100%;
+}
+
+/* 插屏 */
+.inters {
+  position: fixed; 
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
+  z-index: 999999;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.box {
+  position: fixed;
+  top: 20vh; left: 96rpx; right: 96rpx;
+  z-index: 999;
+}
+
+.box .image {
+  width: 100%;
+}
+
+.box .close {
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, .6);
+  border-radius: 50%;
+  padding: 8rpx;
+  margin-left: auto;
+  margin-bottom: 16rpx;
+}

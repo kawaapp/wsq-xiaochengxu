@@ -12,8 +12,8 @@
 
 <!-- 帖子列表 -->
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
-  <view class="card" wx:if="{{item.ad}}">
-    <kw-adver type="banner" adid="{{adid}}" />
+  <view wx:if="{{item.ad}}">
+    <kw-adver type="home_feed"/>
   </view>
   <view class="card" wx:if="{{!item.ad}}" >
     

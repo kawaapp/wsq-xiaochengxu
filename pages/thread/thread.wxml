@@ -1,5 +1,7 @@
-<!--pages/post/posts.wxml-->
+<!-- 插屏广告 -->
+<kw-adver type="detail_inters" />
 
+<!-- 内容 -->
 <view class="card" style='z-index:1'>
   <view class="horizontal">
     <image class='avatar-large' style='margin-right: 18rpx;'
@@ -73,11 +75,10 @@
     </view>
   </view>
 </view>
+
+<kw-adver type="detail_banner"/>
 <view style='margin-bottom:9rpx;'/>
 
-<block wx:if="{{detail_banner}}">
-  <kw-adver type="banner" adid="{{detail_banner}}" />
-</block>
 
 <view class="card">
   <view style="font-weight:500">

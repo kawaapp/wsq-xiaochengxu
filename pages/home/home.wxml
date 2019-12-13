@@ -1,3 +1,6 @@
+<!-- 插屏广告 -->
+<kw-adver type="home_inters" />
+
 <!-- 品牌 -->
 <view style="background-image: url({{meta.app_cover}});background-size:100% auto;">
 <view class='brand'>
@@ -50,6 +53,11 @@
       <text class='top'>顶</text> <text>{{item.title}}</text>
     </view>
   </view>
+</view>
+
+<!-- 自定义广告 -->
+<view>
+  <kw-adver type="home_banner" />
 </view>
 
 <!-- 顶部TAB -->

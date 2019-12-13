@@ -5,6 +5,6 @@
     "kw-post": "../../../tmpl/post/kw-post",
     "kw-like": "../../../tmpl/like/kw-like",
     "comment": "../../../tmpl/cmmt/kw-comment",
-    "kw-adver": "../../tmpl/adver/adunit"
+    "kw-adver": "../../../tmpl/adver/adunit"
   }
 }
