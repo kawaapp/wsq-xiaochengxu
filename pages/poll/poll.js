@@ -1,0 +1,102 @@
+import api from '../../utils/api.js'
+import util from '../../utils/util.js'
+const kawa = require('../../kawa.js')
+const app = getApp()
+
+Page({
+
+  // 页面的初始数据
+  data: {
+    theme: {
+      color: kawa.Theme.MainColor,
+    }, 
+    poll: {
+    },
+    hideResult: true,
+    showDetail: false, 
+  },
+
+  // 生命周期函数--监听页面加载
+  onLoad: function (options) {
+    api.getPoll(options.id).then( resp => {
+      this.setData({ poll: massage(resp.data) })
+    }).catch( err => {
+      console.log("get poll err:", err)
+    })
+
+  },
+
+  // 用户点击右上角分享
+  onShareAppMessage: function () {
+    const { poll } = this.data
+    return {
+      title: poll.title,
+      path: `/pages/poll/poll?id=${poll.id}`,
+      imageUrl: poll.poster,
+    }
+  },
+
+  clickDetail: function() {
+    this.setData({ showDetail: true })
+  },
+
+  clickClose: function() {
+    this.setData({ showDetail: false })
+  },
+
+  clickVote: function(e) {
+    const i = e.currentTarget.dataset.i
+    const data = {
+      poll_id: this.data.poll.id,
+      user_id: app.globalData.userInfo.id,
+      choice: i,
+    }
+    console.log("click vote..", data)
+    api.createVote(data).then( resp => {
+      this.setData({ poll: massage(resp.data) })
+      wx.showToast({
+        title: '投票成功!'
+      })
+    }).catch(err => {
+      console.log("poll err:", err)
+      if (err.code === 403) {
+        if (err.massage) {
+          if (err.massage.include("expired")) {
+            wx.showToast({ title: '投票已经结束了!', icon: 'none' })
+          } else if (err.massage.include("start")) {
+            wx.showToast({ title: '投票还没有开始!', icon: 'none' })
+          }
+        } else {
+          wx.showToast({ title: '已经投过票了!', icon: 'none'})
+        }
+      } else {
+        wx.showToast({ title: '投票失败', icon: 'none' })
+      }
+    })
+  }
+})
+
+function massage(poll) {
+  const total = poll.vote_count || 1
+  var options = poll.options
+  var i = 0, n = options.length
+  for (; i < n; i++) {
+    if (poll.secret && !poll.voted) {
+      options[i].percent = 0
+      options[i].count = ''
+    } else {
+      options[i].percent = Math.round(options[i].count * 100 / total)
+    }
+  }
+  if (poll.secret && !poll.voted) {
+    poll.user_count = "NA"
+    poll.vote_count = "NA"
+  }
+  const format = function(ts) {
+    return util.prettyTimeYMD(new Date(ts * 1000))
+  }
+  poll.start = format(poll.started_at)
+  poll.expire = format(poll.expired_at)
+  console.log("get poll mm:", poll)
+  return poll
+}

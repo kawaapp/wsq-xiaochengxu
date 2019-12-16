@@ -1,5 +1,3 @@
-/* pages/writer/comps/link/linkeditor.wxss */
-/* pages/me/edit.wxss */
 .-title {
   font-size: 28rpx;
   color: gray;

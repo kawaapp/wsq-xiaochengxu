@@ -1,0 +1,51 @@
+<view style="padding: 32rpx">
+  <view class="title">{{poll.title}}</view>
+  <image class="poster" mode="widthFix" src="{{poll.poster}}" />
+
+  <view class="count">
+    <view class="v">
+      <view>参与人数</view>
+      <text style="color:{{theme.color}}">{{ poll.user_count}}</text>
+    </view>
+    <view class="v">
+      <view>投票数量</view>
+      <text style="color:{{theme.color}}">{{poll.vote_count}}</text>
+    </view>
+  </view>
+
+  <view class="detail">
+    <view>活动时间：{{poll.start}} - {{poll.expire}}</view>
+    <view>活动细则：</view>
+    <view class="horizontal">
+      <view class="single-line" style="width:550rpx">{{poll.detail}}</view>
+      <view bindtap="clickDetail" style="color:{{theme.color}}; margin-left: auto">详情</view> 
+    </view>
+  </view>
+
+  <view class="tip">{{poll.secret && !poll.voted ? '结果投票后可见':''}}</view>
+
+  <view class="vote-title">参与投票</view>
+  <view wx:for="{{poll.options}}" wx:key="{{item.id}}" class="vote">
+    <image class="image" wx:if="{{item.image}}" src="{{item.image}}" />
+    <view class="body" style="{{image && 'width: 472rpx'}}"  bindtap="clickVote" data-i="{{index}}">
+      <view class="title">{{item.title}}</view>
+      <progress 
+        percent="{{item.percent}}"
+        color="{{theme.color}}"
+        stroke-width="18"
+        border-radius="18"
+        active="true"
+      />
+    </view>
+    <view class="number">
+      <text class="num">{{item.count}}</text>
+      <text class="piao"> 票</text>
+    </view>
+  </view>
+
+  <view style="height:32px">
+  </view>
+</view>
+
+<!-- detail dialog -->
+<kw-detail poll="{{poll}}" show="{{showDetail}}" bind:onRequestClose="clickClose" />

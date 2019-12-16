@@ -1,0 +1,103 @@
+page {
+    background-color:#fff;
+}
+
+.title {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.poster {
+  border-radius: 24rpx;
+  width: 100%;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.count .v {
+  margin-top: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.count view {
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.count text {
+  font-size: 28rpx;
+}
+
+.detail {
+  margin: 24rpx 0px;
+  padding: 32rpx;
+  box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.tip {
+  text-align: center;
+  font-size: 32rpx;
+  color:gray;
+}
+
+.vote-title {
+  margin: 12rpx 0px;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.vote {
+  padding: 12rpx 0px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.vote .image {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 24rpx;
+  min-width: 128rpx;
+  margin-right: 12rpx;
+}
+
+.vote .body {
+  margin-top: 24rpx;
+  width: 600rpx;
+}
+
+.body .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.vote .number {
+  margin-left: auto;
+  vertical-align: bottom;
+  height: 50rpx;
+  text-align: right;
+  min-width: 80rpx;
+}
+
+.number .num {
+  line-height: 38rx;
+  font-size: 38rpx;
+  font-weight: bold;
+  color:#ff4d00;
+}
+
+.number .piao {
+  font-size: 26rpx;
+  color: gray;
+}
+

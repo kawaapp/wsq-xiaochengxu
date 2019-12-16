@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "投票详情",
+  "backgroundColor": "#fff",
+  "usingComponents": {
+    "kw-detail": "./comps/detail"
+  }
+}

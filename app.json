@@ -19,7 +19,8 @@
     "pages/exp/exp",
     "pages/signin/signin",
     "pages/me/edit",
-    "pages/poster/poster"
+    "pages/poster/poster",
+    "pages/poll/poll"
   ],
   "permission": {
     "scope.userLocation": {

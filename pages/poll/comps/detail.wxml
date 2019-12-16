@@ -1,0 +1,14 @@
+<!-- input dialog -->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog">
+    <image class="close" src="/res/del.png" bindtap="clickClose"/>
+    <view class="-title">{{title}}</view>
+    <view class="detail">
+      <view>活动时间：{{poll.start}} - {{poll.expire}}</view>
+      <view>活动细则：</view>
+      <view class="body">
+        {{poll.detail}}
+      </view>
+    </view>
+  </view>
+</view>

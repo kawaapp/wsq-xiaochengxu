@@ -17,6 +17,13 @@ const prettyTime = date => {
   return month + '月' + day + '日 ' + [hour, minute].map(formatNumber).join(':')
 }
 
+const prettyTimeYMD = date => {
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return month + '月' + day + '日 '
+}
+
+
 const minute = 1000 * 60;
 const hour = minute * 60;
 const day = hour * 24;
@@ -230,6 +237,7 @@ module.exports = {
   agoTime: agoTime,
   msgTime: msgTime,
   prettyTime: prettyTime,
+  prettyTimeYMD: prettyTimeYMD,
   getDaysFromNow: getDaysFromNow,
   setResult: setResult,
   sendRequest: setTransitData,

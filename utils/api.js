@@ -659,6 +659,29 @@ function getAdunitList(t) {
   })
 }
 
+// 获取投票
+function getPollList() {
+  return req({
+    url: `${Host}/api/polls?active=true`,
+    method: 'GET'
+  })
+}
+
+function getPoll(id) {
+  return req({
+    url: `${Host}/api/polls/${id}`,
+    method: `GET`
+  })
+}
+
+function createVote(data) {
+  return req({
+    url: `${Host}/api/polls/votes`,
+    method: `POST`,
+    data: data,
+  })
+}
+
 // 上传图片
 function uploadFile(file) {
   return new Promise((res, rej) => {
@@ -799,4 +822,9 @@ module.exports = {
 
   // ad-unit
   getAdunitList: getAdunitList,
+
+  // poll
+  getPollList: getPollList,
+  getPoll: getPoll,
+  createVote: createVote,
 }
