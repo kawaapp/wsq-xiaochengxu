@@ -7,11 +7,11 @@
         <block wx:for="{{banner_units}}" wx:key="*this">
           <swiper-item>
             <view class="item" bindtap="clickAd" data-idx='{{item}}'>
-              <image class="img" mode='widthFix' src="{{item.image}}"/>
+              <image class="img" mode='aspectFill' src="{{item.image}}"/>
             </view>
           </swiper-item>
         </block>
-      </swiper>
+    </swiper>
   </view>
 </view>
 

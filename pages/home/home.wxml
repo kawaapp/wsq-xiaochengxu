@@ -56,7 +56,7 @@
 </view>
 
 <!-- 自定义广告 -->
-<kw-adver type="home_banner" />
+<kw-adver type="home_banner" hot="true" />
 
 <kw-poll />
 

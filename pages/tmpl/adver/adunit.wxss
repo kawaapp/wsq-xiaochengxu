@@ -1,18 +1,24 @@
 /* Banner */
 .banner {
+  padding: 0px 18rpx;
   margin-bottom: 18.72rpx;
+  position: relative;
 }
 
 .banner swiper {
-  height: 192rpx;
+  height: 200rpx;
 }
 
 .banner .item {
   width: 100%;
+  height: 200rpx;
+  box-sizing: border-box;
 }
 
 .banner .img {
   width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
 }
 
 /* 插屏 */

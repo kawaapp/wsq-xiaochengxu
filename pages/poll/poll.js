@@ -97,6 +97,5 @@ function massage(poll) {
   }
   poll.start = format(poll.started_at)
   poll.expire = format(poll.expired_at)
-  console.log("get poll mm:", poll)
   return poll
 }
