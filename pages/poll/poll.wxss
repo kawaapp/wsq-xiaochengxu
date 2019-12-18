@@ -46,7 +46,7 @@ page {
 
 .tip {
   text-align: center;
-  font-size: 32rpx;
+  font-size: 30rpx;
   color:gray;
 }
 

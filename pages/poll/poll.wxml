@@ -23,6 +23,7 @@
   </view>
 
   <view class="tip">{{poll.secret && !poll.voted ? '结果投票后可见':''}}</view>
+  <view class="tip">{{poll.voted ? '您已经投过票了':''}}</view>
 
   <view class="vote-title">参与投票</view>
   <view wx:for="{{poll.options}}" wx:key="{{item.id}}" class="vote">
