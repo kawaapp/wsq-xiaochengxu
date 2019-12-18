@@ -18,12 +18,34 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
-    api.getPoll(options.id).then( resp => {
-      this.setData({ poll: massage(resp.data) })
-    }).catch( err => {
-      console.log("get poll err:", err)
-    })
+    // 模拟新用户的场景
+    // if (options.shared) {
+    //   try {
+    //     wx.removeStorageSync('token')
+    //   } catch (e) { }
+    // }
+    const setup = () => {
+      api.getPoll(options.id).then(resp => {
+        this.setData({ poll: massage(resp.data) })
+      }).catch(err => {
+        console.log("get poll err:", err)
+        wx.showToast({
+          title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
+        })
+      })
+    }
+    if (!options.shared) {
+      setup(); return
+    }
 
+    // shared, login first
+    api.autoAuth().then(() => {
+      setup()
+    }).catch((err) => {
+      wx.showToast({
+        title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
+      })
+    })
   },
 
   // 用户点击右上角分享
@@ -31,7 +53,7 @@ Page({
     const { poll } = this.data
     return {
       title: poll.title,
-      path: `/pages/poll/poll?id=${poll.id}`,
+      path: `/pages/poll/poll?shared=true&id=${poll.id}`,
       imageUrl: poll.poster,
     }
   },
