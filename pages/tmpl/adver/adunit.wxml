@@ -3,7 +3,8 @@
 <view wx:if="{{subtype == 'banner'}}">
   <ad wx:if="{{native}}" unit-id="{{adid}}" ad-intervals="30" />
   <view wx:if="{{!native}}" class="banner">
-    <swiper indicator-dots="{{indicator}}" autoplay="{{autoplay}}" interval="{{interval}}">
+    <swiper class="swiper" 
+      indicator-dots="{{indicator}}" autoplay="{{autoplay}}" interval="{{interval}}">
         <block wx:for="{{banner_units}}" wx:key="*this">
           <swiper-item>
             <view class="item" bindtap="clickAd" data-idx='{{item}}'>

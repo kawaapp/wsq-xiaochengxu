@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.banner swiper {
+.banner .swiper {
   height: 200rpx;
 }
 
