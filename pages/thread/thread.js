@@ -9,7 +9,7 @@ var interstitialAd = null
 function showInterstitialAd(view) {
   if (wx.createInterstitialAd) {
     interstitialAd = wx.createInterstitialAd({
-      adUnitId: app.globalData.wxad && app.globalData.wxad.detail_inters
+      adUnitId: app.globalData.wxad.detail_inters
     })
 
     interstitialAd.onLoad((e) => { 
@@ -26,7 +26,7 @@ function showInterstitialAd(view) {
   setTimeout( () => {
     const wxad = app.globalData.wxad
     // 在适合的场景显示插屏广告
-    if (interstitialAd && wxad && wxad.detail_inters_on) {
+    if (interstitialAd) {
       interstitialAd.show().catch((err) => {
         console.error(err)
       })
@@ -72,8 +72,12 @@ Page({
   onLoad: function (options) {
     ctr.setup(this)
     ctr.onLoad(options)
-
-    showInterstitialAd(this)
+    
+    // show ad
+    const wxad = app.globalData.wxad
+    if (wxad && wxad.detail_inters_on) {
+        showInterstitialAd(this)
+    }
   },
   onUnload: function() {
     ctr.onUnload()
