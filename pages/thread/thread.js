@@ -4,6 +4,7 @@ const kawa = require('../../kawa.js')
 const util = require('../../utils/util.js')
 const app = getApp()
 
+// 微信原生插屏广告
 var interstitialAd = null
 function showInterstitialAd(view) {
   if (wx.createInterstitialAd) {
@@ -26,18 +27,11 @@ function showInterstitialAd(view) {
     const wxad = app.globalData.wxad
     // 在适合的场景显示插屏广告
     if (interstitialAd && wxad && wxad.detail_inters_on) {
-      // interstitialAd.show().catch((err) => {
-      //   console.error(err)
-      // })
+      interstitialAd.show().catch((err) => {
+        console.error(err)
+      })
     }
   }, 1000)
-}
-
-function showBannerAd(view) {
-  const wxad = app.globalData.wxad
-  if (wxad && wxad.detail_banner_on) {
-    view.setData({ detail_banner: wxad.detail_banner })
-  }
 }
 
 Page({
@@ -79,7 +73,7 @@ Page({
     ctr.setup(this)
     ctr.onLoad(options)
 
-    // showInterstitialAd(this)
+    showInterstitialAd(this)
   },
   onUnload: function() {
     ctr.onUnload()
