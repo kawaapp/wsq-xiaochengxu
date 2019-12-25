@@ -1,3 +1,7 @@
+page {
+    background-color:#fff;
+}
+
 .h1 {
   font-weight:bold; 
   text-align:center;

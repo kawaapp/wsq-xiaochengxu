@@ -27,10 +27,17 @@ Page({
       // auto login 
       api.autoAuth().then(() => {
         console.log("go to main page")
-        // wx.switchTab({
-        //   url: '/pages/home/home',
-        // })
+        wx.switchTab({
+          url: '/pages/home/home',
+        })
       }).catch((err) => {
+        if (accessNotAllowed(err.err)) {
+          wx.navigateTo({
+            url: '/pages/join/join',
+          })
+          this.setData({ visible: true })
+          return
+        }
         wx.showToast({
           title: '自动登录失败:' + err.code, icon: 'none', duration: 2000,
         })
@@ -58,9 +65,22 @@ Page({
         url: '/pages/home/home',
       })
     }).catch ((err) => {
+      if (accessNotAllowed(err.err)) {
+        wx.navigateTo({
+          url: '/pages/join/join',
+        })
+        return
+      }
       wx.showToast({
         title: '登录失败:' + err.code, icon: 'none', duration: 2000,
       })
     })
   },
 })
+
+function accessNotAllowed(err) {
+  if (err && err == "public access not allowed") {
+    return true
+  }
+  return err && accessNotAllowed(err.err)
+}

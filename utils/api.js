@@ -682,6 +682,31 @@ function createVote(data) {
   })
 }
 
+// 申请加入
+function createJoinRequest(data) {
+  return req({
+    url: `${Host}/api/joins/auth`,
+    method: `POST`,
+    data, data,
+  })
+}
+
+function getJoinRequest(data) {
+  return req({
+    url: `${Host}/api/joins/auth`,
+    method: 'GET',
+    data: data,
+  })
+}
+
+// 社区元信息
+function getAppMeta() {
+  return req({
+    url: `${Host}/api/app/meta`,
+    method: `GET`
+  })
+}
+
 // 上传图片
 function uploadFile(file) {
   return new Promise((res, rej) => {
@@ -827,4 +852,9 @@ module.exports = {
   getPollList: getPollList,
   getPoll: getPoll,
   createVote: createVote,
+
+  // join
+  createJoinRequest: createJoinRequest,
+  getJoinRequest: getJoinRequest,
+  getAppMeta: getAppMeta,
 }

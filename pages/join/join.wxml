@@ -1,36 +1,39 @@
 
-<view class="h1">申请加入社区</view>
+<!-- <view class="h1">申请加入社区</view> -->
 
 <!-- 认证社区需要先申请才能通过 -->
-<view style="background-image: url({{metadata.app_cover}});background-size:100% auto;">
+<view style="background-image: url({{meta.app_cover}});background-size:100% auto;">
   <view class='app'>
-    <image src="{{metadata.app_logo}}"></image>
-    <view class='name'>{{metadata.app_name}}</view>
+    <image src="{{meta.app_logo}}"></image>
+    <view class='name'>{{meta.app_name}}</view>
   </view>
 </view>
 
 <view class="count">
   <view class="v">
     <view>用户数</view>
-    <text style="color:{{theme.color}}">{{ 1000 }}</text>
+    <text style="color:{{theme.color}}">{{meta.user_count}}</text>
   </view>
   <view class="v">
     <view>帖子数</view>
-    <text style="color:{{theme.color}}">{{ 1000 }}</text>
+    <text style="color:{{theme.color}}">{{meta.post_count}}</text>
   </view>
   <view class="v">
     <view>当前活跃</view>
-    <text style="color:{{theme.color}}">{{ 800 }}</text>
+    <text style="color:{{theme.color}}">{{meta.user_active }}</text>
   </view>
 </view>
 
 <view class="detail">
-    <view>社区名称：{{metadata.app_name}}</view>
-    <view>社区简介：本社区是卡哇微社区的DEMO演示社区，主要用来演示社区的功能。</view>
+    <view>社区名称：{{meta.app_name}}</view>
+    <view>社区简介：{{meta.app_summary}}</view>
 </view>
 
 <view class="tip" style="margin-top: 32rpx;margin-bottom:24rpx">
-  加入请求已发送，请耐心等待。
+  {{join.status == undefined ? "此社区为认证社区，需要管理员同意后才能加入。":""}}
+  {{join.status == 0 ? "加入请求已发送，请耐心等待。": ""}}
+  {{join.status == 1 ? "管理员拒绝加入该社区！":""}}
+  {{join.status == 2 ? "您已成功加入该社区!": ""}}
 </view>
 
 <view class="card">
@@ -62,9 +65,12 @@
 
 <view class="card" style="padding-bottom:128rpx">
   <view class="-title">申请留言</view>
-  <textarea class="text" placeholder="写点什么.."></textarea>
+  <textarea class="text" 
+    placeholder="写点什么.." 
+    bindinput="bindText" 
+    maxlength='175'></textarea>
 </view>
 
 <cover-view class="fixed">
-  <button style="background:{{theme.color}};color:white">加入社区</button>
+  <button style="background:{{theme.color}};color:white" bindtap="clickJoin" >加入社区</button>
 </cover-view>

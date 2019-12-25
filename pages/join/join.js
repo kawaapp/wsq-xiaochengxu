@@ -1,70 +1,143 @@
-// pages/join/join.js
+import api from '../../utils/api.js'
+const kawa = require('../../kawa.js')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  // 页面的初始数据
   data: {
-    metadata: {
-      app_cover: "https://images.kawaapp.com/img_bj9ekksdbfdqfm68t4hg.png",
-      app_logo: "https://images.kawaapp.com/img_bj990n4dbfdqfm68t4e0.png",
-      app_name: "卡哇微社区DEMO演示",
+    theme: {
+      color: kawa.Theme.MainColor,
     },
+    meta: {},
+    user: {},
+    text: '',
+    join: {}, 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 生命周期函数--监听页面加载
   onLoad: function (options) {
-
+    api.getAppMeta().then( resp => {
+      this.setData({ meta: resp.data })
+    }).catch( err => {
+      console.log(err)
+      wx.showToast({ title: '社区信息加载失败！', icon: 'none' })
+    })
+    fetchJoinState(this)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onShow: function() {
+    fetchJoinState(this)
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  clickJoin: function() {
+    join(this)
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  bindText: function (e) {
+    this.setData({ text: e.detail.value })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  bindUserInfo: function(e) {
+    var userInfo = e.detail.userInfo
+    var user = {
+      avatar : userInfo.avatarUrl,
+      city : userInfo.city,
+      gender : userInfo.gender,
+      language : userInfo.language,
+      nickname : userInfo.nickName,
+    }
+    this.setData({ user: user })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  getPhoneNumber: function() {
+  //   var ecrypted = e.detail.encryptedData
+  //   var iv = e.detail.iv
+  //   if (ecrypted && iv) {
+  //     biz.getPhoneNumber(ecrypted, iv).then(data => {
+  //       console.log("get data success:", data)
+  //       if (!data || !data.purePhoneNumber) {
+  //         wx.showToast({ title: '会话过期, 请重试' })
+  //         return
+  //       }
+  //       var user = view.data.user
+  //       user.phone = data.purePhoneNumber
+  //       view.setData({ user: user })
+  //       enableButton(view)
+  //     }).catch(err => {
+  //       if (err.code && err.code == 2) {
+  //         wx.showToast({ title: '手机号解密失败', icon: 'none' })
+  //       } else {
+  //         wx.showToast({ title: '绑定手机号失败', icon: 'none' })
+  //       }
+  //       console.log(err)
+  //     })
+  //   } else {
+  //     wx.showToast({ title: '绑定手机号失败:0', icon: 'none' })
+  //   }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
+
+// 获取申请状态
+function fetchJoinState(view) {
+  wx.login({
+    success: function (resp) {
+      if (resp.code) {
+        api.getJoinRequest({ code: resp.code }).then(resp => {
+          try {
+            const user = JSON.parse(resp.data.data)
+            view.setData({ user: user })
+          } catch(e){}
+          var req = resp.data
+          if (req.status == 2 && !req.user) {
+            req.status = undefined
+          }
+          view.setData({ join: resp.data })
+        })
+      }
+    },
+    fail: function (err) {
+      console.log(err)
+      wx.showToast({ title: '微信授权失败！', icon: 'none' })
+    },
+  })
+}
+
+// 加入社区
+function join(view) {
+  const { user, text } = view.data
+  if (!user.nickname) {
+    wx.showToast({
+      title: '请绑定微信昵称', icon: 'none',
+    })
+    return
+  }
+
+  // create reuqest
+  const reqJoin = (code) => {
+    var data = {
+      data: JSON.stringify(user),
+      text: text,
+      name: user.nickname,
+      code: code,
+    }
+    api.createJoinRequest(data).then(resp => {
+      view.setData({ tip: "", join: resp.data })
+      wx.showToast({ title: '申请发送成功!', icon: 'none' })
+    }).catch(err => {
+      console.log(err)
+      wx.showToast({ title: '申请发送失败!', icon: 'none' })
+    })
+  }
+
+  // get code
+  wx.login({
+    success: function (resp) {
+      if (resp.code) {
+        reqJoin(resp.code)
+      }
+    },
+    fail: function (err) {
+      console.log(err)
+      wx.showToast({ title: '微信授权失败！', icon: 'none' })
+    },
+  })
+}
