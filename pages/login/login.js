@@ -27,9 +27,9 @@ Page({
       // auto login 
       api.autoAuth().then(() => {
         console.log("go to main page")
-        wx.switchTab({
-          url: '/pages/home/home',
-        })
+        // wx.switchTab({
+        //   url: '/pages/home/home',
+        // })
       }).catch((err) => {
         wx.showToast({
           title: '自动登录失败:' + err.code, icon: 'none', duration: 2000,

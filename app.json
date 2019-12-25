@@ -20,7 +20,8 @@
     "pages/signin/signin",
     "pages/me/edit",
     "pages/poster/poster",
-    "pages/poll/poll"
+    "pages/poll/poll",
+    "pages/join/join"
   ],
   "permission": {
     "scope.userLocation": {
