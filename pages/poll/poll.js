@@ -88,22 +88,22 @@ Page({
       })
     }).catch(err => {
       console.log("poll err:", err)
-      if (err.code === 403) {
-        if (err.massage) {
-          if (err.massage.include("expired")) {
-            wx.showToast({ title: '投票已经结束了!', icon: 'none' })
-          } else if (err.massage.include("start")) {
-            wx.showToast({ title: '投票还没有开始!', icon: 'none' })
-          }
-        } else {
-          wx.showToast({ title: '已经投过票了!', icon: 'none'})
-        }
-      } else {
-        wx.showToast({ title: '投票失败', icon: 'none' })
-      }
+      wx.showToast({ title: mapError(err), icon: 'none' })
     })
   }
 })
+
+function mapError(err) {
+  var text = "投票失败!"
+  if (err.err && err.err.includes("expired")) {
+    text = '投票已经结束了!'
+  } else if (err.err && err.err.includes("start")) {
+    text = '投票还没有开始!'
+  } else if (err.code === 403) {
+    text = '已经投过票了!'
+  }
+  return text
+}
 
 function massage(poll) {
   const total = poll.vote_count || 1
