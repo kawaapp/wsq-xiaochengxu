@@ -1,5 +1,6 @@
 import api from '../../utils/api.js'
 import util from '../../utils/util.js'
+import biz from '../../utils/biz.js'
 const kawa = require('../../kawa.js')
 const app = getApp()
 
@@ -42,6 +43,12 @@ Page({
     api.autoAuth().then(() => {
       setup()
     }).catch((err) => {
+      if (biz.accessNotAllowed(err)) {
+        wx.reLaunch({
+          url: '/pages/login/login?man=true&private=true',
+        })
+        return
+      }
       wx.showToast({
         title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
       })

@@ -21,8 +21,12 @@ Page({
   onLoad: function(options) {
     if (options.man) {
       // 如果是重定向过来的，需要手动点击登录.
-      // 自动登录会因为页面没有初始化完毕而导致错误.
       this.setData({ visible: true})
+
+      // 如果是私有社区，转到申请页面
+      if (options.private) {
+        wx.navigateTo({ url: '/pages/join/join' })
+      }
     } else {
       // auto login 
       api.autoAuth().then(() => {

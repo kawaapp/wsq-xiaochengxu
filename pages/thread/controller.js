@@ -16,6 +16,12 @@ function onUnload() {
 }
 
 function onLoad(options) {
+  // 模拟新用户的场景
+  // if (options.shared) {
+  //   try {
+  //     wx.removeStorageSync('token')
+  //   } catch (e) { }
+  // }
   if (options.shared) {
     view.setData({ shared: options.shared })
   }
@@ -30,6 +36,12 @@ function onLoad(options) {
   api.autoAuth().then(() => {
     fetch(options)
   }).catch((err) => {
+    if (biz.accessNotAllowed(err)) {
+      wx.reLaunch({
+        url: '/pages/login/login?man=true&private=true',
+      })
+      return
+    }
     wx.showToast({
       title: '帖子打开失败:' + err.code, icon: 'none', duration: 2000,
     })
@@ -78,7 +90,6 @@ function fetch(options) {
         comments: massage(resp.data)
       })
       view.setData({ hasmore: resp.data && resp.data.length == 20})
-      console.log("get comment data:", resp.data)
     }).catch(err => {
       console.log('thread:', err)
     })
@@ -93,7 +104,7 @@ function fetch(options) {
     api.getPost(pid).then(resp => {
       setup({ idx: -1, post: resp.data })
     }).catch(err => {
-      console.log(err)
+      console.log("get post err:" + pid, err)
       wx.showToast({
         title: '加载失败:'+err.code, icon: 'none'
       })

@@ -176,6 +176,13 @@ function getLinkTitle(media) {
   } catch(err){}
 }
 
+function accessNotAllowed(err) {
+  if (err && err == "public access not allowed") {
+    return true
+  }
+  return err && accessNotAllowed(err.err)
+}
+
 module.exports = {
   getPhoneNumber: getPhoneNumber,
   getGrade: getGrade,
@@ -183,4 +190,5 @@ module.exports = {
   parsePost: parsePost,
   parseUser: parseUser,
   postContent: postContent,
+  accessNotAllowed: accessNotAllowed,
 }
