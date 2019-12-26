@@ -36,7 +36,7 @@
   bottom: 0;
 }
 
-.inner image {
+.inner .image {
   border-radius: 6rpx;
 }
 

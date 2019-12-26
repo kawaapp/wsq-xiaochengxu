@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.link image {
+.link .image {
   box-sizing: border-box;
   min-width: 80rpx;
   width: 80rpx;
@@ -17,7 +17,7 @@
   padding: 14rpx;
 }
 
-.link text {
+.link .text {
   color: #333;
   font-size: 30rpx;
   line-height: 32rpx;

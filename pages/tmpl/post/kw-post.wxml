@@ -8,9 +8,9 @@
   <!-- Rich Text -->
   <view wx:if="{{item.rich}}">
     <view class="rich">
-      <view>{{item.title}}</view>
-      <text>{{item.excerpt}}... </text>
-      <text style="color:dodgerblue"> 全文</text>
+      <view class="view">{{item.title}}</view>
+      <text class="text">{{item.excerpt}}... </text>
+      <text class="text" style="color:dodgerblue"> 全文</text>
     </view>
   </view>
 

@@ -3,7 +3,7 @@
 <block wx:if="{{images.length==1}}">
     <view class='cell1'>
       <view class='inner'>
-        <image mode='aspectFill' 
+        <image class="image" mode='aspectFill' 
           style='width: 100%;height: 100%;' 
           src="{{images[0]}}"
           lazy-load='true'
@@ -18,7 +18,7 @@
   <view class='grid'>
     <view class="cell2" wx:for="{{images}}" wx:for-item="path" wx:key="{{path}}">
         <view class='inner'>
-          <image mode='aspectFill' 
+          <image class="image" mode='aspectFill' 
             style='width: 100%; height: 100%;' 
             src="{{path}}"
             lazy-load='true'
@@ -34,7 +34,7 @@
   <view class='grid' style="margin-right:{{mr}}">
     <view class="cell3" wx:for="{{images}}" wx:for-item="path" wx:key="{{path}}">
         <view class='inner'>
-          <image mode='aspectFill' 
+          <image class="image" mode='aspectFill' 
             style='width: 100%; height: 100%;' 
             src="{{path}}"
             lazy-load='true'

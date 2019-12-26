@@ -7,13 +7,13 @@
   
 }
 
-.rich view {
+.rich .view {
   font-weight: 500;
   font-size: 42rpx;
+  margin-bottom: 16rpx;
 }
 
-.rich text {
-  margin-top: 16rpx;
+.rich .text {
   color: #333;
   font-size: 30rpx;
   line-height: 32rpx;

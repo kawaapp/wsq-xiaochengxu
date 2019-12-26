@@ -1,6 +1,10 @@
 <view wx:for="{{polls}}" class="poll" wx:key="{{item.id}}">
   <text class="h">{{item.title}}</text>
-  <image src="{{item.image}}" mode="aspectFill" bindtap="clickPoll" data-item="{{item}}" />
+  <image class="image"
+    src="{{item.image}}" 
+    mode="aspectFill" 
+    bindtap="clickPoll" 
+    data-item="{{item}}" />
   <view class="item">
     <view class="p">截止时间: {{item.expire}}</view>
     <view class="p">投票数: {{item.vote_count}}次</view>

@@ -4,13 +4,13 @@
   margin-right: 16rpx;
 }
 
-.comment image{
+.comment .image{
   height: 48rpx;
   width: 48rpx;
   margin-left: 9.36rpx;
 }
 
-.comment text {
+.comment .text {
   text-align: center;
   width: 86rpx;
   font-size: 32rpx;

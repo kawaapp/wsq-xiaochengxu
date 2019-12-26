@@ -1,4 +1,4 @@
 <view class='comment'>
-  <image src='{{theme.images}}/comment.png'></image>
-  <text>{{comments? comments: "评论" }}</text>
+  <image class="image" src='{{theme.images}}/comment.png'></image>
+  <text class="text">{{comments? comments: "评论" }}</text>
 </view>

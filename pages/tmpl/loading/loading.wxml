@@ -1,6 +1,6 @@
 <!--pages/tmpl/loading/loading.wxml-->
 <view wx:if='{{loading}}' class='loading'>
-  <image src="/res/loading.png" /><text>加载中...</text>
+  <image class="image" src="/res/loading.png" /><text class="text">加载中...</text>
 </view>
 <view wx:if='{{!hasmore}}' style='text-align:center;'>
   <text class="fade-title">— 没有更多数据了 —</text>

@@ -12,14 +12,14 @@
     justify-items: center;
 }
 
-.loading image {
+.loading .image {
   width: 48rpx;
   height: 48rpx;
   -webkit-animation:rotating 1s linear infinite;
   animation:rotating 1s linear infinite;
 }
 
-.loading text {
+.loading .text {
   line-height: 48rpx;
   color: gray;
   margin-left: 18rpx;

@@ -1,4 +1,4 @@
 <view class="link" catchtap="openlink">
-  <image src="{{link.logo}}"/>
-  <text>{{link.title}} </text>
+  <image class="image" src="{{link.logo}}"/>
+  <text class="text">{{link.title}} </text>
 </view>

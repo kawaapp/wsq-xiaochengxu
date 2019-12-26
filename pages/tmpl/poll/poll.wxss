@@ -5,17 +5,13 @@
   padding: 18rpx 24rpx;
 }
 
-.poll swiper {
-  height: 192rpx;
-}
-
 .poll .item {
   display: flex;
   align-items: center;
   color: gray;
 }
 
-.poll image {
+.poll .image {
   margin: 8rpx 0; 
   width: 100%;
   height: 252rpx;

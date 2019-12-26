@@ -1,4 +1,4 @@
 <view class='img-text'>
-  <image src="{{theme.images+(favored>0 ? '/liked.png':'/like.png')}}"></image>
-  <text style="{{favored?'color:'+theme.favorColor+';':''}}">{{favors? favors: "赞" }}</text>
+  <image class="image" src="{{theme.images+(favored>0 ? '/liked.png':'/like.png')}}"></image>
+  <text class="text" style="{{favored?'color:'+theme.favorColor+';':''}}">{{favors? favors: "赞" }}</text>
 </view>

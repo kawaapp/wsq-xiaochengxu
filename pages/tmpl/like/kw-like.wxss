@@ -4,13 +4,13 @@
   align-items: center;
 }
 
-.img-text image{
+.img-text .image{
   height: 48rpx;
   width: 48rpx;
   margin-left: 9.36rpx;
 }
 
-.img-text text {
+.img-text .text {
   text-align: center;
   width: 86rpx;
   font-size: 32rpx;
