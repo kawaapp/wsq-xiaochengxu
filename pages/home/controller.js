@@ -39,14 +39,14 @@ function render(app) {
     if (meta.app_cover && !meta.app_cover.includes("x-oss")) {
       meta.app_cover += resize.cover
     }
-    view.setData({ meta: meta })
+    view && view.setData({ meta: meta })
 
     // 公告
     var pub = {
       title: meta.app_pubtitle,
       link: meta.app_publink,
     }
-    view.setData({ speaker: pub })
+    view && view.setData({ speaker: pub })
 
     // PageTitle
     wx.setNavigationBarTitle({
@@ -59,12 +59,12 @@ function render(app) {
 
   // 话题
   app.onChange("tags", (tags) => {
-    view.setData({ tags: tags })
+    view && view.setData({ tags: tags })
   })
 
   // 签到
   app.onChange("signed", (signed) => {
-    view.setData({ signed: signed || false })
+    view && view.setData({ signed: signed || false })
   })
 
   // 未读消息
@@ -86,7 +86,7 @@ function render(app) {
 function checkAdminPostOnly() {
   const { meta, userInfo } = app.globalData
   if (meta && meta.app_admin_only && userInfo && !userInfo.admin ) {
-    view.setData({ hideNewButton: true})
+    view && view.setData({ hideNewButton: true})
   }
 }
 
