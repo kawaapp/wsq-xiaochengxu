@@ -15,11 +15,7 @@ Component({
 
   //组件的初始数据
   data: {
-    indicator: false,
-    autoplay: true,
-    interval: 8000,
     polls: [],
-    item: {},
   },
 
   //组件的方法列表
@@ -34,9 +30,7 @@ Component({
 function setup(view) {
   api.getPollList().then( resp => {
     const polls = massage(resp.data)
-    view.setData({ item: polls[0] })
-    view.setData({ polls: polls, indicator: polls.lenght > 1})
-    console.log("get poll..", polls)
+    view.setData({ polls: polls })
   }).catch( err => {
     console.log("get poll err:", err)
   })
