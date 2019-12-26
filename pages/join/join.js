@@ -91,6 +91,15 @@ function fetchJoinState(view) {
             req.status = undefined
           }
           view.setData({ join: resp.data })
+          if (req.status == 2 && req.user) {
+            wx.showToast({
+              title: '恭喜，您已成功加入社区！', icon: 'none'
+            })
+          } else if (req.status == 1) {
+            wx.showToast({
+              title: '抱歉，管理员拒绝了您的请求！', icon: 'none'
+            })
+          }
         })
       }
     },

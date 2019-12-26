@@ -33,7 +33,7 @@
   {{join.status == undefined ? "此社区为认证社区，需要管理员同意后才能加入。":""}}
   {{join.status == 0 ? "加入请求已发送，请耐心等待。": ""}}
   {{join.status == 1 ? "管理员拒绝加入该社区！":""}}
-  {{join.status == 2 ? "您已成功加入该社区!": ""}}
+  {{join.status == 2 ? "您已成功加入社区, 请返回登录!": ""}}
 </view>
 
 <view class="card">
