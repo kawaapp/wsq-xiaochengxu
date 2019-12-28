@@ -112,7 +112,12 @@ function fetchJoinState(view) {
 
 // 加入社区
 function join(view) {
-  const { user, text } = view.data
+  const { join, user, text } = view.data
+  if (join.status == 2 && join.user) {
+    wx.navigateBack({ delta: 1 })
+    return
+  }
+
   if (!user.nickname) {
     wx.showToast({
       title: '请绑定微信昵称', icon: 'none',
