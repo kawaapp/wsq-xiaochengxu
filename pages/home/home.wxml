@@ -26,7 +26,7 @@
       </view>
       <view class='app-name'>{{meta.app_name}}</view>
       <view class='subtitle' style='color: #ffffff11; font-weight: 800;'>
-        <text space="ensp">总浏览 {{meta.app_pv}} 用户数 {{meta.app_users}}</text>
+        <text space="ensp"> </text>
       </view>
     </view>
   </view>
