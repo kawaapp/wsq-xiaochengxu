@@ -1,0 +1,64 @@
+<view class="v">
+  <view class="point" style="color:{{theme.bgColor}}">{{point}}</view>
+  <view class="text">已有积分</view>
+</view>
+
+<view style="height:18rpx; background:#f8f8f8" />
+
+<view class="card">
+  <view class="h1">
+    <view class="title">积分好礼</view> 
+    <view class="history" bindtap="clickHistory" >兑换记录</view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="grid">
+    <view wx:for="{{items}}" wx:key="{{item.id}}" class="item">
+        <image class="img" src="{{item.image}}" mode="aspectFill" />
+        <view class="horizontal bar">
+          <view>
+            <view class="name">{{item.title}}</view>
+            <view class="value">{{item.value}}积分</view>
+          </view>
+          <view class="botton" bindtap="clickBuy">兑换</view>
+        </view>
+    </view>
+  </view>
+</view>
+
+<!-- 积分规则 -->
+<view class="card">
+  <view class="h1">
+    <view class="title">领取积分</view>
+  </view>
+
+  <!-- 活动 -->
+  <view class="kind">
+    <view wx:for="{{kinds}}" wx:key="{{item.id}}" class="listitem">
+        <view class="title">{{item.name}}</view>
+        <view>{{item.name}} 每次可以获得 {{item.value}} 积分</view>
+    </view>
+  </view>
+</view>
+
+<!-- 兑换确认对话框 -->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog">
+    <image class="close" src="/res/del.png" bindtap="clickClose"/>
+    <view class="tip">
+      确认使用 {{20}} 积分, 兑换
+    </view>
+    <view class="body">
+      <image src="{{target.image}}" mode="aspectFill"/>
+      <view class="name">{{"小米头像框"}}</view>
+    </view>
+    <view class="detail">
+      <view class="title">商品详情</view>
+      <view class="content">
+        卡哇微社区限量版，头像框，买到就是赚到！
+      </view>
+    </view>
+    <view class="action">立即兑换</view>
+  </view>
+</view>
+

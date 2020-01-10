@@ -21,7 +21,9 @@
     "pages/me/edit",
     "pages/poster/poster",
     "pages/poll/poll",
-    "pages/join/join"
+    "pages/join/join",
+    "pages/point/history/history",
+    "pages/point/point"
   ],
   "permission": {
     "scope.userLocation": {

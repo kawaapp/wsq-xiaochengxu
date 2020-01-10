@@ -1,0 +1,172 @@
+page {
+    background-color:#fff;
+}
+
+.v {
+  padding: 24rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.v .point {
+  font-size: 56rpx;
+}
+
+.v .text {
+  font-size: 28rpx;
+  color: gray;
+}
+
+.h1 {
+  display: flex;
+}
+
+.h1 .title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.h1 .history {
+  font-size: 28rpx;
+  color: gray;
+  margin-left: auto;
+}
+
+.grid {
+  box-sizing: border-box;
+  margin-top: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 64rpx;
+}
+
+.item {
+  width: 48%;
+  border-radius: 12rpx;
+  box-shadow: 0 0 12rpx 0px rgba(0, 0, 0, 0.1);
+}
+
+.item .img {
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+  width: 100%;
+  height: 200rpx;
+  margin: 0rpx;
+  border-bottom: 1rpx solid #f8f8f8;
+}
+
+.item .bar {
+  padding: 8rpx 16rpx;
+}
+
+.item .name {
+  font-size: 26rpx;
+}
+
+.item .value {
+  font-size: 26rpx;
+  color: #ff4d00;
+}
+
+.item .botton {
+  margin-left: auto;
+  background: #1890FF;
+  color:white;
+  font-size: 28rpx;
+  padding: 0rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+/* 积分规则 */
+.kind {
+  margin-top: 16rpx;
+}
+
+.kind .listitem {
+  padding: 14rpx 0rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.kind .listitem .title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.-title {
+  font-size: 32rpx;
+  color: gray;
+  padding: 24rpx 28rpx;
+}
+
+/* dialog */
+.mask {
+  position: fixed; 
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
+  z-index: 1999;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.dialog {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rpx;
+}
+
+.dialog .close {
+  top: 12rpx;
+  right: 18rpx;
+  position: absolute;
+  width: 38rpx;
+  height: 38rpx;
+  z-index: 999;
+}
+
+.dialog .tip {
+  align-self: flex-start;
+  padding: 32rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.dialog .body {
+  margin: 48rpx 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog .body image {
+  width: 60vw;
+  height: 256rpx;
+  border-radius: 18rpx;
+  margin-bottom: 12rpx;
+}
+.dialog .body .name {
+  font-size: 30rpx;
+}
+
+.dialog .detail {
+  padding: 32rpx;
+  align-self: flex-start;
+}
+
+.dialog .detail .content {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.dialog .action {
+  width: 100%;
+  background: red;
+  color: white;
+  padding: 16rpx;
+  text-align: center;
+  font-size: 36rpx;
+}
