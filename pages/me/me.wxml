@@ -84,6 +84,13 @@
     <image class='arrow-right' style='margin-left:auto;'
       src='{{theme.images}}/arrow_right.png'></image>
   </view>
+  <view class='horizontal' bindtap='pointClick'>
+    <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+      src='{{theme.images}}/my_follow.png'></image>
+    <text class='title'>我的积分</text>
+    <image class='arrow-right' style='margin-left:auto;'
+      src='{{theme.images}}/arrow_right.png'></image>
+  </view>
 </view>
 
 <!-- 版权信息 -->

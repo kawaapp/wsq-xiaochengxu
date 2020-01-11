@@ -2,9 +2,9 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
+const Host = "http://127.0.0.1:1323"
 //const Host = "https://wsq.siftapi.com"
-const Host = "https://wsq.kawaapp.com"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -592,6 +592,36 @@ function getUserListExp(page, size) {
   })
 }
 
+// 积分接口
+function getPointKindList() {
+  return req({
+    url: `${Host}/api/point/types`,
+    method: 'GET'
+  })
+}
+
+function getPointItemList() {
+  return req({
+    url: `${Host}/api/point/items`,
+    method: 'GET'
+  })
+}
+
+function pointExchange(id) {
+  return req({
+    url: `${Host}/api/point/exchange`,
+    method: 'POST',
+    data: { item_id: id}
+  })
+}
+
+function getPointOrderList() {
+  return req({
+    url: `${Host}/api/users/0/orders`,
+    method: 'GET'
+  })
+}
+
 // 收藏接口
 function createFavorite(pid) {
   return req({
@@ -826,6 +856,12 @@ module.exports = {
   getGradeList: getGradeList,
   getExpKindList: getExpKindList,
   getUserListExp: getUserListExp,
+
+  // point
+  getPointKindList: getPointKindList,
+  getPointItemList: getPointItemList,
+  getPointOrderList: getPointOrderList,
+  pointExchange: pointExchange,
 
   // favorite
   createFavorite: createFavorite,

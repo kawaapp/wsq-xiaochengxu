@@ -39,9 +39,11 @@ page {
   display: flex;
   justify-content: space-between;
   margin-bottom: 64rpx;
+  flex-wrap: wrap;
 }
 
 .item {
+  margin-bottom: 32rpx;
   width: 48%;
   border-radius: 12rpx;
   box-shadow: 0 0 12rpx 0px rgba(0, 0, 0, 0.1);
@@ -81,6 +83,7 @@ page {
 /* 积分规则 */
 .kind {
   margin-top: 16rpx;
+  margin-bottom: 64rpx;
 }
 
 .kind .listitem {

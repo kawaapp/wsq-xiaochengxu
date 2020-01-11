@@ -1,2 +1,29 @@
-<!--pages/point/history/history.wxml-->
-<text>pages/point/history/history.wxml</text>
+<view wx:for="{{orders}}" wx:key="{{item.id}}" class="item">
+  <view class="horizontal" bindtap="clickItem" data-item="{{item}}">
+    <image class="img" src="{{item.item.image}}" mode="aspectFill" />
+    <view>
+        <view class="name">{{item.item.title}}</view>
+        <view class="status">{{"兑换成功"}} - {{"2019-19-12"}}</view>
+    </view>
+    <image class="arrow" src="/res/arrow_right.png" />
+  </view>
+</view>
+
+<!-- Item detail --->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog">
+    <image class="close" src="/res/del.png" bindtap="clickClose"/>
+    <view class="body">
+      <image src="{{item.item.image}}" mode="aspectFill"/>
+      <view class="name">{{item.item.title}}</view>
+    </view>
+    <view class="point">积分消耗: {{item.item.value}}</view>
+    <view class="status">已兑换</view>
+    <view class="detail">
+      <view class="title">商品详情</view>
+      <view class="content">
+        {{item.item.detail}}
+      </view>
+    </view>
+  </view>
+</view>

@@ -79,6 +79,12 @@ Page({
     })
   },
 
+  pointClick: function(e) {
+    wx.navigateTo({
+      url: '/pages/point/point',
+    })
+  },
+
   clickBindProfile: function(e) {
     var comp = this.selectComponent(".login")
     if (comp) {

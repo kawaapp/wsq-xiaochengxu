@@ -16,22 +16,12 @@ Page({
       fgColor: fgColor,
     },
     point: 10,
-    items: [{
-      title: "小米头像框",
-      value: 100,
-      image: "https://images.kawaapp.com/img_bobh6vkdbfdqidk67gp0.gif",
-    }, {
-        title: "小米头像框",
-        value: 100,
-        image: "https://images.kawaapp.com/img_bkaqqgkdbfdqfm68takg.jpeg",
-      }
-    ],
+    items: [],
     target: {
-      title: "小米头像框",
-      value: 100,
-      image: "https://images.kawaapp.com/img_bobh6vkdbfdqidk67gp0.gif",
+      index: -1,
+      item: {},
     },
-    kinds: [{name: "签到", value: 10}, {name: "发帖", value: 15}],
+    kinds: [],
     show: false,
   },
 
@@ -39,7 +29,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    ctr.setup(this)
+    ctr.onLoad(options)
   },
 
   clickHistory: function() {
@@ -48,11 +39,19 @@ Page({
     })
   },
 
-  clickBuy: function() {
-    this.setData({ show: true })
+  clickBuy: function(e) {
+    var idx = e.currentTarget.dataset.idx
+    this.setData({ show: true, target: {
+      index: idx,
+      item: this.data.items[idx]
+    }})
   },
   
   clickClose: function() {
-    this.setData({ show: false })
+    this.setData({ show: false, target: {} })
+  },
+
+  clickExch: function() {
+    ctr.exchange(this.data.target)
   }
 })

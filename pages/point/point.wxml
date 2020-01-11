@@ -18,13 +18,15 @@
         <view class="horizontal bar">
           <view>
             <view class="name">{{item.title}}</view>
-            <view class="value">{{item.value}}积分</view>
+            <view class="value">{{item.value}} 积分</view>
           </view>
-          <view class="botton" bindtap="clickBuy">兑换</view>
+          <view class="botton" bindtap="clickBuy" data-idx="{{index}}">兑换</view>
         </view>
     </view>
   </view>
 </view>
+
+<view style="height:18rpx; background:#f8f8f8" />
 
 <!-- 积分规则 -->
 <view class="card">
@@ -46,19 +48,19 @@
   <view class="dialog">
     <image class="close" src="/res/del.png" bindtap="clickClose"/>
     <view class="tip">
-      确认使用 {{20}} 积分, 兑换
+      确认使用 {{target.item.value}} {{30}} 积分, 兑换
     </view>
     <view class="body">
-      <image src="{{target.image}}" mode="aspectFill"/>
-      <view class="name">{{"小米头像框"}}</view>
+      <image src="{{target.item.image}}" mode="aspectFill"/>
+      <view class="name">{{target.item.title}}</view>
     </view>
     <view class="detail">
       <view class="title">商品详情</view>
       <view class="content">
-        卡哇微社区限量版，头像框，买到就是赚到！
+        {{target.item.detail}}
       </view>
     </view>
-    <view class="action">立即兑换</view>
+    <view class="action" catchtap="clickExch">立即兑换</view>
   </view>
 </view>
 

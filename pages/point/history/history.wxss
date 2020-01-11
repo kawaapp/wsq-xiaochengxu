@@ -1,1 +1,119 @@
-/* pages/point/history/history.wxss */
+page {
+    background-color:#fff;
+}
+
+.item {
+  padding: 16rpx;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.item .img {
+  margin: 32rpx;
+  width: 160rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+}
+
+.item .name {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.item .status {
+  font-size: 28rpx;
+}
+
+.item .time {
+  font-size: 28rpx;
+}
+
+.item .arrow {
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: auto;
+}
+
+/* 确认对话框 */
+
+/* dialog */
+.mask {
+  position: fixed; 
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
+  z-index: 1999;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.dialog {
+  position: fixed;
+  left: 10vw; right: 10vw;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 999;
+  background: white;
+  padding: 0rpx;
+  border-radius: 16rpx;
+}
+
+.dialog .close {
+  top: 12rpx;
+  right: 18rpx;
+  position: absolute;
+  width: 38rpx;
+  height: 38rpx;
+  z-index: 999;
+}
+
+.dialog .body {
+  margin: 48rpx 0rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog .body image {
+  width: 60vw;
+  height: 256rpx;
+  border-radius: 18rpx;
+  margin-bottom: 12rpx;
+}
+.dialog .body .name {
+  font-size: 30rpx;
+}
+
+.dialog .point {
+  font-size: 28rpx;
+  color: gray;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.dialog .status {
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 56rpx;
+  width: 128px;
+  margin: 0px auto;
+  border-radius: 32rpx;
+  border: 1px solid #eee;
+  color: green;
+}
+
+.dialog .detail {
+  padding: 32rpx;
+}
+
+.dialog .detail .title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.dialog .detail .content {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: #666;
+  overflow: auto;
+  min-height: 128rpx;
+  max-height: 256rpx;
+}
