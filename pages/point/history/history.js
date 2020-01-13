@@ -1,4 +1,5 @@
 const api = require('../../../utils/api.js')
+const util = require('../../../utils/util.js')
 
 Page({
 
@@ -35,14 +36,10 @@ function setup(view) {
 
 function massage(items) {
   return items.map( item => {
-    try {
-      const hash = JSON.parse(item.snapshot)
-      item.user = hash.user
-      item.item = hash.item
-    } catch (e) {
-      item.user = {}
-      item.item = {}
-    }
+    item.user || (item.user = {})
+    item.item || (item.item = {}) 
+    const utcTime = new Date(item.created_at * 1000)
+    item.date = util.prettyTimeYMD(utcTime)
     return item
   })
 }

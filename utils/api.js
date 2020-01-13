@@ -2,9 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-const Host = "http://127.0.0.1:1323"
-//const Host = "https://wsq.siftapi.com"
-//const Host = "https://wsq.kawaapp.com"
+//const Host = "http://127.0.0.1:1323"
+const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {

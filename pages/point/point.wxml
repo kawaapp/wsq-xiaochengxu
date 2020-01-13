@@ -1,5 +1,5 @@
 <view class="v">
-  <view class="point" style="color:{{theme.bgColor}}">{{point}}</view>
+  <view class="point" style="color:{{theme.bgColor}}">{{user.point_count || 0}}</view>
   <view class="text">已有积分</view>
 </view>
 
@@ -24,6 +24,10 @@
         </view>
     </view>
   </view>
+  <view wx:if="!items || !item.length" class="empty">
+    <image src="/res/empty.png"/>
+    <text>货架是空的，呜呜呜</text>
+  </view>
 </view>
 
 <view style="height:18rpx; background:#f8f8f8" />
@@ -38,7 +42,7 @@
   <view class="kind">
     <view wx:for="{{kinds}}" wx:key="{{item.id}}" class="listitem">
         <view class="title">{{item.name}}</view>
-        <view>{{item.name}} 每次可以获得 {{item.value}} 积分</view>
+        <view>每次可以获得 {{item.value}} 积分，10分钟内不可重复领取</view>
     </view>
   </view>
 </view>

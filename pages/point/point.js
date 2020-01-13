@@ -2,6 +2,8 @@ const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
 const util = require('../../utils/util.js')
 
+const app = getApp()
+
 var bgColor = util.lightenColor(kawa.Theme.MainColor, 10)
 var fgColor = util.invertColor(bgColor, true)
 
@@ -15,7 +17,7 @@ Page({
       bgColor: bgColor,
       fgColor: fgColor,
     },
-    point: 10,
+    user: {},
     items: [],
     target: {
       index: -1,
@@ -31,6 +33,13 @@ Page({
   onLoad: function (options) {
     ctr.setup(this)
     ctr.onLoad(options)
+  },
+
+  onShow: function() {
+    const user = app.globalData.userInfo
+    if (user) {
+      this.setData({ user: user })
+    }
   },
 
   clickHistory: function() {

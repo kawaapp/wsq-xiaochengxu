@@ -80,6 +80,19 @@ page {
   border-radius: 8rpx;
 }
 
+.empty {
+  font-size: 30rpx;
+  color: #bfbfbf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.empty image {
+  width: 96rpx;
+  height: 96rpx;
+}
+
+
 /* 积分规则 */
 .kind {
   margin-top: 16rpx;

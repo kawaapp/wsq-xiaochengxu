@@ -3,7 +3,7 @@
     <image class="img" src="{{item.item.image}}" mode="aspectFill" />
     <view>
         <view class="name">{{item.item.title}}</view>
-        <view class="status">{{"兑换成功"}} - {{"2019-19-12"}}</view>
+        <view class="status">{{item.status? "兑换成功":"正在发货"}}/{{item.date}}</view>
     </view>
     <image class="arrow" src="/res/arrow_right.png" />
   </view>
