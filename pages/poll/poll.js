@@ -57,6 +57,8 @@ Page({
 
   // 用户点击右上角分享
   onShareAppMessage: function () {
+    api.logShare({ type: 'share-poll' })
+    // biz
     const { poll } = this.data
     return {
       title: poll.title,

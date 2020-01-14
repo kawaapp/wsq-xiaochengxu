@@ -587,6 +587,9 @@ function showActionSheet(menus, actions) {
 }
 
 function onClickShare(res) {
+  // 不精确的分享统计
+  api.logShare({type: 'share-post'})
+
   // 来自页面内转发按钮
   if (res.from === 'button') {
     console.log(res.target)

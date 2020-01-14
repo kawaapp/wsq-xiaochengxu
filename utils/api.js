@@ -680,6 +680,15 @@ function createQrCode() {
   })
 }
 
+// 分享统计
+function logShare(data) {
+  return req({
+    url: `${Host}/api/actions/share`,
+    method: 'POST',
+    data: data,
+  })
+}
+
 // 获取自定义广告
 function getAdunitList(t) {
   return req({
@@ -873,6 +882,7 @@ module.exports = {
   decrypt: decrypt,
   linkPreview: linkPreview,
   createQrCode: createQrCode,
+  logShare: logShare,
 
   // upload
   uploadFile: uploadFile,

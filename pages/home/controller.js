@@ -135,6 +135,8 @@ function onClickNewPost(e) {
 }
 
 function onClickShare(res) {
+  // 不精确的分享统计
+  api.logShare({ type: 'share-app' })
   var meta = app.globalData.meta
   return {
     title: meta.app_name,
