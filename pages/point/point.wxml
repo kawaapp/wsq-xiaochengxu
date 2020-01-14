@@ -24,7 +24,7 @@
         </view>
     </view>
   </view>
-  <view wx:if="!items || !item.length" class="empty">
+  <view wx:if="{{!items || !items.length}}" class="empty">
     <image src="/res/empty.png"/>
     <text>货架是空的，呜呜呜</text>
   </view>

@@ -182,7 +182,7 @@ page {
   width: 100%;
   background: red;
   color: white;
-  padding: 16rpx;
+  padding: 18rpx;
   text-align: center;
   font-size: 36rpx;
 }
