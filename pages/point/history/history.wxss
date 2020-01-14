@@ -10,7 +10,7 @@ page {
 .item .img {
   margin: 32rpx;
   width: 160rpx;
-  height: 100rpx;
+  height: 94rpx;
   border-radius: 8rpx;
 }
 
@@ -72,7 +72,7 @@ page {
 }
 
 .dialog .body image {
-  width: 60vw;
+  width: 435rpx;
   height: 256rpx;
   border-radius: 18rpx;
   margin-bottom: 12rpx;
