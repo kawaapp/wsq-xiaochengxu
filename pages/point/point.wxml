@@ -35,7 +35,7 @@
 <!-- 积分规则 -->
 <view class="card">
   <view class="h1">
-    <view class="title">领取积分</view>
+    <view class="title">积分领取</view>
   </view>
 
   <!-- 活动 -->
@@ -54,7 +54,7 @@
 <view class="dialog {{show? 'show':''}}">
     <image class="close" src="/res/del.png" bindtap="clickClose"/>
     <view class="tip">
-      确认使用 {{target.item.value}} 积分, 兑换
+      确认使用 <text style="font-weight:bold;font-size:32rpx;">{{target.item.value}}</text> 积分, 兑换
     </view>
     <view class="body">
       <image src="{{target.item.image}}" mode="aspectFill"/>

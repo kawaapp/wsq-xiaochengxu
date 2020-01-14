@@ -171,7 +171,7 @@ page {
   width: 60vw;
   height: 256rpx;
   border-radius: 18rpx;
-  margin-bottom: 12rpx;
+  margin-bottom: 16rpx;
 }
 .dialog .body .name {
   font-size: 30rpx;

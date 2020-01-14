@@ -18,7 +18,7 @@
       <view class="name">{{item.item.title}}</view>
     </view>
     <view class="point">积分消耗: {{item.item.value}}</view>
-    <view class="status">已兑换</view>
+    <view class="status">{{item.status? '已兑换':'正在发货'}}</view>
     <view class="detail">
       <view class="title">商品详情</view>
       <view class="content">
