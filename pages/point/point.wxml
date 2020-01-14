@@ -49,22 +49,23 @@
 
 <!-- 兑换确认对话框 -->
 <view class="mask" hidden="{{!show}}" bindtap="dummy" >
-  <view class="dialog">
+</view>
+
+<view class="dialog {{show? 'show':''}}">
     <image class="close" src="/res/del.png" bindtap="clickClose"/>
     <view class="tip">
-      确认使用 {{target.item.value}} {{30}} 积分, 兑换
+      确认使用 {{target.item.value}} 积分, 兑换
     </view>
     <view class="body">
       <image src="{{target.item.image}}" mode="aspectFill"/>
       <view class="name">{{target.item.title}}</view>
     </view>
     <view class="detail">
-      <view class="title">商品详情</view>
+      <view class="hhh">商品详情</view>
       <view class="content">
         {{target.item.detail}}
       </view>
     </view>
     <view class="action" catchtap="clickExch">立即兑换</view>
   </view>
-</view>
 

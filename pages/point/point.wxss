@@ -120,7 +120,7 @@ page {
 .mask {
   position: fixed; 
   top: 0px; left: 0px; right: 0px; bottom: -1000px;
-  z-index: 1999;
+  z-index: 998;
   background-color: rgba(0, 0, 0, .6);
 }
 
@@ -133,6 +133,15 @@ page {
   flex-direction: column;
   align-items: center;
   padding: 0rpx;
+  animation-timing-function: linear;
+  transition: all .4s;
+  transform: translateY(101%);
+  opacity: .1;
+}
+
+.dialog.show {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .dialog .close {
@@ -173,9 +182,16 @@ page {
   align-self: flex-start;
 }
 
+.dialog .detail .hhh {
+  font-weight: bold;
+}
+
 .dialog .detail .content {
   font-size: 28rpx;
   color: #666;
+  overflow: auto;
+  min-height: 64rpx;
+  max-height: 256rpx;
 }
 
 .dialog .action {
