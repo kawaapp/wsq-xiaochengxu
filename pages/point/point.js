@@ -35,21 +35,6 @@ Page({
     ctr.onLoad(options)
   },
 
-  // 页面销毁时执行
-  onUnload: function () {
-    // sync points change
-    if (this.data.user) {
-      app.globalData.userInfo.point_count = this.data.user.point_count
-    }
-  },
-
-  onShow: function() {
-    const user = app.globalData.userInfo
-    if (user) {
-      this.setData({ user: user })
-    }
-  },
-
   clickHistory: function() {
     wx.navigateTo({
       url: "/pages/point/history/history",

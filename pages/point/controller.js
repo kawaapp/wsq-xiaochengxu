@@ -19,6 +19,19 @@ function onLoad() {
   }).catch( err => {
     console.log("get pt-item err", err)
   })
+  
+  const user = app.globalData.userInfo
+  if (user) {
+    view.setData({ user: user })
+  }
+
+  // get latest point value
+  api.getSelf().then((resp) => {
+    if (resp.data) {
+      app.globalData.userInfo.point_count = resp.data.point_count
+      view.setData({ user: resp.data })
+    }
+  })
 }
 
 function onUnload() {
