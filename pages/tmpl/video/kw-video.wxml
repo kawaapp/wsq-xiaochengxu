@@ -9,6 +9,7 @@
     object-fit="cover" 
     controls="true"
     autoplay='{{true}}'
+    show-fullscreen-btn="{{false}}"
     show-center-play-btn="{{false}}"
     bindended="handleVideoEnded"
     ></video>
