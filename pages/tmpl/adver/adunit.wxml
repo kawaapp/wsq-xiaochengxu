@@ -1,7 +1,7 @@
 <!--pages/tmpl/adver/adunit.wxml-->
 
 <view wx:if="{{subtype == 'banner'}}">
-  <view class="wxad">
+  <view class="wxad" wx:if="{{native}}" >
     <ad wx:if="{{native}}" unit-id="{{adid}}" ad-intervals="30" />
   </view>
   <view wx:if="{{!native}}" class="banner">

@@ -34,7 +34,7 @@
 </view>
 
 <!-- 公告部分 -->
-<view class='card' wx:if="{{speaker.title}}" style='margin-bottom: 16rpx;'>
+<view class='card' wx:if="{{speaker.title}}" >
   <view class='single-line speaker' bindtap='clickSpeaker'>
     <image src='{{theme.images}}/speaker.png'></image>
     <text style='margin-right: 8rpx;'>公告: </text> 

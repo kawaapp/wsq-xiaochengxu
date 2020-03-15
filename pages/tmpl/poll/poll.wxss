@@ -1,6 +1,6 @@
 .poll {
   background-color: #ffffff;
-  margin-bottom: 18.72rpx;
+  margin-bottom: 16rpx;
   position: relative;
   padding: 18rpx 24rpx;
 }
