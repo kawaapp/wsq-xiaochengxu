@@ -185,6 +185,7 @@ function accessNotAllowed(err) {
 
 // 订阅拦截
 // usage 1. comment 2. favor 3. chat
+// complete(success or fail, err)
 function subscribe(trigger, complete) {
   var templates = app.globalData.templates || []
   var filter = []
@@ -208,22 +209,29 @@ function subscribe(trigger, complete) {
   wx.requestSubscribeMessage({
     tmplIds: tids,
     success: function(res) {
-      complete && complete(true)
-      // 上传订阅数据...
-      createSubscribes(res)
+      var accepts = Object.keys(res).filter(key => {
+        return res[key] == 'accept'
+      })
+
+      // 部分授权
+      if (accepts.length < tids.length) {
+        complete && complete(false)
+      } else {
+        complete && complete(true)
+      }
+
+      if (accepts.length > 0) {
+        createSubscribes(accepts) // 上传订阅数据
+      }
     },
     fail: function(err) {
-      complete && complete(false)
+      complete && complete(false, err)
       console.log("订阅失败：", err)
     },
   })
 }
 
-function createSubscribes(res) {
-  console.log("get sub :", res)
-  var tids = Object.keys(res).filter(key => {
-    return res[key] == 'accept'
-  })
+function createSubscribes(tids) {
   tids.length > 0 && api.createUserSub(tids).catch( err => {
     console.log("user subscribe err,", err)
   })

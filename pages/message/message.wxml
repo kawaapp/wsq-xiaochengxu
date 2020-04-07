@@ -1,4 +1,7 @@
 <!--pages/message/message.wxml-->
+<view wx:if="{{!subcribed}}" class="warn" bindtap="clickSubscribe" >
+  未订阅消息通知，点击订阅可及时获得最新消息
+</view>
 <view class='card'>
 
   <!-- 点赞消息 -->

@@ -1,4 +1,10 @@
-/* pages/message/message.wxss */
+.warn {
+  text-align: center;
+  font-size: 24rpx;
+  padding: 14rpx 0;
+  background: #faf0cc;
+  color: #ee9243;
+}
 
 .arrow_right {
   width: 56rpx; 

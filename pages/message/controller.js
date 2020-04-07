@@ -1,5 +1,6 @@
 const api = require('../../utils/api.js')
 const util = require('../../utils/util.js')
+const biz = require('../../utils/biz.js')
 
 const app = getApp()
 const PAGE_SIZE = 20
@@ -10,6 +11,23 @@ function setup(_view) {
 }
 function onUnload() {
   view = undefined
+}
+
+function onLoad() {
+  
+  // does user subscribed?
+  var templates = app.globalData.templates
+  if (templates.length > 0) {
+    api.getUserSubList().then( resp => {
+      var counter  = 0
+      resp.data.map( sub => {
+        counter += sub.ava_counter
+      })
+      view.setData({ subcribed: counter > 0})
+    }).catch( err => {
+      console.log(err)
+    })
+  }
 }
 
 function refreshMessage() {
@@ -93,11 +111,34 @@ function onClickItem(e) {
   view.setData({ [key]: 1})
 }
 
+// 注意：
+// 这个方法必须配置模板列表
+function onClickSubscribe(e) {
+  biz.subscribe("", (ok, err) => {
+    if (ok) {
+      view.setData({ subcribed: true })
+      wx.showToast({ title: '订阅成功！' })
+    }
+
+    if (!ok || (err && err.errCode == 20004)) {
+      wx.showModal({
+        title: "温馨提示",
+        content: "您有订阅消息被取消，点击“去设置”开启订阅通知",
+        confirmText: "去设置",
+        success: function() {
+          wx.openSetting({withSubscriptions: true})
+        }
+      })
+    }
+  })
+}
 
 module.exports = {
   setup: setup,
+  onLoad: onLoad,
   onUnload: onUnload,
   refreshMessage: refreshMessage,
   onReachBottom: onReachBottom,
   onClickItem: onClickItem,
+  onClickSubscribe: onClickSubscribe,
 }

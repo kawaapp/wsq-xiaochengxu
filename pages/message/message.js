@@ -20,10 +20,12 @@ Page({
     hasmore: true,
     timer: 0,
     refreshCounter: 1,
+    subcribed: true,
   },
 
   onLoad: function(options) {
     ctr.setup(this)
+    ctr.onLoad(options)
     const view = this
     const id = setInterval(function() {
       var counter = view.data.refreshCounter + 1
@@ -81,5 +83,10 @@ Page({
 
   clickItem: function(e) {
     ctr.onClickItem(e)
+  },
+
+  // 消息订阅
+  clickSubscribe: function(e) {
+    ctr.onClickSubscribe(e)
   }
 })
