@@ -33,6 +33,7 @@ App({
       chat: 0,
       notification: 0,
     },
+    templates: [],
     wxad: {},
     callbacks: {},
   },
@@ -68,6 +69,7 @@ function initGlobal(app) {
   fetchSignToday(app)
   fetchMessage(app)
   fetchGradeData(app)
+  fetchTemplates(app)
 }
 
 // 加载社区信息
@@ -197,6 +199,22 @@ function fetchGradeData(app) {
   })
 }
 
+// 更新订阅模板
+function fetchTemplates(app) {
+  try {
+    const value = wx.getStorageSync('templates')
+    if (value) {
+      setAppData(app, "templates", value)
+    }
+  } catch(e) {}
+  api.getTemplates().then( resp => {
+    console.log("get templates:", resp)
+    setAppData(app, "templates", resp.data)
+  }).catch( err => {
+    console.log(err)
+  })
+}
+
 // 持久化关键信息
 function save(app) {
   // meta
@@ -207,4 +225,6 @@ function save(app) {
   wx.setStorage({ key: 'tags', data: app.globalData.tags })
   // grades
   wx.setStorage({ key: 'grades', data: app.globalData.grades })
+  // templates
+  wx.setStorage({ key: 'templates', data: app.globalData.templates })
 }

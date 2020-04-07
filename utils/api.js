@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -785,6 +785,29 @@ function getArticle(appKey, id) {
   });
 }
 
+// 消息订阅
+function getTemplates() {
+  return req({
+    url: `${Host}/api/subs/templates`,
+    method: `GET`,
+  })
+}
+
+function getUserSubList() {
+  return req({
+    url: `${Host}/api/users/0/subs`,
+    method: `GET`,
+  })
+}
+
+function createUserSub(data) {
+  return req({
+    url: `${Host}/api/subs/batch`,
+    method: "POST",
+    data: data,
+  })
+}
+
 module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
@@ -902,4 +925,9 @@ module.exports = {
   createJoinRequest: createJoinRequest,
   getJoinRequest: getJoinRequest,
   getAppMeta: getAppMeta,
+
+  // 订阅
+  getTemplates: getTemplates,
+  getUserSubList: getUserSubList,
+  createUserSub: createUserSub,
 }

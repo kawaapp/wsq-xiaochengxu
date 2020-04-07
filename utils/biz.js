@@ -183,6 +183,52 @@ function accessNotAllowed(err) {
   return err && accessNotAllowed(err.err)
 }
 
+// 订阅拦截
+// usage 1. comment 2. favor 3. chat
+function subscribe(trigger, complete) {
+  var templates = app.globalData.templates || []
+  var filter = []
+  if (trigger == 'new-post') {
+    filter = templates.filter( t => {
+      return t.usage == 1 || t.usage == 2
+    })
+  } else if (trigger == 'new-comment') {
+    filter = templates.filter( t => {
+      return t.usage == 1 || t.usage == 2
+    })
+  } else {
+    filter = templates.filter( t => {
+      return t.usage >= 1 && t.usage <= 3
+    })
+  }
+  var tids = filter.map( t => {
+    return t.template
+  })
+
+  wx.requestSubscribeMessage({
+    tmplIds: tids,
+    success: function(res) {
+      complete && complete(true)
+      // 上传订阅数据...
+      createSubscribes(res)
+    },
+    fail: function(err) {
+      complete && complete(false)
+      console.log("订阅失败：", err)
+    },
+  })
+}
+
+function createSubscribes(res) {
+  console.log("get sub :", res)
+  var tids = Object.keys(res).filter(key => {
+    return res[key] == 'accept'
+  })
+  tids.length > 0 && api.createUserSub(tids).catch( err => {
+    console.log("user subscribe err,", err)
+  })
+}
+
 module.exports = {
   getPhoneNumber: getPhoneNumber,
   getGrade: getGrade,
@@ -191,4 +237,5 @@ module.exports = {
   parseUser: parseUser,
   postContent: postContent,
   accessNotAllowed: accessNotAllowed,
+  subscribe: subscribe,
 }
