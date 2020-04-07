@@ -1,6 +1,7 @@
 // pages/writer/writer.js
 const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
+const biz = require('../../utils/biz.js')
 
 Page({
 
@@ -42,7 +43,9 @@ Page({
     this.setData({content: e.detail.value})
   },
   writerPublish: function() {
-    ctr.onClickSubmit()
+    biz.subscribe("new-post", () => {
+      ctr.onClickSubmit()
+    })
   },
   clickVideo: ctr.onClickVideo,
   chooseImage: ctr.onChooseImage,

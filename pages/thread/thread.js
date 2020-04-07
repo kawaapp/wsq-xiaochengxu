@@ -2,6 +2,7 @@
 const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
 const util = require('../../utils/util.js')
+const biz = require('../../utils/biz.js')
 const app = getApp()
 
 // 微信原生插屏广告
@@ -123,7 +124,9 @@ Page({
     ctr.onClickListFavor(e)
   },
   sendComment: function (e, op) {
-    ctr.onClickSendComment(e)
+    biz.subscribe("new-comment", () => {
+      ctr.onClickSendComment(e)
+    })
   }, 
   clickListCommentAction: function(e) {
     ctr.onClickListCommentAction(e)
