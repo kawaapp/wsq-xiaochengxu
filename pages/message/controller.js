@@ -123,7 +123,7 @@ function onClickItem(e) {
 function onClickSubscribe(e) {
   biz.subscribe("", (ok, err) => {
     if (ok) {
-      view.setData({ subcribed: true })
+      view.setData({ showSub: false })
       wx.showToast({ title: '订阅成功！' })
     }
 
