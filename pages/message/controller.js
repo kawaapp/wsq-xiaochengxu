@@ -14,16 +14,23 @@ function onUnload() {
 }
 
 function onLoad() {
-  
-  // does user subscribed?
+  // 评论/点赞/私信 只要耗尽都重新提示
   var templates = app.globalData.templates
   if (templates.length > 0) {
     api.getUserSubList().then( resp => {
-      var counter  = 0
+      var map = {}
       resp.data.map( sub => {
-        counter += sub.ava_counter
+        map[sub.template] = sub.ava_counter
       })
-      view.setData({ subcribed: counter > 0})
+      var hasRunout = false
+      templates.filter( t => {
+        return (t.usage >= 1 && t.usage <= 3)
+      }).map( t => {
+        if (map[t.template] != undefined && map[t.template] <= 0) {
+          hasRunout = true
+        }
+      })
+      view.setData({ showSub: hasRunout })
     }).catch( err => {
       console.log(err)
     })

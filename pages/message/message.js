@@ -20,7 +20,7 @@ Page({
     hasmore: true,
     timer: 0,
     refreshCounter: 1,
-    subcribed: true,
+    showSub: false,
   },
 
   onLoad: function(options) {
