@@ -31,9 +31,15 @@ Page({
       // auto login 
       api.autoAuth().then(() => {
         console.log("go to main page")
-        wx.switchTab({
-          url: '/pages/home/home',
-        })
+        if (options.to == 'message') {
+          wx.switchTab({
+            url: '/pages/message/message',
+          })
+        } else {
+          wx.switchTab({
+            url: '/pages/home/home',
+          })
+        }
       }).catch((err) => {
         if (accessNotAllowed(err.err)) {
           wx.navigateTo({
