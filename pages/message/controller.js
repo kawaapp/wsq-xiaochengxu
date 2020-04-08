@@ -13,24 +13,14 @@ function onUnload() {
   view = undefined
 }
 
+// 评论/点赞/私信 只要耗尽都重新提示
 function onLoad() {
-  // 评论/点赞/私信 只要耗尽都重新提示
-  var templates = app.globalData.templates
+  var templates = app.globalData.templates || []
   if (templates.length > 0) {
-    api.getUserSubList().then( resp => {
-      var map = {}
-      resp.data.map( sub => {
-        map[sub.template] = sub.ava_counter
-      })
-      var hasRunout = false
-      templates.filter( t => {
-        return (t.usage >= 1 && t.usage <= 3)
-      }).map( t => {
-        if (map[t.template] != undefined && map[t.template] <= 0) {
-          hasRunout = true
-        }
-      })
-      view.setData({ showSub: hasRunout })
+    api.getSubState().then( resp => {
+      if (resp.data.require) {
+        view.setData({ showSub: true })
+      }
     }).catch( err => {
       console.log(err)
     })

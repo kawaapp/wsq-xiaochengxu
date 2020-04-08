@@ -808,6 +808,13 @@ function createUserSub(data) {
   })
 }
 
+function getSubState() {
+  return req({
+    url: `${Host}/api/subs/state`,
+    method: "GET",
+  })
+}
+
 module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
@@ -930,4 +937,5 @@ module.exports = {
   getTemplates: getTemplates,
   getUserSubList: getUserSubList,
   createUserSub: createUserSub,
+  getSubState: getSubState,
 }
