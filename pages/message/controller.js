@@ -28,26 +28,55 @@ function onLoad() {
 }
 
 function refreshMessage() {
-  view.setData({ refreshCounter: 0})
-  
   // refresh system notification
   api.getMessageCount().then((resp) => {
     view.setData({ count: resp.data })
-    console.log("get message count:", resp)
+    onCountChanged( resp.data )
   }).catch(err => {
     console.log(err)
   })
 
   // refresh chat message
   api.getChatUserList(0, PAGE_SIZE).then( resp => {
-    console.log("get chat user:", resp)
     wx.stopPullDownRefresh()
+    onChatChanged(resp.data)
     view.setData({ chats: massage(resp.data)})
     view.setData({ hasmore: resp.data && resp.data.length == PAGE_SIZE })
   }).catch( err => {
     wx.stopPullDownRefresh()
     console.log(err)
   })
+}
+
+// 通知变化刷新红点
+function onCountChanged(data) {
+  var count = data.favors + data.comments
+  if (count) {
+    wx.setTabBarBadge({ index: 1, text: '' + count })
+  } else {
+    wx.removeTabBarBadge({index: 1})
+  }
+}
+
+// 聊天列表变化刷新红点, 如果已经显示则不再刷新
+function onChatChanged(items) {
+  var count = view.data.count
+  if ((count.favors + count.comments) > 0) {
+    return
+  }
+
+  var uid = app.globalData.userInfo.id
+  var check = false
+  items.map(item => {
+    if (item.from_id != uid && item.status === 0) {
+      check = true
+    }
+  })
+  if (check) {
+    wx.showTabBarRedDot({ index: 1 })
+  } else {
+    wx.hideTabBarRedDot({index: 1})
+  }
 }
 
 function onReachBottom() {

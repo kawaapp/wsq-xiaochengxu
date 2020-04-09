@@ -20,7 +20,6 @@ Page({
     loading: false,
     hasmore: true,
     timer: 0,
-    refreshCounter: 1,
     showSub: false,
   },
 
@@ -28,19 +27,9 @@ Page({
     biz.applyTheme(kawa.Theme)
     ctr.setup(this)
     ctr.onLoad(options)
-    const view = this
-    const id = setInterval(function() {
-      var counter = view.data.refreshCounter + 1
-      view.setData({ refreshCounter: counter })
-      if (counter > 10) {
-        ctr.refreshMessage()
-      }
-    }, 6000);
-    this.setData({ timer: id}) 
   },
 
   onUnload: function () {
-    clearInterval(this.data.timer)
     ctr.onUnload()
   },
 
@@ -48,11 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.removeTabBarBadge({index: 1})
-    wx.hideTabBarRedDot({index: 1})
-    if (this.data.refreshCounter > 0) {
-      ctr.refreshMessage()
-    }
+    ctr.refreshMessage()
   },
 
   /**
