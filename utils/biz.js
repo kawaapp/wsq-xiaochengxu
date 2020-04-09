@@ -4,6 +4,31 @@ const h2j = require('h2j/parser.js')
 
 const app = getApp()
 
+
+function applyTheme(theme) {
+  var imgDir = theme.Image
+  wx.setTabBarItem({
+    index: 0,
+    iconPath: imgDir + "/home.png",
+    selectedIconPath: imgDir + "/home_focus.png",
+  })
+  wx.setTabBarItem({
+    index: 1,
+    iconPath: imgDir + "/msg.png",
+    selectedIconPath: imgDir + "/msg_focus.png",
+  })
+  wx.setTabBarItem({
+    index: 2,
+    iconPath: imgDir + "/me.png",
+    selectedIconPath: imgDir + "/me_focus.png",
+  })
+
+  wx.setTabBarStyle({
+    color: "#b5b5b5",
+    selectedColor: theme.TabSelectedColor || theme.MainColor,
+  })
+}
+
 function getPhoneNumber(ecrypted, iv) {
   return new Promise((res, rej) => {
     wx.login({
@@ -238,6 +263,7 @@ function createSubscribes(tids) {
 }
 
 module.exports = {
+  applyTheme: applyTheme,
   getPhoneNumber: getPhoneNumber,
   getGrade: getGrade,
   isUserHasName: isUserHasName,

@@ -1,5 +1,6 @@
 const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
+const biz = require('../../utils/biz.js')
 
 // pages/message/message.js
 Page({
@@ -24,6 +25,7 @@ Page({
   },
 
   onLoad: function(options) {
+    biz.applyTheme(kawa.Theme)
     ctr.setup(this)
     ctr.onLoad(options)
     const view = this
