@@ -208,7 +208,6 @@ function fetchTemplates(app) {
     }
   } catch(e) {}
   api.getTemplates().then( resp => {
-    console.log("get templates:", resp)
     setAppData(app, "templates", resp.data)
   }).catch( err => {
     console.log(err)

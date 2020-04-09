@@ -44,7 +44,7 @@
 
 <!-- 置顶帖 -->
 <view class='card' wx:if="{{tops.length > 0}}">
-  <view class='top-post' wx:for="{{tops}}" wx:for-item="item" wx:key="{{item.id}}">
+  <view class='top-post' wx:for="{{tops}}" wx:for-item="item" wx:key="id">
     <view style='height: 16rpx;' wx:if="{{index > 0}}"></view>
     <view class='single-line' style='width: 720rpx;' 
       data-idx='{{index}}' 

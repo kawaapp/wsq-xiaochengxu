@@ -1,4 +1,4 @@
-<view wx:for="{{polls}}" class="poll" wx:key="{{item.id}}">
+<view wx:for="{{polls}}" class="poll" wx:key="id">
   <text class="h">{{item.title}}</text>
   <image class="image"
     src="{{item.image}}" 
