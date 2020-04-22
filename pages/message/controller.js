@@ -151,8 +151,8 @@ function onClickSubscribe(e) {
         title: "温馨提示",
         content: "您有订阅消息被取消，点击“去设置”开启订阅通知",
         confirmText: "去设置",
-        success: function(ok) {
-          if (ok) {
+        success: function(res) {
+          if (res.confirm) {
             wx.openSetting({withSubscriptions: true})
           }
         }
