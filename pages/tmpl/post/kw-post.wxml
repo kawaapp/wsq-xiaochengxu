@@ -1,12 +1,12 @@
 <!--pages/tmpl/post/kw-post.wxml-->
 <view>
   <!-- Text -->
-  <view wx:if="{{!item.rich}}">
+  <view wx:if="{{!item.rich}}" class="itemwrapper">
     <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
   </view>
 
   <!-- Rich Text -->
-  <view wx:if="{{item.rich}}">
+  <view wx:if="{{item.rich}}" class="itemwrapper">
     <view class="rich">
       <view class="view">{{item.title}}</view>
       <text class="text">{{item.excerpt}}... </text>
@@ -15,21 +15,21 @@
   </view>
 
   <!-- Image列表 -->
-  <block wx:if="{{item.images && item.images.length > 0}}">
+  <view wx:if="{{item.images && item.images.length > 0}}" class="itemwrapper">
     <view style='margin: 8rpx 0rpx'>
       <img-grid images="{{item.images}}" mr="{{mr}}"> </img-grid> 
     </view>
-  </block>
+  </view>
 
   <!-- 视频 -->
-  <block wx:if="{{item.video}}">
+  <view wx:if="{{item.video}}" class="itemwrapper">
     <kw-video video="{{item.video}}" />
-  </block>
+  </view>
 
   <!-- 链接 -->
-  <block wx:if="{{item.link}}">
+  <view wx:if="{{item.link}}" class="itemwrapper">
     <kw-link link="{{item.link}}" />
-  </block>
+  </view>
 
   <!-- 地理位置 -->
   <block wx:if="{{item.location && item.location.name}}">

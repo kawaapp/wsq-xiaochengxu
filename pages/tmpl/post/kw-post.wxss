@@ -7,6 +7,10 @@
   
 }
 
+.itemwrapper {
+  margin-bottom: 16rpx;
+}
+
 .rich .view {
   font-weight: 500;
   font-size: 42rpx;
