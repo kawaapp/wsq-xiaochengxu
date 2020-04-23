@@ -9,6 +9,10 @@ Component({
     video: {
       type: Object,
       value: "",
+    },
+    width: {
+      type: String,
+      value: "100%"
     }
   },
 

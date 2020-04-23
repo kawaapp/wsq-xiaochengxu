@@ -22,7 +22,7 @@
   </view>
 
   <!-- 视频 -->
-  <view wx:if="{{item.video}}" class="itemwrapper">
+  <view wx:if="{{item.video}}" class="itemwrapper" style="margin-right:{{mr}}">
     <kw-video video="{{item.video}}" />
   </view>
 

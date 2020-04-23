@@ -1,5 +1,5 @@
 <!--pages/tmpl/video/kw-video.wxml-->
-<view class='container' catchtap='dummy'>
+<view class='container' catchtap='dummy' style="width:{{width}}">
   <view class='cover' catchtap='clickVideo' wx:if="{{showCover}}">
     <image class='play' src="/res/video_play.png"> </image>
     <image class='snapshot' src="{{video.cover}}" mode='aspectFill' lazy-load='true'></image>
