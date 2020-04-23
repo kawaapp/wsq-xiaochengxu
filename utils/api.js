@@ -74,7 +74,7 @@ function loginExpired() {
   })
   // 删除旧的 token
   try {
-    wx.removeStorageSync('token')
+    wx.removeStorageSync('kw.token')
   } catch (e) { }
 }
 
@@ -102,7 +102,7 @@ function autoAuth() {
   console.log("start auto auth..")
   return new Promise((res, rej) => {
     // check localstorage first
-    const value = wx.getStorageSync('token')
+    const value = wx.getStorageSync('kw.token')
     if (value && !util.jwtExpire(value)) {
       g.token = value
       
@@ -141,7 +141,7 @@ function autoAuth() {
               console.log("get token", resp.data)
               res(g.token)
               wx.setStorage({
-                key: 'token',
+                key: 'kw.token',
                 data: g.token
               })
             } else {
