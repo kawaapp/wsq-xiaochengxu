@@ -65,6 +65,7 @@ Page({
       focus: false
     },
     shared: false,
+    videoHeight: '225px'
   },
 
   /**

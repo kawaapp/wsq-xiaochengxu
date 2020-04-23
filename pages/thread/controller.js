@@ -79,6 +79,17 @@ function fetch(options) {
       item.post.author = biz.parseUser(item.post.author)
     }
 
+    // adjust video 
+    if (item.post.video) {
+      const { width, height } = item.post.video
+      if (width) {
+        var h = Math.round(702*height/width)
+        h = h > 650 ? 650: h
+        h = h < 395 ? 395: h
+        view.setData({ videoHeight: `${h}rpx` })
+      }
+    }
+
     // set post data
     view.setData({
       item: item

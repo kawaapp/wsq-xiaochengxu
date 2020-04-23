@@ -44,9 +44,9 @@
 
     <!-- 视频 -->
     <view wx:if="{{item.post.video}}" class="itemwrapper">
-      <video
+      <video style="height:{{videoHeight}}"
         class='video' src="{{item.post.video.video}}" 
-        object-fit="cover" 
+        object-fit="contain" 
         controls="true"
         autoplay='{{true}}'
         show-center-play-btn="{{false}}" />
