@@ -10,5 +10,12 @@
 .location .image {
   width: 32rpx; 
   height: 32rpx; 
+  min-width: 32rpx;
   margin-right: 6rpx; 
+}
+
+.line1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
