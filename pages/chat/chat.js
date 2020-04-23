@@ -1,6 +1,8 @@
 // pages/list/list.js
 const ctr = require('./controller.js')
 const kawa = require('../../kawa.js')
+const biz = require('../../utils/biz.js')
+
 /**
  * 聊天页面
  */
@@ -91,7 +93,9 @@ Page({
 
   // send message
   sendComment: function(e) {
-    ctr.onSendMessage(e)
+    biz.subscribe("new-chat", () => {
+      ctr.onSendMessage(e)
+    })
   },
 
   resetInputStatus() {

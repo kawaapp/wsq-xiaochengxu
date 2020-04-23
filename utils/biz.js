@@ -222,6 +222,10 @@ function subscribe(trigger, complete) {
     filter = templates.filter( t => {
       return t.usage == 1 || t.usage == 2
     })
+  } else if (trigger == 'new-chat') {
+    filter = templates.filter( t => {
+      return t.usage == 3
+    })
   } else {
     filter = templates.filter( t => {
       return t.usage >= 1 && t.usage <= 3
