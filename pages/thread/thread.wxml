@@ -25,37 +25,37 @@
   </view>
   <view style='margin-top:18rpx;'>
     <!-- Text -->
-    <view wx:if="{{!item.post.rich}}">
+    <view wx:if="{{!item.post.rich}}" class="itemwrapper">
       <kw-text text="{{item.post.content}}" limit="{{2000}}" selectable="{{true}}"></kw-text>
     </view>
 
     <!-- Rich Text -->
-    <view wx:if="{{item.post.rich}}">
+    <view wx:if="{{item.post.rich}}" class="itemwrapper">
       <view class="h1">{{item.post.title}}</view>
       <rich-text nodes="{{item.post.nodes}}" />
     </view>
     
     <!-- images -->
-    <block wx:if="{{item.post.images}}">
+    <view wx:if="{{item.post.images}}" class="itemwrapper">
       <view wx:for="{{item.post.images}}" wx:for-item="path" wx:key="{{path}}" >
         <image bindtap="clickImage" data-idx="{{index}}" src="{{path}}" mode='widthFix' class="img"/>
       </view>
-    </block> 
+    </view> 
 
     <!-- 视频 -->
-    <block wx:if="{{item.post.video}}">
+    <view wx:if="{{item.post.video}}" class="itemwrapper">
       <video
         class='video' src="{{item.post.video.video}}" 
         object-fit="cover" 
         controls="true"
         autoplay='{{true}}'
         show-center-play-btn="{{false}}" />
-    </block>
+    </view>
 
     <!-- 链接 -->
-    <block wx:if="{{item.post.link}}">
+    <view wx:if="{{item.post.link}}" class="itemwrapper">
       <kw-link link="{{item.post.link}}" />
-    </block>
+    </view>
 
     <!-- 地理位置 -->
     <block wx:if="{{item.post.location && item.post.location.name}}">

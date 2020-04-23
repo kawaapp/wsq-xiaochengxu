@@ -55,6 +55,10 @@
   font-size: 30rpx;
 }
 
+.itemwrapper {
+  margin-bottom: 16rpx;
+}
+
 .img {
   width: 100%;
   border-radius: 6rpx;
