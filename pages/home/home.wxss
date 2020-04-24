@@ -56,6 +56,7 @@
   right: 30rpx;
   width: 128rpx;
   height: 128rpx;
+  z-index: 9999;
 }
 
 .speaker {
