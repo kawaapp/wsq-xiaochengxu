@@ -1,0 +1,15 @@
+<!--pages/tmpl/goods/goods.wxml-->
+<view class="ad_title">
+  {{goods.title}}
+</view>
+<swiper class="ad_swiper" indicator-dots="{{true}}" autoplay="">
+  <swiper-item wx:for="{{goods.images}}" wx:key="*this" class="ad_item">
+    <image class="ad_img" mode='aspectFill' src="{{item}}"/>
+  </swiper-item>
+</swiper>
+<view class="ad_link ad_l2">
+  {{content}}
+</view>
+<view class="ad_hint">
+  推广
+</view>

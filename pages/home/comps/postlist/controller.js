@@ -89,6 +89,7 @@ function onReachBottom() {
 function onClickItem(e) {
   var idx = e.currentTarget.dataset.idx
   var post = view.data.posts[idx]
+
   util.sendRequest('post', {
     idx: idx,
     post: post

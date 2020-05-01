@@ -108,6 +108,8 @@ function parseMedia(post) {
         post.video = JSON.parse(media.path)
       } else if (media.type == 4) {
         post.link = JSON.parse(media.path)
+      } else if (media.type == 5) {
+        post.goods = JSON.parse(media.path)
       }
     } catch (err) { }
   }

@@ -1,7 +1,7 @@
 <!--pages/tmpl/post/kw-post.wxml-->
 <view>
   <!-- Text -->
-  <view wx:if="{{!item.rich}}" class="itemwrapper">
+  <view wx:if="{{!item.rich && !item.goods}}" class="itemwrapper">
     <kw-text text="{{item.content}}" limit="{{70}}" ></kw-text>
   </view>
 
@@ -29,6 +29,11 @@
   <!-- 链接 -->
   <view wx:if="{{item.link}}" class="itemwrapper">
     <kw-link link="{{item.link}}" />
+  </view>
+
+  <!-- 商品推广 -->
+  <view wx:if="{{item.goods}}" class="itemwrapper">
+    <kw-goods goods="{{item.goods}}" content="{{item.content}}" />
   </view>
 
   <!-- 地理位置 -->
