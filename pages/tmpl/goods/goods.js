@@ -1,3 +1,5 @@
+import biz from '../../../utils/biz.js'
+
 // pages/tmpl/goods/goods.js
 Component({
   /**
@@ -24,6 +26,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    clickGoods: function() {
+      biz.openLink(this.data.goods)
+    }
   }
 })

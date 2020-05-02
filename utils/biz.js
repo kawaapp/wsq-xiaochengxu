@@ -268,6 +268,22 @@ function createSubscribes(tids) {
   })
 }
 
+// 打开小程序或网页链接
+function openLink(data) {
+  if (data && data.link) {
+    if (data.link.startsWith("http")) {
+      wx.navigateTo({
+        url: '/pages/webview/webview?q=' + encodeURI(data.link),
+      })
+    } else {
+      wx.navigateToMiniProgram({
+        appId: data.link,
+        path: data.path,
+      })
+    }
+  }
+}
+
 module.exports = {
   applyTheme: applyTheme,
   getPhoneNumber: getPhoneNumber,
@@ -278,4 +294,5 @@ module.exports = {
   postContent: postContent,
   accessNotAllowed: accessNotAllowed,
   subscribe: subscribe,
+  openLink: openLink,
 }

@@ -181,6 +181,13 @@ function onClickImage(e) {
   })
 }
 
+function onClickGoods(e) {
+  var goods = view.data.item.post.goods
+  if (goods) {
+    biz.openLink({link: goods.link, path: goods.path})
+  }
+}
+
 // ------- 针对帖子的动作 ---------
 
 // 点击帖子菜单
@@ -624,6 +631,7 @@ module.exports = {
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
   onClickImage: onClickImage,
+  onClickGoods: onClickGoods,
   onClickMenu: onClickMenu,
   onClickReplyPost: onClickReplyPost,
   onClickListComment: onClickListComment,

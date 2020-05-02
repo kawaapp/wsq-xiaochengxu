@@ -2,12 +2,12 @@
 <view class="ad_title">
   {{goods.title}}
 </view>
-<swiper class="ad_swiper" indicator-dots="{{true}}" autoplay="">
+<swiper class="ad_swiper" indicator-dots="{{true}}" autoplay="" catchtap="clickGoods">
   <swiper-item wx:for="{{goods.images}}" wx:key="*this" class="ad_item">
     <image class="ad_img" mode='aspectFill' src="{{item}}"/>
   </swiper-item>
 </swiper>
-<view class="ad_link ad_l2">
+<view class="ad_link ad_l2" catchtap="clickGoods">
   {{content}}
 </view>
 <view class="ad_hint">

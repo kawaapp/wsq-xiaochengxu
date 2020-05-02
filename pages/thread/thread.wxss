@@ -5,6 +5,13 @@
   font-weight: bold;
 }
 
+.h2 {
+  margin-bottom: 16rpx;
+  font-size: 36rpx;
+  font-weight: 450;
+}
+
+
 .rich-img {
   max-width: 100%;
   margin: 0px auto;
@@ -67,6 +74,11 @@
 .video {
   width: 100%;
   border-radius: 6rpx;
+}
+
+.good_btn {
+  font-size: 32rpx;
+  color: #576b95;
 }
 
 .input_null{

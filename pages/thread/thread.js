@@ -99,6 +99,9 @@ Page({
   clickImage: function(e) {
     ctr.onClickImage(e)
   },
+  clickGoods: function(e) {
+    ctr.onClickGoods(e)
+  },
   clickMask: function(e) {
     this.setData({
       reply: {

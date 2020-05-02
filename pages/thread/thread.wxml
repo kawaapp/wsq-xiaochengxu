@@ -25,7 +25,7 @@
   </view>
   <view style='margin-top:18rpx;'>
     <!-- Text -->
-    <view wx:if="{{!item.post.rich}}" class="itemwrapper">
+    <view wx:if="{{!item.post.rich && !item.post.goods}}" class="itemwrapper">
       <kw-text text="{{item.post.content}}" limit="{{2000}}" selectable="{{true}}"></kw-text>
     </view>
 
@@ -55,6 +55,15 @@
     <!-- 链接 -->
     <view wx:if="{{item.post.link}}" class="itemwrapper">
       <kw-link link="{{item.post.link}}" />
+    </view>
+
+    <!-- 推广物品 -->
+    <view wx:if="{{item.post.goods}}" class="itemwrapper">
+      <view class="h2">{{item.post.goods.title}}</view>
+      <block wx:for="{{item.post.goods.images}}" wx:for-item="path" wx:key="path" >
+        <image bindtap="clickImage" data-idx="{{index}}" src="{{path}}" mode='widthFix' class="img"/>
+      </block>
+       <view class="good_btn" bindtap="clickGoods" >{{item.post.content}}</view>
     </view>
 
     <!-- 地理位置 -->
@@ -88,7 +97,7 @@
   <view class='line' />
 
   <!-- Comment List -->
-  <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
+  <view wx:for="{{comments}}" wx:for-item="item" wx:key="item.id">
     <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
     <view class="comment">
       <image class="avatar-large" style='margin-right:18rpx;'
