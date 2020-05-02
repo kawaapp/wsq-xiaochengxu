@@ -97,7 +97,7 @@
   <view class='line' />
 
   <!-- Comment List -->
-  <view wx:for="{{comments}}" wx:for-item="item" wx:key="item.id">
+  <view wx:for="{{comments}}" wx:for-item="item" wx:key="id">
     <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
     <view class="comment">
       <image class="avatar-large" style='margin-right:18rpx;'

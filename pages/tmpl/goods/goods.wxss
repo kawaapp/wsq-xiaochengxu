@@ -7,7 +7,7 @@
 
 .ad_swiper {
   width: 100%;
-  height: 54vw;
+  height: 395rpx;
 }
 
 .ad_item {
@@ -32,8 +32,8 @@
 .ad_hint {
   font-size: 28rpx;
   color: #ccc;
-  margin-top: 24rpx;
-  margin-bottom: -8px;
+  margin-top: 16rpx;
+  margin-bottom: -4px;
   text-align: right;
 }
 
