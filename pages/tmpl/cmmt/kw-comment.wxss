@@ -1,19 +1,19 @@
 .comment {
   display: flex;
   align-items: center;
-  margin-right: 16rpx;
+  margin-right: 18rpx;
 }
 
 .comment .image{
-  height: 48rpx;
-  width: 48rpx;
+  height: 42rpx;
+  width: 42rpx;
   margin-left: 9.36rpx;
 }
 
 .comment .text {
   text-align: center;
   width: 86rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #888888;
   word-break: keep-all;
 }

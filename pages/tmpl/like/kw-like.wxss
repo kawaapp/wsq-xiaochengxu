@@ -5,14 +5,14 @@
 }
 
 .img-text .image{
-  height: 48rpx;
-  width: 48rpx;
+  height: 42rpx;
+  width: 42rpx;
   margin-left: 9.36rpx;
 }
 
 .img-text .text {
   text-align: center;
   width: 86rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #888888;
 }

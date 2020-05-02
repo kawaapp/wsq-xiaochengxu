@@ -145,7 +145,7 @@
           <view class='img-text' style='margin-right:18rpx'
                 catchtap='clickListComment' 
                 data-idx="{{index}}">
-            <image src='{{theme.images}}/comment.png'></image>
+            <image style="width:42rpx; height:42rpx" src='{{theme.images}}/comment.png'></image>
           </view>
 
           <!-- Favor -->
