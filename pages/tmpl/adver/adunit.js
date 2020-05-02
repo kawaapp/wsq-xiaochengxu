@@ -103,6 +103,7 @@ function jump(adunit) {
     if (link.type == 'mp') {
       wx.navigateToMiniProgram({
         appId: link.value,
+        path: link.path,
       })
     } else {
       wx.navigateTo({
