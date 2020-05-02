@@ -4,18 +4,29 @@
   margin-left: -14rpx; 
   margin-right: -14rpx;
   display: flex;
-  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.tag-list::-webkit-scrollbar {
+  display: none;
 }
 
 .tag {
-  border: 1px solid lightgray;
-  border-radius: 2px;
-  font-size: 32rpx;
-  color: gray;
-  padding: 4rpx 12rpx;
-  line-height: 42rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  color: #888;
+  padding: 4rpx 24rpx;
   margin: 6rpx 12rpx;
   word-break: keep-all;
+}
+
+.more {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 40%, white 60%);
+  position: absolute;
+  right: 0px; top: 0px;
+  height: 100%;
+  width: 100rpx;
 }
 
 .menu {

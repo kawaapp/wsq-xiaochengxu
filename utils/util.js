@@ -198,6 +198,17 @@ function lightenColor(col, amt) {
   return "#" + padZero(r.toString(16)) + padZero(b.toString(16)) + padZero(g.toString(16));
 }
 
+function alphaColor(col, amt) {
+  if (col[0] == "#") {
+    col = col.slice(1);
+  }
+  var num = parseInt(col, 16);
+  var r = (num >> 16);
+  var g = ((num >> 8) & 0x00FF);
+  var b = (num & 0x0000FF);
+  return `rgba(${r}, ${g}, ${b}, ${amt})`
+}
+
 function invertColor(hex, bw) {
   if (hex.indexOf('#') === 0) {
     hex = hex.slice(1);
@@ -250,4 +261,5 @@ module.exports = {
   getCityName: getCityName,
   lightenColor: lightenColor,
   invertColor: invertColor,
+  alphaColor: alphaColor,
 }

@@ -2,6 +2,9 @@ const ctr = require('./controller.js')
 const kawa = require('../../../../kawa.js')
 const util = require('../../../../utils/util.js')
 
+const bColor = util.alphaColor(kawa.Theme.TabSelectedColor || kawa.Theme.MainColor, 0.09)
+const tColor = kawa.Theme.TabSelectedColor || kawa.Theme.MainColor
+
 // pages/home/comps/postlist/postlist.js
 Component({
   /**
@@ -39,7 +42,7 @@ Component({
       adminColor: kawa.Theme.MainColor,
       levelColor: util.lightenColor(kawa.Theme.MainColor, 30),
       mainColor: kawa.Theme.MainColor,
-      tabColor: kawa.Theme.TabSelectedColor || kawa.Theme.MainColor,
+      tabColor: `background:${bColor}; color:${tColor};`,
       favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
     },
     tagSelected: -1,
