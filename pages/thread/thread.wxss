@@ -23,11 +23,11 @@
 }
 
 .menu {
+  opacity: .7;
   margin-left: auto;
   width: 56rpx;
   height: 56rpx;
   align-self: start;
-  margin-top: -9.36rpx;
 }
 
 .comment .nickname {

@@ -38,7 +38,7 @@
           </view>
           <view class='subtitle'>{{item.agoTime}}</view>
         </view>
-        <image class='menu' src="/res/menu.png" catchtap='clickMenu' data-idx='{{index}}' />
+        <image class='menu' src="/res/down.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>
       <view style='margin-bottom:9.36rpx;'/>
       <view>
