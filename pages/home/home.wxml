@@ -68,17 +68,19 @@
 <view style='margin-bottom:1rpx; background-color: #fefefe;'/>
 
 <!-- 列表 -->
-<block wx:if="{{tab.current==0}}">
-  <postlist class="tabpage" filter="" tags="{{tags}}" />
-</block>
+<view style="min-height:100vh">
+  <block wx:if="{{tab.current==0}}">
+    <postlist class="tabpage" filter="" tags="{{tags}}" />
+  </block>
 
-<block wx:elif="{{tab.current==1}}">
-  <postlist class="tabpage" filter="val" />
-</block>
+  <block wx:elif="{{tab.current==1}}">
+    <postlist class="tabpage" filter="val" />
+  </block>
 
-<block wx:else>
-  <userlist class="tabpage" />
-</block>
+  <block wx:else>
+    <userlist class="tabpage" />
+  </block>
+</view>
 
 <view hidden="{{hideNewButton}}">
   <image catchtap='newTopic' class='new-topic' src="{{theme.images}}/write.png"></image>
