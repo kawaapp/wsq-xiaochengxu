@@ -25,8 +25,6 @@
   padding: 20rpx;
   font-size: 28rpx;
   color: #576b95;
-  line-height: 32rpx;
-  vertical-align: middle;
 }
 
 .ad_hint {
