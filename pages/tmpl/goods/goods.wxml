@@ -9,7 +9,7 @@
 </swiper>
 <view class="ad_link" catchtap="clickGoods">
   <view class="ad_l2">
-    {{content}}主要是用来测试友盟的分享SDK. 豌豆WiFi助手使用的微信登录也是这个账号。
+    {{content}}
   </view>
 </view>
 <view class="ad_hint">
