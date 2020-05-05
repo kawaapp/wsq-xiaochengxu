@@ -52,16 +52,9 @@ function fetch(options) {
   function setup(item) {
     var utc = item.post.created_at * 1000
     item.post.agoTime = util.agoTime(utc)
-    if (item.post.media) {
-      var media = item.post.media
-      if (media.type === 1) {
-        item.post.images = JSON.parse(media.path)
-      } else if (media.type === 3) {
-        item.post.video = JSON.parse(media.path)
-      } else if (media.type === 4) {
-        item.post.link = JSON.parse(media.path)
-      }
-    }
+
+    // parse media
+    biz.parseMedia(item.post)
 
     // parse rich text
     if (item.post.title && item.post.content[0] == '<') {

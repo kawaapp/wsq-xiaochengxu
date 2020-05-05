@@ -295,4 +295,5 @@ module.exports = {
   accessNotAllowed: accessNotAllowed,
   subscribe: subscribe,
   openLink: openLink,
+  parseMedia: parseMedia,
 }
