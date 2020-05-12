@@ -91,7 +91,7 @@ function checkAdminPostOnly() {
 }
 
 function fetchTopList() {
-  api.getPostList(0, 1000, "top").then(resp => {
+  api.getPostList({filter: "top"}).then(resp => {
     const items = resp.data
     if (items) {
       items.map(item => {

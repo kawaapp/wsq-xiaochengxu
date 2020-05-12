@@ -310,19 +310,23 @@ function getFollowerList(uid, page, size) {
 }
 
 // get post list, fitler: top,val,adz, topic
-function getPostList(since, limit, filter, topic) {
-  if (!topic) {
-    return req({
-      url: `${Host}/api/posts?since_id=${since}&limit=${limit}&filter=${filter}`,
-      method: 'GET'
-    })
-  } else {
-    var encoded = encodeURIComponent(topic)
-    return req({
-      url: `${Host}/api/tags/${encoded}/posts?since_id=${since}&limit=${limit}`,
-      method: 'GET'
-    })
-  }
+function getPostList(params) {
+  const q = encodeQuery(params)
+  return req({
+    url: `${Host}/api/posts?${q}`,
+    method: 'GET',
+  })
+}
+
+function encodeQuery(params) {
+  return params? Object.keys(params)
+          .sort()
+          .map(key => {
+              const val = params[key] !== undefined ? encodeURIComponent(params[key]): '';
+              return key + "=" + val;
+          })
+          .join("&")
+  : "";
 }
 
 function getPost(id) {

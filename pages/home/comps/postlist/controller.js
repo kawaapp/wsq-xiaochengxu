@@ -30,10 +30,15 @@ function onPullDownRefresh() {
     return
   }
   var filter = view.data.filter
-  fetchPostList(filter, "")
+  var tagIndex = view.data.tagSelected
+  var tag = ""
+  if (tagIndex > 0) {
+    tag = view.data.tagArray[tagIndex].id
+  }
+  fetchPostList(filter, tag)
 }
 
-function fetchPostList(filter, topic) {
+function fetchPostList(filter, tag) {
   if (view.data.loading) {
     return
   }
@@ -41,7 +46,14 @@ function fetchPostList(filter, topic) {
   view.setData({loading: true, hasmore: true })
   view.setData({posts: [] })
 
-  api.getPostList(0, PAGE_SIZE, filter, topic).then(resp => {
+  var params = {
+    since_id: 0,
+    limit: PAGE_SIZE,
+    filter: filter,
+    tag: tag,
+  }
+
+  api.getPostList(params).then(resp => {
     wx.stopPullDownRefresh()
     var hasmore = resp.data && resp.data.length === PAGE_SIZE
     view.setData({ loading: false, hasmore: hasmore })
@@ -69,6 +81,11 @@ function onReachBottom() {
   var sinceId = 0, limit = PAGE_SIZE
   if (posts && posts.length > 0) {
     sinceId = posts[posts.length - 1].id
+  }
+  var tagIndex = view.data.tagSelected
+  var tag = ""
+  if (tagIndex > 0) {
+    tag = view.data.tagArray[tagIndex].id
   }
 
   view.setData({loading: true})
@@ -262,10 +279,10 @@ function onClickTopic(e) {
 
   var tag = ""
   if (idx > 0) {
-    tag = view.data.tagArray[idx].text
+    tag = view.data.tagArray[idx].id
   }
   // 刷新列表
-  fetchPostList(view.data.filter, tag)
+  fetchPostList("", tag)
 }
 
 module.exports = {
