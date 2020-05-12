@@ -75,7 +75,6 @@ function onReachBottom() {
   }
 
   var filter = view.data.filter
-  var topic = ""
   var posts = view.data.posts
 
   var sinceId = 0, limit = PAGE_SIZE
@@ -88,8 +87,15 @@ function onReachBottom() {
     tag = view.data.tagArray[tagIndex].id
   }
 
+  const params = {
+    since_id: sinceId,
+    limit: limit,
+    filter: filter,
+    tag: tag,
+  }
+
   view.setData({loading: true})
-  api.getPostList(sinceId, limit, filter, topic).then((resp) => {
+  api.getPostList(params).then((resp) => {
     var hasmore = resp.data && resp.data.length === limit
     view.setData({ loading: false, hasmore: hasmore })
     var styled = massage(resp.data)
