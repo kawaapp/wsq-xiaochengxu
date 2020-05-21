@@ -74,6 +74,10 @@ Page({
     }
   },
 
+  clickSearch: function(e) {
+    ctr.onClickSearch(e)
+  },
+
   // 签到
   clickSignin : function(e) {
     ctr.onClickSignin(e)

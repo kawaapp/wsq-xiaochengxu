@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -332,6 +332,14 @@ function encodeQuery(params) {
 function getPost(id) {
   return req({
     url: `${Host}/api/posts/${id}`,
+    method: 'GET'
+  })
+}
+
+function searchPost(params) {
+  const q = encodeQuery(params)
+  return req({
+    url: `${Host}/api/posts/search?${q}`,
     method: 'GET'
   })
 }
@@ -847,6 +855,7 @@ module.exports = {
   hidePost: hidePost,
   pinPost: pinPost,
   valPost: valPost,
+  searchPost: searchPost,
 
 
 

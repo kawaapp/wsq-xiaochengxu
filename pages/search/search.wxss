@@ -1,0 +1,34 @@
+.search {
+  background: white;
+  padding: 16rpx;
+}
+
+.search .inner {
+  background: #f8f8f8;
+  border-radius: 38rpx;
+  padding: 12rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search .inner image {
+  opacity: .4;
+  width: 42rpx;
+  height: 42rpx;
+  margin: auto 12rpx;
+}
+
+.search .cancel {
+  min-width: 120rpx;
+  width: 50rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+/* list **/
+.avatar {
+  width: 82rpx; 
+  height: 82rpx;
+  border-radius: 50%;
+}

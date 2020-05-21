@@ -50,6 +50,20 @@
   color: white;
 }
 
+.tablayout {
+  display:flex;
+  align-items:center; 
+  background:white;
+}
+
+.tablayout .search {
+  width:42rpx;
+  height:42rpx; 
+  opacity: 0.4; 
+  margin-left: 32rpx;
+  margin-bottom:-4rpx;
+}
+
 .new-topic {
   position: fixed;
   bottom: 30rpx;

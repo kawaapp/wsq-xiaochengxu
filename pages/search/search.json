@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "帖子搜索",
+  "usingComponents": {
+    "kw-loading": "../../tmpl/loading/loading",
+    "kw-post": "../../tmpl/post/kw-post"
+  }
+}

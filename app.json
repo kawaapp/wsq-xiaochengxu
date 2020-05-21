@@ -23,7 +23,8 @@
     "pages/poll/poll",
     "pages/join/join",
     "pages/point/point",
-    "pages/point/history/history"
+    "pages/point/history/history",
+    "pages/search/search"
   ],
   "permission": {
     "scope.userLocation": {

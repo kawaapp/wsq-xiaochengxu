@@ -62,7 +62,10 @@
 
 
 <!-- 顶部TAB -->
-<kw-tab bind:onTabChanged="onTabChanged" items="{{tab.items}}" />
+<view  class="tablayout">
+  <image class="search" src="/res/search.png"  bindtap="clickSearch" />
+  <kw-tab bind:onTabChanged="onTabChanged" items="{{tab.items}}" />
+</view>
 
 <!-- 线 -->
 <view style='margin-bottom:1rpx; background-color: #fefefe;'/>

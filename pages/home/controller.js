@@ -125,6 +125,12 @@ function getTitle(item) {
   return ""
 }
 
+function onClickSearch(e) {
+  wx.navigateTo({
+    url: '/pages/search/search',
+  })
+}
+
 function onClickNewPost(e) {
   if (!biz.isUserHasName(view)) {
     return
@@ -211,6 +217,7 @@ module.exports = {
   onLoad: onLoad,
   onUnload: onUnload,
   onResult: onResult,
+  onClickSearch: onClickSearch,
   onClickNewPost: onClickNewPost,
   onClickShare: onClickShare,
   onClickSpeaker: onClickSpeaker,
