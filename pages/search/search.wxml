@@ -8,7 +8,7 @@
       placeholder-class="input_null" 
       maxlength="140" 
       show-confirm-bar="{{true}}" 
-      confirm-type="send"
+      confirm-type="search"
       focus="{{true}}"
       placeholder="搜点什么.."
     ></input>
@@ -41,5 +41,12 @@
   <view style='margin-bottom:9.36rpx;'/>
 </view>
 
+<view wx:if="{{!posts || !posts.length}}" class="empty">
+    <image src="/res/555.png"/>
+    <text>什么也没找到，呜呜呜</text>
+  </view>
+
 <!-- 加载提示 -->
-<kw-loading loading="{{loading}}" hasmore="{{hasmore}}"/>
+<block wx:if="{{posts && posts.length > 0}}">
+  <kw-loading loading="{{loading}}" hasmore="{{hasmore}}"/>
+</block>

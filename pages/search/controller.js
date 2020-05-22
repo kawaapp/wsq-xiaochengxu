@@ -30,6 +30,19 @@ function onClickSearch() {
   })
 }
 
+// jump 
+function onClickItem(e) {
+  var idx = e.currentTarget.dataset.idx
+  var post = view.data.posts[idx]
+  util.sendRequest('post', {
+    idx: idx,
+    post: post
+  })
+  wx.navigateTo({
+    url: '/pages/thread/thread',
+  })
+}
+
 function doSearch(q) {
 
   api.searchPost({}).then( resp => {
@@ -94,4 +107,5 @@ module.exports = {
   onClickSearch: onClickSearch,
   onClickCancel: onClickCancel,
   onReachBottom: onReachBottom,
+  onClickItem: onClickItem,
 }

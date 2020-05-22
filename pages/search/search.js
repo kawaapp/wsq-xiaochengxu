@@ -46,5 +46,9 @@ Page({
 
   clickSubmit: function(e) {
     ctr.onClickSearch(e)
+  },
+
+  clickItem: function(e) {
+    ctr.onClickItem(e)
   }
 })

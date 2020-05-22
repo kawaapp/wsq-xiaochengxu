@@ -32,3 +32,18 @@
   height: 82rpx;
   border-radius: 50%;
 }
+
+.empty {
+  margin-top: 30%;
+  font-size: 30rpx;
+  opacity: .3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty image {
+  margin-bottom: 8rpx;
+  width: 96rpx;
+  height: 96rpx;
+}
