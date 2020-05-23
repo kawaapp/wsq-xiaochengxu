@@ -1,6 +1,6 @@
 <!-- 话题标签 -->
 <view class='card' wx:if="{{tags.length>0}}">
-  <view class='tag-list'>
+  <view class='tag-list' style="{{tagStyle}}">
     <view class='tag'
       bindtap='clickTag'
       data-idx="{{index}}"

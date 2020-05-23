@@ -11,6 +11,11 @@ var view = undefined
 // Home Controller 
 function setup(_view) {
   view = _view
+  // taglist style
+  const meta = app.globalData.meta
+  if(meta && meta.app_expand_tag) {
+    view.setData({ tagStyle: 'flex-wrap: wrap;'})
+  }
 }
 
 function onUnload() {

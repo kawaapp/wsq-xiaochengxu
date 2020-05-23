@@ -45,6 +45,7 @@ Component({
       tabColor: `background:${bColor}; color:${tColor};`,
       favroColor: kawa.Theme.FavorColor || kawa.Theme.MainColor,
     },
+    tagStyle: '',
     tagSelected: -1,
     tagArray: [],
     loading: false,
