@@ -21,13 +21,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const link = decodeURIComponent(options.q)
-    if (link.startsWith("https://kawaapp.com")) {
+    const link = decodeURIComponent(options.q) || ""
+    if (link.includes("kawaapp.com/w/")) {
       this.setData({ rich: true, link})
       getArticle(this, link)
     } else {
-      this.setData({ rich: false})
-      this.setData({ link: decodeURIComponent(options.q) })
+      this.setData({ rich: false, link})
     }
   },
 
