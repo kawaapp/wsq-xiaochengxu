@@ -25,7 +25,7 @@ Component({
       var url = this.data.link.url
       if (url) {
         wx.navigateTo({
-          url: '/pages/webview/webview?q=' + encodeURI(url),
+          url: '/pages/webview/webview?q=' + encodeURIComponent(url),
         })
       }
     }

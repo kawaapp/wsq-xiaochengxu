@@ -107,7 +107,7 @@ function jump(adunit) {
       })
     } else {
       wx.navigateTo({
-        url: '/pages/webview/webview?q=' + encodeURI(link.value),
+        url: '/pages/webview/webview?q=' + encodeURIComponent(link.value),
       })
     }
   } catch(e) {}

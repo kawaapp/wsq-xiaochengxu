@@ -273,7 +273,7 @@ function openLink(data) {
   if (data && data.link) {
     if (data.link.startsWith("http")) {
       wx.navigateTo({
-        url: '/pages/webview/webview?q=' + encodeURI(data.link),
+        url: '/pages/webview/webview?q=' + encodeURIComponent(data.link),
       })
     } else {
       wx.navigateToMiniProgram({

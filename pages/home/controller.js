@@ -190,7 +190,7 @@ function onClickSpeaker() {
   var url = view.data.speaker.link
   if (url) {
     wx.navigateTo({
-      url: '/pages/webview/webview?q=' + encodeURI(url),
+      url: '/pages/webview/webview?q=' + encodeURIComponent(url),
     })
   }
 }
