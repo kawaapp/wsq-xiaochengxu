@@ -1,0 +1,50 @@
+<view class="card">
+  <view class="title">{{enroll.title}}</view>
+  <image class="poster" mode="widthFix" src="{{enroll.poster}}" />
+
+  <view>
+    <view class="horizontal">
+      <view class="left"> 距离报名结束：</view>
+      <view class="lefttime"> 
+        <text class="number">000</text>天 
+        <text class="number">06</text>时 
+        <text class="number">47</text>分
+      </view>
+    </view>
+    <view class="horizontal">
+       <view>10人已经参与</view>
+       <view class="arrow_right" >
+          <image src="/res/arrow_right.png" />
+       </view>
+    </view>
+  </view>
+</view>
+
+<view class="card">
+    <view class="item"><image src="/res/time.png"/><span>时间：</span>{{"2020.05.31"}}</view>
+    <view class="line" />
+    <view class="item"><image src="/res/location1.png"/><span>地点：</span>{{"江苏省..."}}</view>
+    <view class="line" />
+    <view class="item"><image src="/res/group.png"/><span>限额：</span>{{"3"}}人</view>
+ 
+</view>
+
+<view class="card">
+  <view class="item"><image src="/res/kefu.png"/><span>活动电话：</span>{{"166327673289"}}</view>
+   <view class="line" />
+  <view class="item"><image src="/res/enroll.png"/><span>主办单位：</span>{{"166327673289"}}</view>
+</view>
+
+<view class="card">
+  <view class="h1">活动介绍</view>
+  <view>
+    {{enroll.detail}}
+  </view>
+</view>
+
+<view style="height:148rpx;width:1px">
+</view>
+
+<view class="actionbar">
+  <button>报名参加</button>
+</view>

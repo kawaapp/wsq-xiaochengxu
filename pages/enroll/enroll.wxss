@@ -1,0 +1,80 @@
+
+.title {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.poster {
+  border-radius: 24rpx;
+  width: 100%;
+}
+
+.lefttime {
+  margin-left: auto;
+  padding: 32rpx 0px;
+  display: flex;
+  align-items: center;
+  color: #666;
+}
+
+.number {
+  background: #f8f8f8;
+  padding: 12rpx 24rpx;
+  color: #1890ff;
+  margin: 0px 16rpx;
+  border-radius: 8rpx;
+  font-weight: bold;
+}
+
+.arrow_right {
+  margin-left: auto;
+}
+
+.arrow_right image {
+  width: 36rpx;
+  height: 36rpx;
+  opacity: .8;
+}
+
+.item {
+  padding: 12rpx;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.item image {
+  opacity: .8;
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 32rpx;
+}
+
+.item text {
+  font-size: 28rpx;
+}
+
+.h1 {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.actionbar {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20rpx;
+}
+
+.actionbar button {
+  width: 60%;
+  color:white;
+  font-size: 32rpx;
+  opacity: 1;
+  background: #1890ff;
+}
+
