@@ -1,0 +1,10 @@
+@import "../comp.wxss";
+
+.input {
+  background: #f8f8f8;
+  margin: 16rpx 12rpx;
+  padding: 24rpx;
+  height: 128rpx;
+  width: 680rpx;
+  box-sizing: border-box;
+}

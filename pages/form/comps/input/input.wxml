@@ -1,0 +1,11 @@
+<view class="card">
+  <view class="title">
+    <text wx:if="{{attrs.required}}" class="require">*</text>
+    <text>{{index+1}}.</text>
+    <text class="type" >填空</text>
+    <text>{{attrs.title}}</text>
+  </view>
+  <view>
+    <textarea class="input" bindinput='bindInput' placeholder="输入内容.."></textarea>
+  </view>
+</view>

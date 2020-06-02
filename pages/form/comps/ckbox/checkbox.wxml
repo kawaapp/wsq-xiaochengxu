@@ -1,0 +1,16 @@
+<view class="card">
+  <view class="title">
+    <text wx:if="{{attrs.required}}" class="require">*</text>
+    <text>{{index+1}}.</text>
+    <text class="type" >多选</text>
+    <text>{{attrs.title}}</text>
+  </view>
+  <view>
+    <block wx:for="{{attrs.options}}" wx:key="id">
+      <view class="checkbox" bindtap="click" data-index="{{index}}">
+        <view>{{item.name}}</view>
+        <view class="icon-normal {{item.checked? 'icon-check':''}}" />
+      </view>
+    </block>
+  </view>
+</view>

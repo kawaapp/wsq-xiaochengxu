@@ -1,0 +1,22 @@
+<view class="card">
+  <view class="h1">{{form.title}}</view>
+  <view>{{form.detail}}</view>
+  <view class="line"></view>
+  <view class="date">共2题 2020-06-29 11：51结束</view>
+</view>
+
+<!-- 表单内容 -->
+<view wx:for="{{form.options}}" wx:key="id">
+  <form-input wx:if="{{item.type == 'text'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem"/>
+  <form-radio wx:if="{{item.type == 'radio'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem"/>
+  <form-checkbox wx:if="{{item.type == 'checkbox'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem"/>
+</view>
+
+<!-- 仿遮挡 -->
+<view style="width:1px; height: 148rpx">
+</view>
+
+<!-- 操作BAR -->
+<view class="actionbar">
+  <button bindtap="clickSubmit">提交</button>
+</view>

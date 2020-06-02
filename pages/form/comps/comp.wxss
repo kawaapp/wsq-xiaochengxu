@@ -1,0 +1,23 @@
+.title {
+  margin-bottom: 24rpx;
+}
+
+.require {
+  color: red;
+  margin-right: 6rpx;
+}
+
+.type {
+  border-radius: 2rpx;
+  border: 1rpx solid #1890ff;
+  padding: 4rpx 8rpx;
+  color: #1890ff;
+  font-size: 28rpx;
+  margin: 0px 16rpx;
+}
+
+.card {
+  margin: 16rpx 0rpx;
+  background: white;
+  padding: 24rpx;
+}

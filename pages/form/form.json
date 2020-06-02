@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "form-input": "./comps/input/input",
+    "form-radio": "./comps/radio/radio",
+    "form-checkbox": "./comps/ckbox/checkbox"
+  }
+}

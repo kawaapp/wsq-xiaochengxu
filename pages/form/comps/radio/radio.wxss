@@ -1,0 +1,35 @@
+@import "../comp.wxss";
+
+.radio {
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  margin: 16rpx 12rpx;
+  padding: 24rpx;
+}
+
+.icon-normal {
+  margin-left: auto;
+  width: 42rpx;
+  height: 42rpx;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+
+.icon-check {
+  background: #1890ff;
+  border-color: #1890ff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-check::after {
+	font-family: "cuIcon";
+	content: "\e645";
+	color: var(--white) !important;
+	right: 5px;
+	font-size: 32rpx;
+	line-height: 16px;
+}
