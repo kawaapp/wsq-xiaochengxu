@@ -1,0 +1,18 @@
+<!-- input dialog -->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog">
+    <image class="close" src="/res/del.png" bindtap="clickClose"/>
+    <view class="-title">{{enroll.title}}</view>
+    <view class="detail">
+      <view>活动时间：</view>
+      <view>{{enroll.startend}}</view>
+      <view>活动细则：</view>
+      <view class="body">
+        {{poll.detail}}
+      </view>
+      <view>
+        <button class="cancel" bindtap="clickCancel" >取消报名</button>
+      </view>
+    </view>
+  </view>
+</view>

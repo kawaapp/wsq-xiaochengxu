@@ -77,6 +77,30 @@ const getDaysFromNow = (created_at) => {
   return Math.ceil((nowTime - thatTime) / (1000 * 3600 * 24))
 }
 
+const getTimeDistance = (unixTime) => {
+  var thatTime = new Date(unixTime*1000)
+  var nowTime = new Date()
+  var d = (thatTime - nowTime)/1000
+  if ( d <= 60 ) {
+    return {days: '000', hours: '00', minutes: '00', e: true}
+  }
+  var p2 = num => {
+    num = num.toString()
+    num = num[1]? num: '0'+num
+    num = num[2]? num: '0'+num
+    return num
+  }
+  var p1 = num => {
+    num = num.toString()
+    return num[1] ? num : '0' + num
+  }
+  return {
+    days: p2(Math.floor(d/86400)),
+    hours: p1(Math.floor(d/3600) % 24),
+    minutes: p1(Math.floor(d/60) % 60),
+  }
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -250,6 +274,7 @@ module.exports = {
   prettyTime: prettyTime,
   prettyTimeYMD: prettyTimeYMD,
   getDaysFromNow: getDaysFromNow,
+  getTimeDistance: getTimeDistance,
   setResult: setResult,
   sendRequest: setTransitData,
   getRequest: getTransitData,

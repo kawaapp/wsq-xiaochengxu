@@ -6,13 +6,13 @@
     <view class="horizontal">
       <view class="left"> 距离报名结束：</view>
       <view class="lefttime"> 
-        <text class="number">000</text>天 
-        <text class="number">06</text>时 
-        <text class="number">47</text>分
+        <text class="number">{{enroll.timeD.days}}</text>天 
+        <text class="number">{{enroll.timeD.hours}}</text>时 
+        <text class="number">{{enroll.timeD.minutes}}</text>分
       </view>
     </view>
     <view class="horizontal">
-       <view>10人已经参与</view>
+       <view>{{enroll.join_count}}人已经参与</view>
        <view class="arrow_right" >
           <image src="/res/arrow_right.png" />
        </view>
@@ -21,18 +21,24 @@
 </view>
 
 <view class="card">
-    <view class="item"><image src="/res/time.png"/><span>时间：</span>{{"2020.05.31"}}</view>
+    <view class="item">
+      <image src="/res/time.png"/><span>时间：</span>{{enroll.startend}}
+    </view>
     <view class="line" />
-    <view class="item"><image src="/res/location1.png"/><span>地点：</span>{{"江苏省..."}}</view>
+    <view class="item">
+      <image src="/res/location1.png"/><span>地点：</span>{{enroll.location1}}
+    </view>
     <view class="line" />
-    <view class="item"><image src="/res/group.png"/><span>限额：</span>{{"3"}}人</view>
- 
+    <view class="item">
+      <image src="/res/group.png"/>
+      <span>限额：</span>{{enroll.user_limit? enroll.user_limit+'人':'没限制'}}
+    </view>
 </view>
 
 <view class="card">
-  <view class="item"><image src="/res/kefu.png"/><span>活动电话：</span>{{"166327673289"}}</view>
+  <view class="item"><image src="/res/kefu.png"/><span>联系：</span>{{enroll.phone_num}}</view>
    <view class="line" />
-  <view class="item"><image src="/res/enroll.png"/><span>主办单位：</span>{{"166327673289"}}</view>
+  <view class="item"><image src="/res/enroll.png"/><span>主办：</span>{{enroll.sponsor}}</view>
 </view>
 
 <view class="card">
@@ -46,5 +52,15 @@
 </view>
 
 <view class="actionbar">
-  <button>报名参加</button>
+  <button wx:if="{{!expired && !enrolled}}" bindtap="click" >报名参加</button>
+  <button wx:if="{{enrolled && !expired}}" bindtap="getInfo">报名信息</button>
+  <button wx:if="{{expired}}" disabled bindtap="">已结束</button>
 </view>
+
+<!-- detail dialog -->
+<kw-detail 
+  show="{{showDetail}}" 
+  enroll="{{enroll}}" 
+  bind:onRequestClose="clickClose" 
+  bind:onClickCancel="clickCancel"
+/>

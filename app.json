@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/enroll/enroll",
+    "pages/form/form",
     "pages/login/login",
     "pages/home/home",
     "pages/message/message",
@@ -24,7 +26,9 @@
     "pages/join/join",
     "pages/point/point",
     "pages/point/history/history",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/enroll/join/join",
+    "pages/enroll/user/user"
   ],
   "permission": {
     "scope.userLocation": {

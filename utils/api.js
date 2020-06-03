@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -648,6 +648,82 @@ function deleteFavorite(pid) {
   })
 }
 
+// 活动接口
+function getEnrollList() {
+  return req({
+    url: `${Host}/api/enrolls`,
+    method: 'GET'
+  })
+}
+
+function getEnroll(id) {
+  return req({
+    url: `${Host}/api/enrolls/${id}`,
+    method: 'GET'
+  })
+}
+
+function getEnrollUserList(id) {
+  return req({
+    url: `${Host}/api/enrolls/${id}/users`,
+    method: 'GET'
+  })
+}
+
+function getEnrollUser(id) {
+  return req({
+    url: `${Host}/api/enrolls/${id}/users/0`,
+    method: 'GET'
+  })
+}
+
+function enrollJoin(data) {
+  return req({
+    url: `${Host}/api/enrolls/join`,
+    method: 'POST',
+    data: data,
+  })
+}
+
+function enrollLeave(data) {
+  return req({
+    url: `${Host}/api/enrolls/leave`,
+    method: 'POST',
+    data: data,
+  })
+}
+
+function enrollCheck(data) {
+  return req({
+    url: `${Host}/api/enrolls/check`,
+    method: 'POST',
+    data: data,
+  })
+}
+
+// 问卷接口
+function getFormList() {
+  return req({
+    url: `${Host}/api/forms`,
+    method: 'GET'
+  })
+}
+
+function getForm(id) {
+  return req({
+    url: `${Host}/api/forms/${id}`,
+    method: 'GET'
+  })
+}
+
+function formSubmit(data) {
+  return req({
+    url: `${Host}/api/forms/submit`,
+    method: 'POST',
+    data: data,
+  })
+}
+
 // 创建媒体
 function createMedia(data) {
   return req({
@@ -945,6 +1021,21 @@ module.exports = {
   createJoinRequest: createJoinRequest,
   getJoinRequest: getJoinRequest,
   getAppMeta: getAppMeta,
+
+  // enroll
+  getEnrollList: getEnrollList,
+  getEnroll: getEnroll,
+  getEnrollUserList: getEnrollUserList,
+  getEnrollUser: getEnrollUser,
+  
+  enrollJoin: enrollJoin,
+  enrollLeave: enrollLeave,
+  enrollCheck: enrollCheck,
+
+  // forms
+  getFormList: getFormList,
+  getForm: getForm,
+  formSubmit: formSubmit,
 
   // 订阅
   getTemplates: getTemplates,

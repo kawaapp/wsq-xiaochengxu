@@ -1,0 +1,44 @@
+@keyframes cuIcon-spin {
+	0% {
+		-webkit-transform: rotate(0);
+		transform: rotate(0);
+	}
+
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+
+.iconfont-spin {
+	-webkit-animation: cuIcon-spin 2s infinite linear;
+	animation: cuIcon-spin 2s infinite linear;
+	display: inline-block;
+}
+
+.iconfont-pulse {
+	-webkit-animation: cuIcon-spin 1s infinite steps(8);
+	animation: cuIcon-spin 1s infinite steps(8);
+	display: inline-block;
+}
+
+[class*="cuIcon-"] {
+	font-family: "cuIcon";
+	font-size: inherit;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "cuIcon";
+	src: url('//at.alicdn.com/t/font_533566_yfq2d9wdij.eot?t=1545239985831');
+	/* IE9*/
+	src: url('//at.alicdn.com/t/font_533566_yfq2d9wdij.eot?t=1545239985831#iefix') format('embedded-opentype'),
+		url('//at.alicdn.com/t/font_533566_yfq2d9wdij.ttf?t=1545239985831') format('truetype'),
+		/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		url('//at.alicdn.com/t/font_533566_yfq2d9wdij.svg?t=1545239985831#iconfont') format('svg');
+	/* iOS 4.1- */
+}
+
+.cuIcon-check:before {
+	content: "\e645";
+}
