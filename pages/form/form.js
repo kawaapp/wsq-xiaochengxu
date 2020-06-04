@@ -1,4 +1,5 @@
 const api = require('../../utils/api.js')
+const util = require('../../utils/util.js')
 
 Page({
 
@@ -66,13 +67,16 @@ function firtLoad(view, id) {
   wx.showLoading()
   api.getForm(id).then( resp => {
     console.log("get form:", resp.data)
-    var { form_items } = resp.data
+    var form = resp.data
+    var { form_items } = form
     form_items && form_items.map( item => {
       try {
         item.attrs = JSON.parse(item.attrs)
       } catch(e){}
     })
-    view.setData({form: resp.data})
+    form.expiredTime = util.prettyTime(new Date(form.expired_at*1000))
+    form.count = (form_items || []).length
+    view.setData({form})
     return api.getFormData(id)
   }).then( resp => {
     console.log("get answer:", resp)

@@ -2,7 +2,7 @@
   <view class="h1">{{form.title}}</view>
   <view>{{form.detail}}</view>
   <view class="line"></view>
-  <view class="date">共2题 2020-06-29 11：51结束</view>
+  <view class="date">共 {{form.count}} 题， {{form.expiredTime}} 结束</view>
 </view>
 
 <!-- 表单内容 -->
