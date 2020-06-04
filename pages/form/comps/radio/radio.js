@@ -6,6 +6,14 @@ Component({
       type: Object,
       value: {},
     },
+    value: {
+      type: Object,
+      value: undefined,
+    },
+    disable: {
+      type: Boolean,
+      value: false,
+    },
     index: {
       type: Number,
       value: 0,
@@ -17,11 +25,26 @@ Component({
     checkedIndex: -1,
   },
 
+  observers: {
+    'value': function (value) {
+      const { attrs = { options: [] } } = this.data
+      if (value) {
+        attrs.options.map( (attr, i) => {
+          if (attr.id === value.value.id) {
+            this.setData({ checkedIndex: i})
+          }
+        })
+      }
+    }
+  },
+
   /* 组件的方法列表 */
   methods: {
     click: function(e) {
-      var index = e.currentTarget.dataset.index
-      this.setData({ checkedIndex: index })
+      if (!this.data.disable) {
+        var index = e.currentTarget.dataset.index
+        this.setData({ checkedIndex: index }) 
+      }
     },
     getResult: function(e) {
       var { checkedIndex, attrs } = this.data

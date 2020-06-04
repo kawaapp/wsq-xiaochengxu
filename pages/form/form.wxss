@@ -9,9 +9,22 @@
 }
 
 .actionbar {
- position: fixed;
- bottom: 0;
- left: 0; width: 100%;
- background: white;
- padding: 12rpx; 
+  border-top: 1rpx solid #f8f8f8;
+  position: fixed;
+  bottom: 0;
+  left: 0; width: 100%;
+  background: white;
+  padding: 24rpx 0px; 
+}
+
+.actionbar .blue {
+  width: 60%;
+  color:white;
+  font-size: 32rpx;
+  background: #1890ff;
+}
+
+.actionbar .gray {
+  width: 60%;
+  font-size: 32rpx;
 }

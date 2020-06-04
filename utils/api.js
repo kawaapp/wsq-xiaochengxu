@@ -716,6 +716,13 @@ function getForm(id) {
   })
 }
 
+function getFormData(id) {
+  return req({
+    url: `${Host}/api/forms/${id}/data?uid=0`,
+    method: 'GET'
+  })
+}
+
 function formSubmit(data) {
   return req({
     url: `${Host}/api/forms/submit`,
@@ -1027,7 +1034,7 @@ module.exports = {
   getEnroll: getEnroll,
   getEnrollUserList: getEnrollUserList,
   getEnrollUser: getEnrollUser,
-  
+
   enrollJoin: enrollJoin,
   enrollLeave: enrollLeave,
   enrollCheck: enrollCheck,
@@ -1035,6 +1042,7 @@ module.exports = {
   // forms
   getFormList: getFormList,
   getForm: getForm,
+  getFormData: getFormData,
   formSubmit: formSubmit,
 
   // 订阅

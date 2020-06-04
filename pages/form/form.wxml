@@ -6,10 +6,10 @@
 </view>
 
 <!-- 表单内容 -->
-<view wx:for="{{form.options}}" wx:key="id">
-  <form-input wx:if="{{item.type == 'text'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem"/>
-  <form-radio wx:if="{{item.type == 'radio'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem"/>
-  <form-checkbox wx:if="{{item.type == 'checkbox'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem"/>
+<view wx:for="{{form.form_items}}" wx:key="id" bindtap="clickForm">
+  <form-input wx:if="{{item.type == 'text'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem" value="{{values[item.id]}}" disable="{{answered}}"/>
+  <form-radio wx:if="{{item.type == 'radio'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem" value="{{values[item.id]}}" disable="{{answered}}"/>
+  <form-checkbox wx:if="{{item.type == 'checkbox'}}" attrs="{{item.attrs}}" index="{{index}}" class="formitem" value="{{values[item.id]}}" disable="{{answered}}"/>
 </view>
 
 <!-- 仿遮挡 -->
@@ -18,5 +18,6 @@
 
 <!-- 操作BAR -->
 <view class="actionbar">
-  <button bindtap="clickSubmit">提交</button>
+  <button wx:if="{{!answered}}" class="blue" bindtap="clickSubmit">提交</button>
+  <button wx:if="{{answered}}" class="gray" disabled="">已参与</button>
 </view>

@@ -6,6 +6,14 @@ Component({
       type: Object,
       value: {},
     },
+    value: {
+      type: Object,
+      value: undefined,
+    },
+    disable: {
+      type: Boolean,
+      value: false,
+    },
     index: {
       type: Number,
       value: 0,
@@ -15,6 +23,14 @@ Component({
   /* 组件的初始数据 */
   data: {
     text: '', 
+  },
+
+  observers: {
+    'value': function (value) {
+      if (value) {
+        this.setData({text: value.value })
+      }
+    }
   },
 
   /* 组件的方法列表 */

@@ -6,7 +6,9 @@ Page({
   data: {
     form: {
       title: "试试世界上最美的人?"
-    }
+    },
+    values: {},
+    answered: false,
   },
 
   /* 生命周期函数--监听页面加载 */
@@ -19,13 +21,21 @@ Page({
 
   },
 
+  clickForm: function() {
+    if (this.data.answered) {
+      wx.showToast({
+        title: '已提交，不可再编辑啦!', icon: "none"
+      })
+    }    
+  },
+
   clickSubmit: function() {
     var form = this.data.form
     var comps = this.selectAllComponents(".formitem")
     var data = comps.map( v => {
       return v.getResult()
     })
-    var i = validate(form.options, data)
+    var i = validate(form.form_items, data)
     if (i >= 0) {
       wx.showModal({
         title: `问题 ${i+1} 没有填写!`,
@@ -34,44 +44,60 @@ Page({
     }
     var values = data.map( (v, i) => {
       return {
-        item_id: form.options[i].id,
+        item_id: form.form_items[i].id,
         user_data: JSON.stringify(v) || '',
       }
     })
     var payload = {
       form_id: form.id,
-      options: values,
+      values: values,
     }
     doSubmit(this, payload)
   },
 })
 
 function onLoad(view, options) {
-  var setup = function() {
-    api.getForm(options.id || 2).then( resp => {
-      const options = resp.data.options
-      if (options) {
-        options.map( item => {
-          try {
-            item.attrs = JSON.parse(item.attrs)
-          } catch(e){}
-        })
-      }
-      view.setData({form: resp.data})
-      console.log("get form:", resp.data)
-    }).catch( err => {
-      console.log("get form err", err)
-    })
-  }
   api.autoAuth().then(() => {
-    setup()
+    firtLoad(view, options.id || 3)
   })
 }
 
-function validate(options, data) {
+function firtLoad(view, id) {
+  wx.showLoading()
+  api.getForm(id).then( resp => {
+    console.log("get form:", resp.data)
+    var { form_items } = resp.data
+    form_items && form_items.map( item => {
+      try {
+        item.attrs = JSON.parse(item.attrs)
+      } catch(e){}
+    })
+    view.setData({form: resp.data})
+    return api.getFormData(id)
+  }).then( resp => {
+    console.log("get answer:", resp)
+    var data = resp.data
+    var kv = {}
+    data && data.map( a => {
+      if (a.user_data) {
+        try {
+          kv[a.item_id] = JSON.parse(a.user_data)
+        } catch(e){}
+      }
+    })
+    var answered = Object.keys(kv).length > 0
+    view.setData({ values: kv, answered: answered })
+  }).catch( err => {
+    console.log("get form err", err)
+  }).finally( () => {
+    wx.hideLoading()
+  })
+}
+
+function validate(form_items, data) {
   var i = 0, n = data.length
   for (; i < n; i++) {
-    if (!data[i] && options[i].attrs.required) {
+    if (!data[i] && form_items[i].attrs.required) {
       return i
     }
   }
@@ -83,6 +109,7 @@ function doSubmit(view, data) {
     wx.showToast({
       title: '提交成功！',
     })
+    view.setData({ answered: true })
   }).catch( err => {
     console.log("form submit:", err)
     wx.showToast({

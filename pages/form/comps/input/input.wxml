@@ -6,6 +6,6 @@
     <text>{{attrs.title}}</text>
   </view>
   <view>
-    <textarea class="input" bindinput='bindInput' placeholder="输入内容.."></textarea>
+    <textarea class="input" value="{{value.value}}" disabled='{{disable}}' bindinput='bindInput' placeholder="输入内容.."></textarea>
   </view>
 </view>
