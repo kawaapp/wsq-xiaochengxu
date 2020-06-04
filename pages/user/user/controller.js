@@ -14,20 +14,29 @@ function onUnload() {
 }
 
 function onLoad(options) {
-  var req = util.getRequest("user")
-  var user = req.data
-  user.days = util.getDaysFromNow(user.created_at)
-  view.setData({ user: user })
+  // user info
+  fetchUser(options.id)
 
   // follow state
-  fetchFollow(user.id)
+  fetchFollow(options.id)
 
   // fetch post
-  fetchPostList(user.id)
+  fetchPostList(options.id)
 }
 
 function onReachBottom() {
   fetchMorePost()
+}
+
+function fetchUser(id) {
+  api.getUser(id).then( resp => {
+    console.log("get resp:", resp)
+    var user = resp.data
+    user.days = util.getDaysFromNow(user.created_at)
+    view.setData({ user: user })
+  }).catch( err => {
+    console.log("get user err", err)
+  })
 }
 
 function fetchFollow(uid) {

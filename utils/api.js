@@ -244,6 +244,13 @@ function self() {
   })
 }
 
+function getUser(id) {
+  return req({
+    url: `${Host}/api/users/${id}`,
+    method: 'GET'
+  })
+}
+
 function getUserPostList(uid, since, limit) {
   return req({
     url: `${Host}/api/users/${uid}/posts?since_id=${since}&limit=${limit}`,
@@ -914,6 +921,7 @@ module.exports = {
   autoAuth: autoAuth,
   updateUser: updateUser,
   getSelf: self,
+  getUser: getUser,
   getUserList: getUserList,
   getUserPostList: getUserPostList,
   getUserCommentList: getUserCommentList,

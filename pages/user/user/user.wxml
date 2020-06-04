@@ -19,7 +19,7 @@
 </view>
 
 <!-- 帖子列表 -->
-<view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
+<view wx:for="{{posts}}" wx:for-item="item" wx:key="id">
   <view class="card">
     <!-- Content Area -->
     <view bindtap='clickItem' data-idx="{{index}}">
