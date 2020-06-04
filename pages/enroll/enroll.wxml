@@ -11,11 +11,13 @@
         <text class="number">{{enroll.timeD.minutes}}</text>分
       </view>
     </view>
-    <view class="horizontal">
-       <view>{{enroll.join_count}}人已经参与</view>
-       <view class="arrow_right" >
-          <image src="/res/arrow_right.png" />
-       </view>
+    <view>
+      <navigator url="/pages/enroll/user/user?id={{enroll.id}}" class="horizontal">
+        <view>{{enroll.join_count}} 人已经参与</view>
+        <view class="arrow_right" >
+            <image src="/res/arrow_right.png" />
+        </view>
+      </navigator>
     </view>
   </view>
 </view>

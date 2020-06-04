@@ -663,9 +663,9 @@ function getEnroll(id) {
   })
 }
 
-function getEnrollUserList(id) {
+function getEnrollUserList(id, page, size) {
   return req({
-    url: `${Host}/api/enrolls/${id}/users`,
+    url: `${Host}/api/enrolls/${id}/users?page=${page || 1}&size=${size || 20}`,
     method: 'GET'
   })
 }

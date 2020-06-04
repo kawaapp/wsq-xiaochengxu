@@ -1,2 +1,17 @@
-<!--pages/enroll/user/user.wxml-->
-<text>pages/enroll/user/user.wxml</text>
+<!-- 顶部TAB -->
+<kw-tab bind:onTabChanged="onTabChanged" items="{{tabItems}}" />
+
+<!-- 用户列表 -->
+<block wx:for="{{users}}" wx:key="id">
+  <navigator class="user" url="/pages/user/user/user?id={{item.user.id}}">
+    <image class="avatar-large" src="{{item.user.avatar}}" style="margin-right:12rpx;" />
+    <text class="title b5">{{item.user.nickname}}</text>
+    <view class="timearrow">
+        <text>{{item.joinTime}}</text> <image src="/res/arrow_right.png" />
+      </view>
+  </navigator>
+</block>
+
+<!-- loader -->
+<view style="margin-top:32rpx;" />
+<kw-loading loading="{{loading}}" hasmore="{{hasmore}}" />

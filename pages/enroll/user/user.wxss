@@ -1,1 +1,21 @@
 /* pages/enroll/user/user.wxss */
+.user {
+  background: white;
+  padding: 24rpx 16rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #f8f8f8;
+}
+
+.timearrow {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.timearrow image {
+  width: 42rpx;
+  height: 42rpx;
+  opacity: .7;
+  margin-left: 16rpx;
+}
