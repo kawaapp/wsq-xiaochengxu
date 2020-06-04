@@ -51,39 +51,6 @@ Page({
   getPhoneNumber: function (e) {
     ctr.getPhoneNumber(e)
   },
-  postClick: function(e) {
-    wx.navigateTo({
-      url: '/pages/user/post/post',
-    })
-  },
-  commentClick: function(e) {
-    wx.navigateTo({
-      url: '/pages/user/cmmt/comment',
-    })
-  },
-  favorClick: function(e) {
-    wx.navigateTo({
-      url: '/pages/user/favor/favor',
-    })
-  },
-
-  favoriteClick: function(e) {
-    wx.navigateTo({
-      url: '/pages/user/favorite/favorite',
-    })
-  },
-
-  followClick: function(e) {
-    wx.navigateTo({
-      url: '/pages/user/friend/friend',
-    })
-  },
-
-  pointClick: function(e) {
-    wx.navigateTo({
-      url: '/pages/point/point',
-    })
-  },
 
   clickBindProfile: function(e) {
     var comp = this.selectComponent(".login")
@@ -97,12 +64,6 @@ Page({
   clickExp: function(e) {
     wx.navigateTo({
       url: '/pages/exp/exp',
-    })
-  },
-
-  clickEdit: function(e) {
-    wx.navigateTo({
-      url: '/pages/me/edit',
     })
   },
 

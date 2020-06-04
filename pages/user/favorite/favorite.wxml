@@ -1,19 +1,21 @@
 <view style='margin-bottom:18rpx;'/>
-<view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
-  <view class="card" bindtap='clickItem' data-idx='{{index}}'>
+<view wx:for="{{posts}}" wx:for-item="item" wx:key="id">
+  <navigator url="/pages/thread/thread?pid={{item.id}}">
+  <view class="card">
     <text class='content'>收藏了这篇帖子</text>
     <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
-        src="{{item.author.avatar?item.author.avatar: theme+'/user_icon.png'}}" 
+        src="{{item.author.avatar || '/res/user_icon.png'}}" 
         />
       <view>
-        <view class='title'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
+        <view class='title'>{{item.author.nickname || '匿名'}}</view>
         <view class='fade-title single-line' style='width:580rpx'>
           {{item.content}}
         </view>
       </view>
     </view>
   </view>
+  </navigator>
   <view style='margin-bottom:9.36rpx;'/>
 </view>
 <kw-loading loading="{{loading}}" hasmore="{{hasmore}}"/>

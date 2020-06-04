@@ -216,19 +216,6 @@
   text-align: center;
 }
 
-.goto-home {
-  position: fixed;
-  bottom: 160rpx;
-  right: 25rpx;
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  color: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  word-break: keep-all;
-  font-size: 32rpx;
-}
-
 .share-to {
   margin: 54rpx auto 24rpx auto;
   display: flex;

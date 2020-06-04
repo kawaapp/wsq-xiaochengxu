@@ -118,9 +118,6 @@ Page({
   clickFavor: function(e) {
     ctr.onClikcFavorPost(e)
   },
-  threadCancel: function(e) {
-    ctr.gotoHome()
-  },
   clickListComment: function(e) {
     ctr.onClickListComment(e)
   },
@@ -134,21 +131,6 @@ Page({
   }, 
   clickListCommentAction: function(e) {
     ctr.onClickListCommentAction(e)
-  },
-
-  clickPostAvatar: function (e) {
-    var post = this.data.item.post
-    if (post) {
-      gotoUserPage(post.author)
-    }
-  },
-
-  clickCommentAvatar: function(e) {
-    var idx = e.currentTarget.dataset.idx
-    var comment = this.data.comments[idx]
-    if (comment) {
-      gotoUserPage(comment.author)
-    }
   },
 
   sharePoster: function(e) {
@@ -176,21 +158,6 @@ Page({
     }
   },
 })
-
-function gotoUserPage(user) {
-  if (user) {
-    util.sendRequest('user', {
-      data: user,
-    })
-    wx.navigateTo({
-      url: '/pages/user/user/user',
-    })
-  } else {
-    wx.showToast({
-      title: '用户不存在', icon: 'none'
-    })
-  }
-}
 
 function chooseImage(view) {
   if (view.data.reply.hint) {

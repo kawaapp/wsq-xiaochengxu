@@ -1,21 +1,23 @@
 <view style='margin-bottom:18rpx;'/>
 <view wx:for="{{comments}}" wx:for-item="item" wx:key="{{item.id}}">
-  <view class="card" style='padding: 18rpx;' bindtap='clickItem' data-idx='{{index}}'>
+  <navigator url="/pages/thread/thread?pid={{item.post_id}}">
+  <view class="card" style='padding: 18rpx;'>
     <view class='my-comment'>
       我: {{ item.content }}
     </view>
     <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin-right: 18rpx;'
-        src="{{item.replier.avatar?item.replier.avatar: theme+'/user_icon.png'}}" 
+        src="{{item.replier.avatar || '/res/user_icon.png'}}" 
         />
       <view>
-        <view class='title'>@{{item.replier.nickname?item.replier.nickname:'匿名'}}</view>
+        <view class='title'>@{{item.replier.nickname || '匿名'}}</view>
         <view class='fade-title single-line' style='width:580rpx'>
           {{item.subject}}
         </view>
       </view>
     </view>
   </view>
+  </navigator>
   <view style='margin-bottom:9.36rpx;'/>
 </view>
 

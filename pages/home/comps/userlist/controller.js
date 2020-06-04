@@ -71,19 +71,6 @@ function fetchMoreUser(view) {
 
 }
 
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var user = view.data.users[idx]
-
-  util.sendRequest('user', {
-    idx: idx,
-    data: user
-  })
-  wx.navigateTo({
-    url: '/pages/user/user/user',
-  })
-}
-
 function massage(users) {
   return users.map( user => {
     return biz.parseUser(user)
@@ -96,6 +83,5 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
 }
 

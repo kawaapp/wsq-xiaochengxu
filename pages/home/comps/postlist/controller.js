@@ -114,37 +114,6 @@ function onReachBottom() {
   })
 }
 
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
-
-  util.sendRequest('post', {
-    idx: idx,
-    post: post
-  })
-  wx.navigateTo({
-    url: '/pages/thread/thread',
-  })
-}
-
-function onClickAvatar(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
-  if (post.author) {
-    util.sendRequest('user', {
-      idx: idx,
-      data: post.author
-    })
-    wx.navigateTo({
-      url: '/pages/user/user/user',
-    })
-  } else {
-    wx.showToast({
-      title: '用户不存在', icon: 'none'
-    })
-  }
-}
-
 function onClickFavor(e) {
   var idx = e.currentTarget.dataset.idx
   var item = view.data.posts[idx]
@@ -302,8 +271,6 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
-  onClickAvatar: onClickAvatar,
   onClickFavor: onClickFavor,
   onClickComment: onClickComment,
   onClickMenu: onClickMenu,

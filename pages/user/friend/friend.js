@@ -107,18 +107,6 @@ Page({
       })
     })
   },
-
-  clickItem: function(e) {
-    var idx = e.currentTarget.dataset.idx
-    var user = [this.data.followings, this.data.followers][this.data.tabCurrent][idx]
-    util.sendRequest('user', {
-      idx: idx,
-      data: user
-    })
-    wx.navigateTo({
-      url: '/pages/user/user/user',
-    })
-  }
 })
 
 function fetchFollowerList(view) {

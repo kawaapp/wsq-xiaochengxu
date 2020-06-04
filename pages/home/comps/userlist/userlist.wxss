@@ -1,5 +1,5 @@
 .item {
-  padding: 24rpx 0rpx;
+  padding: 36rpx 24rpx;
   display: flex;
   flex-direction: row;
   align-items: center;

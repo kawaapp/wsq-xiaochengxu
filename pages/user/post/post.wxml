@@ -1,12 +1,13 @@
 <view style='margin-bottom:18rpx;'/>
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
-  <view class="card" bindtap='clickItem' data-idx='{{index}}'>
+  <navigator url="/pages/thread/thread?pid={{item.id}}">
+  <view class="card">
     <view class="horizontal">
       <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
-        src="{{item.author.avatar?item.author.avatar:theme+'/user_icon.png'}}" 
+        src="{{item.author.avatar || '/res/user_icon.png'}}" 
         />
       <view>
-        <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
+        <view class='title b5'>{{item.author.nickname || '匿名'}}</view>
         <view class='subtitle'>{{item.time}}</view>
       </view>
     </view>
@@ -16,6 +17,7 @@
       <kw-post item="{{item}}" mr="90rpx" />
     </view>
   </view>
+  </navigator>
   <view style='margin-bottom:9rpx;'/>
 </view>
 

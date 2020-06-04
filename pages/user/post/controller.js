@@ -79,15 +79,6 @@ function onReachBottom() {
   })
 }
 
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
-  // 跳转到帖子，并设置为已读
-  wx.navigateTo({
-    url: '/pages/thread/thread?pid=' + post.id,
-  })
-}
-
 function massage(posts) {
   var i = 0, n = posts.length
   for (; i < n; i++) {
@@ -102,5 +93,4 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
 }

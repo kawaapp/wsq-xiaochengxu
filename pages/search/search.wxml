@@ -18,17 +18,15 @@
 
 <!-- 帖子列表 -->
 <view wx:for="{{posts}}" wx:for-item="item" wx:key="id">
+  <navigator url="/pages/thread/thread?pid={{item.id}}">
   <view class="card">
     <!-- Content Area -->
-    <view bindtap='clickItem' data-idx="{{index}}">
+    <view>
       <view class="horizontal">
-        <image data-idx="{{index}}"
-          class='avatar' 
-          style='margin: 10rpx 18rpx 10rpx 0px;'
-          src="{{item.author.avatar?item.author.avatar:theme.images+'/user_icon.png'}}" 
+        <image class='avatar' style='margin: 10rpx 18rpx 10rpx 0px;' src="{{item.author.avatar || '/res/user_icon.png'}}" 
           />
         <view>
-          <view class='title b5'>{{item.author.nickname?item.author.nickname:'匿名'}}</view>
+          <view class='title b5'>{{item.author.nickname || '匿名'}}</view>
           <view class='subtitle'>{{item.time}}</view>
         </view>
       </view>
@@ -38,6 +36,7 @@
       </view>
     </view>
   </view>
+  </navigator>
   <view style='margin-bottom:9.36rpx;'/>
 </view>
 

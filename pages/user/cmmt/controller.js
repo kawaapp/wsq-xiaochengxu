@@ -62,22 +62,14 @@ function onReachBottom() {
   view.setData({ loading: true})
   api.getUserCommentList(view.data.user.uid, since, limit).then(resp => {
     var hasmore = resp.data && resp.data.length == limit
-    view.setData({ loading: false, hasmore: hasmore })
+    view.setData({ hasmore: hasmore })
     view.setData({ comments: comments.concat(resp.data) })
   }).catch(err => {
-    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none',
     })
-  })
-}
-
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var comment = view.data.comments[idx]
-  // 跳转到帖子，并设置为已读
-  wx.navigateTo({
-    url: '/pages/thread/thread?pid=' + comment.post_id,
+  }).finally( () => {
+    view.setData({ loading: false })
   })
 }
 
@@ -87,5 +79,4 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
 }

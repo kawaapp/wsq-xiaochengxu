@@ -1,22 +1,24 @@
 <!-- 活跃用户 -->
-<view class="card" style="background: #fff">
+<view style="background: #fff">
   <view wx:for="{{users}}" wx:for-item="item" wx:key="{{index}}">
-  <view wx:if="{{index !== 0}}"  class='line' style='margin-left:72rpx;'></view>
-  <view class='item' bindtap="clickItem" data-idx="{{index}}" >
-    <image wx:if="{{index<3}}" class='ranking' src="/res/rank_{{index+1}}.png" />
-    <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
-    <image class='avatar' src="{{item.avatar}}"></image>
-    <text class='name' >{{item.nickname}}</text>
-     <text wx:if="{{item.admin_label}}" 
-        class="user-label"
-        style="background:{{theme.adminColor}}; opacity: .9"
-      >管理员</text>
-      <text wx:if="{{item.level_label}}" 
-        class="user-label"
-        style="background:{{theme.levelColor}}; opacity: .8"
-      >{{item.level_label}}</text>
-    <view style='width: 12rpx;'> </view>
-  </view>
+  <view wx:if="{{index !== 0}}"  class='line' style='margin:0 72rpx;'></view>
+  <navigator url="/pages/user/user/user?id={{item.id}}">
+    <view class='item'>
+      <image wx:if="{{index<3}}" class='ranking' src="/res/rank_{{index+1}}.png" />
+      <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
+      <image class='avatar' src="{{item.avatar}}"></image>
+      <text class='name' >{{item.nickname}}</text>
+      <text wx:if="{{item.admin_label}}" 
+          class="user-label"
+          style="background:{{theme.adminColor}}; opacity: .9"
+        >管理员</text>
+        <text wx:if="{{item.level_label}}" 
+          class="user-label"
+          style="background:{{theme.levelColor}}; opacity: .8"
+        >{{item.level_label}}</text>
+      <view style='width: 12rpx;'> </view>
+    </view>
+  </navigator>
   </view>
 </view>
 

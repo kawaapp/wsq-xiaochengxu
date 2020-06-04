@@ -14,7 +14,7 @@
     <kw-loading loading="{{loading}}" hasmore="{{hasmore}}" />
 
     <!-- 对话列表 -->
-    <block wx:for="{{chatItems}}" wx:key="{{index}}">
+    <block wx:for="{{chatItems}}" wx:key="id">
         <template is="chat-item" data="{{length:chatItems.length,index:index,item:item}}"/>
     </block>
 

@@ -39,10 +39,6 @@ Page({
     ctr.onReachBottom()
   },
 
-  clickItem: function(e) {
-    ctr.onClickItem(e)
-  },
-
   clickFollow: function(e) {
     ctr.onClickFollow(e)
   }

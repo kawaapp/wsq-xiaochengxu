@@ -4,10 +4,9 @@
 <!-- 内容 -->
 <view class="card" style='z-index:1'>
   <view class="horizontal">
-    <image class='avatar-large' style='margin-right: 18rpx;'
-      src="{{item.post.author.avatar?item.post.author.avatar: theme.images+'/user_icon.png'}}" 
-      bindtap="clickPostAvatar"
-      />
+    <navigator url="/pages/user/user/user?id={{item.post.author.id}}" style='margin-right:18rpx;'>
+      <image class='avatar-large' src="{{item.post.author.avatar || '/res/user_icon.png'}}"/>
+    </navigator>
     <view>
       <view class='title b5'>{{item.post.author.nickname}}
       <text wx:if="{{item.post.author.admin_label}}" 
@@ -100,24 +99,16 @@
   <view wx:for="{{comments}}" wx:for-item="item" wx:key="id">
     <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
     <view class="comment">
-      <image class="avatar-large" style='margin-right:18rpx;'
-        src="{{item.author.avatar?item.author.avatar: theme.images+'/user_icon.png'}}" 
-        bindtap="clickCommentAvatar"
-        data-idx="{{index}}"
-        />
+      <navigator url="/pages/user/user/user?id={{item.author.id}}" style='margin:0 18rpx 0 0'>
+        <image class="avatar-large" src="{{item.author.avatar || '/res/user_icon.png'}}"/>
+      </navigator>
       <view style='width:100%;' data-idx="{{index}}-{{sub}}" bindtap='clickListCommentAction'>
         <!-- Reply user name and content-->
         <view class='nickname'>
-          {{
-            item.author.nickname? item.author.nickname: '匿名' 
-          }}
+          {{ item.author.nickname || '匿名' }}
         </view>
         <view class='detail'>{{item.content}}</view>
-        <image wx:if="{{item.image}}" 
-          class="image"
-          mode="widthFix"
-          src="{{item.image}}"
-        />
+        <image wx:if="{{item.image}}" class="image" mode="widthFix" src="{{item.image}}"/>
     
         <!-- Reply List / Comment on Comment  -->
         <view wx:if='{{item.reply_list}}' class='gray-bg reply'>
@@ -215,20 +206,13 @@
     </input>
     <view class="send">
       <image style="{{reply.hint?'opacity:.3':''}}" catchtap="chooseImage" 
-      src="{{reply.image? reply.image: '/res/photo.png'}}" />
+      src="{{reply.image || '/res/photo.png'}}" />
       <image class="del" catchtap="deleteImage" wx:if="{{reply.image}}" src="/res/del.png" />
       <button catchtap="sendComment" class="btn-clear" 
         style="color:{{theme.color}};{{(reply.text || reply.image)? '':'opacity: .3' }}">
         回复   
       </button>
     </view>
-  </view>
-</block>
-
-<!-- 返回首页悬浮框 -->
-<block wx:if="{{shared}}">
-  <view catchtap='threadCancel' class='goto-home' style='background-color:{{theme.color}}'> 
-    <view style='text-align:center; line-height: 100rpx'>首页</view>
   </view>
 </block>
 

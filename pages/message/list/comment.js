@@ -42,8 +42,5 @@ Page({
   onReachBottom: function () {
     ctr.onReachBottom()
   },
-  clickItem: function (e) {
-    ctr.onClickItem(e)
-  },
 })
 

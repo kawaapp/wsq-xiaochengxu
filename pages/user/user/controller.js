@@ -125,18 +125,6 @@ function onClickSend() {
   })
 }
 
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
-  util.sendRequest('post', {
-    idx: idx,
-    post: post
-  })
-  wx.navigateTo({
-    url: '/pages/thread/thread',
-  })
-}
-
 function onClickFollow(e) {
   if(!biz.isUserHasName(view)) {
     return
@@ -176,7 +164,6 @@ module.exports = {
   onLoad: onLoad,
   onUnload: onUnload,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
   onClickSend: onClickSend,
   onClickFollow: onClickFollow,
 }

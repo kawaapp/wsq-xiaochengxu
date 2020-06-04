@@ -40,9 +40,4 @@ Page({
   onReachBottom: function () {
     ctr.onReachBottom()
   }, 
-
-  // 列表点击
-  clickItem: function (e) {
-    ctr.onClickItem(e)
-  },
 })

@@ -633,5 +633,4 @@ module.exports = {
   onClikcFavorPost: onClikcFavorPost,
   onClickListCommentAction: onClickListCommentAction,
   onClickShare: onClickShare,
-  gotoHome: gotoHome,
 }

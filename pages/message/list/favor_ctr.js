@@ -69,23 +69,6 @@ function onReachBottom() {
   })
 }
 
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var msg = view.data.messages[idx]
-  var key = 'messages[' + idx + '].status'
-  // 跳转到帖子，并设置为已读
-  view.setData({
-    [key]: 1,
-  })
-  api.setMessageRead(msg.id).catch(err => {
-    console.log(err)
-  })
-  // fetch post and goto thread page
-  wx.navigateTo({
-    url: '/pages/thread/thread?pid=' + msg.post_id,
-  })
-}
-
 function unpackMsgContent(msgs) {
   var i = 0
   var n = msgs.length
@@ -125,5 +108,4 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
 }

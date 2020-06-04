@@ -75,18 +75,6 @@ function onReachBottom() {
   })
 }
 
-function onClickItem(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
-
-  var goto = pid => {
-    wx.navigateTo({
-      url: '/pages/thread/thread?pid=' + pid,
-    })
-  }
-  goto(post.id)
-}
-
 function massage(items) {
   return items.map( item => {
     item.content = biz.postContent(item)
@@ -100,5 +88,4 @@ module.exports = {
   onUnload: onUnload,
   onPullDownRefresh: onPullDownRefresh,
   onReachBottom: onReachBottom,
-  onClickItem: onClickItem,
 }
