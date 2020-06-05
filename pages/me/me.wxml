@@ -40,10 +40,10 @@
 </view>
 
 <!-- 其它信息 -->
-<view class='card'>
-  <navigator url="/pages/user/post/post">
-    <view class='horizontal'>
-      <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+<view class="card px0">
+  <navigator url="/pages/user/post/post" hover-class="none">
+    <view class='horizontal item'>
+      <image class='icon-small' style='margin-right:18rpx;'
         src='{{theme.images}}/my_post.png'></image>
       <text class='title'>我的帖子</text>
       <image class='arrow-right' style='margin-left:auto;'
@@ -52,9 +52,9 @@
   </navigator>
   <view class='line' style='margin-left:112rpx;'></view>
 
-  <navigator url="/pages/user/cmmt/comment">
-    <view class='horizontal'>
-      <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+  <navigator url="/pages/user/cmmt/comment" hover-class="none">
+    <view class='horizontal item'>
+      <image class='icon-small' style='margin-right:18rpx;'
         src='{{theme.images}}/my_cmt.png'></image>
       <text class='title'>我的评论</text>
       <image class='arrow-right' style='margin-left:auto;'
@@ -63,9 +63,9 @@
   </navigator>
   <view class='line' style='margin-left:112rpx;'></view>
 
-  <navigator url="/pages/user/favor/favor">
-    <view class='horizontal'>
-      <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+  <navigator url="/pages/user/favor/favor" hover-class="none">
+    <view class='horizontal item'>
+      <image class='icon-small' style='margin-right:18rpx;'
         src='{{theme.images}}/my_like.png'></image>
       <text class='title'>我的点赞</text>
       <image class='arrow-right' style='margin-left:auto;'
@@ -74,10 +74,10 @@
   </navigator>
 </view>
 
-<view class="card">
-  <navigator url="/pages/point/point">
-    <view class='horizontal'>
-      <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+<view class="card px0">
+  <navigator url="/pages/point/point" hover-class="none">
+    <view class='horizontal item'>
+      <image class='icon-small' style='margin-right:18rpx;'
         src='{{theme.images}}/my_point.png'></image>
       <text class='title'>我的积分</text>
       <image class='arrow-right' style='margin-left:auto;'
@@ -87,9 +87,9 @@
 
   <view class='line' style='margin-left:112rpx;'></view>
 
-  <navigator url="/pages/user/favorite/favorite">
-    <view class='horizontal'>
-      <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+  <navigator url="/pages/user/favorite/favorite" hover-class="none">
+    <view class='horizontal item'>
+      <image class='icon-small' style='margin-right:18rpx;'
         src='{{theme.images}}/my_favor.png'></image>
       <text class='title'>我的收藏</text>
       <image class='arrow-right' style='margin-left:auto;'
@@ -99,9 +99,9 @@
   
   <view class='line' style='margin-left:112rpx;'></view>
 
-  <navigator url="/pages/user/friend/friend">
-    <view class='horizontal'>
-      <image class='icon-small' style='margin: 9.36rpx 9.36rpx 9.36rpx 0;'
+  <navigator url="/pages/user/friend/friend" hover-class="none">
+    <view class='horizontal item'>
+      <image class='icon-small' style='margin-right:18rpx;'
         src='{{theme.images}}/my_follow.png'></image>
       <text class='title'>我的关注</text>
       <image class='arrow-right' style='margin-left:auto;'

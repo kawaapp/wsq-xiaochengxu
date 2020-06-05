@@ -16,7 +16,7 @@
   <view wx:if="{{item.ad}}">
     <kw-adver type="home_feed"/>
   </view>
-  <navigator url="/pages/thread/thread?pid={{item.id}}">
+  <navigator url="/pages/thread/thread?pid={{item.id}}" hover-class="none">
   <view class="card" wx:if="{{!item.ad}}" >
     
     <!-- Content Area -->

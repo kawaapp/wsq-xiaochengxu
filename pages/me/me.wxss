@@ -1,4 +1,15 @@
 /* pages/me/me.wxss */
+.px0 {
+  padding: 8rpx 0 !important;
+}
+
+.item {
+  padding: 24rpx 24rpx;
+}
+
+.line {
+  margin: 0 0 0 112rpx !important;
+}
 
 .avatar {
   margin: 8rpx 0px;
@@ -28,6 +39,7 @@
 }
 
 .arrow-right {
+  opacity: .7;
   width: 46rpx;
   height: 46rpx;
   max-height: 46rpx;
