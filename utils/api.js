@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -656,9 +656,9 @@ function deleteFavorite(pid) {
 }
 
 // 活动接口
-function getEnrollList() {
+function getEnrollList(page, size) {
   return req({
-    url: `${Host}/api/enrolls`,
+    url: `${Host}/api/enrolls?page=${page || 1}&size=${size||20}`,
     method: 'GET'
   })
 }
@@ -735,6 +735,14 @@ function formSubmit(data) {
     url: `${Host}/api/forms/submit`,
     method: 'POST',
     data: data,
+  })
+}
+
+// 获取最新的热点更新
+function getHotList() {
+  return req({
+    url: `${Host}/api/hots`,
+    method: 'GET'
   })
 }
 
@@ -1052,6 +1060,9 @@ module.exports = {
   getForm: getForm,
   getFormData: getFormData,
   formSubmit: formSubmit,
+
+  // hots
+  getHotList: getHotList,
 
   // 订阅
   getTemplates: getTemplates,
