@@ -3,8 +3,7 @@
       <block wx:for="{{items}}" wx:key="*this">
         <swiper-item class="item">
           <navigator url="/pages/{{item.key}}/{{item.key}}" class="inner">
-            <image class="img" 
-            mode='aspectFill' src="{{item.value.image || '/res/placeholder.png'}}"/>
+            <image class="img" mode='aspectFill' src="{{item.value.image || '/res/placeholder.png'}}"/>
             <view>
               <view class="h2" >
                 <text class="type">{{item.typeStr}}</text> {{item.value.title}}

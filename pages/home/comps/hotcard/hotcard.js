@@ -35,6 +35,9 @@ function firstLoad(view) {
     var items = resp.data
     items && items.map( item => {
         item.typeStr = TypeNameMap[item.key] || ''
+        if (item.key == 'form') {
+          item.value.image = item.value.image || '/res/act2.png'
+        }
     })
     view.setData({ items: resp.data })
     console.log("get hots list", resp)
