@@ -72,35 +72,3 @@
   height: 128rpx;
   z-index: 9999;
 }
-
-.speaker {
-  width: 720rpx;
-  font-size: 28rpx;
-}
-
-.speaker image {
-  width: 30rpx; 
-  height: 30rpx;
-  margin-right: 16rpx;
-  vertical-align: middle;
-  margin-top: -5rpx;
-}
-
-.top-post {
-  font-size: 28rpx;
-}
-
-.top-post .top {
-  width: 30rpx;
-  height: 30rpx;
-  padding: 0 4rpx;
-  vertical-align: middle;
-  border-radius: 4rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: white;
-  background-color: red;
-  margin-right: 16rpx;
-  position: relative;
-  top: -2rpx;
-}

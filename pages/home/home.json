@@ -4,6 +4,11 @@
   "usingComponents": {
     "userlist": "./comps/userlist/userlist",
     "postlist": "./comps/postlist/postlist",
+    "hotcard": "./comps/hotcard/hotcard",
+    "chacard": "./comps/chacard/channel",
+    "bulletin": "./comps/bulletin/bulletin",
+    "toplist": "./comps/toplist/toplist",
+    
     "kw-tab": "../../tmpl/tab/kw-tab",
     "kw-login": "../../tmpl/login/dialog",
     "kw-adver": "../../tmpl/adver/adunit",

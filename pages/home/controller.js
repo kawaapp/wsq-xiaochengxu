@@ -186,28 +186,6 @@ function onResult(data) {
   }
 }
 
-function onClickSpeaker() {
-  var url = view.data.speaker.link
-  if (url) {
-    wx.navigateTo({
-      url: '/pages/webview/webview?q=' + encodeURIComponent(url),
-    })
-  }
-}
-
-function onClickTopList(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.tops[idx]
-  util.sendRequest('post', {
-    idx: idx,
-    post: post,
-    viewonly: true,
-  })
-  wx.navigateTo({
-    url: '/pages/thread/thread',
-  })
-}
-
 function onPullDownRefresh() {
   fetchTopList()
 }
@@ -220,8 +198,6 @@ module.exports = {
   onClickSearch: onClickSearch,
   onClickNewPost: onClickNewPost,
   onClickShare: onClickShare,
-  onClickSpeaker: onClickSpeaker,
-  onClickTopList: onClickTopList,
   onClickSignin: onClickSignin,
   onPullDownRefresh: onPullDownRefresh, 
 }

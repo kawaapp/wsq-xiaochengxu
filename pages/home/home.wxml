@@ -34,32 +34,19 @@
 </view>
 
 <!-- 公告部分 -->
-<view class='card' wx:if="{{speaker.title}}" >
-  <view class='single-line speaker' bindtap='clickSpeaker'>
-    <image src='{{theme.images}}/speaker.png'></image>
-    <text style='margin-right: 8rpx;'>公告: </text> 
-    <text>{{ speaker.title }}</text>
-  </view>
-</view>
+<bulletin value="{{speaker}}" />
+
+<!-- 社区频道 -->
+<!-- <chacard /> -->
 
 <!-- 置顶帖 -->
-<view class='card' wx:if="{{tops.length > 0}}">
-  <view class='top-post' wx:for="{{tops}}" wx:for-item="item" wx:key="id">
-    <view style='height: 16rpx;' wx:if="{{index > 0}}"></view>
-    <view class='single-line' style='width: 720rpx;' 
-      data-idx='{{index}}' 
-      bindtap='clickTopList' 
-      >
-      <text class='top'>顶</text> <text>{{item.title}}</text>
-    </view>
-  </view>
-</view>
+<toplist value="{{tops}}"/>
 
 <!-- 自定义广告 -->
 <kw-adver type="home_banner" hot="true" />
 
-<kw-poll />
-
+<!-- 社区热点 -->
+<hotcard />
 
 <!-- 顶部TAB -->
 <view  class="tablayout">

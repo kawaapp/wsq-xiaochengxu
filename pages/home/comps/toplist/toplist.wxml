@@ -1,0 +1,11 @@
+<view class='card' wx:if="{{value.length > 0}}">
+  <!-- <view class="h1">置顶贴</view> -->
+  <view class='top-post' wx:for="{{value}}" wx:for-item="item" wx:key="id">
+    <view style='height: 16rpx;' wx:if="{{index > 0}}"></view>
+    <navigator url="/pages/thread/thread?pid={{item.id}}" hover-class="none">
+      <view class='single-line' style='width: 720rpx;'>
+        <text class='top'>顶</text> <text>{{item.title}}</text>
+      </view>
+    </navigator>
+  </view>
+</view>

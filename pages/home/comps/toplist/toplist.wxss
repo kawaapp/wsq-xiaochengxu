@@ -1,0 +1,25 @@
+.card {
+  background-color: #fff;
+  margin-bottom: 16rpx;
+  position: relative;
+  padding: 18rpx 24rpx;
+}
+
+.top-post {
+  font-size: 28rpx;
+}
+
+.top-post .top {
+  width: 30rpx;
+  height: 30rpx;
+  padding: 0 4rpx;
+  vertical-align: middle;
+  border-radius: 4rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: white;
+  background-color: red;
+  margin-right: 16rpx;
+  position: relative;
+  top: -2rpx;
+}

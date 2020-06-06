@@ -1,0 +1,20 @@
+.card {
+  background-color: #fff;
+  margin-bottom: 16rpx;
+  position: relative;
+  padding: 18rpx 24rpx;
+}
+
+.speaker {
+  width: 720rpx;
+  font-size: 28rpx;
+}
+
+.speaker image {
+  width: 30rpx; 
+  height: 30rpx;
+  margin-right: 16rpx;
+  vertical-align: middle;
+  margin-top: -5rpx;
+}
+

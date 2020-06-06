@@ -88,16 +88,6 @@ Page({
     ctr.onClickNewPost(e)
   },
 
-  // 点击公告
-  clickSpeaker: function(e) {
-    ctr.onClickSpeaker(e)
-  },
-
-  // 点击置顶帖
-  clickTopList: function(e) {
-    ctr.onClickTopList(e)
-  },
-
   // 点击分享
   onShareAppMessage: function (res) {
     return ctr.onClickShare(res)
