@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "问卷调查",
   "usingComponents": {
     "form-input": "./comps/input/input",
     "form-radio": "./comps/radio/radio",
