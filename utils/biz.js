@@ -284,6 +284,13 @@ function openLink(data) {
   }
 }
 
+// 记录Key的访问时间
+function logViewTime(key) {
+  var viewlog = wx.getStorageSync('viewlog') || {}
+  viewlog[key] = Math.round(new Date().getTime()/1000)
+  wx.setStorage({ data: viewlog, key: 'viewlog' })
+}
+
 module.exports = {
   applyTheme: applyTheme,
   getPhoneNumber: getPhoneNumber,
@@ -296,4 +303,5 @@ module.exports = {
   subscribe: subscribe,
   openLink: openLink,
   parseMedia: parseMedia,
+  logViewTime: logViewTime,
 }
