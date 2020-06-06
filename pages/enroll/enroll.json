@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "活动报名",
   "usingComponents": {
     "kw-detail": "./comps/detail"
   }

@@ -56,7 +56,8 @@ function onLoad(view, options) {
 }
 
 function firstLoad(view, id) {
-  api.getEnroll(id || 1).then( resp => {
+  wx.showLoading()
+  api.getEnroll(id).then( resp => {
     var enroll = resp.data
     var start = util.prettyTime(new Date(enroll.started_at*1000))
     var end   = util.prettyTime(new Date(enroll.expired_at*1000))
@@ -66,10 +67,12 @@ function firstLoad(view, id) {
     view.setData({ enroll, expired})
   }).catch( err => {
     console.log("get enrollment", err)
+  }).finally( () => {
+    wx.hideLoading()
   })
 
   // get user enroll info
-  api.getEnrollUser(id || 1).then( resp => {
+  api.getEnrollUser(id).then( resp => {
     view.setData({ enrolled: true })
   }).catch( err => { /* ingore */ })
 }

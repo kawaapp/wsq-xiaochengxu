@@ -12,7 +12,7 @@
       </view>
     </view>
     <view>
-      <navigator url="/pages/enroll/user/user?id={{enroll.id}}" class="horizontal">
+      <navigator url="/pages/enroll/user/user?id={{enroll.id}}" class="horizontal" hover-class="none">
         <view>{{enroll.join_count}} 人已经参与</view>
         <view class="arrow_right" >
             <image src="/res/arrow_right.png" />
@@ -61,7 +61,7 @@
 
 <!-- detail dialog -->
 <kw-detail 
-  show="{{showDetail}}" 
+  show="{{showInfo}}" 
   enroll="{{enroll}}" 
   bind:onRequestClose="clickClose" 
   bind:onClickCancel="clickCancel"

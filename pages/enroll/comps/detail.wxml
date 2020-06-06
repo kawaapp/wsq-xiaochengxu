@@ -6,9 +6,9 @@
     <view class="detail">
       <view>活动时间：</view>
       <view>{{enroll.startend}}</view>
-      <view>活动细则：</view>
+      <view style="margin-top:8rpx">活动细则：</view>
       <view class="body">
-        {{poll.detail}}
+        {{enroll.detail}}
       </view>
       <view>
         <button class="cancel" bindtap="clickCancel" >取消报名</button>

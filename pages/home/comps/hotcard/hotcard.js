@@ -35,7 +35,7 @@ function firstLoad(view) {
         } else {
           item.value_image = item.value.image || item.value.poster
         } 
-        item.url = `/pages/${item.key}/${item.key}`
+        item.url = `/pages/${item.key}/${item.key}?id=${item.value.id}`
     })
     view.setData({ items: resp.data })
     console.log("get hots list", resp)
