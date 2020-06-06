@@ -21,12 +21,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    click: function(e) {
-      var item = e.currentTarget.dataset.item
-      var kv = this.data.kv
-      kv[item.url] = false
-      this.setData({ kv })
-    }
+
   }
 })
 
@@ -36,8 +31,11 @@ function firstLoad(view) {
     items && items.map( item => {
         item.typeStr = TypeNameMap[item.key] || ''
         if (item.key == 'form') {
-          item.value.image = item.value.image || '/res/act2.png'
-        }
+          item.value_image = item.value.image || '/res/act2.png'
+        } else {
+          item.value_image = item.value.image || item.value.poster
+        } 
+        item.url = `/pages/${item.key}/${item.key}`
     })
     view.setData({ items: resp.data })
     console.log("get hots list", resp)

@@ -15,6 +15,7 @@
 }
 
 .inner {
+  width: 100%;
   position: relative;
   overflow: hidden;
   padding: 24rpx;
