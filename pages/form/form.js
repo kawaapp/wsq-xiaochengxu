@@ -10,6 +10,7 @@ Page({
     },
     values: {},
     answered: false,
+    expired: false,
   },
 
   /* 生命周期函数--监听页面加载 */
@@ -76,7 +77,11 @@ function firtLoad(view, id) {
     })
     form.expiredTime = util.prettyTime(new Date(form.expired_at*1000))
     form.count = (form_items || []).length
-    view.setData({form})
+    var expired = false
+    if(form.expired_at*1000 - new Date() < 0) {
+      expired = true
+    }
+    view.setData({form, expired})
     return api.getFormData(id)
   }).then( resp => {
     console.log("get answer:", resp)
