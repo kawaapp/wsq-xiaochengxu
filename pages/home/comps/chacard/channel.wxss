@@ -1,0 +1,59 @@
+.card {
+  background-color: #ffffff;
+  margin-bottom: 16rpx;
+  position: relative;
+  padding: 18rpx 24rpx;
+}
+
+.card .h1 {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.list {
+  padding: 10rpx 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item .inner {
+  padding: 8rpx 0rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item .hot {
+  position: absolute;
+  top: 0;right: 0;
+  width: 16rpx;
+  height: 16rpx;
+  background: red;
+  border-radius: 50%;
+}
+
+.item .img {
+  box-shadow: 0px 0px 12rpx 0px rgba(0,0,0,0.1);
+  border-radius: 40%;
+  width: 72rpx;
+  height: 72rpx;
+  padding: 18rpx;
+  box-sizing: border-box;
+}
+
+.item .txt {
+  color: #444;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  word-break: keep-all;
+}

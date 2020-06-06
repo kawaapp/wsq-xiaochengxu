@@ -1,0 +1,18 @@
+<view class="card" wx:if="{{items.length > 0}}">
+  <swiper class="swiper" circular="{{true}}" indicator-dots="{{true}}">
+      <block wx:for="{{items}}" wx:key="*this">
+        <swiper-item class="item">
+          <view class="inner">
+            <image class="img" 
+            mode='aspectFill' src="{{item.value.image || '/res/placeholder.png'}}"/>
+            <view>
+              <view class="h2" >
+                <text class="type">{{item.typeStr}}</text> {{item.value.title}}
+              </view>
+              <view class="txt">{{item.value.detail}}</view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+  </swiper>
+</view>

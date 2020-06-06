@@ -1,0 +1,59 @@
+/* pages/home/comps/hotcard/hotcard.wxss */
+.card {
+  background-color: #ffffff;
+  position: relative;
+  margin-bottom: 18rpx;
+}
+
+.swiper {
+  height: 200rpx;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+}
+
+.inner {
+  position: relative;
+  overflow: hidden;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.item .img {
+  border-radius: 12rpx;
+  width: 110rpx;
+  height: 110rpx;
+  min-width: 110rpx;
+  min-height: 110rpx;
+  margin-right: 24rpx;
+}
+
+.item .h2 {
+  font-size: 30rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 8rpx;
+}
+
+.item .type {
+  font-size: 26rpx;
+  color: #1890ff;
+  padding: 4rpx 8rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #1890ff;
+}
+
+.item .txt {
+  font-size: 26rpx;
+  color: gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

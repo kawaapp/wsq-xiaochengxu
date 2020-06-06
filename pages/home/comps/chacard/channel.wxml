@@ -1,0 +1,13 @@
+<view class="card">
+  <view class="list">
+    <block wx:for="{{items}}" wx:for-item="item" wx:key="name">
+      <navigator url="{{item.url}}" class="item" hover-class="none" >
+        <view class="inner" bindtap="click" data-item="{{item}}">
+            <image class="img" style="background:linear-gradient(#69c0ff, #40a9ff)" src="{{item.image}}"/>
+            <text class="txt">{{item.name}}</text>
+            <view wx:if="{{kv[item.url]}}" class="hot"/>
+        </view>
+      </navigator>
+    </block>
+  </view>
+</view>
