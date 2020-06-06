@@ -4,7 +4,7 @@
   <view class="card">
     <view class="horizontal">
       <image class='avatar-large' style='margin: 9.36rpx 9.36rpx 9.36rpx 0px;'
-        src="{{item.author.avatar || '/res/user_icon.png'}}" 
+        src="{{item.author.avatar || '/res/placeholder.png'}}" 
         />
       <view>
         <view class='title b5'>{{item.author.nickname || '匿名'}}</view>

@@ -34,9 +34,10 @@ function firstLoad(view) {
   api.getHotList().then( resp => {
     var items = resp.data
     items && items.map( item => {
-        item.typeStr = TypeNameMap[item.type] || ''
+        item.typeStr = TypeNameMap[item.key] || ''
     })
-    view.setData({ hots: resp.data })
+    view.setData({ items: resp.data })
+    console.log("get hots list", resp)
   }).catch( err => {
     console.log("get hots err", err)
   })

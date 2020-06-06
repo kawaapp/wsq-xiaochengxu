@@ -14,7 +14,6 @@ function onLoad(options) {
   api.getMessageList('favor').then(resp => {
     var unpacked = unpackMsgContent(resp.data)
     view.setData({ messages: unpacked })
-    console.log("get favor message list:", resp.data)
   }).catch(err => {
     console.log(err)
   })

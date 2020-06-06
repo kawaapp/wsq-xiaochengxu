@@ -25,6 +25,12 @@ page{
   padding: 18rpx 24rpx;
 }
 
+.h1 {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
 .line {
   height: 1px;
   background-color: #f8f8f8;

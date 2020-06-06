@@ -43,7 +43,7 @@
     <view class='line' style='margin-left:112rpx;'></view>
     <view class='horizontal'  bindtap='clickItem' data-idx='{{index}}'>
       <image class='avatar' style='margin: 9rpx 16rpx 9rpx 7rpx;'
-        src="{{item.other.avatar || '/res/user_icon.png'}}" />
+        src="{{item.other.avatar || '/res/placeholder.png'}}" />
       <view class="body">
         <view class='title'>{{item.other.nickname || '用户已删除'}}</view>
         <view class='subtitle single-line'>{{item.content}}</view>

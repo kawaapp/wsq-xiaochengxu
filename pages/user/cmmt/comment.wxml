@@ -7,7 +7,7 @@
     </view>
     <view class="horizontal gray-bg p-2">
       <image class='avatar-large' style='margin-right: 18rpx;'
-        src="{{item.replier.avatar || '/res/user_icon.png'}}" 
+        src="{{item.replier.avatar || '/res/placeholder.png'}}" 
         />
       <view>
         <view class='title'>@{{item.replier.nickname || '匿名'}}</view>

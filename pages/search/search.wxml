@@ -23,7 +23,7 @@
     <!-- Content Area -->
     <view>
       <view class="horizontal">
-        <image class='avatar' style='margin: 10rpx 18rpx 10rpx 0px;' src="{{item.author.avatar || '/res/user_icon.png'}}" 
+        <image class='avatar' style='margin: 10rpx 18rpx 10rpx 0px;' src="{{item.author.avatar || '/res/placeholder.png'}}" 
           />
         <view>
           <view class='title b5'>{{item.author.nickname || '匿名'}}</view>

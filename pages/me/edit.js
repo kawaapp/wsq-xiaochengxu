@@ -15,7 +15,7 @@ Page({
       images: kawa.Theme.Image,
       color: kawa.Theme.MainColor,
     },
-    placeholder: kawa.Theme.Image + '/user_icon.png',
+    placeholder: '/res/placeholder.png',
     user: {},
     dialog: {
       title: '修改昵称',

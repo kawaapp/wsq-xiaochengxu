@@ -26,7 +26,6 @@
     "pages/point/history/history",
     "pages/search/search",
     "pages/enroll/enroll",
-    "pages/enroll/join/join",
     "pages/enroll/user/user",
     "pages/form/form"
   ],

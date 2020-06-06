@@ -2,7 +2,7 @@
   <swiper class="swiper" circular="{{true}}" indicator-dots="{{true}}">
       <block wx:for="{{items}}" wx:key="*this">
         <swiper-item class="item">
-          <view class="inner">
+          <navigator url="/pages/{{item.key}}/{{item.key}}" class="inner">
             <image class="img" 
             mode='aspectFill' src="{{item.value.image || '/res/placeholder.png'}}"/>
             <view>
@@ -11,7 +11,7 @@
               </view>
               <view class="txt">{{item.value.detail}}</view>
             </view>
-          </view>
+          </navigator>
         </swiper-item>
       </block>
   </swiper>
