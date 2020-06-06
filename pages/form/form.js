@@ -84,6 +84,7 @@ function firtLoad(view, id) {
     view.setData({form, expired})
     return api.getFormData(id)
   }).then( resp => {
+    wx.hideLoading()
     console.log("get answer:", resp)
     var data = resp.data
     var kv = {}
@@ -97,9 +98,8 @@ function firtLoad(view, id) {
     var answered = Object.keys(kv).length > 0
     view.setData({ values: kv, answered: answered })
   }).catch( err => {
-    console.log("get form err", err)
-  }).finally( () => {
     wx.hideLoading()
+    console.log("get form err", err)
   })
 }
 

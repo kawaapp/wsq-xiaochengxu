@@ -58,6 +58,7 @@ function onLoad(view, options) {
 function firstLoad(view, id) {
   wx.showLoading()
   api.getEnroll(id).then( resp => {
+    wx.hideLoading()
     var enroll = resp.data
     var start = util.prettyTime(new Date(enroll.started_at*1000))
     var end   = util.prettyTime(new Date(enroll.expired_at*1000))
@@ -66,9 +67,8 @@ function firstLoad(view, id) {
     var expired = enroll.timeD.e
     view.setData({ enroll, expired})
   }).catch( err => {
-    console.log("get enrollment", err)
-  }).finally( () => {
     wx.hideLoading()
+    console.log("get enrollment", err)
   })
 
   // get user enroll info
