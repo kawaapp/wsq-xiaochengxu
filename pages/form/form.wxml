@@ -22,3 +22,6 @@
   <button wx:if="{{answered && !expired}}" class="gray" disabled >已参与</button>
   <button wx:if="{{expired}}" class="gray" disabled >已结束</button>
 </view>
+
+<!-- 登录 -->
+<kw-login class="login" />

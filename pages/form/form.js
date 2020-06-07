@@ -1,4 +1,5 @@
 const api = require('../../utils/api.js')
+const biz = require('../../utils/biz.js')
 const util = require('../../utils/util.js')
 
 Page({
@@ -20,7 +21,14 @@ Page({
 
   /* 用户点击右上角分享 */
   onShareAppMessage: function () {
-
+    api.logShare({ type: 'share-form' })
+    // biz
+    const { form } = this.data
+    return {
+      title: form.title,
+      path: `/pages/form/form?shared=true&id=${form.id}`,
+      imageUrl: form.poster,
+    }
   },
 
   clickForm: function() {
@@ -59,12 +67,33 @@ Page({
 })
 
 function onLoad(view, options) {
+  // 模拟新用户的场景
+  // if (options.shared) {
+  //   try {
+  //     wx.removeStorageSync('token')
+  //   } catch (e) { }
+  // }
+  if (!options.shared) {
+    firstLoad(view, options.id); return
+  }
+
+  // shared, login first
   api.autoAuth().then(() => {
-    firtLoad(view, options.id || 3)
+    firstLoad(view, options.id)
+  }).catch((err) => {
+    if (biz.accessNotAllowed(err)) {
+      wx.reLaunch({
+        url: '/pages/login/login?man=true&private=true',
+      })
+      return
+    }
+    wx.showToast({
+      title: '打开问卷失败:' + err.code, icon: 'none', duration: 2000,
+    })
   })
 }
 
-function firtLoad(view, id) {
+function firstLoad(view, id) {
   wx.showLoading()
   api.getForm(id).then( resp => {
     console.log("get form:", resp.data)

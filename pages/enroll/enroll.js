@@ -88,7 +88,7 @@ function onLoad(view, options) {
       return
     }
     wx.showToast({
-      title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
+      title: '打开报名失败:' + err.code, icon: 'none', duration: 2000,
     })
   })
 }
