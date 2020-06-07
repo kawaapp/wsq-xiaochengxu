@@ -32,6 +32,9 @@ Page({
   },
 
   clickForm: function() {
+    if (!biz.isUserHasName(this)) {
+      return
+    }
     if (this.data.answered) {
       wx.showToast({
         title: '已提交，不可再编辑啦!', icon: "none"
