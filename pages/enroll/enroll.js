@@ -10,6 +10,8 @@ Page({
     }, 
     enroll: {
     },
+    user_data: {
+    },
     expired: false,
     enrolled: false,
     showInfo: false,
@@ -54,7 +56,7 @@ Page({
   },
 
   submit: function (e) {
-    this.setData({ showJoin: false}, () => {
+    this.setData({ showJoin: false, data: e.detail}, () => {
       takein(this, this.data.enroll.id, e.detail)
     })
   }

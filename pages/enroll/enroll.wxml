@@ -60,9 +60,10 @@
 </view>
 
 <!-- 报名信息 -->
-<kw-detail 
+<info 
   show="{{showInfo}}" 
   enroll="{{enroll}}" 
+  data="{{data}}" 
   bind:onRequestClose="hideInfo" 
   bind:onClickCancel="leave"
 />

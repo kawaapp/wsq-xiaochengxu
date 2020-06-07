@@ -8,6 +8,10 @@ Component({
       type: Object,
       value: {},
     },
+    data: {
+      type: Object,
+      value: {},
+    },
     show: {
       type: Boolean,
       value: false,
