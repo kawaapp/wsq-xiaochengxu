@@ -74,3 +74,6 @@
   bind:onSubmit="submit" 
   bind:onRequestClose="hideJoin" 
 />
+
+<!-- 登录 -->
+<kw-login class="login" />

@@ -1,4 +1,5 @@
 const api = require('../../utils/api.js')
+const biz = require('../../utils/biz.js')
 const util = require('../../utils/util.js')
 
 Page({
@@ -36,6 +37,9 @@ Page({
   },
 
   showJoin: function(e) {
+    if (!biz.isUserHasName(this)) {
+      return
+    }
     this.setData({ showJoin: true })
   },
 
@@ -63,8 +67,29 @@ Page({
 })
 
 function onLoad(view, options) {
-  api.autoAuth().then(()=> {
+  // 模拟新用户的场景
+  // if (options.shared) {
+  //   try {
+  //     wx.removeStorageSync('token')
+  //   } catch (e) { }
+  // }
+  if (!options.shared) {
+    firstLoad(view, options.id); return
+  }
+
+  // shared, login first
+  api.autoAuth().then(() => {
     firstLoad(view, options.id)
+  }).catch((err) => {
+    if (biz.accessNotAllowed(err)) {
+      wx.reLaunch({
+        url: '/pages/login/login?man=true&private=true',
+      })
+      return
+    }
+    wx.showToast({
+      title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
+    })
   })
 }
 

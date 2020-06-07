@@ -2,6 +2,7 @@
   "navigationBarTitleText": "活动报名",
   "usingComponents": {
     "info": "./info/info",
-    "join": "./join/join"
+    "join": "./join/join",
+    "kw-login": "../../tmpl/login/dialog"
   }
 }
