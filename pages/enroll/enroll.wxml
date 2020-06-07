@@ -54,15 +54,22 @@
 </view>
 
 <view class="actionbar">
-  <button wx:if="{{!expired && !enrolled}}" bindtap="click" >报名参加</button>
-  <button wx:if="{{enrolled && !expired}}" bindtap="getInfo">报名信息</button>
+  <button wx:if="{{!expired && !enrolled}}" bindtap="showJoin" >报名参加</button>
+  <button wx:if="{{enrolled && !expired}}" bindtap="showInfo">报名信息</button>
   <button wx:if="{{expired}}" disabled bindtap="">已结束</button>
 </view>
 
-<!-- detail dialog -->
+<!-- 报名信息 -->
 <kw-detail 
   show="{{showInfo}}" 
   enroll="{{enroll}}" 
-  bind:onRequestClose="clickClose" 
-  bind:onClickCancel="clickCancel"
+  bind:onRequestClose="hideInfo" 
+  bind:onClickCancel="leave"
+/>
+
+<!-- 报名 -->
+<join show="{{showJoin}}" 
+  user_data="{{enroll.user_data}}" 
+  bind:onSubmit="submit" 
+  bind:onRequestClose="hideJoin" 
 />

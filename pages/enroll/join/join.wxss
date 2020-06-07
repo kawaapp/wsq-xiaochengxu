@@ -1,0 +1,57 @@
+.-title {
+  font-size: 32rpx;
+  color: gray;
+  padding: 24rpx 28rpx;
+}
+
+.mask {
+  position: fixed; 
+  top: 0px; left: 0px; right: 0px; bottom: -1000px;
+  z-index: 1999;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.dialog {
+  position: fixed;
+  top: 20vh; left: 96rpx; right: 96rpx;
+  z-index: 999;
+  background: white;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rpx 0rpx;
+}
+
+.close {
+  top: 12rpx;
+  right: 18rpx;
+  position: absolute;
+  width: 38rpx;
+  height: 38rpx;
+  z-index: 999;
+}
+
+.join_btn {
+  font-size: 32rpx;
+  width: 60%;
+  color: white;
+  background: #1890ff;
+  margin: 32rpx auto;
+}
+
+.join_list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0rpx 12rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.join_item {
+  background: #f8f8f8;
+  margin: 16rpx 12rpx;
+  padding: 18rpx;
+  height: 96rpx;
+  box-sizing: border-box;
+}

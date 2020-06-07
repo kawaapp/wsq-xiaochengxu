@@ -1,0 +1,20 @@
+<!-- input dialog -->
+<view class="mask" hidden="{{!show}}" bindtap="dummy" >
+  <view class="dialog join">
+    <image class="close" src="/res/del.png" bindtap="clickClose"/>
+    <view class="-title">报名</view>
+    <view class="join_list">
+      <!-- 姓名 -->
+      <input wx:if="{{user_data.name}}" bindinput="inputName" class="join_item" placeholder="姓名.."></input>
+      <!-- 公司 -->
+      <input wx:if="{{user_data.corp}}" bindinput="inputCorp" class="join_item" placeholder="公司.."></input>
+      <!-- 手机号 -->
+      <input wx:if="{{user_data.phone}}" bindinput="inputPhone" class="join_item" placeholder="手机号.."></input>
+      <!-- 微信 -->
+      <input wx:if="{{user_data.wx}}" bindinput="inputWx" class="join_item" placeholder="微信.."></input>
+    </view>
+    <view style="width:100%">
+      <button class="join_btn" bindtap="clickSubmit" >立刻报名</button>
+    </view>
+  </view>
+</view>

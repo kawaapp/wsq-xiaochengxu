@@ -13,6 +13,7 @@ Page({
     expired: false,
     enrolled: false,
     showInfo: false,
+    showJoin: false,
   },
 
   /* 生命周期函数--监听页面加载 */
@@ -32,20 +33,30 @@ Page({
     }
   },
 
-  click: function(e) {
-    takein(this, this.data.enroll.id)
+  showJoin: function(e) {
+    this.setData({ showJoin: true })
   },
 
-  getInfo: function(e) {
+  hideJoin: function(e) {
+    this.setData({ showJoin: false})
+  },
+
+  showInfo: function(e) {
     this.setData({ showInfo: true })
   },
 
-  clickClose: function() {
+  hideInfo: function() {
     this.setData({ showInfo: false })
   },
 
-  clickCancel: function() {
+  leave: function() {
     leave(this, this.data.enroll.id)
+  },
+
+  submit: function (e) {
+    this.setData({ showJoin: false}, () => {
+      takein(this, this.data.enroll.id, e.detail)
+    })
   }
 })
 
@@ -65,6 +76,9 @@ function firstLoad(view, id) {
     enroll.startend = `${start}-${end}`
     enroll.timeD = util.getTimeDistance(enroll.deadline)
     var expired = enroll.timeD.e
+    try {
+      enroll.user_data = JSON.parse(enroll.user_data)
+    } catch (err) {/* ignore */}
     view.setData({ enroll, expired})
   }).catch( err => {
     wx.hideLoading()
@@ -77,8 +91,8 @@ function firstLoad(view, id) {
   }).catch( err => { /* ingore */ })
 }
 
-function takein(view, id) {
-  api.enrollJoin({enroll_id: id}).then( resp => {
+function takein(view, id, data) {
+  api.enrollJoin({enroll_id: id, user_data: JSON.stringify(data)}).then( resp => {
     wx.showToast({
       title: '报名成功！',
     })
