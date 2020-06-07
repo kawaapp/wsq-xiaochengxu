@@ -22,31 +22,37 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
+  margin-top: -12rpx;
 }
 
 .item .img {
   border-radius: 12rpx;
   width: 110rpx;
   height: 110rpx;
-  min-width: 110rpx;
-  min-height: 110rpx;
   margin-right: 24rpx;
 }
 
 .item .h2 {
   font-size: 30rpx;
+  margin-bottom: 8rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  /* single line */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  margin-bottom: 8rpx;
 }
 
 .item .type {
-  font-size: 26rpx;
+  font-size: 24rpx;
   color: #1890ff;
-  padding: 4rpx 8rpx;
+  line-height: 32rpx;
+  padding: 0rpx 8rpx;
+  margin-right: 8rpx;
   border-radius: 4rpx;
-  border: 1rpx solid #1890ff;
+  border: 1px solid #1890ff;
 }
 
 .item .txt {

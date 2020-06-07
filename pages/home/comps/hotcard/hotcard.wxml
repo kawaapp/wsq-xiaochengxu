@@ -4,7 +4,7 @@
         <swiper-item class="item">
           <navigator url="{{item.url}}" class="inner" hover-class="none">
             <image class="img" mode='aspectFill' src="{{item.value_image || '/res/placeholder.png'}}"/>
-            <view>
+            <view style="width:568rpx">
               <view class="h2" >
                 <text class="type">{{item.typeStr}}</text> {{item.value.title}}
               </view>
