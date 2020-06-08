@@ -1,5 +1,5 @@
 <view class='card' wx:if="{{value.title}}" >
-  <view class='single-line speaker' bindtap='clickSpeaker'>
+  <view class='line1 speaker' bindtap='clickSpeaker'>
     <image src='{{theme.images}}/speaker.png'></image>
     <text style='margin-right: 8rpx;'>公告: </text> 
     <text>{{ value.title }}</text>

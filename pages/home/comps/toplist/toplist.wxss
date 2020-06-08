@@ -23,3 +23,9 @@
   position: relative;
   top: -2rpx;
 }
+
+.line1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
