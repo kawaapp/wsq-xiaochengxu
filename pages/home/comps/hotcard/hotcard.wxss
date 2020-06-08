@@ -6,7 +6,7 @@
 }
 
 .swiper {
-  height: 200rpx;
+  height: 180rpx;
   width: 100%;
 }
 
