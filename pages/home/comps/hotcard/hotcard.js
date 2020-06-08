@@ -38,7 +38,6 @@ function firstLoad(view) {
         item.url = `/pages/${item.key}/${item.key}?id=${item.value.id}`
     })
     view.setData({ items: resp.data })
-    console.log("get hots list", resp)
   }).catch( err => {
     console.log("get hots err", err)
   })

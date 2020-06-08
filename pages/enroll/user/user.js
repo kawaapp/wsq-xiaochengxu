@@ -39,7 +39,8 @@ function firsLoad(view, id) {
     users.map( user => {
       user.joinTime = util.prettyTime(new Date(user.created_at*1000))
     })
-    view.setData({ users: users, id: id, page: 1 })
+    var hasmore = users.length == PageSize
+    view.setData({ users: users, id: id, page: 1, hasmore })
   }).catch( err => {
     console.log("get enroll user:", err)
   })
@@ -57,8 +58,7 @@ function loadMore(view) {
       })
       hasmore = others.length == PageSize
     }
-    users.concat(others)
-    view.setData({ users, id: id, page: page+1, hasmore,  loading: false})
+    view.setData({ users: users.concat(others), id: id, page: page+1, hasmore,  loading: false})
   }).catch( err => {
     view.setData({ loading: false})
     console.log("get enroll user:", err)
