@@ -62,14 +62,13 @@ function onReachBottom() {
   view.setData({ loading: true})
   api.getUserCommentList(view.data.user.uid, since, limit).then(resp => {
     var hasmore = resp.data && resp.data.length == limit
-    view.setData({ hasmore: hasmore })
+    view.setData({ hasmore: hasmore, loading: false })
     view.setData({ comments: comments.concat(resp.data) })
   }).catch(err => {
+    view.setData({ loading: false })
     wx.showToast({
       title: '加载失败:'+err.code, icon: 'none',
     })
-  }).finally( () => {
-    view.setData({ loading: false })
   })
 }
 

@@ -58,10 +58,9 @@ function loadMore(view) {
       hasmore = others.length == PageSize
     }
     users.concat(others)
-    view.setData({ users, id: id, page: page+1, hasmore })
+    view.setData({ users, id: id, page: page+1, hasmore,  loading: false})
   }).catch( err => {
-    console.log("get enroll user:", err)
-  }).finally( () => {
     view.setData({ loading: false})
+    console.log("get enroll user:", err)
   })
 }
