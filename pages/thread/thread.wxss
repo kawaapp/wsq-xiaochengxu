@@ -46,22 +46,6 @@
   border-radius: 6rpx;
 }
 
-.reply {
-  padding: 14rpx 20rpx; 
-  margin-top: 8rpx;
-  font-size: 30rpx;
-}
-
-.reply .nickname {
-  color:#576b95;
-  font-weight: 650;
-}
-
-.reply .detail {
-  color:#333;
-  font-size: 30rpx;
-}
-
 .itemwrapper {
   margin-bottom: 16rpx;
 }
@@ -124,82 +108,8 @@
   width: 180rpx;
 }
 
-.input {
-  box-sizing: border-box;
-  position: fixed;
-  bottom: 0;
-  left: 0; right: 0;
-  z-index: 1000;
-  background: #fff;
-  padding: 12rpx 30rpx;
-}
-
-.input .hint {
-  font-size: 24rpx;
-  color: #959595;
-}
-
-.input .hint text {
-  font-size: 26rpx;
-  color: #333;
-  font-weight: 500;
-}
-
-.input input {
-  margin: 12rpx 0rpx;
-  width: 650rpx;
-  /* 使用padding与预期留白不一致，故使用border */
-  border-width: 15rpx 20rpx;
-  border-style: solid;
-  border-color:  #f8f8f8;
-  font-size: 30rpx;
-  background-color: #f8f8f8;
-  border-radius: 6rpx;
-}
-
-.input .send {
-  margin-top: 6rpx;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 64rpx;
-}
-
-.input .send image {
-  width: 48rpx;
-  height: 48rpx;
-  margin-right: 32rpx;
-}
-
-.input .send .del {
-  background: #ccc;
-  border-radius: 50%;
-  padding: 6rpx;
-  width: 32rpx;
-  height: 32rpx;
-}
-
-.input .send button {
-  margin-left: auto;
-  background: transparent;
-  color: white;
-  font-size: 32rpx;
-  padding: 6rpx 4rpx;
-  border-radius: 30rpx;
-}
-
 .share {
   margin-left: 20rpx;
-}
-
-.bg-mask {
-  position: fixed; 
-  top: 0px; left: 0px; right: 0px; bottom: -1000px;
-  z-index: 998;
-  /*background-color: #777;     
-  opacity:0.5; 
-  -moz-opacity:0.5;*/
-  background-color: rgba(0, 0, 0, .6);
 }
 
 .empty {

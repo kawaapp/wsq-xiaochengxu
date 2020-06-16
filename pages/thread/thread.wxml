@@ -102,7 +102,7 @@
       <navigator url="/pages/user/user/user?id={{item.author.id}}" style='margin:0 18rpx 0 0'>
         <image class="avatar-large" src="{{item.author.avatar || '/res/placeholder.png'}}"/>
       </navigator>
-      <view style='width:100%;' data-idx="{{index}}-{{sub}}" bindtap='clickListCommentAction'>
+      <view style='width:100%;' data-idx="{{index}}" bindtap='clickListItem'>
         <!-- Reply user name and content-->
         <view class='nickname'>
           {{ item.author.nickname || '匿名' }}
@@ -111,20 +111,8 @@
         <image wx:if="{{item.image}}" class="image" mode="widthFix" src="{{item.image}}"/>
     
         <!-- Reply List / Comment on Comment  -->
-        <view wx:if='{{item.reply_list}}' class='gray-bg reply'>
-          <view
-            wx:for="{{item.reply_list}}" 
-            wx:for-item="item"
-            wx:key="{{item.id}}"
-            wx:for-index="sub"
-            data-idx="{{index}}-{{sub}}"
-            catchtap='clickListCommentAction'
-            >
-            <text class='nickname'>{{item.author.nickname}}</text>
-            <text wx:if="{{item.reply}}">回复</text>
-            <text wx:if="{{item.reply}}" class='nickname'>{{item.replier.nickname}}</text>
-            <text class='detail'>: {{item.content}}</text>
-          </view>
+        <view wx:if='{{item.reply_list}}' class='gray-bg'>
+          <sublist comments="{{item.reply_list}}" />
         </view>
 
         <!-- Comment and Favor bar-->
@@ -166,12 +154,11 @@
 <view style='height:1000px;' wx:if="{{reply.focus}}"/>
 
 <!--底部评论框 -->
-<!--底部评论框 -->
 <view class='bottom-bar'>
   <view class='left' bindtap='threadCancel'>
     <image style='margin: 0 auto;' src="{{theme.images}}/arrow_left.png"></image>
   </view>
-  <view class='middle' bindtap='clickReply'>
+  <view class='middle' bindtap='clickReplyPost'>
     <text>说点什么...</text>
   </view>
   <view class='right center'>
@@ -183,38 +170,8 @@
   </view>
 </view>
 
-<!-- 隐藏输入框 -->
-<view class='bg-mask' bindtap='clickMask' wx:if="{{reply.focus}}" >
-</view>
-
-<block wx:if="{{reply.focus}}">
-  <view class="input" catchtap="dummy">
-    <view class="hint">回复 <text>{{reply.hint? reply.hint: '作者'}}</text>
-    </view>
-    <input
-      value='{{textMessage}}'
-      bindinput='bindInput'
-      bindconfirm="sendComment" 
-      placeholder-class="input_null" 
-      fixed="{{true}}"
-      maxlength="140" 
-      show-confirm-bar="{{true}}" 
-      confirm-type="send"
-      cursor-spacing="96rpx" 
-      focus="{{true}}"
-      placeholder="一定要友善发言哦..">
-    </input>
-    <view class="send">
-      <image style="{{reply.hint?'opacity:.3':''}}" catchtap="chooseImage" 
-      src="{{reply.image || '/res/photo.png'}}" />
-      <image class="del" catchtap="deleteImage" wx:if="{{reply.image}}" src="/res/del.png" />
-      <button catchtap="sendComment" class="btn-clear" 
-        style="color:{{theme.color}};{{(reply.text || reply.image)? '':'opacity: .3' }}">
-        回复   
-      </button>
-    </view>
-  </view>
-</block>
+<!-- 实际输入框 -->
+<xinput class="input" />
 
 <!-- 登录对话框 -->
 <kw-login class="login" />

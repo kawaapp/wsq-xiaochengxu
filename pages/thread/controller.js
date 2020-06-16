@@ -260,7 +260,11 @@ function onClickReplyPost(e) {
   if (!biz.isUserHasName(view)){
     return
   }
-  view.setData({ reply: { focus: true } })
+  view.showInputDialog({
+    success: (value) => {
+      replyToPost(view, value)
+    }
+  })
 }
 
 // --------- 对评论的动作 ---------
@@ -309,100 +313,71 @@ function onClickListComment(e) {
   if (!biz.isUserHasName(view)){
     return
   }
-
-  // commennt on comment
-  var d = view.data
   var idx = e.currentTarget.dataset.idx
-  var parent = d.comments[idx]
-  d.reply.index = idx
-  d.reply.hint = parent.author.nickname
-  d.reply.focus = true
+  var item = view.data.comments[idx]
 
-  // prepare ui state
-  view.setData({
-    reply: d.reply
+  view.showInputDialog({
+    parent: item,
+    success: function(value) {
+      replyToComment(view, idx, value)
+    }
   })
 }
 
-function onClickListCommentAction(e) {
+// 点击上下文菜单
+function onClickListItem(e) {
   var idx = e.currentTarget.dataset.idx
-  var array = idx.split('-')
-  var index = array[0], sub = array[1]
+  var item = view.data.comments[idx]
 
-  var actionDelete = function() {
-    if (!biz.isUserHasName(view)) {
-      return;
-    }
-    deleteComment(index, sub)
+  console.log("click list:" + idx, view.data.comments)
+
+  var menu = {
+    items: [],
+    actions: [],
   }
 
-  var actionReply = function() {
+  // 回复菜单
+  menu.items.push("回复")
+  menu.actions.push(() => {
     if (!biz.isUserHasName(view)) { 
       return; 
     }
-    // commennt on comment
-    var d = view.data
-    var hint 
-    if (!sub) {
-      hint = d.comments[index].author.nickname
-    } else {
-      hint = d.comments[index].reply_list[sub].author.nickname
-    }
-    d.reply.index = index
-    d.reply.subIndex = sub
-    d.reply.hint = hint
-    d.reply.focus = true
+    view.showInputDialog({
+      hint: item.author.nickname,
+      success: (value) => {
+        replyToComment(view, idx, value)
+      }
+    })
+  })
 
-    // prepare ui state
-    view.setData({
-      reply: d.reply
+  // 删除菜单
+  var user = app.globalData.userInfo
+  if (user && user.id == item.author_id) {
+    menu.items.push("删除")
+    menu.actions.push(() => {
+      deleteComment(view, idx)
     })
   }
 
-  var menu = {
-    items: ["回复"],
-    actions: [actionReply],
-  }
-  // 是否显示删除菜单
-  var uid = undefined
-  if (sub) {
-    uid = view.data.comments[index].reply_list[sub].author.id
-  } else {
-    uid = view.data.comments[index].author.id
-  }
-  var user = app.globalData.userInfo
-  if (user && user.id == uid) {
-    menu.items.push("删除")
-    menu.actions.push(actionDelete)
-  }
-  showActionSheet(menu.items, menu.actions)
+  // 拉起菜单
+  wx.showActionSheet({
+    itemList: menu.items,
+    success: function (res) {
+      var fn = menu.actions[res.tapIndex]
+      if (fn) { fn() }
+    },
+    fail: function (res) {
+      console.log(res.errMsg)
+    }
+  })
 }
 
-function deleteComment(index, sub) {
-  var item = {}
-  if (sub) {
-    var reply_list = view.data.comments[index].reply_list
-    var key = 'comments[' + index + '].reply_list'
-
-    item.id = reply_list[sub].id
-    item.action = function() {
-      reply_list.splice(sub, 1)
-      view.setData({
-        [key]: reply_list
-      })
-    }
-  } else {
-    var comments = view.data.comments
-    item.id = comments[index].id
-    item.action = function() {
-      comments.splice(index, 1)
-      view.setData({
-        comments: comments,
-      })
-    }
-  }
+function deleteComment(view, idx) {
+  var { comments } = view.data
+  var item = comments[idx]
   api.deleteComment(item.id).then( resp => {
-    item.action()
+    comments.splice(idx, 1)
+    view.setData({ comments })
     wx.showToast({
       title: '删除成功', icon: 'none'
     })
@@ -414,30 +389,38 @@ function deleteComment(index, sub) {
   })
 }
 
-// 发送评论，针对帖子、回复、回复的回复
-function onClickSendComment(e) {
-  const {text, image} = view.data.reply
-  if (util.isWhiteSpace(text) && !image) {
-    wx.showToast({
-      title: '评论不能为空', icon: 'none',
-    })
-    return
+// 回复评论
+function replyToComment(view, idx, value) {
+  var item = view.data.comments[idx]
+  // send data 
+  var data = {
+    post_id: item.post_id,
+    parent_id: item.id,
+    reply_id: item.author.id,
+    content: value.text,
   }
 
-  var reply = view.data.reply
-  if (reply.index >= 0) {
-    replyToComment(text, reply.index, reply.subIndex)
-  } else {
-    replyToPost(text)
-  }
+  // send
+  api.createComment(data).then(resp => {
+    var sublist = item.reply_list || []
+    sublist.push(resp.data)
+    view.setData({ [`comments[${idx}].reply_list`]: sublist })
+    wx.showToast({
+      title: '已发送', icon: 'success'
+    })
+  }).catch(err => {
+    wx.showToast({
+      title: '发送失败:'+err.code, icon: 'none'
+    })
+    console.log(err)
+  })
 }
 
-
-// comment on post 
-function replyToPost(replyText) {
+// 回复帖子
+function replyToPost(view, value) {
   var post = view.data.item.post
   var data = {
-    content: replyText,
+    content: value.text,
     post_id: post.id,
     reply_id: post.author.id
   }
@@ -445,7 +428,7 @@ function replyToPost(replyText) {
   var handler = undefined
 
   // upload image if exist 
-  var file = view.data.reply.image
+  var file = value.image
   if (file) {
     handler = api.uploadFile(file).then( url => {
       console.log("upload file success", url)
@@ -491,65 +474,6 @@ function replyToPost(replyText) {
     console.log(err)
   })
 }
-
-// 回复评论和评论的评论
-function replyToComment(text, idx, subIndex) {
-  // commennt on comment
-  var parent = view.data.comments[idx]
-  var key = 'comments[' + idx + '].reply_list'
-
-  // prepare ui state  TODO 这里需要和输入框双向绑定数据..
-
-  if (!parent.reply_list) {
-    parent.reply_list = []
-  }
-
-  // send data 
-  var data = {
-    post_id: view.data.item.post.id,
-    parent_id: parent.id,
-  }
-
-  // 评论的评论, 藏一个字符用来标识评论之评论
-  // TODO
-  // 为了简化后端逻辑，在此处隐藏一个不可见字符
-  // 来标识当前回复是不是针对回复的回复
-  var replier = undefined
-  if (subIndex && parent.reply_list.length > subIndex) {
-    var reply = parent.reply_list[subIndex]
-    data.reply_id = reply.author.id
-    data.content = '\r' + text
-    replier = reply.author
-  } else {
-    data.reply_id = parent.author.id
-    data.content = text
-  }
-
-  // send
-  api.createComment(data).then(resp => {
-    if (subIndex) {
-      resp.data.reply = true
-      resp.data.replier = replier
-    }
-    parent.reply_list.push(resp.data)
-    view.setData({
-      [key]: parent.reply_list
-    })
-    view.setData({
-      reply: { text: "", index: -1, subindex: -1, hint: "", focus: false }
-    })
-    wx.showToast({
-      title: '已发送', icon: 'success'
-    })
-    console.log("评论成功！！！", resp.data)
-  }).catch(err => {
-    wx.showToast({
-      title: '发送失败:'+err.code, icon: 'none'
-    })
-    console.log(err)
-  })
-}
-
 
 function massage(comments) {
   var i = 0, n = comments.length
@@ -627,10 +551,9 @@ module.exports = {
   onClickGoods: onClickGoods,
   onClickMenu: onClickMenu,
   onClickReplyPost: onClickReplyPost,
+  onClickListItem: onClickListItem,
   onClickListComment: onClickListComment,
   onClickListFavor: onClickListFavor,
-  onClickSendComment: onClickSendComment,
   onClikcFavorPost: onClikcFavorPost,
-  onClickListCommentAction: onClickListCommentAction,
   onClickShare: onClickShare,
 }

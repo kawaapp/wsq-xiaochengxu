@@ -1,0 +1,32 @@
+<!-- 隐藏输入框 -->
+<view class='bg-mask' bindtap='clickMask' wx:if="{{show}}" >
+</view>
+
+<block wx:if="{{show}}">
+  <view class="input" catchtap="dummy">
+    <view class="hint">回复 <text>{{params.hint? params.hint: '作者'}}</text>
+    </view>
+    <input
+      value='{{textMessage}}'
+      bindinput='bindInput'
+      bindconfirm="sendComment" 
+      placeholder-class="input_null" 
+      fixed="{{true}}"
+      maxlength="140" 
+      show-confirm-bar="{{true}}" 
+      confirm-type="send"
+      cursor-spacing="96rpx" 
+      focus="{{true}}"
+      placeholder="一定要友善发言哦..">
+    </input>
+    <view class="send">
+      <image class="send_image" style="{{params.hint?'opacity:.3':''}}" catchtap="chooseImage" 
+      src="{{image || '/res/photo.png'}}" />
+      <image class="del" catchtap="deleteImage" wx:if="{{image}}" src="/res/del.png" />
+      <view class="send_button" catchtap="sendComment"
+        style="color:{{color}};{{(text || image)? '':'opacity: .3' }}">
+        回复   
+      </view>
+    </view>
+  </view>
+</block>

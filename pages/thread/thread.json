@@ -3,6 +3,8 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
+    "sublist": "./sublist/sublist",
+    "xinput": "./xinput/xinput",
     "location": "../tmpl/location/location",
     "kw-loading": "../tmpl/loading/loading",
     "kw-text": "../tmpl/text/kw-text",

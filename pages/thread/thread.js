@@ -84,102 +84,66 @@ Page({
   onUnload: function() {
     ctr.onUnload()
   },
+
   onPullDownRefresh: function(e) {
     ctr.onPullDownRefresh(e)
   },
+
   onReachBottom: function(e) {
     ctr.onReachBottom(e)
   },
+
   onShareAppMessage: function (res) {
     return ctr.onClickShare(res)
   },
+
   clickMenu: function (e) {
     ctr.onClickMenu(e)
   },
+
   clickImage: function(e) {
     ctr.onClickImage(e)
   },
+  
   clickGoods: function(e) {
     ctr.onClickGoods(e)
   },
-  clickMask: function(e) {
-    this.setData({
-      reply: {
-        focus: false,
-        index: -1,
-        hint: "",
-      },
-    })
-    console.log("focus set false..")
-  },
-  clickReply: function(e) {
+  
+  clickReplyPost: function(e) {
     ctr.onClickReplyPost(e)
   },
+
   clickFavor: function(e) {
     ctr.onClikcFavorPost(e)
   },
+
+  clickListItem: function(e) {
+    ctr.onClickListItem(e)
+  },
+
   clickListComment: function(e) {
     ctr.onClickListComment(e)
   },
+
   clickListFavor: function(e) {
     ctr.onClickListFavor(e)
   },
-  sendComment: function (e, op) {
-    biz.subscribe("new-comment", () => {
-      ctr.onClickSendComment(e)
-    })
-  }, 
-  clickListCommentAction: function(e) {
-    ctr.onClickListCommentAction(e)
-  },
-
+  
   sharePoster: function(e) {
     util.sendRequest('post', this.data.item.post)
     wx.navigateTo({ url: '/pages/poster/poster'})
   },
 
-  chooseImage: function(e) {
-    chooseImage(this)
-  },
-
-  deleteImage: function(e) {
-    deleteImage(this)
-  },
-
-  bindInput: function(e) {
-    var reply = this.data.reply
-    reply.text = e.detail.value
-    if (e.detail.value && !reply.enable) {
-      reply.enable = true
-      this.setData({ reply: reply })
-    } else if (!e.detail.value && reply.enable) {
-      reply.enable = false
-      this.setData({ reply: reply })
-    }
-  },
+  showInputDialog: function(params) {
+    showInputDialog(this, params)
+  }
 })
 
-function chooseImage(view) {
-  if (view.data.reply.hint) {
-    return
+function showInputDialog(view, params) {
+  var input = view.selectComponent(".input")
+  if (input) {
+    input.show(params)
   }
-  wx.chooseImage({
-    count: 1,
-    sizeType: ['compressed'],
-    sourceType: ['album', 'camera'],
-    success: function (res) {
-      if (res.tempFilePaths.length > 0) {
-        var reply = view.data.reply
-        reply.image = res.tempFilePaths[0]
-        view.setData({ reply: reply })
-        console.log("choose images:", res)
-      }
-    },
-  })
+  console.log("show input dialog")
 }
 
-function deleteImage(view) {
-  var reply = view.data.reply
-  reply.image = ''
-  view.setData({reply: reply})
-}

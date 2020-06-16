@@ -1,0 +1,8 @@
+<view class="reply">
+  <view wx:for="{{comments}}" wx:key="id" catchtap='clickItem' data-idx="{{index}}">
+    <text class='nickname'>{{item.author.nickname}}</text>
+    <text wx:if="{{item.reply}}">回复</text>
+    <text wx:if="{{item.reply}}" class='nickname'>{{item.replier.nickname}}</text>
+    <text class='detail'>: {{item.content}}</text>
+  </view>
+</view>

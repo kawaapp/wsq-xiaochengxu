@@ -1,0 +1,15 @@
+.reply {
+  padding: 14rpx 20rpx; 
+  margin-top: 8rpx;
+  font-size: 30rpx;
+}
+
+.reply .nickname {
+  color:#576b95;
+  font-weight: 650;
+}
+
+.reply .detail {
+  color:#333;
+  font-size: 30rpx;
+}
