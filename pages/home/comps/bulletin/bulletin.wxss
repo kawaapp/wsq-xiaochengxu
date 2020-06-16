@@ -10,7 +10,7 @@
   font-size: 28rpx;
 }
 
-.speaker image {
+.speaker_image {
   width: 30rpx; 
   height: 30rpx;
   margin-right: 16rpx;

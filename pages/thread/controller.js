@@ -328,9 +328,6 @@ function onClickListComment(e) {
 function onClickListItem(e) {
   var idx = e.currentTarget.dataset.idx
   var item = view.data.comments[idx]
-
-  console.log("click list:" + idx, view.data.comments)
-
   var menu = {
     items: [],
     actions: [],
