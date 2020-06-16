@@ -1,5 +1,6 @@
 const kawa = require('../../../kawa.js')
 const util = require('../../../utils/util.js')
+const biz = require('../../../utils/biz.js')
 
 Component({
   /* 组件的属性列表 */
@@ -65,11 +66,12 @@ Component({
         })
         return
       }
-
-      if (params && params.success) {
-        params.success({ text, image })
-      }
-      this.hide()
+      biz.subscribe("new-comment", () => {
+        if (params && params.success) {
+          params.success({ text, image })
+        }
+        this.hide()
+      })
     }
   }
 })
