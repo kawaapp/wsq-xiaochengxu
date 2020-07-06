@@ -52,9 +52,6 @@ function render(app) {
     wx.setNavigationBarTitle({
       title: meta.app_name || '',
     })
-
-    // 检查
-    checkAdminPostOnly()
   })
 
   // 话题
@@ -79,15 +76,21 @@ function render(app) {
 
   // 当前用户
   app.onChange("userInfo", () => {
-    checkAdminPostOnly()
+    
   })
+
+  // 读写权限
+  checkAdminPostOnly()
 }
 
 function checkAdminPostOnly() {
-  const { meta, userInfo } = app.globalData
-  if (meta && meta.app_admin_only && userInfo && !userInfo.admin ) {
-    view && view.setData({ hideNewButton: true})
-  }
+  api.getUserPermission().then( resp => {
+    console.log("get permission:", resp.data)
+    var p = resp.data
+    if (!p.write_post) {
+      view.setData({ hideNewButton: true})
+    }
+  })
 }
 
 function fetchTopList() {

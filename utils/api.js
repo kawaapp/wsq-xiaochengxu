@@ -236,6 +236,14 @@ function updateUser(data) {
   })
 }
 
+// get user permission
+function getUserPermission() {
+  return req({
+    url: `${Host}/api/users/0/permissions`,
+    method: 'GET',
+  })
+}
+
 // return self user-info
 function self() {
   return req({
@@ -935,7 +943,8 @@ module.exports = {
   getUserCommentList: getUserCommentList,
   getUserFavorList: getUserFavorList,
   getUserFavoriteList: getUserFavoriteList,
-
+  getUserPermission: getUserPermission,
+  
   // follow
   isFollowing: isFollowing,
   follow: follow,
