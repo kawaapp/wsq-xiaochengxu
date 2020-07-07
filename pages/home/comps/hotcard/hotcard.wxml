@@ -1,5 +1,5 @@
 <view class="card" wx:if="{{items.length > 0}}">
-  <swiper class="swiper" circular="{{true}}" indicator-dots="{{true}}">
+  <swiper class="swiper" circular="{{true}}" indicator-dots="{{true}}" autoplay="true">
       <block wx:for="{{items}}" wx:key="*this">
         <swiper-item class="item">
           <navigator url="{{item.url}}" class="inner" hover-class="none">
