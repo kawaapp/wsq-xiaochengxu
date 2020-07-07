@@ -113,7 +113,7 @@
     
         <!-- Reply List / Comment on Comment  -->
         <view wx:if='{{item.reply_list}}' class='gray-bg'>
-          <sublist comments="{{item.reply_list}}" />
+          <sublist comments="{{item.reply_list}}" parent="{{item}}" />
         </view>
 
         <!-- Comment and Favor bar-->

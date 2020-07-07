@@ -8,6 +8,10 @@ Component({
     comments: {
       type: Array,
       value: []
+    },
+    parent: {
+      type: Object,
+      value: {}
     }
   },
 
@@ -68,18 +72,22 @@ function showActionSheet(view, idx) {
 }
 
 function replyToComment(view, idx, value) {
-  var { comments } = view.data
+  var { comments, parent } = view.data
   var item = comments[idx]
   // send data 
   var data = {
     post_id: item.post_id,
-    parent_id: item.id,
+    parent_id: parent.id,
     reply_id: item.author.id,
     content: '\r' + value.text,
   }
 
   // send
   api.createComment(data).then(resp => {
+    if (resp.data) {
+      resp.data.reply = true
+      resp.data.replier = item.author
+    }
     comments.push(resp.data)
     view.setData({ comments })
     wx.showToast({
