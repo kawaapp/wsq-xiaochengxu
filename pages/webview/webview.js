@@ -43,6 +43,13 @@ Page({
         wx.showToast({ title: '复制失败:' + err, icon: 'none'})
       }
     })
+  },
+
+  onShareAppMessage: function(res) {
+    const url = encodeURIComponent(this.data.link)
+    return {
+      path: `/pages/webview/webview?q=${url}`,
+    }
   }
 })
 
