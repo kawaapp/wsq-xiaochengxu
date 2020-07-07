@@ -316,6 +316,11 @@ function onClickListComment(e) {
   var idx = e.currentTarget.dataset.idx
   var item = view.data.comments[idx]
 
+  if (!item.author) {
+    wx.showToast({ title: '用户不存在！', icon: "none" })
+    return
+  }
+
   view.showInputDialog({
     hint: item.author.nickname,
     success: function(value) {
@@ -338,6 +343,10 @@ function onClickListItem(e) {
   menu.actions.push(() => {
     if (!biz.isUserHasName(view)) { 
       return; 
+    }
+    if (!item.author) {
+      wx.showToast({ title: '用户不存在！', icon: "none" })
+      return
     }
     view.showInputDialog({
       hint: item.author.nickname,

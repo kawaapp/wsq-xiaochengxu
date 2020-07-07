@@ -33,6 +33,10 @@ function showActionSheet(view, idx) {
   // 回复菜单
   menu.items.push("回复")
   menu.actions.push( () => {
+    if (!item.author) {
+      wx.showToast({ title: '用户不存在！', icon: "none" })
+      return
+    }
     showInputDialog({
       hint: item.author.nickname,
       success: (value) => {
