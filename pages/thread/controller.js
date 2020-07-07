@@ -317,7 +317,7 @@ function onClickListComment(e) {
   var item = view.data.comments[idx]
 
   view.showInputDialog({
-    parent: item,
+    hint: item.author.nickname,
     success: function(value) {
       replyToComment(view, idx, value)
     }
