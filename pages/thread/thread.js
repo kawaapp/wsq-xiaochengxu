@@ -128,6 +128,16 @@ Page({
   clickListFavor: function(e) {
     ctr.onClickListFavor(e)
   },
+
+  clickCommentImage: function(e) {
+    var item = e.target.dataset.item
+    if (item.image) {
+      wx.previewImage({
+        urls: [item.image],
+        current: item.image,
+      })
+    }
+  },
   
   sharePoster: function(e) {
     util.sendRequest('post', this.data.item.post)

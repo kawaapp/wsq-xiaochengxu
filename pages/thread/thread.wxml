@@ -108,7 +108,8 @@
           {{ item.author.nickname || '匿名' }}
         </view>
         <view class='detail'>{{item.content}}</view>
-        <image wx:if="{{item.image}}" class="image" mode="widthFix" src="{{item.image}}"/>
+        <image wx:if="{{item.image}}" catchtap="clickCommentImage" data-item="{{item}}"
+        class="image" mode="widthFix" src="{{item.image}}"/>
     
         <!-- Reply List / Comment on Comment  -->
         <view wx:if='{{item.reply_list}}' class='gray-bg'>
