@@ -145,14 +145,9 @@ function onClickFavor(e) {
 }
 
 function onClickComment(e) {
-  var idx = e.currentTarget.dataset.idx
-  var post = view.data.posts[idx]
-  util.sendRequest('post', {
-    idx: idx,
-    post: post
-  })
+  var item = e.currentTarget.dataset.item
   wx.navigateTo({
-    url: '/pages/thread/thread',
+    url: `/pages/thread/thread?pid=${item.id}`,
   })
 }
 
@@ -265,6 +260,15 @@ function onClickTopic(e) {
   fetchPostList("", tag)
 }
 
+function onClickAvatar(e) {
+  var item = e.target.dataset.item
+  if (item.author) {
+    wx.navigateTo({
+      url: `/pages/user/user/user?id=${item.author.id}`,
+    })
+  }
+}
+
 module.exports = {
   setup: setup,
   onLoad: onLoad,
@@ -275,4 +279,5 @@ module.exports = {
   onClickComment: onClickComment,
   onClickMenu: onClickMenu,
   onClickTopic: onClickTopic,
+  onClickAvatar: onClickAvatar,
 }

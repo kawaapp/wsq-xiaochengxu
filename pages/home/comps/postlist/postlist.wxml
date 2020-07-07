@@ -17,14 +17,14 @@
     <kw-adver type="home_feed"/>
   </view>
   <navigator url="/pages/thread/thread?pid={{item.id}}" hover-class="none">
-  <view class="card" wx:if="{{!item.ad}}" >
+    <view class="card" wx:if="{{!item.ad}}" >
     
     <!-- Content Area -->
-    <view data-idx="{{index}}">
+    <view>
       <view class="horizontal">
-        <navigator url="/pages/user/user/user?id={{item.author.id}}" style='margin: 10rpx 18rpx 10rpx 0px;'>
-          <image class='avatar-large' src="{{item.author.avatar || '/res/placeholder.png'}}" />
-        </navigator>
+        <view style='margin: 10rpx 18rpx 10rpx 0px;'>
+          <image class='avatar-large' src="{{item.author.avatar || '/res/placeholder.png'}}" catchtap="clickAvatar" data-item="{{item}}" />
+        </view>
         <view>
           <view class='title b5'>{{item.author.nickname || '匿名'}}
           <text wx:if="{{item.author.admin_label}}" 
@@ -49,9 +49,9 @@
     <!-- Comment and Favor bar -->
     <view class='flow-right'>
       <view class='fade-title' style='margin-right:auto;'>{{item.time}}</view>
-      <navigator url="/pages/thread/thread?pid={{item.id}}">
+      <view catchtap="commentClick" data-item="{{item}}">
           <comment comments="{{item.stats.comments}}" />
-        </navigator>
+      </view>
       <view catchtap='favorClick' data-idx="{{index}}">
         <kw-like favored="{{item.stats.favored}}" favors="{{item.stats.favors}}" />
       </view>
