@@ -136,6 +136,10 @@ Page({
 
   showInputDialog: function(params) {
     showInputDialog(this, params)
+  },
+
+  threadCancel: function(e) {
+    wx.navigateBack()
   }
 })
 
