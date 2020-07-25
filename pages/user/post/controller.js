@@ -1,6 +1,7 @@
 const api = require('../../../utils/api.js')
 const util = require('../../../utils/util.js')
 const biz = require('../../../utils/biz.js')
+const PageSize = 20
 
 var view = undefined
 function setup(v) {
@@ -19,11 +20,10 @@ function onLoad(options) {
   view.setData({loading: true})
 
   // fetch data 
-  api.getUserPostList(view.data.user.uid).then(resp => {
-    console.log("user get posts:", resp)
-    var posts = massage(resp.data)
-    view.setData({ posts: resp.data })
-    view.setData({ loading: false, hasmore: resp.data && resp.data.length == 20 })
+  api.getUserPostList(view.data.user.uid, 1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
+    view.setData({ posts: massage(resp.data) })
+    view.setData({ loading: false, hasmore, page: 1 })
   }).catch( err => {
     console.log(err)
     wx.showToast({
@@ -42,10 +42,11 @@ function onPullDownRefresh() {
   view.setData({ loading: true })
 
   // fetch data
-  api.getUserPostList(view.data.user.uid).then(resp => {
+  api.getUserPostList(view.data.user.uid, 1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length === 20
     var data = massage(resp.data)
     view.setData({ posts: data })
-    view.setData({ loading: false, hasmore: resp.data && resp.data.length === 20 })
+    view.setData({ loading: false, hasmore, page: 1 })
     wx.stopPullDownRefresh()
     wx.showToast({
       title: '刷新成功',
@@ -62,16 +63,14 @@ function onReachBottom() {
   if (view.data.loading || !view.data.hasmore) {
     return
   }
-  var posts = view.data.posts
-  var since = 0
-  var limit = 20
-  if (posts && posts.length > 0) {
-    since = posts[posts.length - 1].id
-  }
+
+  var { user, posts, page } = view.data
   view.setData({loading: true})
-  api.getUserPostList(view.data.user.uid, since, limit).then(resp => {
+
+  api.getUserPostList(user.uid, page+1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
     var data = massage(resp.data)
-    view.setData({ loading: false, hasmore: resp.data && resp.data.length == limit })
+    view.setData({ loading: false, hasmore, page: page+1 })
     view.setData({ posts: posts.concat(data) })
   }).catch( err=> {
     view.setData({ loading: false })

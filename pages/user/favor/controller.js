@@ -1,4 +1,5 @@
 const api = require('../../../utils/api.js')
+const PageSize = 20
 
 var view = undefined
 function setup(v) {
@@ -13,9 +14,9 @@ function onLoad(options) {
     view.data.user.uid = options.uid
   }
   view.setData({loading: true})
-  api.getUserFavorList(view.data.user.uid).then(resp => {
-    var hasmore = resp.data && resp.data.length == 20
-    view.setData({ loading: false, hasmore: hasmore })
+  api.getUserFavorList(view.data.user.uid, 1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
+    view.setData({ loading: false, hasmore: hasmore, page: 1 })
     view.setData({ favors: resp.data })
   }).catch( err => {
     console.log(err)
@@ -31,9 +32,9 @@ function onPullDownRefresh() {
     return
   }
   view.setData({ loading: true })
-  api.getUserFavorList(view.data.user.uid).then(resp => {
-    var hasmore = resp.data && resp.data.length === 20
-    view.setData({ loading: false, hasmore: hasmore })
+  api.getUserFavorList(view.data.user.uid, 1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length === PageSize
+    view.setData({ loading: false, hasmore: hasmore, page: 1 })
     view.setData({ favors: resp.data })
     wx.stopPullDownRefresh()
     wx.showToast({
@@ -52,19 +53,14 @@ function onReachBottom() {
   if (view.data.loading || !view.data.hasmore) {
     return
   }
-  var favors = view.data.favors
-  var since = 0
-  var limit = 20
-  if (favors && favors.length > 0) {
-    since = favors[favors.length - 1].id
-  }
+  var { user, favors, page } = view.data
   view.setData({loading: true})
-  api.getUserFavorList(view.data.user.uid, since, limit).then(resp => {
-    var hasmore = resp.data && resp.data.length == limit
+  api.getUserFavorList(user.uid, page+1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
     if (resp.data) {
       view.setData({ favors: favors.concat(resp.data) })
     }
-    view.setData({loading: false, hasmore: hasmore})
+    view.setData({loading: false, hasmore: hasmore, page: page+1})
   }).catch( err=> {
     view.setData({loading: false})
     wx.showToast({

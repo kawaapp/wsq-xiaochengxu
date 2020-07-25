@@ -1,4 +1,5 @@
 const api = require('../../../utils/api.js')
+const PageSize = 20
 
 var view = undefined
 function setup(_view) {
@@ -14,11 +15,10 @@ function onLoad(options) {
   }
 
   view.setData({loading: true})
-  api.getUserCommentList(view.data.user.uid).then(resp => {
-    var hasmore = resp.data && resp.data.length == 20
-    view.setData({ loading: false, hasmore: hasmore })
+  api.getUserCommentList(view.data.user.uid, 1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
+    view.setData({ loading: false, hasmore: hasmore, page: 1 })
     view.setData({ comments: resp.data })
-    console.log("get comment:", resp.data)
   }).catch( err => {
     console.log(err)    
     view.setData({ loading: false })
@@ -29,11 +29,10 @@ function onPullDownRefresh() {
   if (view.data.loading) {
     return
   }
-
   view.setData({ loading: true })
-  api.getUserCommentList(view.data.user.uid).then(resp => {
-    var hasmore = resp.data && resp.data.length == 20
-    view.setData({ loading: false, hasmore: hasmore })
+  api.getUserCommentList(view.data.user.uid, 1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
+    view.setData({ loading: false, hasmore: hasmore, page: 1})
     view.setData({ comments: resp.data })
     wx.stopPullDownRefresh()
     wx.showToast({
@@ -53,16 +52,13 @@ function onReachBottom() {
   if (view.data.loadng || !view.data.hasmore) {
     return
   }
-  var comments = view.data.comments
-  var since = 0
-  var limit = 20
-  if (comments && comments.length > 0) {
-    since = comments[comments.length - 1].id
-  }
+
+  var { user, comments, page } = view.data
   view.setData({ loading: true})
-  api.getUserCommentList(view.data.user.uid, since, limit).then(resp => {
-    var hasmore = resp.data && resp.data.length == limit
-    view.setData({ hasmore: hasmore, loading: false })
+
+  api.getUserCommentList(user.uid, page+1, PageSize).then(resp => {
+    var hasmore = resp.data && resp.data.length == PageSize
+    view.setData({ hasmore: hasmore, loading: false, page: page+1 })
     view.setData({ comments: comments.concat(resp.data) })
   }).catch(err => {
     view.setData({ loading: false })

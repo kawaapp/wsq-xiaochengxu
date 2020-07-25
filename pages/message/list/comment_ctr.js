@@ -1,5 +1,6 @@
 const api = require('../../../utils/api.js')
 const util = require('../../../utils/util.js')
+const PageSize = 20
 
 var view = undefined
 function setup(_view) {
@@ -11,9 +12,9 @@ function onUnload() {
 }
 
 function onLoad(opt) {
-  api.getMessageList('comment').then(resp => {
+  api.getMessageList('comment', 1, PageSize).then(resp => {
     var unpacked = unpackMsgContent(resp.data)
-    view.setData({ messages: unpacked })
+    view.setData({ messages: unpacked, page: 1 })
   })
 
   setTimeout(()=> {
@@ -27,11 +28,15 @@ function onPullDownRefresh() {
   }
 
   view.setData({ loading: true })
-  api.getMessageList('comment').then(resp => {
+  api.getMessageList('comment', 1, PageSize).then(resp => {
     wx.stopPullDownRefresh()
     var unpacked = unpackMsgContent(resp.data)
     var unread = getUnread(resp.data)
-    view.setData({ loading: false, hasmore: resp.data && resp.data.length == 20 })
+    view.setData({ 
+      loading: false, 
+      page: 1,
+      hasmore: resp.data && resp.data.length == 20 
+    })
     view.setData({ messages: unpacked, unread: unread })
     console.log(resp)
   }).catch(err => {
@@ -48,15 +53,16 @@ function onReachBottom() {
   if (view.data.loading || !view.data.hasmore) {
     return
   }
-  var messages = view.data.messages
-  var since = 0
-  var limit = 20
-  if (messages && messages.length > 0) {
-    since = messages[messages.length - 1].id
-  }
+
+  var { messages, page } = view.data
   view.setData({ loading: true })
-  api.getMessageList('comment', since, limit).then(resp => {
-    view.setData({ loading: false, hasmore: resp.data.length == limit})
+
+  api.getMessageList('comment', page+1, PageSize).then(resp => {
+    view.setData({ 
+      loading: false, 
+      page: page+1,
+      hasmore: resp.data.length == PageSize,
+    })
     var unpacked = unpackMsgContent(resp.data)
     view.setData({ messages: messages.concat(unpacked) })
   }).catch( err => {

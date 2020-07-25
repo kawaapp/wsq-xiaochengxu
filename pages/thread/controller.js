@@ -5,6 +5,7 @@ import meu from '../../utils/meu.js'
 import h2j from '../../utils/h2j/parser.js'
 
 const app = getApp()
+const PageSize = 20
 
 var view = undefined
 function setup(_view) {
@@ -89,11 +90,11 @@ function fetch(options) {
     })
 
     // request comments
-    api.getCommentList(item.post.id).then(resp => {
+    api.getCommentList(item.post.id, 1, PageSize).then(resp => {
+      var hasmore = resp.data && resp.data.length == PageSize
       view.setData({
-        comments: massage(resp.data)
+        comments: massage(resp.data), hasmore, page: 1,
       })
-      view.setData({ hasmore: resp.data && resp.data.length == 20})
     }).catch(err => {
       console.log('thread:', err)
     })
@@ -121,12 +122,12 @@ function onPullDownRefresh(e) {
     return
   }
   var pid = view.data.item.post.id
-  api.getCommentList(pid).then(resp => {
+  api.getCommentList(pid, 1, PageSize).then(resp => {
     wx.stopPullDownRefresh()
     if (resp.data) {
-      view.setData({ comments: massage(resp.data)})
+      var hasmore = resp.data.length == 20 
       view.setData({ 
-        hasmore: resp.data.length == 20 
+        comments: massage(resp.data), hasmore, page: 1
       })
     }
   }).catch(err => {
@@ -142,18 +143,12 @@ function onReachBottom(e) {
   if (view.data.loading || !view.data.hasmore) {
     return
   }
-  var sinceId = 0
-  var limit = 20
-  var comments = view.data.comments
-  if (comments.length > 0) {
-    sinceId = comments[comments.length - 1].id
-  }
-  var pid = view.data.item.post.id
-  console.log("get since id:" + sinceId)
+  var { item, comments, page } = view.data
   view.setData({loading: true})
-  api.getCommentList(pid, sinceId, limit).then(resp => {
-    var hasmore= resp.data && resp.data.length == limit
-    view.setData({ loading: false, hasmore: hasmore})
+
+  api.getCommentList(item.post.id, page+1, PageSize).then(resp => {
+    var hasmore= resp.data && resp.data.length == PageSize
+    view.setData({ loading: false, hasmore, page: page+1})
     view.setData({
       comments: comments.concat(massage(resp.data))
     })

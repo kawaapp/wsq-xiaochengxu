@@ -37,11 +37,13 @@ function refreshMessage() {
   })
 
   // refresh chat message
-  api.getChatUserList(0, PAGE_SIZE).then( resp => {
+  api.getChatUserList(1, PAGE_SIZE).then( resp => {
     wx.stopPullDownRefresh()
     onChatChanged(resp.data)
     view.setData({ chats: massage(resp.data)})
-    view.setData({ hasmore: resp.data && resp.data.length == PAGE_SIZE })
+    view.setData({ 
+      page: 1, hasmore: resp.data && resp.data.length == PAGE_SIZE 
+    })
   }).catch( err => {
     wx.stopPullDownRefresh()
     console.log(err)
@@ -83,18 +85,20 @@ function onReachBottom() {
   if (view.data.loading || !view.data.hasmore) {
     return
   }
-  var since = 0
-  if (view.data.chats.length > 0) {
-    since = view.data.chats[view.data.chats.length-1].id
-  }
-  api.getChatUserList(since, PAGE_SIZE).then(resp => {
-    view.setData({
-      chats: view.data.chats.concat(massage(resp.data))
-    })
+  var { chats, page } = view.data
+  view.setData({ loading: true })
+  
+  api.getChatUserList(page+1, PAGE_SIZE).then(resp => {
     view.setData({ 
-      hasmore: resp.data && resp.data.length == PAGE_SIZE 
+      chats: chats.concat(massage(resp.data)),
+      page: page+1, 
+      hasmore: resp.data && resp.data.length == PAGE_SIZE ,
+      loading: false,
     })
   }).catch(err => {
+    view.setData({
+      loading: false,
+    })
     console.log(err)
   })
 }

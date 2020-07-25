@@ -50,6 +50,7 @@ Component({
     tagArray: [],
     loading: false,
     hasmore: true,
+    page: 1,
   },
 
   observers: {

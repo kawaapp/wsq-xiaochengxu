@@ -52,8 +52,8 @@ function fetchPostList(filter, tag) {
   view.setData({posts: [] })
 
   var params = {
-    since_id: 0,
-    limit: PAGE_SIZE,
+    page: 1,
+    size: PAGE_SIZE,
     filter: filter,
     tag: tag,
   }
@@ -61,7 +61,7 @@ function fetchPostList(filter, tag) {
   api.getPostList(params).then(resp => {
     wx.stopPullDownRefresh()
     var hasmore = resp.data && resp.data.length === PAGE_SIZE
-    view.setData({ loading: false, hasmore: hasmore })
+    view.setData({ loading: false, hasmore: hasmore, page: 1 })
     view.setData({ posts: massage(resp.data)})
   }).catch(err => {
     wx.stopPullDownRefresh()
@@ -79,13 +79,7 @@ function onReachBottom() {
     return
   }
 
-  var filter = view.data.filter
-  var posts = view.data.posts
-
-  var sinceId = 0, limit = PAGE_SIZE
-  if (posts && posts.length > 0) {
-    sinceId = posts[posts.length - 1].id
-  }
+  var { filter, posts, page } = view.data
   var tagIndex = view.data.tagSelected
   var tag = ""
   if (tagIndex > 0) {
@@ -93,16 +87,16 @@ function onReachBottom() {
   }
 
   const params = {
-    since_id: sinceId,
-    limit: limit,
+    page: page + 1,
+    size: PAGE_SIZE,
     filter: filter,
     tag: tag,
   }
 
   view.setData({loading: true})
   api.getPostList(params).then((resp) => {
-    var hasmore = resp.data && resp.data.length === limit
-    view.setData({ loading: false, hasmore: hasmore })
+    var hasmore = resp.data && resp.data.length === PAGE_SIZE
+    view.setData({ loading: false, hasmore: hasmore, page: page + 1 })
     var styled = massage(resp.data)
     view.setData({ posts: posts.concat(styled)})
   }).catch((err) => {

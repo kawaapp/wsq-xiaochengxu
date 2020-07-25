@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -259,23 +259,23 @@ function getUser(id) {
   })
 }
 
-function getUserPostList(uid, since, limit) {
+function getUserPostList(uid, page, size) {
   return req({
-    url: `${Host}/api/users/${uid}/posts?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/users/${uid}/posts?page=${page}&size=${size}`,
     method: 'GET'
   })
 }
 
-function getUserCommentList(uid, since, limit) {
+function getUserCommentList(uid, page, size) {
   return req({
-    url: `${Host}/api/users/${uid}/comments?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/users/${uid}/comments?page=${page}&size=${size}`,
     method: 'GET'
   })
 }
 
-function getUserFavorList(uid, since, limit) {
+function getUserFavorList(uid, page, size) {
   return req({
-    url: `${Host}/api/users/${uid}/favors?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/users/${uid}/favors?page=${page}&size=${size}`,
     method: 'GET'
   })
 }
@@ -411,9 +411,9 @@ function deletePost(id) {
 }
 
 // get comment list
-function getCommentList(pid, since, limit) {
+function getCommentList(pid, page, size) {
   return req({
-    url: `${Host}/api/posts/${pid}/comments?since_id=${since || 0}&limit=${limit || 20}`,
+    url: `${Host}/api/posts/${pid}/comments?page=${page || 1}&size=${size || 20}`,
     method: 'GET'
   })
 }
@@ -448,9 +448,9 @@ function deleteComment(id) {
 }
 
 // favors
-function getPostFavorList(pid, since, limit) {
+function getPostFavorList(pid, page, size) {
   return req({
-    url: `${Host}/api/posts/${pid}/favors?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/posts/${pid}/favors?page=${page}&size=${size}`,
     method: 'GET'
   })
 }
@@ -478,9 +478,9 @@ function deletePostFavor(pid) {
 }
 
 // comment favors
-function getCommentFavorList(cid, since, limit) {
+function getCommentFavorList(cid, page, size) {
   return req({
-    url: `${Host}/api/comments/${cid}/favors?since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/comments/${cid}/favors?page=${page}&size=${size}`,
     method: 'GET'
   })
 }
@@ -532,9 +532,9 @@ function linkTagPost(data) {
 }
 
 // message
-function getMessageList(q, since, limit) {
+function getMessageList(q, page, size) {
   return req({
-    url: `${Host}/api/messages?q=${q}&since_id=${since}&limit=${limit}`,
+    url: `${Host}/api/messages?q=${q}&page=${page}&size=${size}`,
     method: 'GET'
   })
 }
@@ -561,20 +561,14 @@ function setAllMessageRead(which) {
 }
 
 // 私信接口
-function getChatUserList(since, limit) {
+function getChatUserList(page, size) {
   return req({
-    url: `${Host}/api/chat/users?since_id=${since || 0}&limit=${limit || 20}`,
+    url: `${Host}/api/chat/users?page=${page || 1}&size=${size || 20}`,
     method: 'GET'
   })
 }
 
 function getChatListFrom(uid, since, limit) {
-  if (!since) {
-    since = ''  
-  }
-  if (!limit) {
-    limit = ''
-  }
   return req({
     url: `${Host}/api/chat/messages?from=${uid}&since_id=${since}&limit=${limit}`,
     method: 'GET'
@@ -980,7 +974,7 @@ module.exports = {
   createPostFavor: createPostFavor,
   deletePostFavor: deletePostFavor,
 
-  getCommentList: getCommentList,
+  getCommentFavorList: getCommentFavorList,
   getCommentFavorCount: getCommentFavorCount,
   createCommentFavor: createCommentFavor,
   deleteCommentFavor: deleteCommentFavor,
