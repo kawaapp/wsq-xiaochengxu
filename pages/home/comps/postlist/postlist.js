@@ -15,6 +15,10 @@ Component({
       type: String,
       value: "",
     },
+    sort: {
+      type: String,
+      value: '',
+    },
     tags: {
       type: Array,
       value: [],

@@ -64,6 +64,10 @@
   </block>
 
   <block wx:elif="{{tab.current==1}}">
+    <postlist class="tabpage" sort="hot" />
+  </block>
+
+  <block wx:elif="{{tab.current==2}}">
     <postlist class="tabpage" filter="val" />
   </block>
 

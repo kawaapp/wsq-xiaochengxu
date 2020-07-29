@@ -56,6 +56,7 @@ function fetchPostList(filter, tag) {
     size: PAGE_SIZE,
     filter: filter,
     tag: tag,
+    sort: view.data.sort,
   }
 
   api.getPostList(params).then(resp => {
@@ -79,7 +80,7 @@ function onReachBottom() {
     return
   }
 
-  var { filter, posts, page } = view.data
+  var { filter, sort, posts, page } = view.data
   var tagIndex = view.data.tagSelected
   var tag = ""
   if (tagIndex > 0) {
@@ -91,6 +92,7 @@ function onReachBottom() {
     size: PAGE_SIZE,
     filter: filter,
     tag: tag,
+    sort: sort,
   }
 
   view.setData({loading: true})

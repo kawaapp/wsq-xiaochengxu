@@ -27,7 +27,7 @@ Page({
     hideNewButton: false,
     tab: {
       current: 0, //预设默认选中的栏目
-      items: ["全部", "精华", "活跃"],
+      items: ["全部", "热门", "精华", "活跃"],
     },
     tags: [],
     signed: false,
