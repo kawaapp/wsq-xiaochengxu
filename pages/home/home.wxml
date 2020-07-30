@@ -54,9 +54,6 @@
   <kw-tab bind:onTabChanged="onTabChanged" items="{{tab.items}}" />
 </view>
 
-<!-- 线 -->
-<view style='margin-bottom:1rpx; background-color: #fefefe;'/>
-
 <!-- 列表 -->
 <view style="min-height:100vh">
   <block wx:if="{{tab.current==0}}">

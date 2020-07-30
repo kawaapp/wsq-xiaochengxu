@@ -51,9 +51,13 @@
 }
 
 .tablayout {
+  position: sticky;
+  top: 0;
+  z-index: 1999999;
   display:flex;
   align-items:center; 
   background:white;
+  border-bottom: 1px solid #eee;
 }
 
 .tablayout .search {
