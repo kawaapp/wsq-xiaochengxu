@@ -15,33 +15,28 @@ Page({
     },
     hideResult: true,
     showDetail: false, 
+    votes: {
+    },
   },
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
+    const user = app.globalData.userInfo
+    this.setData({ user: user })
+
     // 模拟新用户的场景
     // if (options.shared) {
     //   try {
     //     wx.removeStorageSync('token')
     //   } catch (e) { }
     // }
-    const setup = () => {
-      api.getPoll(options.id).then(resp => {
-        this.setData({ poll: massage(resp.data) })
-      }).catch(err => {
-        console.log("get poll err:", err)
-        wx.showToast({
-          title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
-        })
-      })
-    }
     if (!options.shared) {
-      setup(); return
+      firstLoad(this, options.id); return
     }
 
     // shared, login first
     api.autoAuth().then(() => {
-      setup()
+      firstLoad(this, options.id);
     }).catch((err) => {
       if (biz.accessNotAllowed(err)) {
         wx.reLaunch({
@@ -77,23 +72,102 @@ Page({
 
   clickVote: function(e) {
     const i = e.currentTarget.dataset.i
-    const data = {
-      poll_id: this.data.poll.id,
-      user_id: app.globalData.userInfo.id,
+    const { poll, user, votes } = this.data
+    
+    const params = {
+      poll_id: poll.id,
+      user_id: user.id,
       choice: i,
     }
-    console.log("click vote..", data)
-    api.createVote(data).then( resp => {
-      this.setData({ poll: massage(resp.data) })
-      wx.showToast({
-        title: '投票成功!'
-      })
-    }).catch(err => {
-      console.log("poll err:", err)
-      wx.showToast({ title: mapError(err), icon: 'none' })
-    })
+    
+    // 多选取消
+    if (poll.multiple && votes[i]) {
+      voteCancel(this, params)
+    }
+
+    // 多选选择
+    if (poll.multiple && !votes[i]) {
+      voteSummit(this, params)
+    }
+
+    // 单选重选
+    if (!poll.multiple && votes[i]) {
+      // ignore
+    }
+
+    // 单选选择
+    if (!poll.multiple && !votes[i]) {
+      voteRevote(this, params)
+    }
   }
 })
+
+function firstLoad(view, id) {
+  // get poll
+  api.getPoll(id).then( resp => {
+    view.setData({ poll: massage(resp.data) })
+  }).catch(err => {
+    console.log("get poll err:", err)
+    wx.showToast({
+      title: '打开投票失败:' + err.code, icon: 'none', duration: 2000,
+    })
+  })
+
+  // get vote
+  api.getUserVote(id).then( resp => {
+    view.setData({ votes : getResult(resp.data) })
+  })
+}
+
+function voteSummit(view, params) {
+  wx.showLoading({
+    title: '',
+  })
+  api.voteSubmit(params).then( resp => {
+    var { votes } = view.data
+    votes[params.choice] = true
+    console.log("get votes result:", resp.data)
+    view.setData({ poll: massage(resp.data), votes})
+    wx.showToast({ title: '投票成功!' })
+  }).catch(err => {
+    console.log("poll err:", err)
+    wx.showToast({ title: mapError(err), icon: 'none' })
+  })
+}
+
+function voteCancel(view, params) {
+  api.voteCancel(params).then( resp => {
+    var { votes } = view.data
+    votes[params.choice] = false
+    view.setData({ poll: massage(resp.data), votes})
+    wx.showToast({ title: '取消成功!' })
+  }).catch( err => {
+    console.log("poll err:", err)
+  })
+}
+
+// 先取消之前投票再投票
+function voteRevote(view, params) {
+  const { votes } = view.data
+  const key = Object.keys(votes)[0]
+  var handler = undefined
+  if (key !== undefined) {
+    handler = api.voteCancel({...params, choice: parseInt(key)}).then( () => {
+      return api.voteSubmit(params)
+    })
+  } else {
+    handler = api.voteSubmit(params)
+  }
+  handler.then( resp => {
+    var votes = {}
+    votes[params.choice] = true
+    view.setData({ poll: massage(resp.data), votes })
+    wx.showToast({ title: '投票成功!' })
+  }).catch( err => {
+    console.log("vote err", err)
+    wx.showToast({ title: mapError(err), icon: 'none' })
+  })
+}
 
 function mapError(err) {
   var text = "投票失败!"
@@ -129,4 +203,13 @@ function massage(poll) {
   poll.start = format(poll.started_at)
   poll.expire = format(poll.expired_at)
   return poll
+}
+
+function getResult(data) {
+  const array = data || []
+  var votes = {}
+  array.map( v => {
+    votes[v.choice] = true
+  })
+  return votes
 }

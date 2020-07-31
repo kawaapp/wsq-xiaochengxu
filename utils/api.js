@@ -2,8 +2,8 @@ const util = require('util.js')
 const kawa = require('../kawa.js')
 
 // ALL server-side API
-//const Host = "http://127.0.0.1:1323"
-const Host = "https://wsq.kawaapp.com"
+const Host = "http://127.0.0.1:1323"
+//const Host = "https://wsq.kawaapp.com"
 const AppKey = kawa.AppKey
 
 let g = {
@@ -824,11 +824,35 @@ function getPoll(id) {
   })
 }
 
+// deprecated!
 function createVote(data) {
   return req({
     url: `${Host}/api/polls/votes`,
     method: `POST`,
     data: data,
+  })
+}
+
+function voteSubmit(params) {
+  return req({
+    url: `${Host}/api/polls/votes/submit`,
+    method: `POST`,
+    data: params,
+  })
+}
+
+function voteCancel(params) {
+  return req({
+    url: `${Host}/api/polls/votes/cancel`,
+    method: `POST`,
+    data: params,
+  })
+}
+
+function getUserVote(pid) {
+  return req({
+    url: `${Host}/api/polls/${pid}/votes`,
+    method: `GET`,
   })
 }
 
@@ -1041,7 +1065,10 @@ module.exports = {
   // poll
   getPollList: getPollList,
   getPoll: getPoll,
+  getUserVote: getUserVote,
   createVote: createVote,
+  voteSubmit: voteSubmit,
+  voteCancel: voteCancel,
 
   // join
   createJoinRequest: createJoinRequest,

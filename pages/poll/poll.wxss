@@ -76,9 +76,17 @@ page {
 }
 
 .body .title {
+  display: flex;
+  align-items: center;
   font-size: 32rpx;
   font-weight: bold;
   margin-bottom: 16rpx;
+}
+
+.body .img64 {
+  margin-left: 12rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 
 .vote .number {

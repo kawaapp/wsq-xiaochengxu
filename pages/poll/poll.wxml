@@ -25,11 +25,14 @@
   <view class="tip">{{poll.secret && !poll.voted ? '结果投票后可见':''}}</view>
   <view class="tip">{{poll.voted ? '您已经投过票了':''}}</view>
 
-  <view class="vote-title">参与投票</view>
+  <view class="vote-title">参与投票[{{poll.multiple? "多选":"单选"}}]</view>
   <view wx:for="{{poll.options}}" wx:key="id" class="vote">
     <image class="image" wx:if="{{item.image}}" src="{{item.image}}" />
     <view class="body" style="{{image && 'width: 472rpx'}}"  bindtap="clickVote" data-i="{{index}}">
-      <view class="title">{{item.title}}</view>
+      <view class="title">
+        {{item.title}} 
+        <image wx:if="{{votes[index]}}" class="img64" src="/res/right.png"></image>
+      </view>
       <progress 
         percent="{{item.percent}}"
         color="{{theme.color}}"
