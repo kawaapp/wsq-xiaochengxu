@@ -14,6 +14,11 @@ function onUnload() {
 }
 
 function onLoad(options) {
+  if (!options.id || options.id == 0) {
+   showWarning()
+    return
+  }
+
   // user info
   fetchUser(options.id)
 
@@ -22,6 +27,16 @@ function onLoad(options) {
 
   // fetch post
   fetchPostList(options.id)
+}
+
+function showWarning() {
+  wx.showModal({
+    title: '提示',
+    content: '用户不存在，或已经被删除！',
+    success (res) {
+      wx.navigateBack()
+    }
+  })
 }
 
 function onReachBottom() {
