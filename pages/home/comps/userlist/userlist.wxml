@@ -6,7 +6,7 @@
     <view class='item'>
       <image wx:if="{{index<3}}" class='ranking' src="/res/rank_{{index+1}}.png" />
       <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
-      <image class='avatar' src="{{item.avatar}}"></image>
+      <image class='avatar' src="{{item.avatar || '/res/placeholder.png'}}"></image>
       <text class='name' >{{item.nickname}}</text>
       <text wx:if="{{item.admin_label}}" 
           class="user-label"
