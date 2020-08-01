@@ -4,7 +4,8 @@
 <!-- 内容 -->
 <view class="card" style='z-index:1'>
   <view class="horizontal">
-    <navigator url="/pages/user/user/user?id={{item.post.author.id}}" style='margin-right:18rpx;'>
+    <navigator url="/pages/user/user/user?id={{item.post.author.id}}" 
+     hover-class="none" style='margin-right:18rpx;'>
       <image class='avatar-large' src="{{item.post.author.avatar || '/res/placeholder.png'}}"/>
     </navigator>
     <view>
@@ -99,7 +100,8 @@
   <view wx:for="{{comments}}" wx:for-item="item" wx:key="id">
     <view wx:if="{{index != 0}}" class='line' style='margin-left:112rpx;'></view>
     <view class="comment">
-      <navigator url="/pages/user/user/user?id={{item.author.id}}" style='margin:0 18rpx 0 0'>
+      <navigator url="/pages/user/user/user?id={{item.author.id}}" 
+      style='margin:0 18rpx 0 0' hover-class="none">
         <image class="avatar-large" src="{{item.author.avatar || '/res/placeholder.png'}}"/>
       </navigator>
       <view style='width:100%;' data-idx="{{index}}" bindtap='clickListItem'>
