@@ -44,3 +44,19 @@
   margin-top: 8rpx;
 }
 
+.infogroup {
+  position: absolute;
+  right: 82rpx;
+  top: 0px;
+  display: flex;
+}
+
+.infotag {
+  background: #1890ff;
+  color: white;
+  font-size: 24rpx;
+  padding: 2rpx 6rpx;
+  margin-left: 12rpx;
+}
+
+

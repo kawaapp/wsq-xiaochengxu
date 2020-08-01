@@ -53,7 +53,7 @@
 .tablayout {
   position: sticky;
   top: 0;
-  z-index: 1999999;
+  z-index: 9998;
   display:flex;
   align-items:center; 
   background:white;

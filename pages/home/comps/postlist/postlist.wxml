@@ -19,6 +19,12 @@
   <navigator url="/pages/thread/thread?pid={{item.id}}" hover-class="none">
     <view class="card" wx:if="{{!item.ad}}" >
     
+    <!-- 标签 -->
+    <view class="infogroup">
+      <view wx:if="{{item.status&4}}" class="infotag" style="background:#ccc;">已隐藏</view>
+      <view wx:if="{{item.status&8}}" class="infotag">待审核</view>
+    </view>
+
     <!-- Content Area -->
     <view>
       <view class="horizontal">
