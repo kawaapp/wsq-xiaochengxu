@@ -21,9 +21,6 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
-    const user = app.globalData.userInfo
-    this.setData({ user: user })
-
     // 模拟新用户的场景
     // if (options.shared) {
     //   try {
@@ -72,11 +69,10 @@ Page({
 
   clickVote: function(e) {
     const i = e.currentTarget.dataset.i
-    const { poll, user, votes } = this.data
+    const { poll, votes } = this.data
     
     const params = {
       poll_id: poll.id,
-      user_id: user.id,
       choice: i,
     }
     
