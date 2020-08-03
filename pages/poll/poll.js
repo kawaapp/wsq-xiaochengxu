@@ -143,6 +143,7 @@ function voteCancel(view, params) {
     wx.showToast({ title: '取消成功!' })
   }).catch( err => {
     console.log("poll err:", err)
+    wx.showToast({ title: mapError(err), icon: 'none' })
   })
 }
 
