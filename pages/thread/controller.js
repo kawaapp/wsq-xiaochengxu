@@ -523,6 +523,14 @@ function showActionSheet(menus, actions) {
 }
 
 function onClickShare(res) {
+  var post = view.data.item.post
+  if (post.status&8) {
+    return {
+      title: "审核中的内容仅自己可见",
+      imageUrl: "/res/placeholder.png"
+    }
+  }
+
   // 不精确的分享统计
   api.logShare({type: 'share-post'})
 
@@ -530,7 +538,6 @@ function onClickShare(res) {
   if (res.from === 'button') {
     console.log(res.target)
   }
-  var post = view.data.item.post
   var image = undefined
   if (post.images && post.images.length > 0) {
     image = post.images[0]
