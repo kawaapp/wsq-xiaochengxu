@@ -505,6 +505,11 @@ function formatTime(item) {
     try {
       var images = JSON.parse(item.media.path)
       item.image = images[0]
+      // 图片延迟显示 - 2分钟
+      var ts = (new Date().getTime()/1000) - 2 * 60
+      if (item.image && item.created_at > ts) {
+        item.image = '/res/auditing.png'
+      }
     } catch(err){}
   }
 }

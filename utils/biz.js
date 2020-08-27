@@ -98,6 +98,8 @@ function parsePost(post) {
   return post
 }
 
+// 图片在创建2分钟内不予显示，后台系统需要最多2分钟时间
+// 才能检测出图片是否违规，否则腾讯的傻X会认为你没有审核
 function parseMedia(post) {
   var media = post.media
   if (media) {
@@ -112,6 +114,12 @@ function parseMedia(post) {
         post.goods = JSON.parse(media.path)
       }
     } catch (err) { }
+  }
+
+  // 延迟显示
+  var ts = (new Date().getTime()/1000) - 2 * 60
+  if (post.images && post.created_at > ts) {
+    post.images = post.images.map( () => '/res/auditing.png' )
   }
 }
 
