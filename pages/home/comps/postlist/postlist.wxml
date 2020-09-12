@@ -42,7 +42,11 @@
             style="background:{{theme.levelColor}}; opacity: .8"
           >{{item.author.level_label}}</text>
           </view>
-          <view class='subtitle'>{{item.agoTime}}</view>
+          <view class='subtitle verified'>
+            <image wx:if="{{item.author.role}}" class="verified_img" src="/res/verified.png" />
+            <text wx:if="{{item.author.role}}" space="ensp">{{item.author.role.name}} · </text>
+            <text>{{item.agoTime}} </text>
+          </view>
         </view>
         <image class='menu' src="/res/down.png" catchtap='clickMenu' data-idx='{{index}}' />
       </view>

@@ -59,4 +59,14 @@
   margin-left: 12rpx;
 }
 
+.verified {
+  display: flex;
+  align-items: center;
+}
 
+.verified_img {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 4rpx;
+  opacity: .9;
+}

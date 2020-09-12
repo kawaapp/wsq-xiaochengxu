@@ -20,6 +20,21 @@
   border-radius: 50%;
 }
 
+.verified {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #888888;
+  margin-left: 12rpx;
+}
+
+.verified_img {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 4rpx;
+  opacity: .9;
+}
+
 .icon-small {
   width: 72rpx;
   height: 72rpx;

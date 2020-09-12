@@ -19,7 +19,11 @@
           style="background:{{theme.levelColor}}; opacity: .8"
         >{{item.post.author.level_label}}</text> 
       </view>
-      <view class='subtitle'>{{item.post.agoTime}}</view>
+      <view class='subtitle verified'>
+          <image wx:if="{{item.post.author.role}}" class="verified_img" src="/res/verified.png" />
+          <text wx:if="{{item.post.author.role}}" space="ensp">{{item.post.author.role.name}} · </text>
+          <text>{{item.post.agoTime}} </text>
+      </view>
     </view>
     <image class='menu' src="/res/down.png" catchtap='clickMenu' data-idx='{{index}}' />
   </view>
@@ -107,7 +111,8 @@
       <view style='width:100%;' data-idx="{{index}}" bindtap='clickListItem'>
         <!-- Reply user name and content-->
         <view class='nickname'>
-          {{ item.author.nickname || '匿名' }}
+          <span style="margin-right:4rpx">{{ item.author.nickname || '匿名' }}</span>
+          <image wx:if="{{item.author.role}}" class="verified_img" src="/res/verified.png" />
         </view>
         <view class='detail'>{{item.content}}</view>
         <image wx:if="{{item.image}}" catchtap="clickCommentImage" data-item="{{item}}"

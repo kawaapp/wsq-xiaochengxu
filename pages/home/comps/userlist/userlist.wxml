@@ -12,11 +12,14 @@
           class="user-label"
           style="background:{{theme.adminColor}}; opacity: .9"
         >管理员</text>
-        <text wx:if="{{item.level_label}}" 
+      <text wx:if="{{item.level_label}}" 
           class="user-label"
           style="background:{{theme.levelColor}}; opacity: .8"
         >{{item.level_label}}</text>
-      <view style='width: 12rpx;'> </view>
+      <view class='verified'>
+        <image wx:if="{{item.role}}" class="verified_img" src="/res/verified.png" />
+        <text wx:if="{{item.role}}" >{{item.role.name}}</text>
+      </view>
     </view>
   </navigator>
   </view>

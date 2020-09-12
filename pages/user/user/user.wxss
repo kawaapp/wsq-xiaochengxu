@@ -23,6 +23,20 @@ page {
   margin-top: 24rpx;
 }
 
+.verified {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.verified_img {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 4rpx;
+  opacity: .9;
+}
+
 .vertical .ts {
   font-size: 28rpx;
   color: #444;

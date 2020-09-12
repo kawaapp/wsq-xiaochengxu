@@ -26,10 +26,14 @@
           style='background-color:{{theme.gradeColor}}'
           bindtap='clickExp'>{{expLabel}}</text>
       </view>
-      <button wx:if="{{user.nickname && metadata.user_mode}}"
+      <view class='subtitle verified'>
+        <image wx:if="{{user.role}}" class="verified_img" src="/res/verified.png" />
+        <text wx:if="{{user.role}}" space="ensp">{{user.role.name}} · </text>
+        <button wx:if="{{user.nickname && metadata.user_mode}}"
         open-type="getPhoneNumber"
         bindgetphonenumber="getPhoneNumber"
         class='btn-clear subtitle'>{{user.phone? user.phone: '绑定手机号'}}</button>
+      </view>
     </view>
     <view wx:if="{{user.nickname}}" class="setting"> 
       <navigator url="/pages/me/edit">
