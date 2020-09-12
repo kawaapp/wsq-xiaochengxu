@@ -37,14 +37,10 @@ function onLoad(options) {
   }
 
   // 只有用户绑定了昵称，并且开启了经验系统才更新用户等级
-  if (user.nickname && meta.app_exp_limit) {
-    const grades = app.globalData.grades
-    var i = biz.getGrade(grades, user.exp_count)
-    if (i != undefined) {
-      view.setData({
-        expLabel: 'LV' + grades[i].level + ' ' + grades[i].show_name,
-      })
-    }
+  if (user.nickname && meta.app_exp_limit && user.exp_name) {
+    view.setData({
+      expLabel: 'LV' + user.exp_level + ' ' + user.exp_name,
+    })
   }
 }
 

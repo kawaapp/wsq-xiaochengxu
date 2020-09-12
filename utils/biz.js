@@ -51,28 +51,6 @@ function getPhoneNumber(ecrypted, iv) {
   })
 }
 
-// 最低级别需要经验应该为 0 
-// 否则初始的时候无法获得等级
-function getGrade(grades, exp) {
-  if (!grades || grades.length == 0) {
-    return
-  }
-
-  // 从小到大排列
-  grades.sort((a, b) => {
-    return a.level > b.level
-  })
-
-  // 遇到第一个满足条件的等级时退出
-  // 得到当前对应的等级
-  for (var i = grades.length-1; i >= 0; i--) {
-    if (exp >= grades[i].need_exp) {
-      return i
-    }
-  }
-  return
-}
-
 // 签到/私信/发帖/评论是写操作，需要用户绑定昵称
 function isUserHasName(view) {
   if (app.globalData.userInfo && app.globalData.userInfo.nickname) {
@@ -140,12 +118,8 @@ function parseUser(user) {
   if (meta.user_label_admin && user.admin) {
     user.admin_label = true
   }
-  var grades = app.globalData.grades
-  if (meta.user_label_level && !user.admin && grades) {
-    var i = getGrade(grades, user.exp_count)
-    if (i != undefined) {
-      user.level_label = 'LV.' + grades[i].level
-    }
+  if (meta.user_label_level && !user.admin && user.exp_name) {
+    user.level_label = 'LV.' + user.exp_level
   }
   return user
 }
@@ -302,7 +276,6 @@ function logViewTime(key) {
 module.exports = {
   applyTheme: applyTheme,
   getPhoneNumber: getPhoneNumber,
-  getGrade: getGrade,
   isUserHasName: isUserHasName,
   parsePost: parsePost,
   parseUser: parseUser,
