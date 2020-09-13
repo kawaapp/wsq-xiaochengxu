@@ -20,8 +20,8 @@
         >{{item.post.author.level_label}}</text> 
       </view>
       <view class='subtitle verified'>
-          <image wx:if="{{item.post.author.role}}" class="verified_img" src="/res/verified.png" />
-          <text wx:if="{{item.post.author.role}}" space="ensp">{{item.post.author.role.name}} · </text>
+          <image wx:if="{{item.post.author.role_name}}" class="verified_img" src="/res/verified.png" />
+          <text wx:if="{{item.post.author.role_name}}" space="ensp">{{item.post.author.role_name}} · </text>
           <text>{{item.post.agoTime}} </text>
       </view>
     </view>
@@ -112,7 +112,7 @@
         <!-- Reply user name and content-->
         <view class='nickname'>
           <span style="margin-right:4rpx">{{ item.author.nickname || '匿名' }}</span>
-          <image wx:if="{{item.author.role}}" class="verified_img" src="/res/verified.png" />
+          <image wx:if="{{item.author.role_name}}" class="verified_img" src="/res/verified.png" />
         </view>
         <view class='detail'>{{item.content}}</view>
         <image wx:if="{{item.image}}" catchtap="clickCommentImage" data-item="{{item}}"

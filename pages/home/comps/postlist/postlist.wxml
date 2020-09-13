@@ -43,8 +43,8 @@
           >{{item.author.level_label}}</text>
           </view>
           <view class='subtitle verified'>
-            <image wx:if="{{item.author.role}}" class="verified_img" src="/res/verified.png" />
-            <text wx:if="{{item.author.role}}" space="ensp">{{item.author.role.name}} · </text>
+            <image wx:if="{{item.author.role_name}}" class="verified_img" src="/res/verified.png" />
+            <text wx:if="{{item.author.role_name}}" space="ensp">{{item.author.role_name}} · </text>
             <text>{{item.agoTime}} </text>
           </view>
         </view>

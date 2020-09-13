@@ -4,9 +4,9 @@
     <image class='avatar' src="{{user.avatar}}"/>
     <view class='nickname'>{{user.nickname}}</view>
     <view class="horizontal">
-      <view wx:if="{{user.role}}" class='verified'>
+      <view wx:if="{{user.role_name}}" class='verified'>
         <image class="verified_img" src="/res/verified.png" />
-        <text space="ensp">{{user.role.name}} · </text>
+        <text space="ensp">{{user.role_name}} · </text>
       </view>
       <view class='ts'>已加入 {{user.days}} 天</view>
     </view>

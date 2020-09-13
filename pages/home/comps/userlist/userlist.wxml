@@ -17,8 +17,8 @@
           style="background:{{theme.levelColor}}; opacity: .8"
         >{{item.level_label}}</text>
       <view class='verified'>
-        <image wx:if="{{item.role}}" class="verified_img" src="/res/verified.png" />
-        <text wx:if="{{item.role}}" >{{item.role.name}}</text>
+        <image wx:if="{{item.role_name}}" class="verified_img" src="/res/verified.png" />
+        <text wx:if="{{item.role_name}}" >{{item.role_name}}</text>
       </view>
     </view>
   </navigator>

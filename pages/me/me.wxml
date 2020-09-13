@@ -27,8 +27,8 @@
           bindtap='clickExp'>{{expLabel}}</text>
       </view>
       <view class='subtitle verified'>
-        <image wx:if="{{user.role}}" class="verified_img" src="/res/verified.png" />
-        <text wx:if="{{user.role}}" space="ensp">{{user.role.name}} · </text>
+        <image wx:if="{{user.role_name}}" class="verified_img" src="/res/verified.png" />
+        <text wx:if="{{user.role_name}}" space="ensp">{{user.role_name}} · </text>
         <button wx:if="{{user.nickname && metadata.user_mode}}"
         open-type="getPhoneNumber"
         bindgetphonenumber="getPhoneNumber"
