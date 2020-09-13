@@ -78,6 +78,7 @@ page {
   font-size: 28rpx;
   padding: 0rpx 12rpx;
   border-radius: 8rpx;
+  flex-shrink: 0;
 }
 
 .empty {
