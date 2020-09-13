@@ -183,7 +183,6 @@ function jsonParse(str) {
 function getCityName(addr) {
   var city = undefined
   if (addr) {
-    console.log("get add:" + addr)
     var index0 = addr.indexOf('省')
     var index1 = addr.indexOf('市')
     if (index0 > 0 && index1 > 0 && index1 > index0 ) {

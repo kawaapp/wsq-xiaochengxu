@@ -28,7 +28,6 @@ Page({
 function setup(view) {
   api.getPointOrderList().then( resp => {
     view.setData({ orders: massage(resp.data)})
-    console.log("get orders:", resp)
   }).catch( err => {
     console.log("get order err:", err)
   })

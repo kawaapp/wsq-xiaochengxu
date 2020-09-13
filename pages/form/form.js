@@ -99,7 +99,6 @@ function onLoad(view, options) {
 function firstLoad(view, id) {
   wx.showLoading()
   api.getForm(id).then( resp => {
-    console.log("get form:", resp.data)
     var form = resp.data
     var { form_items } = form
     form_items && form_items.map( item => {
@@ -117,7 +116,6 @@ function firstLoad(view, id) {
     return api.getFormData(id)
   }).then( resp => {
     wx.hideLoading()
-    console.log("get answer:", resp)
     var data = resp.data
     var kv = {}
     data && data.map( a => {

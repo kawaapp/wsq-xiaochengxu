@@ -3,7 +3,7 @@
 
 <!-- 用户列表 -->
 <view>
-  <view wx:for="{{tabCurrent == 0? followings: followers}}" wx:key="{{item.id}}">
+  <view wx:for="{{tabCurrent == 0? followings: followers}}" wx:key="id">
     <navigator url="/pages/user/user/user?id={{item.id}}" class="user">
       <image class="avatar-large" src="{{item.avatar}}" style="margin-right:12rpx;" />
       <text class="title b5">{{item.nickname}}</text>

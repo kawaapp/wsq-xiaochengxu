@@ -85,7 +85,6 @@ function render(app) {
 
 function checkAdminPostOnly() {
   api.getUserPermission().then( resp => {
-    console.log("get permission:", resp.data)
     var p = resp.data
     if (!p.write_post) {
       view.setData({ hideNewButton: true})

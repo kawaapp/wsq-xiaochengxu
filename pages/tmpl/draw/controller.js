@@ -91,8 +91,6 @@ function draw(group) {
 
   // draw child views
   group.views && group.views.map(item => {
-      console.log("start draw item:", item)
-      console.log("current cursor:", cursor)
       const { top, left } = cursor
 
       if (item.type == 'rect') {

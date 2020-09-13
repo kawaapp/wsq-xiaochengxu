@@ -23,7 +23,6 @@ function onClickSearch() {
     const data = resp.data.items || [] 
     view.setData({ loading: false, page: 1, hasmore: data && data.length == 20})
     view.setData({ posts: massage(data)})
-    console.log("get search result:", resp)
   }).catch( err => {
     view.setData({ loading: false, page: 1, hasmore: true })
     console.log("search err,", err)

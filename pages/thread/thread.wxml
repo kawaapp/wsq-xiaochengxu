@@ -41,7 +41,7 @@
     
     <!-- images -->
     <view wx:if="{{item.post.images}}" class="itemwrapper">
-      <view wx:for="{{item.post.images}}" wx:for-item="path" wx:key="{{path}}" >
+      <view wx:for="{{item.post.images}}" wx:for-item="path" wx:key="path" >
         <image bindtap="clickImage" data-idx="{{index}}" src="{{path}}" mode='widthFix' class="img"/>
       </view>
     </view> 

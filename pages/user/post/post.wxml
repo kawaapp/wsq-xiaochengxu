@@ -1,5 +1,5 @@
 <view style='margin-bottom:18rpx;'/>
-<view wx:for="{{posts}}" wx:for-item="item" wx:key="{{item.id}}">
+<view wx:for="{{posts}}" wx:for-item="item" wx:key="id">
   <navigator url="/pages/thread/thread?pid={{item.id}}">
   <view class="card">
     <view class="horizontal">

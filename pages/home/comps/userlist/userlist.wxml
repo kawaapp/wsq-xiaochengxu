@@ -1,6 +1,6 @@
 <!-- 活跃用户 -->
 <view style="background: #fff">
-  <view wx:for="{{users}}" wx:for-item="item" wx:key="{{index}}">
+  <view wx:for="{{users}}" wx:for-item="item" wx:key="index">
   <view wx:if="{{index !== 0}}"  class='line' style='margin:0 72rpx;'></view>
   <navigator url="/pages/user/user/user?id={{item.id}}">
     <view class='item'>

@@ -56,7 +56,6 @@ function onSendMessage(e) {
 // 发送消息
 function sendMessage(data) {
   api.createChatMessage(data).then( resp => {
-    console.log("get resp:" + data, resp)
     var item = massage1(resp.data)
     console.log(item)
     view.appendMessage(item)

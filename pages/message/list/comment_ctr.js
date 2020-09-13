@@ -38,7 +38,6 @@ function onPullDownRefresh() {
       hasmore: resp.data && resp.data.length == 20 
     })
     view.setData({ messages: unpacked, unread: unread })
-    console.log(resp)
   }).catch(err => {
     wx.stopPullDownRefresh()
     view.setData({ loading: false })

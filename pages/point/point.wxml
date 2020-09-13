@@ -13,7 +13,7 @@
 
   <!-- 商品列表 -->
   <view class="grid">
-    <view wx:for="{{items}}" wx:key="{{item.id}}" class="item">
+    <view wx:for="{{items}}" wx:key="id" class="item">
         <image class="img" src="{{item.image}}" mode="aspectFill" />
         <view class="horizontal bar">
           <view>
@@ -40,7 +40,7 @@
 
   <!-- 活动 -->
   <view class="kind">
-    <view wx:for="{{kinds}}" wx:key="{{item.id}}" class="listitem">
+    <view wx:for="{{kinds}}" wx:key="id" class="listitem">
         <view class="title">{{item.name}}</view>
         <view>每次可以获得 {{item.value}} 积分，10分钟内不可重复领取</view>
     </view>

@@ -156,7 +156,6 @@ function fetchMessage(app) {
     var check = false
     items.map(item => {
       if (item.from_id != uid && item.status === 0) {
-        console.log("get checked item:", item)
         check = true
       }
     })

@@ -45,7 +45,6 @@ function onReachBottom() {
 
 function fetchUser(id) {
   api.getUser(id).then( resp => {
-    console.log("get resp:", resp)
     var user = resp.data
     user.days = util.getDaysFromNow(user.created_at)
     view.setData({ user: user })
@@ -68,7 +67,6 @@ function fetchPostList(uid) {
 
   // fetch data 
   api.getUserPostList(uid).then(resp => {
-    console.log("user get posts:", resp)
     var posts = massage(resp.data)
     view.setData({ posts: posts })
     view.setData({ loading: false, hasmore: resp.data && resp.data.length === PAGE_SIZE })

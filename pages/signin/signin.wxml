@@ -8,7 +8,7 @@
   <view class='sign-card'>
     <view class='title'>已连续签到 {{sign.today.seq_count}} 天</view>
     <view class='list'>
-      <view class='item' wx:for="{{sign.days}}" wx:for-item="item" wx:key="{{index}}">
+      <view class='item' wx:for="{{sign.days}}" wx:for-item="item" wx:key="index">
         <text>{{item.checked && !item.today ? '已签到': item.date}}</text>
         <view class="{{item.checked? 'checked': ''}}" >
           {{item.checked? '✔': '+'+item.value}}
@@ -27,7 +27,7 @@
   <!-- 排行榜 -->
   <view class='ranks'>
     <view class='.title'>签到榜</view>
-    <view wx:for="{{ranks}}" wx:for-item="item" wx:key="{{index}}">
+    <view wx:for="{{ranks}}" wx:for-item="item" wx:key="index">
       <view class='item'>
         <image wx:if="{{index<3}}" class='ranking' src="/res/rank_{{index+1}}.png" />
         <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>

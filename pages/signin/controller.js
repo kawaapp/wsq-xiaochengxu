@@ -47,7 +47,6 @@ function onLoad(options) {
 }
 
 function onReachBottom() {
-  console.log("on reach bottom..")
   if (view.data.loading || !view.data.hasmore) {
     return
   }
@@ -59,7 +58,6 @@ function onReachBottom() {
     pager.index += 1
     view.setData({ loading: false, hasmore: resp.data && resp.data.length == pager.size  })
     view.setData({ ranks: ranks.concat(massage(resp.data)) })
-    console.log("get users:", resp.data)
   }).catch(err => {
     console.log(err)
     view.setData({ loading: false })
