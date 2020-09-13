@@ -208,7 +208,7 @@ function getSignToday() {
 
 function getSignList() {
   return req({
-    url: `${Host}/api/signs`,
+    url: `${Host}/api/signs/week`,
     method: 'GET'
   })
 }
