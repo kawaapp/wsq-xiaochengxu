@@ -5,9 +5,20 @@
   align-items: center;
 }
 
+.item_txt {
+  width: 100%;
+  vertical-align: middle;
+
+  /* single-line */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .item .ranking {
   width: 72rpx;
   height: 72rpx;
+  flex-shrink: 0;
 }
 
 .item .index {
@@ -24,6 +35,7 @@
   margin-right: 16rpx;
   margin-left: 24rpx;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .item .name {
@@ -69,17 +81,17 @@
   border-radius: 2rpx;
 }
 
-.verified {
-  display: flex;
-  align-items: center;
+.verified_txt {
   font-size: 28rpx;
   color: #888888;
-  margin-left: 12rpx;
+  margin-top: -4rpx;
 }
 
 .verified_img {
   width: 32rpx;
   height: 32rpx;
   margin-right: 4rpx;
+  margin-left: 12rpx;
+  margin-bottom: -4rpx;
   opacity: .9;
 }

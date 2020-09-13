@@ -7,18 +7,18 @@
       <image wx:if="{{index<3}}" class='ranking' src="/res/rank_{{index+1}}.png" />
       <view wx:if="{{index>=3}}" class='index'>{{index+1}}</view>
       <image class='avatar' src="{{item.avatar || '/res/placeholder.png'}}"></image>
-      <text class='name' >{{item.nickname}}</text>
-      <text wx:if="{{item.admin_label}}" 
-          class="user-label"
-          style="background:{{theme.adminColor}}; opacity: .9"
-        >管理员</text>
-      <text wx:if="{{item.level_label}}" 
-          class="user-label"
-          style="background:{{theme.levelColor}}; opacity: .8"
-        >{{item.level_label}}</text>
-      <view class='verified'>
+      <view class="item_txt">
+        <text class='name' >{{item.nickname}}</text>
+        <text wx:if="{{item.admin_label}}" 
+            class="user-label"
+            style="background:{{theme.adminColor}}; opacity: .9"
+          >管理员</text>
+        <text wx:if="{{item.level_label}}" 
+            class="user-label"
+            style="background:{{theme.levelColor}}; opacity: .8"
+          >{{item.level_label}}</text>
         <image wx:if="{{item.role_name}}" class="verified_img" src="/res/verified.png" />
-        <text wx:if="{{item.role_name}}" >{{item.role_name}}</text>
+        <text wx:if="{{item.role_name}}" class="verified_txt" >{{item.role_name}}</text>
       </view>
     </view>
   </navigator>
