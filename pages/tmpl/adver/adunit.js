@@ -98,9 +98,6 @@ function onClickClose(view) {
 function jump(adunit) {
   try {
     const link = JSON.parse(adunit.link)
-    if (!link.value) {
-      return
-    }
     biz.openLink({link: link.value, path: link.path })
   } catch(e) {}
 }
