@@ -6,7 +6,7 @@
 
   <!-- 签到卡片 -->
   <view class='sign-card'>
-    <view class='title'>已连续签到 {{sign.today.seq_count}} 天</view>
+    <view class='title'>已连续签到 {{sign.seqCount}} 天</view>
     <view class='list'>
       <view class='item' wx:for="{{sign.days}}" wx:for-item="item" wx:key="index">
         <text>{{item.checked && !item.today ? '已签到': item.date}}</text>

@@ -28,8 +28,17 @@ function onLoad(options) {
     var today = days[weekDay-1]
     today.today = true
     today.date = '今天'
+
+    // 连续签到, 如果今天已签到那么连续签到次数记录在今天否则是昨天
+    var seqCount = 0
+    if (today.checked) {
+      seqCount = today.seq_count
+    } else {
+      seqCount = weekDay-2>=0? days[weekDay-2].seq_count: 0
+    }
+
     view.setData({
-      sign: { days: days, today: today }
+      sign: { days: days, today: today, seqCount: seqCount }
     })
   }).catch( err => {
     console.log(err)

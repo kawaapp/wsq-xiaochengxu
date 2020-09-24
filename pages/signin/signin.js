@@ -20,6 +20,7 @@ Page({
       ],
       today: {
       },
+      seqCount: 0,
     },
     exp: {
       sign: 1,
