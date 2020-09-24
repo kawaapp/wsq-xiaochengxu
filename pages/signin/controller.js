@@ -78,7 +78,7 @@ function onReachBottom() {
 
 function onClickSign(e) {
   var sign = view.data.sign
-  if (sign.today.signed) {
+  if (sign.today.checked) {
     wx.showToast({
       title: '已经签过到啦', icon: 'none'
     })
@@ -96,10 +96,17 @@ function onClickSign(e) {
         title: '签到成功', icon: "success"
       })
     }
+    // 刷新签到列表
+    refresh()
   }).catch(err => {
     console.log(err)
     wx.showToast({ title: '签到失败:'+err.code, icon: "none" })
   })
+}
+
+// 刷新
+function refresh() {
+  onLoad()
 }
 
 // show users who has a name
