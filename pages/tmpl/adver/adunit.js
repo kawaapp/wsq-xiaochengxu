@@ -1,4 +1,5 @@
 const api = require('../../../utils/api.js')
+const biz = require('../../../utils/biz.js')
 const app = getApp()
 
 // 所有广告埋点都是确定的情况下，可以把
@@ -100,16 +101,7 @@ function jump(adunit) {
     if (!link.value) {
       return
     }
-    if (link.type == 'mp') {
-      wx.navigateToMiniProgram({
-        appId: link.value,
-        path: link.path,
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/webview/webview?q=' + encodeURIComponent(link.value),
-      })
-    }
+    biz.openLink({link: link.value, path: link.path })
   } catch(e) {}
 }
 

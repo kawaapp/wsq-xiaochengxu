@@ -252,18 +252,31 @@ function createSubscribes(tids) {
 
 // 打开小程序或网页链接
 function openLink(data) {
-  if (data && data.link) {
-    if (data.link.startsWith("http")) {
-      wx.navigateTo({
-        url: '/pages/webview/webview?q=' + encodeURIComponent(data.link),
-      })
-    } else {
-      wx.navigateToMiniProgram({
-        appId: data.link,
-        path: data.path,
-      })
-    }
+  if (data.path && data.path[0] != '/') {
+    data.path = '/' + data.path
   }
+
+  // 如果是网页
+  if (data.link && data.link.toLowerCase().startsWith("http")) {
+    wx.navigateTo({
+      url: '/pages/webview/webview?q=' + encodeURIComponent(data.link),
+    })
+    return
+  }
+
+  // 如果是打开小程序内部页面
+  const accountInfo = wx.getAccountInfoSync();
+  if (!data.link || data.link == accountInfo.miniProgram.appId) {
+    wx.navigateTo({
+      url: data.path,
+    })
+    return
+  }
+  // 打开外部小程序
+  wx.navigateToMiniProgram({
+    appId: data.link,
+    path: data.path,
+  })
 }
 
 // 记录Key的访问时间
