@@ -4,9 +4,9 @@
   "usingComponents": {
     "userlist": "./comps/userlist/userlist",
     "postlist": "./comps/postlist/postlist",
-    "kw-tab": "../../tmpl/tab/kw-tab",
-    "kw-login": "../../tmpl/login/dialog",
-    "kw-adver": "../../tmpl/adver/adunit",
-    "kw-poll": "../../tmpl/poll/poll"
+    "kw-tab": "../tmpl/tab/kw-tab",
+    "kw-login": "../tmpl/login/dialog",
+    "kw-adver": "../tmpl/adver/adunit",
+    "kw-poll": "../tmpl/poll/poll"
   }
 }

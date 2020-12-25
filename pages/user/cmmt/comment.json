@@ -3,6 +3,6 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "kw-loading": "../tmpl/loading/loading"
+    "kw-loading": "../../tmpl/loading/loading"
   }
 }

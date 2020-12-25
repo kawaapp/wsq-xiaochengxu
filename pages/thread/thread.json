@@ -8,7 +8,7 @@
     "kw-text": "../tmpl/text/kw-text",
     "kw-link": "../tmpl/link/kw-link",
     "kw-like": "../tmpl/like/kw-like",
-    "kw-login": "../../tmpl/login/dialog",
-    "kw-adver": "../../tmpl/adver/adunit"
+    "kw-login": "../tmpl/login/dialog",
+    "kw-adver": "../tmpl/adver/adunit"
   }
 }
