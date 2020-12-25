@@ -4,6 +4,6 @@
     "form-input": "./comps/input/input",
     "form-radio": "./comps/radio/radio",
     "form-checkbox": "./comps/ckbox/checkbox",
-    "kw-login": "../../tmpl/login/dialog"
+    "kw-login": "../tmpl/login/dialog"
   }
 }

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "kw-tab": "../../../tmpl/tab/kw-tab",
-    "kw-loading": "../../../tmpl/loading/loading"
+    "kw-tab": "../../tmpl/tab/kw-tab",
+    "kw-loading": "../../tmpl/loading/loading"
   }
 }

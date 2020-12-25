@@ -3,6 +3,6 @@
   "usingComponents": {
     "info": "./info/info",
     "join": "./join/join",
-    "kw-login": "../../tmpl/login/dialog"
+    "kw-login": "../tmpl/login/dialog"
   }
 }

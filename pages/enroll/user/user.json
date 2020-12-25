@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "参与人",
   "usingComponents": {
-    "kw-loading": "../../../tmpl/loading/loading"
+    "kw-loading": "../../tmpl/loading/loading"
   }
 }
