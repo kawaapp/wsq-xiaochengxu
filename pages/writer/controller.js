@@ -185,8 +185,27 @@ function hasContent() {
   return false
 }
 
+function testTopic() {
+  var meta = app.globalData.meta
+  if (meta && meta.app_topic_must) {
+    if (view.data.topic.selected < 0) {
+      wx.showModal({
+        title: "提示",
+        content: "请选择相关话题，然后发帖",
+      })
+      return false
+    }
+  }
+  return true
+}
+
 function onClickSubmit() {
   if (!hasContent()) {
+    return
+  }
+
+  // 是否必须选择话题
+  if (!testTopic()) {
     return
   }
 
