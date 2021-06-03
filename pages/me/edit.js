@@ -145,29 +145,33 @@ Page({
 
   bindUserInfo: function(e) {
     var view = this
-    var user = e.detail.userInfo
-    if (user) {
-      var data = {
-        avatar: user.avatarUrl,
-        city: user.city,
-        gender: user.gender,
-        language: user.language,
-        nickname: user.nickName
+    wx.getUserProfile({
+      desc: '完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        var user = res.userInfo
+        if (user) {
+          var data = {
+            avatar: user.avatarUrl,
+            city: user.city,
+            gender: user.gender,
+            language: user.language,
+            nickname: user.nickName
+          }
+          api.updateUser(data).then((resp) => {
+            console.log("授权成功")
+            view.setData({ user: resp.data })
+            wx.showToast({ 
+              title: '同步成功', icon: 'success'
+            })
+          }).catch( err => {
+            console.log('sync err:', err)
+            wx.showToast({
+              title: '同步失败', icon: 'none'
+            })
+          })
+        }
       }
-      api.updateUser(data).then((resp) => {
-        console.log("授权成功")
-        view.setData({ user: resp.data })
-        wx.showToast({ 
-          title: '同步成功', icon: 'success'
-        })
-      }).catch( err => {
-        console.log('sync err:', err)
-        wx.showToast({
-          title: '同步失败', icon: 'none'
-        })
-      })
-    }
-    console.log(e.detail)
+    })
   }
 
 })

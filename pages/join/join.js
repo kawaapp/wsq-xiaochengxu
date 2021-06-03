@@ -37,15 +37,20 @@ Page({
   },
 
   bindUserInfo: function(e) {
-    var userInfo = e.detail.userInfo
-    var user = {
-      avatar : userInfo.avatarUrl,
-      city : userInfo.city,
-      gender : userInfo.gender,
-      language : userInfo.language,
-      nickname : userInfo.nickName,
-    }
-    this.setData({ user: user })
+    wx.getUserProfile({
+      desc: '完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        var userInfo = res.userInfo
+        var user = {
+          avatar : userInfo.avatarUrl,
+          city : userInfo.city,
+          gender : userInfo.gender,
+          language : userInfo.language,
+          nickname : userInfo.nickName,
+        }
+        this.setData({ user: user })
+      }
+    })
   },
 
   getPhoneNumber: function() {

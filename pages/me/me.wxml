@@ -7,14 +7,7 @@
       <view>
         <text wx:if="{{user.nickname}}" style='font-size:30rpx;'>{{user.nickname}}</text>
         <view hidden='{{user.nickname}}'>
-          <button wx:if="{{metadata.user_mode < 2}}"
-          class='btn-clear btn' 
-          hover-class='btn-hover'
-          style='color: {{theme.color}};'
-          open-type="getUserInfo" 
-          bindgetuserinfo="bindUserInfo"
-          >点击登录</button>
-          <button wx:if="{{metadata.user_mode == 2}}"
+          <button
           class='btn-clear btn' 
           hover-class='btn-hover'
           style='color: {{theme.color}};'

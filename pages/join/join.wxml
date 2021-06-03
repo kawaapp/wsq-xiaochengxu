@@ -40,8 +40,7 @@
   <view class="-title">信息绑定</view>
   <view class="input" style="margin-top:32rpx;">
     <view class="name">微信昵称:</view>
-    <button class="btn-clear" style="margin-left:auto" 
-      open-type="getUserInfo" bindgetuserinfo="bindUserInfo">
+    <button class="btn-clear" style="margin-left:auto" bindtap="bindUserInfo">
       {{user.nickname}}
       <view class="btn" wx:if="{{!user.nickname}}" >
         <text>一键获取</text><view class="underline"/> 

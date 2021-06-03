@@ -52,17 +52,22 @@ Component({
 })
 
 function bindUserInfo(view, e) {
-  var userInfo = e.detail.userInfo
-  if (userInfo) {
-    var user = view.data.user
-    user.avatar = userInfo.avatarUrl
-    user.city = userInfo.city
-    user.gender = userInfo.gender
-    user.language = userInfo.language
-    user.nickname = userInfo.nickName
-    view.setData({ user: user })
-    enableButton(view)
-  }
+  wx.getUserProfile({
+    desc: '完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    success: (res) => {
+      var userInfo = res.userInfo
+      if (userInfo) {
+        var user = view.data.user
+        user.avatar = userInfo.avatarUrl
+        user.city = userInfo.city
+        user.gender = userInfo.gender
+        user.language = userInfo.language
+        user.nickname = userInfo.nickName
+        view.setData({ user: user })
+        enableButton(view)
+      }
+    }
+  })
 }
 
 function bindPhoneNumber(view, e) {

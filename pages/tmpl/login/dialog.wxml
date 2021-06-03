@@ -10,7 +10,7 @@
     <view class="input" style="margin-top:64rpx;">
       <view class="circle"/>
       <view class="name">昵称:</view>
-      <button class="btn-clear" open-type="getUserInfo" bindgetuserinfo="bindUserInfo">
+      <button class="btn-clear" bindtap="bindUserInfo">
         {{user.nickname}}
         <view class="btn" wx:if="{{!user.nickname}}" >
           <text>一键获取</text><view class="underline"/> 

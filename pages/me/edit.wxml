@@ -46,9 +46,7 @@
   </view>
 </view>
 <view class="card horizontal"> 
-  <button class="btn-clear" style="width:100%" 
-    open-type="getUserInfo" 
-    bindgetuserinfo="bindUserInfo">
+  <button class="btn-clear" style="width:100%" bindtap="bindUserInfo">
     <view>同步微信头像和昵称</view>
     <view class="flow-right">
       <image class="arrow " src="{{theme.images}}/arrow_right.png" />
